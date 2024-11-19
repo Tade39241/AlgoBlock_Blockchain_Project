@@ -46,6 +46,38 @@ def decode_base58(s):
 
     return combined[1:-4]
 
+def encode_base58(s):
+    count = 0
+    for c in s:
+        if c==0:
+            count +=1
+        else:
+            break
+    num = int.from_bytes(s,'big')
+    prefix = '1'*count
+    result = ''
+    while num>0:
+        num , mod= divmod(num,58)
+        result=BASE58_ALPHABET[mod] + result
+    return prefix+result
+
+def read_varint(s):
+    """ read_varint reads a variable integer stream """
+    i = s.read(1)[0]
+    if i == 0xfd:
+        # 0xfd means the next two bytes are the number
+        return little_endian_to_int(s.read(2))
+    elif i == 0xfe:
+        # 0xfe means the next four bytes are the number
+        return little_endian_to_int(s.read(4))
+    elif i == 0xff:
+        # 0xff means the next eight bytes are the number
+        return little_endian_to_int(s.read(8))
+    else:
+        # anything else is just an integer
+        return i
+
+
 def encode(i):
     "encodes int"
     if i < 0xfd:
@@ -94,3 +126,8 @@ def target_to_bits(target):
         coefficient = raw_bytes[:3]  # <4>
     new_bits = coefficient[::-1] + bytes([exponent])  # <5>
     return new_bits
+
+def bits_to_targets(bits):
+    exponent = bits[-1]
+    coefficient = little_endian_to_int(bits[:-1])
+    return coefficient*256**(exponent - 3)
