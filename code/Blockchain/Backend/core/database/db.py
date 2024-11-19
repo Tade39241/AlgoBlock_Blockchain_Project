@@ -43,6 +43,7 @@
 
 import sqlite3
 import json
+import os
 
 class BaseDB:
     def __init__(self):
@@ -115,3 +116,20 @@ class AccountDB(BaseDB):
     def __init__(self):
         self.filename = "account.db"
         super().__init__()
+
+
+class NodeDB(BaseDB):
+    def __init__(self):
+        self.filename = "node.db"
+        super().__init__()
+        self._initialise_with_8888()
+
+    def _initialise_with_8888(self):
+        """Initialize the database with [8888] if it's empty"""
+        # Check if any data exists in the node.db table
+        self.cursor.execute('SELECT data FROM blockchain_data')
+        rows = self.cursor.fetchall()
+
+        # If the database is empty, add [8888]
+        if not rows:
+            self.write([8888])
