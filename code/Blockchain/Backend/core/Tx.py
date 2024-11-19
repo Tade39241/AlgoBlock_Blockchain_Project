@@ -1,7 +1,7 @@
 import sys
 sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
 from Blockchain.Backend.core.script import Script
-from Blockchain.Backend.util.util import int_to_little_endian, bytes_needed, decode_base58, little_endian_to_int, encode, hash256
+from Blockchain.Backend.util.util import int_to_little_endian, bytes_needed, decode_base58, little_endian_to_int, encode, hash256, read_varint
 
 ZERO_HASH = b'\0' * 32
 REWARD = 50
@@ -49,6 +49,20 @@ class Tx:
         "Binary Hash of serialisation"
         return hash256(self.serialise())[::-1]
 
+    @classmethod
+    def parse(cls, s):
+        version = little_endian_to_int(s.read(4))
+        num_inputs = read_varint(s)
+        inputs = []
+        for _ in range( num_inputs):
+            inputs.append(TxIn.parse(s))
+        num_outputs = read_varint(s)
+        outputs = []
+        for _ in range(num_outputs):
+            outputs.append(TxOut.parse(s))
+        locktime = little_endian_to_int(s.read(4))
+        return cls(version, inputs, outputs, locktime)
+    
     def serialise(self):
         result = int_to_little_endian(self.version, 4)
         result += encode(len(self.tx_ins))
@@ -78,7 +92,38 @@ class Tx:
             return False
 
         return True
+    
+    @classmethod
+    def to_obj(cls, item):
+        TxInList = []
+        TxOutList = []
+        cmds = []
 
+        for tx_in in item['tx_ins']:
+            for cmd in tx_in['script_sig']['cmds']:
+                if tx_in['prev_tx'] == '0000000000000000000000000000000000000000000000000000000000000000':
+                    cmds.append(int_to_little_endian(int(cmd), bytes_needed(int(cmd))))
+                else:
+                    if type(cmd) == int:
+                        cmds.append(cmd)
+                    else:
+                        cmds.append(bytes.fromhex(cmd))
+            TxInList.append(TxIn(bytes.fromhex(tx_in['prev_tx']),tx_in['prev_index'], Script(cmds))) 
+
+        cmdsout = []
+
+        for tx_out in item['tx_outs']:
+            for cmd in tx_out['script_publickey']['cmds']:
+                if type(cmd) == int:
+                    cmdsout.append(cmd)
+                else:
+                    cmdsout.append(bytes.fromhex(cmd))
+            TxOutList.append(TxOut(tx_out['amount'],Script(cmdsout)))
+            cmdsout = []
+        return cls(1, TxInList, TxOutList, 0)
+
+
+                
     def to_dict(self):
 
         "converts both prev_tx Hash and Blockheight to hex, to let us store in file"
@@ -173,7 +218,15 @@ class TxIn:
         result += self.script_sig.serialise()
         result += int_to_little_endian(self.sequence, 4)
         return result
-
+    
+    @classmethod
+    def parse(cls, s):
+        prev_tx=s.read(32)[::-1]
+        prev_index = little_endian_to_int(s.read(4))
+        script_sig = Script.parse(s)
+        sequence = little_endian_to_int(s.read(4))
+        return cls(prev_tx, prev_index, script_sig, sequence)
+    
 class TxOut:
     def __init__(self, amount, script_publickey):
         self.amount = amount
@@ -184,3 +237,8 @@ class TxOut:
         result += self.script_publickey.serialise()
         return result
     
+    @classmethod
+    def parse(cls, s):
+        amount = little_endian_to_int(s.read(8))
+        script_publickey = Script.parse(s)
+        return cls(amount, script_publickey)
