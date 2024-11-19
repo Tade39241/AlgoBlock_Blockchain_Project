@@ -1,13 +1,16 @@
 import sys
 sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
 
+
+import configparser
 from Blockchain.Backend.core.block import Block
 from Blockchain.Backend.core.blockheader import BlockHeader
 from Blockchain.Backend.util.util import hash256, merkle_root, target_to_bits
-from Blockchain.Backend.core.database.db import BlockchainDB
+from Blockchain.Backend.core.database.db import BlockchainDB, NodeDB
 from Blockchain.Backend.core.Tx import Coinbase_tx
 from multiprocessing import Process, Manager
 from Blockchain.Frontend.run import main
+from Blockchain.Backend.core.network.syncManager import syncManager
 import time
 import json
 import base58
@@ -37,6 +40,21 @@ class Blockchain:
         BlockHeight = 0
         prevBlockHash = ZERO_HASH
         self.addBlock(BlockHeight, prevBlockHash)
+
+    """ start the sync node """
+    def startSync(self):
+        try:
+            node = NodeDB()
+            portList = node.read()
+            
+            for port in portList:
+                port = port[0]
+                if localHostPort != port:
+                    sync = syncManager(localHost,port)
+                    sync.startDownload(localHostPort - 1, port)
+
+        except Exception as err:
+            print(f"Error while downloading the Blockchain \n{err}")
 
     def store_uxtos_in_cache(self):
         for tx in self.add_trans_in_block:
@@ -111,7 +129,7 @@ class Blockchain:
 
         merkleRoot = merkle_root(self.TxIds)[::-1].hex()
 
-        blockheader = BlockHeader(VERSION, prevBlockHash, merkleRoot, timestamp, self.bits)
+        blockheader = BlockHeader(VERSION, prevBlockHash, merkleRoot, timestamp, self.bits, nonce = 0)
         blockheader.mine(self.current_target)
 
         self.remove_spent_Transactions()
@@ -120,7 +138,7 @@ class Blockchain:
         self.convert_to_json()
 
         print(f"Block {BlockHeight} was mined successfully with a nonce value of {blockheader.nonce}")
-        self.write_on_disk([Block(BlockHeight, 1, blockheader.__dict__, 1, self.TxJson).__dict__])
+        self.write_on_disk([Block(BlockHeight, 1, blockheader.__dict__, len(self.TxJson), self.TxJson).__dict__])
         
 
     def main(self):
@@ -135,14 +153,27 @@ class Blockchain:
             self.addBlock(BlockHeight, prevBlockHash)
 
 if __name__ == '__main__':
+    """ read configuration file"""
+
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    localHost = config['DEFAULT']['host']
+    localHostPort = int(config['MINER']['port'])
+    webport = int(config['Webhost']['port'])
     with Manager() as manager:
         mem_pool = manager.dict()
         utxos = manager.dict()
 
-        webapp = Process(target=main, args=(utxos,mem_pool))
+        webapp = Process(target=main, args=(utxos, mem_pool, webport))
         webapp.start()
+        """Start server and listen for miner/user requests"""
+
+        sync = syncManager(localHost,localHostPort)
+        startServer = Process(target=sync.spinUpServer)
+        startServer.start()
 
 
         blockchain = Blockchain(utxos, mem_pool)
+        blockchain.startSync()
         blockchain.main()
         
