@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %} Account {% endblock %}
+{% block content %}
+
+    <div class="address">
+        <div class="addtag">
+            <h1>Address</h1>
+            <h3>{{ publicAddress }}</h3>
+        </div>
+        <img id="QR" src="{{qrcode(publicAddress, box_size = 4)}}">
+    </div>
+    <div class ="grid-container3">
+        <div class="TxHeader">
+            <div class="TxItem prevBlockHash" >TOTAL TX COUNT</div>
+            <div class="TxItem prevBlockHash" >TOTAL UNSPENT</div>
+        </div>
+
+        <div class ="TxDetails">
+            <div class="TxItemDetail prevBlockHash"> {{ Txs|length }} </div>
+            <div class="TxItemDetail prevBlockHash"> {{ amount/100000000 }} </div>        
+        </div>
+
+    </div>
+
+
+
+
+    <h1 class="TransactionHeader"> Transactions </h1>
+    {% for blk in Txs %}
+    <div class = "TransactionDiv">
+        <div class = "TxStyle">
+            <h4 class = "TxStyle TxId">
+                <a href = "{{url_for('transactions', txid = blk['TxId'])}}">
+                    {{blk['TxId']}}
+                </a>
+            </h4>
+            <h3>Inputs</h3>
+            {% for tx_in in blk['tx_ins'] %}
+
+            {% if tx_in['prev_tx'].hex() == '0000000000000000000000000000000000000000000000000000000000000000' %}
+            <div>#0 COINBASE</div>
+            {% else %}
+            <div class = "TxStyle TxInput"> 
+                <a href = "{{url_for('transactions', txid = tx_in['prev_tx'].hex())}}">
+                    #{{loop.index0}} {{tx_in['prev_tx'].hex()}}
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <div class="TxStyle output">
+            <h3> Outputs </h3>
+            {% for tx_out in blk[tx_outs] %}
+            <div class="Txouput">
+                {% set h160hash = tx_out['script_publickey']['cmds'][2] %}
+                {% set new_addr = main_prefix + h160hash %}
+                {% set checksum = sha256(sha256(new_addr).digest()).digest()[:4] %}
+                {% set new_addr = new_addr + checksum %}
+                {% set pubAddress = encode_base(new_addr) %}
+                {% if (tx_out['amount']%10000000) == 0 %}
+                {% set amount = (tx_out['amount']/100000000|int) %}
+                {% else %}
+                {% set amount = (tx_out['amount']/100000000) %}
+                {% endif %}
+                <a href="{{url_for('address', publicAddress = pubAddress)}}"> #{{loop.index0}} {{pubAddress}} : {{Amount}} TDC  </a>
+            </div>
+            {% endfor %}
+        </div>
+
+    {% endfor %}
+{% endblock %}
