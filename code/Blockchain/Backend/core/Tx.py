@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
+sys.path.append('/dcs/project/algoblock/CS351_PROJECT/code')
 from Blockchain.Backend.core.script import Script
 from Blockchain.Backend.util.util import int_to_little_endian, bytes_needed, decode_base58, little_endian_to_int, encode, hash256, read_varint
 

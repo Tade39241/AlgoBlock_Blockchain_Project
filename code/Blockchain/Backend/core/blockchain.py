@@ -1,7 +1,7 @@
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
+sys.path.append('/dcs/project/algoblock/CS351_PROJECT/code')
 
-
+"/dcs/project/algoblock/CS351_PROJECT/code"
 import configparser
 from Blockchain.Backend.core.block import Block
 from Blockchain.Backend.core.blockheader import BlockHeader

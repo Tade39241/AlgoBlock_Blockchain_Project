@@ -132,4 +132,4 @@ class NodeDB(BaseDB):
 
         # If the database is empty, add [8888]
         if not rows:
-            self.write([8888])
+            self.write([7272])

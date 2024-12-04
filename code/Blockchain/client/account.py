@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
+sys.path.append('/dcs/project/algoblock/CS351_PROJECT/code')
 from Blockchain.Backend.core.EllepticCurve.EllepticCurve import Sha256Point
 from Blockchain.Backend.core.database.db import AccountDB
 from Blockchain.Backend.util.util import hash160, hash256

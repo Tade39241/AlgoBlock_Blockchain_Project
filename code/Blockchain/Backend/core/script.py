@@ -4,7 +4,7 @@ which is fundamental for creating transactions that send coins to a specific add
 """
 
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code')
+sys.path.append('/dcs/project/algoblock/CS351_PROJECT/code')
 
 from Blockchain.Backend.util.util import int_to_little_endian, little_endian_to_int, encode, read_varint
 from Blockchain.Backend.core.EllepticCurve.op import OP_CODE_FUNCTION
