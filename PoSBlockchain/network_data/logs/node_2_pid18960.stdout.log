@@ -1,0 +1,382 @@
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+Starting node 2 on port 9002 with custom DB paths
+Creating account for node 2 with address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Account data written directly to DB at: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+Account details: public_addr=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, balance=1000
+Setting blockchain public address to: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Blockchain initialized successfully through BlockchainManager
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+ * Serving Flask app 'code_node2.Blockchain.Frontend.run' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+DEBUG: Total input = 5000000000, amount = 1900000000, fee = 100000000, change = 3000000000
+Database path used: data/account.db
+Account object created: address=14yikjhubj1sepvqsvzpRv4H6LhMN43XGD, staked=10000000000 satoshis (100.0 coins), rewards=201200000000 satoshis (2012.0 coins)
+Removing spent UTXO: txid 108879bc3061ee89afd79f9801a3c8b9c889316749fa4b55b6f55b9568ff4452, index 0
+Adding new transaction 3235c05624d97f6ba45dc34d974d445e943ac81841b4dc98efd1abbbb8086051 with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 01000000015244ff68955bf5b6554bfa49673189c8b9c8a301989fd7af89ee6130bc798810000000006a47304402203740113bfb31825440452753c1822f45cccaf9777b5f346aef4dfaf65830844002207839906b0a9d89250cc5d8495c6164aac06db08e3035ec4b926b6fa9584e855b01210387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901dffffffff0200b33f71000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac005ed0b2000000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00000000
+DEBUG (Sender): TxId: 3235c05624d97f6ba45dc34d974d445e943ac81841b4dc98efd1abbbb8086051
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 2300000000, amount = 1900000000, fee = 100000000, change = 300000000
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=281800000000 satoshis (2818.0 coins)
+Removing spent UTXO: txid bc1285ca28bdf14a1ef37a8bbbdabb3d380f933b8d65d348f7918ca5f1546ee8, index 0
+Adding new transaction 689959c3a4b19ba33fec21502532d25af086560b910ca472ca923e8acba2aa9c with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 0100000001e86e54f1a58c91f748d3658d3b930f383dbbdabb8b7af31e4af1bd28ca8512bc000000006a47304402201cb283ce4f4dab4341c5cfd4c1ec54c727acd10ce30ce6a65a97e1f5aa3d801c022059b42d949b38a7663bf9d33674056303748b20c8c16209a0fac4b07cacf08cf70121035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1ffffffff0200b33f71000000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00a3e111000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
+DEBUG (Sender): TxId: 689959c3a4b19ba33fec21502532d25af086560b910ca472ca923e8acba2aa9c
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 5000000000, amount = 1900000000, fee = 100000000, change = 3000000000
+Database path used: data/account.db
+Account object created: address=14yikjhubj1sepvqsvzpRv4H6LhMN43XGD, staked=10000000000 satoshis (100.0 coins), rewards=206400000000 satoshis (2064.0 coins)
+Removing spent UTXO: txid 108879bc3061ee89afd79f9801a3c8b9c889316749fa4b55b6f55b9568ff4452, index 0
+Adding new transaction 3235c05624d97f6ba45dc34d974d445e943ac81841b4dc98efd1abbbb8086051 with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 01000000015244ff68955bf5b6554bfa49673189c8b9c8a301989fd7af89ee6130bc798810000000006a47304402203740113bfb31825440452753c1822f45cccaf9777b5f346aef4dfaf65830844002207839906b0a9d89250cc5d8495c6164aac06db08e3035ec4b926b6fa9584e855b01210387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901dffffffff0200b33f71000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac005ed0b2000000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00000000
+DEBUG (Sender): TxId: 3235c05624d97f6ba45dc34d974d445e943ac81841b4dc98efd1abbbb8086051
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 4700000000, amount = 2900000000, fee = 100000000, change = 1700000000
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=281800000000 satoshis (2818.0 coins)
+Removing spent UTXO: txid bc1285ca28bdf14a1ef37a8bbbdabb3d380f933b8d65d348f7918ca5f1546ee8, index 0
+Removing spent UTXO: txid f91b16fa47f5a939c9ad3836753e66a8433063fa121a82efad2443cbb9a2c316, index 0
+Adding new transaction 1a6264ea598ce84d60d48437cf6f4e6f0934f1fbdbc799efa72653df582c7677 with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 0100000002e86e54f1a58c91f748d3658d3b930f383dbbdabb8b7af31e4af1bd28ca8512bc000000006a47304402207a58cdca798bbb59570e3e45956fbcdb2e21dbc9d2185f6d7ab391749f6e843702202708ae0217a349a1f3f18f957e1bf56c99710cecf11d22247c77ac02caed2a410121035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1ffffffff16c3a2b9cb4324adef821a12fa633043a8663e753638adc939a9f547fa161bf9000000006b483045022100bff17e8be93f301bcfc5661e81b7f32a86079fb5770cf4e30d60ab3656bb7e2d022038dd24e03bc8142dba6395ca8a7f9009b665aa6c3011a6c6e658adad9684d32d0121035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1ffffffff02007ddaac000000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00f15365000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
+DEBUG (Sender): TxId: 1a6264ea598ce84d60d48437cf6f4e6f0934f1fbdbc799efa72653df582c7677
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 4900000000, amount = 3400000000, fee = 100000000, change = 1400000000
+Database path used: data/account.db
+Account object created: address=1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig, staked=10000000000 satoshis (100.0 coins), rewards=272100000000 satoshis (2721.0 coins)
+Removing spent UTXO: txid 0d2e2c16ef28f505268d57e3a627f13f86cf2dd13d9a573a451860b66d68eba7, index 1
+Removing spent UTXO: txid 313ef0875bfb0802457f70a07b58f290053824aa7dfc7ee00b298dd1f920262a, index 0
+Removing spent UTXO: txid 8b5a22fb51012962e12cd89884c85381421912b6b59ea143d59f5916cb4631a8, index 0
+Adding new transaction 1535d449edbd9542a28cc775faca594a587788d7fb0ca3195195cfde1ca31235 with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 0100000003a7eb686db66018453a579a3dd12dcf863ff127a6e3578d2605f528ef162c2e0d010000006a47304402200b0948b919e6beda3b0849d4d8318505afdb19160eb0b2d69df4ddf99d6c437d02207d96c34f4be31ded738dca64b0e4076173772663717399f3f37bc5d997c9a64d01210248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4ffffffff2a2620f9d18d290be07efc7daa24380590f2587ba0707f450208fb5b87f03e31000000006b483045022100c580bade460aa54ca1165e1f987a4c797b799510244b0fce55f88e71472cbff802207e64d7fc7ddf787bf0e4dba40a1bbe08ccae79e5898758507d6d646016b460fd01210248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4ffffffffa83146cb16599fd543a19eb5b61219428153c88498d82ce162290151fb225a8b000000006b483045022100cc7fab7a46f483a443b5975fe6e01f0c2b6169294ce9ed8b8eb3d5e327201e4502205cd9e9cf8ed83157c2a0a86c749c7622f7885687948dce1efa3db0d317f650f701210248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4ffffffff0200e2a7ca000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac004e7253000000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
+DEBUG (Sender): TxId: 1535d449edbd9542a28cc775faca594a587788d7fb0ca3195195cfde1ca31235
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 5000000000, amount = 1300000000, fee = 100000000, change = 3600000000
+Database path used: data/account.db
+Account object created: address=14yikjhubj1sepvqsvzpRv4H6LhMN43XGD, staked=10000000000 satoshis (100.0 coins), rewards=206400000000 satoshis (2064.0 coins)
+Removing spent UTXO: txid cc73cf405d5ae3ecb3102357bd8de7d03e0f831cd12faf78f9d82d0ea1456d40, index 0
+Adding new transaction 2848f8b9dec16de4323e857402bc6ff554bb72f0980dd336c48d834a5121ba6f with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 0100000001406d45a10e2dd8f978af2fd11c830f3ed0e78dbd572310b3ece35a5d40cf73cc000000006a473044022006e863803bcf7303f9cf465b9e76a66f6a3cd2f2f0f61bd3adb6e443779a205702203c5f0dfb879fa0d165e359dfedcc6fd59563bdb95fa54f3edf8b88d9968b3b5001210387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901dffffffff02006d7c4d000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00a493d6000000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00000000
+DEBUG (Sender): TxId: 2848f8b9dec16de4323e857402bc6ff554bb72f0980dd336c48d834a5121ba6f
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+DEBUG: Total input = 2900000000, amount = 1700000000, fee = 100000000, change = 1100000000
+Database path used: data/account.db
+Account object created: address=1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig, staked=10000000000 satoshis (100.0 coins), rewards=272100000000 satoshis (2721.0 coins)
+Removing spent UTXO: txid 0fbee61d1eda11b05cc68f56dd0fe7a1ba0dd46eae12c816f0a48ab803466d5b, index 0
+Adding new transaction a2ddb47b82490bbf4e6a0594c72a182413a22ed39aa8af16c3955224132ecad2 with 2 output(s) to UTXO set.
+DEBUG: Broadcasting Serialized Tx: 01000000015b6d4603b88aa4f016c812ae6ed40dbaa1e70fdd568fc65cb011da1e1de6be0f000000006b483045022100cbfbcb655dc6118a6383df6d20a46d6badf96eba0c8bb8f93a4bed7e126ef69f02202cff8fd7acf5cd9460d3ebae2be569a80fb61cfb022feaae0839d6668cad001201210248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4ffffffff0200f15365000000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00ab9041000000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
+DEBUG (Sender): TxId: a2ddb47b82490bbf4e6a0594c72a182413a22ed39aa8af16c3955224132ecad2
+Trying to connect from 9001: to: 9000...
+Trying to connect from 9001: to: 9001...
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+SERVER STARTED
+LISTENING at 127.0.0.1:9002
+Transaction Received : a5c18aa0b4f6144ae3330178703109b98734cefedef9ccda485818369ce6a720
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: {'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'private_key': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'balance': 1000, 'staked': 100, 'pending_rewards': 0, 'unspent': 100000000000, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=276700000000 satoshis (2767.0 coins)
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 148
+[syncManager] Creating block at height 148
+[syncManager] Block 148 created successfully
+Transaction Received : 4758e9a69074b24e16e03c9828c253c9a8cc0746c32de69bb37c7c5fe30c5ec8
+Transaction Received : 4758e9a69074b24e16e03c9828c253c9a8cc0746c32de69bb37c7c5fe30c5ec8
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: {'public_addr': '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', 'privateKey': 101116694282830344663754055609096743199644277746685645606199809457638491163865, 'private_key': 101116694282830344663754055609096743199644277746685645606199809457638491163865, 'public_key': '0387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d', 'balance': 1000, 'staked': 100, 'pending_rewards': 0, 'unspent': 100000000000, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=281800000000 satoshis (2818.0 coins)
+[syncManager] Not the selected validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+Received account update from port 9001 for address: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+Successfully updated local account database for 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+[Receiver] Received envelope with command: b'block' and payload length: 724 bytes
+New Block Received : 149
+Blocks to process: 1
+Processing block with hash: 043e15a1...
+Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>
+Processed transaction with ID: 7cc22687c3b73d062b8f5f1b176cc7caaafa6a10bd33029d076d5f4fd993303d
+Processed transaction with ID: 4758e9a69074b24e16e03c9828c253c9a8cc0746c32de69bb37c7c5fe30c5ec8
+Processed transaction with ID: 689959c3a4b19ba33fec21502532d25af086560b910ca472ca923e8acba2aa9c
+Attempting atomic write of block to database file: data/blockchain.db
+[LocalChain] Block 149 successfully integrated (atomic write).
+[Mempool Cleanup] Removed confirmed transactions from mempool: ['4758e9a69074b24e16e03c9828c253c9a8cc0746c32de69bb37c7c5fe30c5ec8', '689959c3a4b19ba33fec21502532d25af086560b910ca472ca923e8acba2aa9c']
+Transaction Received : eab1110ddb2af57772a79dbcbf973a09081cf0f39fe0374b463715a0c778aa78
+Transaction Received : 72fe2ef129dd01c227270d1c82525217be556f4849bf0fdb93c0704e16ae784b
+Transaction Received : 8e220540a73fb4aef45a29e0235881cb230d564084272f6b82e392796bc78874
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: {'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'private_key': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'balance': 1000, 'staked': 100, 'pending_rewards': 0, 'unspent': 100000000000, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=281800000000 satoshis (2818.0 coins)
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 150
+[syncManager] Creating block at height 150
+[syncManager] Block 150 created successfully
+Transaction Received : eab1110ddb2af57772a79dbcbf973a09081cf0f39fe0374b463715a0c778aa78
+Transaction Received : b1681c46ed5beb9de90b06affc08676659ad454542a052ddf6716c7c0240b091
+Transaction Received : 8203ff860142b2c27d27cd678e0e041cbb39451ef6d33cf161f057d109a9778f
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: {'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'private_key': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'balance': 1000, 'staked': 100, 'pending_rewards': 0, 'unspent': 100000000000, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), rewards=287100000000 satoshis (2871.0 coins)
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+Transaction Received : a464805696fbbc092935f78bb1e58302cae5d0b6cec87bc9109a60e756649fea
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 151
+[syncManager] Creating block at height 151
+[syncManager] Error creating block: 'TxOut' object has no attribute 'tx_outs'
+Error While processing the client request 
+ cannot access local variable 'traceback' where it is not associated with a value
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim] Transaction simulator started
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 17 TDC from 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD to 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz via node on web port 5900
+[Sim] Transaction submitted successfully via web port 5900. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 11 TDC from 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig to 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD via node on web port 5900
+[Sim] Transaction submitted successfully via web port 5900. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 19 TDC from 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig via node on web port 5902
+[Sim] Transaction submitted successfully via web port 5902. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 29 TDC from 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig via node on web port 5902
+[Sim] Transaction submitted successfully via web port 5902. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 34 TDC from 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig to 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz via node on web port 5902
+[Sim] Transaction submitted successfully via web port 5902. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 27 TDC from 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig via node on web port 5901
+[Sim] Transaction submitted successfully via web port 5901. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+[Sim Debug 18931/6114422784] Creating AccountDB instance...
+[Sim Debug 18931/6114422784] Instance type: <class 'code_node2.Blockchain.Backend.core.database.db.AccountDB'>
+[Sim Debug 18931/6114422784] Instance HAS table_name: 'account'
+[Sim Debug 18931/6114422784] Calling db_instance.read()...
+[Sim Debug 18931/6114422784] db_instance.read() completed.
+[Sim] Sending 14 TDC from 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig to 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz via node on web port 5901
+[Sim] Transaction submitted successfully via web port 5901. Response: <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv=...
+Node 2 active on port 9002, web: 5902
+\nShutting down node 2 gracefully...
+\nShutting down node 2 gracefully...
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/account.db
+[Node Setup] Last block height is: 147
+DEBUG: Starting UTXO set construction.
+ERROR: Referenced transaction dc05bbd2d15965147599569338e784f39df108d30aa34afc05a2ab0d41ab6109 is missing. Skipping input processing for transaction cc73cf405d5ae3ecb3102357bd8de7d03e0f831cd12faf78f9d82d0ea1456d40.
+ERROR: Referenced transaction e8f01805dfb18117fcea55ebf589b71fa6404b65ed25303a68e7df514df393a7 is missing. Skipping input processing for transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b.
+ERROR: Referenced transaction e8f01805dfb18117fcea55ebf589b71fa6404b65ed25303a68e7df514df393a7 is missing. Skipping input processing for transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b.
+ERROR: Referenced transaction fbdc3dbfca9245e1774b3650dbf606ee3eaf1ee73d0f7624c0db149edd751396 is missing. Skipping input processing for transaction 6663bc9d9918ac99350e981393c14f9548ad02c98b86ddfc90ec43f2d87eb461.
+ERROR: Referenced transaction e24e0a9e0891d4a54b4a6b2174ace49e807060a27466bbbefbabc2f412f8f61a is missing. Skipping input processing for transaction bc1285ca28bdf14a1ef37a8bbbdabb3d380f933b8d65d348f7918ca5f1546ee8.
+ERROR: Referenced transaction 373fae8bbd417c1410e6e918c1a88b1c0c8a64c028b463a7fdfa94fe03a1cae7 is missing. Skipping input processing for transaction edeaa5808ee94debd08102cf613b8a669548d8b3ff8eef68cf69bb9685746a0b.
+ERROR: Referenced transaction e0ce01208de8234705dc514caa27879872a8278c4325a75da51bf9bfd75050f6 is missing. Skipping input processing for transaction 8b3eab6ebb008c197b75d1c9e37dceef040d9ecf429bcd839018d9c2e4906bec.
+ERROR: Referenced transaction 6bb7c6e8fea480c7c45f1950af91213cb2b261d35d732054499f5dc1746f3086 is missing. Skipping input processing for transaction 298cac9cf004b3d1d26e57270b89a2d50afb88d29838324bf43f221b72e07b05.
+ERROR: Referenced transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b is missing. Skipping input processing for transaction 509a1cebc0cf3e9ed6ddbbbb5c263a4de80eb04e86eb7eda2053d7f68c460f39.
+ERROR: Referenced transaction 69a205f9ab8fc8ed3c06551a104543c7ec1348fe015bd5f54e7f16f4a00f0bb9 is missing. Skipping input processing for transaction cc3b18e13f396b349878e787bf92d73f12dc9dcb28fea47a6b8c2dfe04ba72d7.
+ERROR: Referenced transaction 6bb7c6e8fea480c7c45f1950af91213cb2b261d35d732054499f5dc1746f3086 is missing. Skipping input processing for transaction 43a8397a4933667ce7af8b5155f53815781c0839b11a5ddc67a07cf58b293333.
+ERROR: Referenced transaction e0ce01208de8234705dc514caa27879872a8278c4325a75da51bf9bfd75050f6 is missing. Skipping input processing for transaction eb1902f9b008d15f15de03538fe425ec0bef602836dfbf00d5e36d23349ba6b5.
+ERROR: Referenced transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b is missing. Skipping input processing for transaction 806ec17b97082557a5466bff13436cf98709bf38712c928d92b537557592bd2f.
+ERROR: Invalid prev_index 1 for transaction 9a0ce7bec21b13abe12fba4f55169692c18f7f54b704a00ece057f36f0282a1f.
+ERROR: Invalid prev_index 1 for transaction 5b92f1de793aade763eaa3ca05f2a5a2a2a0847b0737f7c7cd2466624c31a202.
+ERROR: Referenced transaction c4416d76211827ac9dbadcd83f2700e4148920e7abdd537a1279867479cc429c is missing. Skipping input processing for transaction 7e9d6ae9e8c44a25de9a14495f7e3285e16108877066cff11319aad98f34d21f.
+ERROR: Referenced transaction 7a1b22dafcd662153dad630d65640a47580c51d886c2bc22ecd1fc4d21600bd0 is missing. Skipping input processing for transaction 9f94759c335226f56d1bbf2e55a46cd4f0d41d19320f06305c217ace39d0a66d.
+ERROR: Referenced transaction 791c514e073ee17375de0a1285de2aaf3ebb45a70ace0de0163b4b2396a502d7 is missing. Skipping input processing for transaction 19f390766d6aff9d4f5fa722b8215809ef1f95821b14df82b5e12dca94c91335.
+ERROR: Invalid prev_index 1 for transaction edeaa5808ee94debd08102cf613b8a669548d8b3ff8eef68cf69bb9685746a0b.
+ERROR: Referenced transaction 85b89bd0c677f4eef12a270c8d309bf0fd08bda683ca4009e8b08a5481477353 is missing. Skipping input processing for transaction fac18b9cbb36b9efc2e64c950e37f43c50e3e467871d85700344559cd477a664.
+ERROR: Referenced transaction 8893afb0ec18ecb9937acffb7fa9329ef887b6768b15121cf621ad39f7719b9f is missing. Skipping input processing for transaction 6364e324058de2439bcc3bed40650d583a820181487b6c4f3baa256b97a4a35f.
+WARNING: The following transactions reference missing inputs:
+  Transaction cc73cf405d5ae3ecb3102357bd8de7d03e0f831cd12faf78f9d82d0ea1456d40 references missing transaction dc05bbd2d15965147599569338e784f39df108d30aa34afc05a2ab0d41ab6109.
+  Transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b references missing transaction e8f01805dfb18117fcea55ebf589b71fa6404b65ed25303a68e7df514df393a7.
+  Transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b references missing transaction e8f01805dfb18117fcea55ebf589b71fa6404b65ed25303a68e7df514df393a7.
+  Transaction 6663bc9d9918ac99350e981393c14f9548ad02c98b86ddfc90ec43f2d87eb461 references missing transaction fbdc3dbfca9245e1774b3650dbf606ee3eaf1ee73d0f7624c0db149edd751396.
+  Transaction bc1285ca28bdf14a1ef37a8bbbdabb3d380f933b8d65d348f7918ca5f1546ee8 references missing transaction e24e0a9e0891d4a54b4a6b2174ace49e807060a27466bbbefbabc2f412f8f61a.
+  Transaction edeaa5808ee94debd08102cf613b8a669548d8b3ff8eef68cf69bb9685746a0b references missing transaction 373fae8bbd417c1410e6e918c1a88b1c0c8a64c028b463a7fdfa94fe03a1cae7.
+  Transaction 8b3eab6ebb008c197b75d1c9e37dceef040d9ecf429bcd839018d9c2e4906bec references missing transaction e0ce01208de8234705dc514caa27879872a8278c4325a75da51bf9bfd75050f6.
+  Transaction 298cac9cf004b3d1d26e57270b89a2d50afb88d29838324bf43f221b72e07b05 references missing transaction 6bb7c6e8fea480c7c45f1950af91213cb2b261d35d732054499f5dc1746f3086.
+  Transaction 509a1cebc0cf3e9ed6ddbbbb5c263a4de80eb04e86eb7eda2053d7f68c460f39 references missing transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b.
+  Transaction cc3b18e13f396b349878e787bf92d73f12dc9dcb28fea47a6b8c2dfe04ba72d7 references missing transaction 69a205f9ab8fc8ed3c06551a104543c7ec1348fe015bd5f54e7f16f4a00f0bb9.
+  Transaction 43a8397a4933667ce7af8b5155f53815781c0839b11a5ddc67a07cf58b293333 references missing transaction 6bb7c6e8fea480c7c45f1950af91213cb2b261d35d732054499f5dc1746f3086.
+  Transaction eb1902f9b008d15f15de03538fe425ec0bef602836dfbf00d5e36d23349ba6b5 references missing transaction e0ce01208de8234705dc514caa27879872a8278c4325a75da51bf9bfd75050f6.
+  Transaction 806ec17b97082557a5466bff13436cf98709bf38712c928d92b537557592bd2f references missing transaction 04a29682bd8dd22d004c48cc4fe88ac11ea1c71557550c31cd9a3249b4d7ae5b.
+  Transaction 7e9d6ae9e8c44a25de9a14495f7e3285e16108877066cff11319aad98f34d21f references missing transaction c4416d76211827ac9dbadcd83f2700e4148920e7abdd537a1279867479cc429c.
+  Transaction 9f94759c335226f56d1bbf2e55a46cd4f0d41d19320f06305c217ace39d0a66d references missing transaction 7a1b22dafcd662153dad630d65640a47580c51d886c2bc22ecd1fc4d21600bd0.
+  Transaction 19f390766d6aff9d4f5fa722b8215809ef1f95821b14df82b5e12dca94c91335 references missing transaction 791c514e073ee17375de0a1285de2aaf3ebb45a70ace0de0163b4b2396a502d7.
+  Transaction fac18b9cbb36b9efc2e64c950e37f43c50e3e467871d85700344559cd477a664 references missing transaction 85b89bd0c677f4eef12a270c8d309bf0fd08bda683ca4009e8b08a5481477353.
+  Transaction 6364e324058de2439bcc3bed40650d583a820181487b6c4f3baa256b97a4a35f references missing transaction 8893afb0ec18ecb9937acffb7fa9329ef887b6768b15121cf621ad39f7719b9f.
+DEBUG: UTXO set construction complete.
+[Node Setup] UTXO set constructed.
+Starting download...
+Error while downloading or uploading the Blockchain 
+[Errno 48] Address already in use
+Starting download...
+Error while downloading or uploading the Blockchain 
+[Errno 48] Address already in use
+[Node Setup] Sync service started. Node is now ready and waiting for validator selection.
+Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with stake 100 PRINTED FROM ADD BLOCK
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Creating coinbase reward for address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz credited with 5100000000 TDC.
+New pending rewards: 281800000000
+Saving validator account changes
+Account updated successfully in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Broadcasting account update to node at port 9000
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9000
+Trying to connect from 9002: to: 9000...
+Connected to host at port 9000
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9000
+Broadcasting account update to node at port 9001
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9001
+Trying to connect from 9002: to: 9001...
+Connected to host at port 9001
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9001
+Account update broadcast to 2 nodes
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x110db0ec0> to 9000
+Trying to connect from 9002: to: 9000...
+Connected to host
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x110db0ec0> to 9001
+Trying to connect from 9002: to: 9001...
+Connected to host
+ Spent Transaction removed f455da2043a1233baa54e1a353595bc97a1777ed696e1870552416c9f38bf448 
+Block 148 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 3045022100b57875e2a69ed64f41b87a91d9116ecfeaeac6a15f33638319596c40a393495c02204292a84e56cf26b5e956f99c87b14b683f0423f99e04279330036c6f6cf6b0af with BlockHash 96193b203a23da67bf333388236258c9233acd4f3c1092d7ee0ab3dbf9034d8e
+Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with stake 100 PRINTED FROM ADD BLOCK
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Creating coinbase reward for address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz credited with 5300000000 TDC.
+New pending rewards: 287100000000
+Saving validator account changes
+Account updated successfully in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Broadcasting account update to node at port 9000
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9000
+Trying to connect from 9002: to: 9000...
+Connected to host at port 9000
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9000
+Broadcasting account update to node at port 9001
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9001
+Trying to connect from 9002: to: 9001...
+Connected to host at port 9001
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9001
+Account update broadcast to 2 nodes
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x110db2960> to 9000
+Trying to connect from 9002: to: 9000...
+Connected to host
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x110db2960> to 9001
+Trying to connect from 9002: to: 9001...
+Connected to host
+ Spent Transaction removed 108879bc3061ee89afd79f9801a3c8b9c889316749fa4b55b6f55b9568ff4452 
+ Spent Transaction removed f91b16fa47f5a939c9ad3836753e66a8433063fa121a82efad2443cbb9a2c316 
+ Spent Transaction removed 034db53a59acdfe4f6759f7a9a997b867188c2a7c4df9d11a42db0fef266d2ff 
+Block 150 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 3044022035e7d3638f7bf63c325482c90fd1125f0ed1ee8b1dcd702248151ec280c4b7ca02200482d50c83ec495e43e7c48a6217551142fb6cd005dd24fd3aa9909fdac8ae66 with BlockHash 17c0e32758223b737629941077a3f44119b930b7005a6dc5347b9ffad03363a7

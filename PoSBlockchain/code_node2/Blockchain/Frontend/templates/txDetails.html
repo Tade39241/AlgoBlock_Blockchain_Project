@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %} Transaction Details {% endblock %}
+{% block content %}
+<h1 class="transaction-number">Transaction Details</h1>
+
+<div class="transaction-container">
+    <div class="transaction-header">
+        <h2>Transaction ID</h2>
+        <p class="tx-id">{{ Tx.txid }}</p>
+    </div>
+
+    <div class="transaction-info">
+        {% if not Unconfirmed %}
+        <div class="tx-item">
+            <span class="label">Block Height:</span>
+            <a href="{{ url_for('showBlock', BlockHeader=block[0]['BlockHeader']['blockHash']) }}">
+                {{ block[0]['Height'] | default('N/A') }}
+            </a>
+        </div>
+        {% endif %}
+        <div class="tx-item">
+            <span class="label">Status:</span>
+            {% if Unconfirmed %}
+            <span class="status unconfirmed">Unconfirmed</span>
+            {% else %}
+            <span class="status confirmed">Confirmed</span>
+            {% endif %}
+        </div>
+        <div class="tx-item"><span class="label">Transaction Size:</span> {{ tx_size }} bytes</div>
+        <div class="tx-item"><span class="label">Version:</span> {{ Tx.version }}</div>
+        <div class="tx-item"><span class="label">Locktime:</span> {{ Tx.locktime }}</div>
+        <div class="tx-item">
+            <span class="label">Timestamp:</span> 
+            {% if block %}
+                {{ block[0]['BlockHeader']['timestamp'] | default('N/A') }}
+            {% else %}
+                <em>Unconfirmed</em>
+            {% endif %}
+        </div>
+    </div>
+
+    <h2 class="transaction-header">Transaction Details</h2>
+
+    <div class="transaction-details">
+        <div class="transaction-section">
+            <h3>Inputs</h3>
+            {% for tx_in in Tx['tx_ins'] %}
+            <div class="transaction-input">
+                {% if tx_in['prev_tx'] == '0000000000000000000000000000000000000000000000000000000000000000' %}
+                <span>#0 Coinbase</span>
+                {% else %}
+                <a href="{{ url_for('txDetails', txid=tx_in['prev_tx']) }}">
+                    Previous TxID: {{ tx_in['prev_tx'] }}
+                </a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    
+        <div class="transaction-section">
+            <h3>Outputs</h3>
+            {% for tx_out in Tx['tx_outs'] %}
+            <div class="transaction-output">
+                <span>Amount: {{ "%.8f" | format(tx_out['amount'] / 100000000) }} TDC</span>
+                {% set h160hash = bytes.fromhex(tx_out['script_publickey']['cmds'][2]) %}
+                {% set new_addr = main_prefix + h160hash %}
+                {% set checksum = sha256(sha256(new_addr).digest()).digest()[:4] %}
+                {% set new_addr = new_addr + checksum %}
+                {% set pubAddress = encode_base58(new_addr) %}
+                <a href="{{ url_for('address', publicAddress=pubAddress) }}">
+                    Address: {{ pubAddress }}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>    
+</div>
+{% endblock %}

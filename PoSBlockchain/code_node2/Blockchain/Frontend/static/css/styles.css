@@ -1,0 +1,571 @@
+/* ============================================
+   Global Styles
+============================================ */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* ============================================
+     Container Styles
+  ============================================ */
+  .container,
+  .wallet-container,
+  .grid-container1,
+  .grid-container3 {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    width: 80%;
+    margin: 20px auto;
+    box-sizing: border-box;
+  }
+  
+  /* Grid Containers */
+  .grid-container1,
+  .grid-container3 {
+    display: grid;
+    gap: 20px;
+  }
+  .grid-container1 {
+    grid-template-columns: 1fr;
+  }
+  .grid-container3 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* ============================================
+     Header & Typography
+  ============================================ */
+  h1, h2, h3, h4 {
+    color: #333;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Specific Titles for Blocks & Transactions */
+  .BlockNumber, .TransactionNumber {
+    font-size: 24px;
+    color: #0784c3;
+    text-align: center;
+    font-weight: bold;
+  }
+  .TransactionHeader {
+    font-size: 22px;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .TxHeader h1 {
+    font-size: 20px;
+    border-bottom: 2px solid #dee2e6;
+  }
+  
+  /* ============================================
+     Account Metrics & Info
+  ============================================ */
+  .account-metrics {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+  }
+  .account-metrics p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  /* ============================================
+     Forms & Operations Section
+  ============================================ */
+  .stake-actions {
+    margin-top: 30px;
+  }
+  
+  .form-section {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #f1f3f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-section label {
+    font-weight: 600;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  
+  .form-section input[type="text"],
+  .form-section input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-section input[type="submit"] {
+    background-color: #0784c3;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .form-section input[type="submit"]:hover {
+    background-color: #0670a6;
+  }
+  
+  /* Message Styling */
+  .message {
+    padding: 15px;
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    color: #856404;
+  }
+  
+  /* ============================================
+     Transaction & Table Styling
+  ============================================ */
+  .TransactionDiv {
+    background-color: #f1f3f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .TransactionDiv.pending {
+    background-color: #fffbe6;
+}
+  
+  .TxItem, .TxItemDetail {
+    font-size: 16px;
+    font-weight: 500;
+    color: #495057;
+    margin: 5px 0;
+  }
+  
+  .TxItemDetails {
+    font-size: 14px;
+    color: #6c757d;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .TxStyle h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  .TxStyle h4.TxId a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .TxStyle h4.TxId a:hover {
+    text-decoration: underline;
+  }
+  
+  .TxInput,
+  .output a {
+    font-size: 15px;
+    color: #495057;
+    margin: 5px 0;
+  }
+  
+  .output a {
+    color: #0784c3;
+    text-decoration: none;
+  }
+  
+  .output a:hover {
+    text-decoration: underline;
+  }
+  
+  .Txouput {
+    font-size: 16px;
+    margin: 8px 0;
+  }
+  
+  /* ============================================
+     Table Styling
+  ============================================ */
+  .table-container {
+    margin-top: 30px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table th,
+  .table td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .table th {
+    background-color: #0784c3;
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  
+  /* ============================================
+     Navbar & Dropdown Styling
+  ============================================ */
+  #navbar {
+    background-color: #0784c3;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  #navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  #navbar ul li {
+    position: relative;
+  }
+  
+  #navbar ul li a {
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  #navbar ul li a:hover {
+    background-color: #0670a6;
+  }
+  
+  /* Dropdown Content */
+  .dropdown-content {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    border-radius: 4px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+  
+  .dropdown-content li {
+    display: block;
+  }
+  
+  .dropdown-content li a {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+  }
+  
+  .dropdown-content li a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  li.dropdown:hover .dropdown-content {
+    display: block !important;
+  }
+  
+  /* ============================================
+     Search Bar Styling
+  ============================================ */
+  .search-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-container form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-container input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+  }
+  
+  button.search-button {
+    padding: 0;
+    border: none;
+    background: #0d6efd;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+  }
+  
+  button.search-button:hover {
+    background-color: #0b5ed7;
+  }
+  
+  .search-icon-box {
+    padding: 10px;
+  }
+  
+  .search-icon-box img {
+    width: 20px;
+    height: 20px;
+  }
+  .block-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px auto;
+    max-width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.block-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.block-number{
+    text-align: center;
+}
+
+.block-hash {
+    font-family: monospace;
+    color: #333;
+    word-wrap: break-word;
+    background-color: #eaf3ff;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.block-info {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.block-item {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.block-item .label {
+    font-weight: bold;
+    color: #555;
+} 
+
+.TxId {
+    font-weight: bold;
+}
+
+/* Transactions Section */
+.transactions-header {
+  margin-top: 40px;
+  font-size: 18px;
+  color: #444;
+  text-decoration: underline;
+}
+
+.transaction {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-header {
+  margin-bottom: 10px;
+}
+
+.tx-id {
+  font-family: monospace;
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.tx-id:hover {
+  text-decoration: underline;
+}
+
+.transaction-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.transaction-inputs,
+.transaction-outputs {
+  width: 45%;
+}
+
+.transaction-inputs h4,
+.transaction-outputs h4 {
+  margin-bottom: 10px;
+  color: #333;
+  text-decoration: underline;
+}
+
+.transaction-inputs p,
+.transaction-outputs p {
+  font-family: monospace;
+  margin: 5px 0;
+}
+
+.transaction-outputs a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.transaction-outputs a:hover {
+  text-decoration: underline;
+}
+
+/* Transaction Container */
+.transaction-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: max-content;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.tx-id {
+  font-family: monospace;
+  color: #333;
+  word-wrap: break-word;
+  background-color: #eaf3ff;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.transaction-info {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.tx-item {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tx-item .label {
+  font-weight: bold;
+  color: #555;
+}
+
+.status {
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.status.unconfirmed {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.status.confirmed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+/* Transaction Details */
+.transaction-details {
+  margin-top: 30px;
+}
+
+.transaction-section {
+  margin-bottom: 20px;
+}
+
+.transaction-section h3 {
+  color: #333;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.transaction-input,
+.transaction-output {
+  font-family: monospace;
+  margin-bottom: 10px;
+}
+
+.transaction-output a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.transaction-output a:hover {
+  text-decoration: underline;
+}
+
+.transaction-number{
+  text-align: center;
+}

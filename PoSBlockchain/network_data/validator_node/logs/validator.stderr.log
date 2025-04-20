@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/run_validator.py", line 269, in create_validator_account
+    conn.commit()
+sqlite3.OperationalError: database is locked

@@ -1,0 +1,464 @@
+[
+  {
+    "timestamp": 1744216784.57461,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216794.601917,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216804.610476,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216814.618861,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217211.434187,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217221.4431949,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217231.452866,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217378.962042,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217388.969829,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217398.976845,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217408.986392,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217418.9951801,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217429.0027268,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217439.011065,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217449.025198,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217459.032203,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217469.0400808,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217479.049928,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217489.058166,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217499.067898,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217509.077764,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217519.088065,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217529.094072,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217869.920136,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217879.95814,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217889.969779,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217900.0083652,
+    "node_id": 0,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216786.6520488,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216796.659942,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216806.669365,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216816.674411,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217213.424748,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217223.452651,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217233.458129,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217380.967641,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217390.984736,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217400.994955,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217411.0046,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217421.008937,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217431.02066,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217441.0311391,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217451.044409,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217461.049925,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217471.055352,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217481.064298,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217491.07305,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217501.083369,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217511.0963042,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217521.104953,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217871.92497,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217881.972067,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217891.9807281,
+    "node_id": 1,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216788.555022,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216798.590135,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216808.602481,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744216818.6116102,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217215.451479,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217225.4705799,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217235.479101,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217382.973856,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217392.9996119,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217403.009241,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217413.0162659,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217423.0242078,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217433.0297248,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217443.0457091,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217453.055302,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217463.0646698,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217473.075144,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217483.0804439,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217493.1043599,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217503.288228,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217513.296329,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217523.308415,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217873.9088,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217883.917687,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  },
+  {
+    "timestamp": 1744217893.9286542,
+    "node_id": 2,
+    "mem_pool_size": 0,
+    "utxo_count": 0
+  }
+]

@@ -1,0 +1,16 @@
+Process Process-4:
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/syncManager.py", line 48, in spinUpServer
+    self.conn, self.addr = self.server.acceptConnection()
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/connection.py", line 31, in acceptConnection
+    self.conn, self.addr = self.server.accept()
+                           ^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 295, in accept
+    fd, addr = self._accept()
+               ^^^^^^^^^^^^^^
+KeyboardInterrupt

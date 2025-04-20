@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_0/start_node.py", line 66, in <module>
+    from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/pos_blockchain.py", line 27, in <module>
+    from Blockchain.Frontend.run import main as web_main # Correct import path
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_0/Blockchain/Frontend/run.py", line 11, in <module>
+    from waitress import serve
+ModuleNotFoundError: No module named 'waitress'

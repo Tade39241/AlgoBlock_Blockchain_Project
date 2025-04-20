@@ -1,0 +1,20 @@
+Starting node 1 on port 9001
+Using account: 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh with stake 100
+[Node Setup] No existing blockchain found. Creating Genesis Block...
+Error in setup_node: No validators available. Ensure at least one account has a stake.
+ * Serving Flask app 'code_node2.Blockchain.Frontend.run' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+SERVER STARTED
+LISTENING at 127.0.0.1:9001
+[syncManager] Received validator selection message.
+[syncManager] Received produce_block, but I'm not the selected validator.
+Metrics: {'timestamp': 1744217871.92497, 'node_id': 1, 'mem_pool_size': 0, 'utxo_count': 0}
+Node 1 active on port 9001, web: 5901
+Metrics: {'timestamp': 1744217881.972067, 'node_id': 1, 'mem_pool_size': 0, 'utxo_count': 0}
+Node 1 active on port 9001, web: 5901
+Metrics: {'timestamp': 1744217891.9807281, 'node_id': 1, 'mem_pool_size': 0, 'utxo_count': 0}
+
+Shutting down node 1 gracefully...

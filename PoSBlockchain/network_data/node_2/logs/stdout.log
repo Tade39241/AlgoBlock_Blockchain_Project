@@ -1,0 +1,107 @@
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Starting node 2 on port 9002 with custom DB paths
+Account details: {"public_addr": "1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz", "privateKey": "46707185248865296345366463593339102785859545093537333336358754291775493830931", "public_key": "035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1"}
+All accounts written to DB at: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Account details: public_addr=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, balance=None
+Setting blockchain public address to: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Blockchain initialized successfully through BlockchainManager
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Frontend starting on port 5902, node network port is 9002
+ * Serving Flask app 'code_node2.Blockchain.Frontend.run' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+[DEBUG] PID 3396 binding to ('127.0.0.1', 9002)
+SERVER STARTED
+LISTENING at 127.0.0.1:9002
+[syncManager] Received port check magic, closing connection.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: {'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'staked': 10000000000, 'unspent': 0, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 2
+[syncManager] Creating block at height 2
+[syncManager/DEBUG] MEMPOOL CONTENTS: {}
+[syncManager] Block 2 created successfully
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Server started on port 9002
+Waiting for web UI at http://localhost:5902…
+Web UI up, starting simulation
+[Sim] Transaction simulation is disabled for this node.
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+\nShutting down node 2 gracefully...
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[Node Setup] Last block height is: 1
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+[Node Setup] UTXO set constructed.
+Transactions added to block: []
+Transactions removed from mempool: []
+Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with stake 10000000000 PRINTED FROM ADD BLOCK
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Converted privateKey from string to int: 46707185248865296345366463593339102785859545093537333336358754291775493830931
+Creating coinbase reward for address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Converted privateKey from string to int: 46707185248865296345366463593339102785859545093537333336358754291775493830931
+Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz credited with 5000000000 TDC.
+Saving validator account changes
+Account updated successfully in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Broadcasting account update to node at port 9000
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9000
+Trying to connect from 9002: to: 9000...
+Connected to host at port 9000
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9000
+Broadcasting account update to node at port 9001
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9001
+Trying to connect from 9002: to: 9001...
+Connected to host at port 9001
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9001
+Account update broadcast to 2 nodes
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x102b7b230> to 9000
+Trying to connect from 9002: to: 9000...
+Connected to host
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x102b7b230> to 9001
+Trying to connect from 9002: to: 9001...
+Connected to host
+[DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: []
+Block 2 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 304402206e608884d24823837871b8fb78395bf2b06e47715a05268e2910809b682817d902207f58afbd0d563f2b89510eaea995690472cdc5c462126db82217ce3466df116a with BlockHash 0fc37c6f0a5dd64405cc1e651ac7055f780a11848118dbc1387585ee59bc4f13
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+[DEBUG] UTXO set rebuilt.
+[Mempool Cleanup] No confirmed transactions found in mempool.
+[DEBUG] Mempool cleaned against chain.
