@@ -268,19 +268,6 @@ def search():
     else:
         return redirect(url_for('address', publicAddress = identifier))
 
-
-# def read_database():
-#     ErrorFlag = True
-#     while ErrorFlag:
-#         try:
-#             blockchain = BlockchainDB()
-#             blocks = blockchain.read_all_blocks()
-#             ErrorFlag = False
-#         except:
-#             ErrorFlag = True
-#             print('Error reading database')
-#     return blocks
-
 def read_database():
     blockchain_db = get_blockchain_db()
     if not blockchain_db:
@@ -325,11 +312,25 @@ def address(publicAddress):
     if acct is None:
         return "<h1>Account not found</h1>"
     spendable, staked = acct.get_balance(UTXOS)
+    print(f"[DEBUG][address] spendable={spendable} staked={staked}")
+    # --- UTXOs belonging to this address ---
     
     utxo_list = []
     h160_user = decode_base58(publicAddress)
+    spent_keys = set()
+
+    # Build a set of (txid, idx) pairs spent by mempool txs
+    for tx in MEMPOOL.values():
+        for txin in tx.tx_ins:
+            spent_keys.add((txin.prev_tx.hex(), txin.prev_index))
+
     for (txid, idx), tx_out in UTXOS.items():
+        # Skip if this UTXO is being spent by a pending tx
+        if (txid, idx) in spent_keys:
+            print(f"[DEBUG][UI] Skipping UTXO {txid}:{idx} as it is spent by a pending tx")
+            continue
         cmds = tx_out.script_publickey.cmds
+        print(f"[DEBUG][UTXO] {txid}:{idx} cmds={cmds} amount={tx_out.amount}")
         # Standard spendable output (P2PKH)
         if len(cmds) >= 3 and cmds[2] == h160_user and cmds[0] == 0x76:
             is_staking = False
@@ -340,6 +341,7 @@ def address(publicAddress):
             continue  # <-- SKIP UTXOs not belonging to this address
 
         locktime = int.from_bytes(cmds[2], 'big') if is_staking else None
+        print(f"[DEBUG][UI] Adding confirmed UTXO: {txid}:{idx} pending=False is_staking={is_staking}")
         utxo_list.append({
             "txid": txid,
             "index": idx,
@@ -360,6 +362,7 @@ def address(publicAddress):
             is_staking = (len(cmds) == 3 and cmds[0] == b'\x00' and cmds[1] == h160_user)
             is_spendable = (len(cmds) >= 3 and cmds[2] == h160_user and cmds[0] == 0x76)
             if is_staking or is_spendable:
+                print(f"[DEBUG][UI] Adding pending UTXO: {txid}:{idx} pending=True is_staking={is_staking}")
                 pending_txs.append({
                     "txid": txid,
                     "index": idx,
@@ -548,6 +551,7 @@ def stake_page():
                                     # No need to update acct fields here; already done in create_unstake_transaction
                                     broadcastTx(unstakeTx) # Broadcast the transaction
                                     message = f"Unstake transaction created and broadcasted with TxID: {unstakeTx.TxId}"
+                    else:
                         message = "Invalid action."
                 except Exception as e:
                     import traceback

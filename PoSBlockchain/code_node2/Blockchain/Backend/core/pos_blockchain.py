@@ -564,59 +564,112 @@ class Blockchain:
                         del self.mem_pool[txId]
         print(f"Transactions added to block: {self.TxIds}")
         print(f"Transactions removed from mempool: {deleteTxs}")
-    
+
     def buildUTXOS(self):
+        print("DEBUG: Starting new UTXO set construction (with missing reference logging).")
         allTxs = {}
+        spent_outpoints = set()
         blocks = BlockchainDB().read()
         missing_references = []
-
-        # Populate allTxs
+    
+        # Gather all transactions
         for block in blocks:
             for tx in block[0]['Txs']:
                 allTxs[tx['TxId']] = tx
-                # print(f"DEBUG: Added transaction {tx['TxId']} to allTxs.")
-
-        print("DEBUG: Starting UTXO set construction.")
+                print(f"DEBUG: Added transaction {tx['TxId']} to allTxs.")
+    
+        # Gather all spent outpoints, log missing references
         for block in blocks:
             for tx in block[0]['Txs']:
-                # print(f"DEBUG: Processing transaction {tx['TxId']}")
                 for txin in tx['tx_ins']:
                     prev_txid = txin['prev_tx']
-
-                    # Skip coinbase transactions
+                    prev_index = txin['prev_index']
+                    # Skip coinbase
                     if prev_txid == "0000000000000000000000000000000000000000000000000000000000000000":
-                        # print("DEBUG: Skipping coinbase transaction input.")
                         continue
-
-                    # Check for referenced transaction
                     if prev_txid not in allTxs:
                         print(f"ERROR: Referenced transaction {prev_txid} is missing. Skipping input processing for transaction {tx['TxId']}.")
                         missing_references.append((tx['TxId'], prev_txid))
                         continue
-                    
-                    prev_tx = allTxs[prev_txid]
-                    if len(prev_tx['tx_outs']) > txin['prev_index']:
-                        # print(f"DEBUG: Spending output at index {txin['prev_index']} of transaction {prev_txid}.")
-                        prev_tx['tx_outs'].pop(txin['prev_index'])
-                        if not prev_tx['tx_outs']:
-                            # print(f"DEBUG: All outputs spent for transaction {prev_txid}. Removing from allTxs.")
-                            del allTxs[prev_txid]
-                    else:
-                        print(f"ERROR: Invalid prev_index {txin['prev_index']} for transaction {prev_txid}.")
-
-        # Finalise UTXO set
+                    spent_outpoints.add((prev_txid, prev_index))
+                    print(f"DEBUG: Marked spent outpoint ({prev_txid}, {prev_index})")
+    
+        # Build UTXO set: only outputs not spent
+        self.utxos = {}
         for txid, tx in allTxs.items():
-            for idx, tx_out in enumerate(Tx.to_obj(tx).tx_outs):
-                self.utxos[(txid, idx)] = tx_out
-            # print(f"DEBUG: Added transaction {txid} to UTXO set.")
-
+            try:
+                tx_obj = Tx.to_obj(tx)
+                for idx, tx_out in enumerate(tx_obj.tx_outs):
+                    if (txid, idx) not in spent_outpoints:
+                        self.utxos[(txid, idx)] = tx_out
+                        print(f"DEBUG: UTXO added: ({txid}, {idx}) amount={tx_out.amount}")
+                    else:
+                        print(f"DEBUG: Output ({txid}, {idx}) is spent, skipping.")
+            except Exception as e:
+                print(f"ERROR: Failed to process tx {txid}: {e}")
+    
         # Log missing transactions
         if missing_references:
             print("WARNING: The following transactions reference missing inputs:")
             for missing_tx, missing_ref in missing_references:
                 print(f"  Transaction {missing_tx} references missing transaction {missing_ref}.")
+    
+        print("DEBUG: UTXO set construction complete. Final UTXO set:")
+        for k, v in self.utxos.items():
+            print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
+    
+    # def buildUTXOS(self):
+    #     allTxs = {}
+    #     blocks = BlockchainDB().read()
+    #     missing_references = []
 
-        print("DEBUG: UTXO set construction complete.")
+    #     # Populate allTxs
+    #     for block in blocks:
+    #         for tx in block[0]['Txs']:
+    #             allTxs[tx['TxId']] = tx
+    #             # print(f"DEBUG: Added transaction {tx['TxId']} to allTxs.")
+
+    #     print("DEBUG: Starting UTXO set construction.")
+    #     for block in blocks:
+    #         for tx in block[0]['Txs']:
+    #             # print(f"DEBUG: Processing transaction {tx['TxId']}")
+    #             for txin in tx['tx_ins']:
+    #                 prev_txid = txin['prev_tx']
+
+    #                 # Skip coinbase transactions
+    #                 if prev_txid == "0000000000000000000000000000000000000000000000000000000000000000":
+    #                     # print("DEBUG: Skipping coinbase transaction input.")
+    #                     continue
+
+    #                 # Check for referenced transaction
+    #                 if prev_txid not in allTxs:
+    #                     print(f"ERROR: Referenced transaction {prev_txid} is missing. Skipping input processing for transaction {tx['TxId']}.")
+    #                     missing_references.append((tx['TxId'], prev_txid))
+    #                     continue
+                    
+    #                 prev_tx = allTxs[prev_txid]
+    #                 if len(prev_tx['tx_outs']) > txin['prev_index']:
+    #                     # print(f"DEBUG: Spending output at index {txin['prev_index']} of transaction {prev_txid}.")
+    #                     prev_tx['tx_outs'].pop(txin['prev_index'])
+    #                     if not prev_tx['tx_outs']:
+    #                         # print(f"DEBUG: All outputs spent for transaction {prev_txid}. Removing from allTxs.")
+    #                         del allTxs[prev_txid]
+    #                 else:
+    #                     print(f"ERROR: Invalid prev_index {txin['prev_index']} for transaction {prev_txid}.")
+
+    #     # Finalise UTXO set
+    #     for txid, tx in allTxs.items():
+    #         for idx, tx_out in enumerate(Tx.to_obj(tx).tx_outs):
+    #             self.utxos[(txid, idx)] = tx_out
+    #         # print(f"DEBUG: Added transaction {txid} to UTXO set.")
+
+    #     # Log missing transactions
+    #     if missing_references:
+    #         print("WARNING: The following transactions reference missing inputs:")
+    #         for missing_tx, missing_ref in missing_references:
+    #             print(f"  Transaction {missing_tx} references missing transaction {missing_ref}.")
+
+    #     print("DEBUG: UTXO set construction complete.")
 
     
     def doubleSpendingAttempt(self, tx):
@@ -936,8 +989,11 @@ class Blockchain:
         self.write_on_disk([new_block.__dict__])
         time.sleep(5)
         self.buildUTXOS()
-        print("[DEBUG] UTXO set rebuilt.")
 
+        print("[DEBUG] UTXO set rebuilt.")
+        print("[DEBUG][UTXO SET AFTER BLOCK]")
+        for k, v in self.utxos.items():
+            print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
         self.clean_mempool_against_chain(self.mem_pool)
         print("[DEBUG] Mempool cleaned against chain.")
 
