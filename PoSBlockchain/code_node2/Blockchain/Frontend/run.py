@@ -8,7 +8,17 @@ if parent_dir not in sys.path:
 sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2')
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from waitress import serve
+import logging
+# Set log file path to network_data/transaction.log at project root
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
+log_file_path = os.path.join(project_root, "network_data", "transaction.log")
+os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+file_handler = logging.FileHandler(log_file_path, mode='w')
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
+file_handler.setFormatter(formatter)
+logging.getLogger().addHandler(file_handler)
+logging.basicConfig(level=logging.INFO)  # At the top of your file (if not already set)
 
 # Import jsonify for API responses and psutil for system stats
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
@@ -412,33 +422,75 @@ def address(publicAddress):
 
 @app.route('/wallet', methods=['GET', 'POST'])
 def wallet():
+    print(f"[DEBUG][FLASK] request.form: {request.form} request.data: {request.data}")
     global MEMPOOL, UTXOS
     message = ''
     if request.method == 'POST':
-        from_addy = request.form.get("fromAddress")
-        to_addy = request.form.get("toAddress")
-        amount = request.form.get("Amount", type=int)
-        sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
-        TxObj = sendCoin.prepTransaction()
-        if not from_addy or not to_addy or amount is None:
-            message = 'Please fill out all the fields.'
-            return render_template("wallet.html", message=message)
-        if not TxObj:
-            message = 'Insufficient balance'
-        else:
+        reload_utxos_from_chain()
+        if request.is_json:
+            data = request.get_json()
+            print(f"[DEBUG][WALLET/FLASK] Parsed JSON data: {data}")
+            from_addy = data.get("fromAddress")
+            to_addy = data.get("toAddress")
+            amount = data.get("Amount", None)
+            if amount is not None:
+                try:
+                    amount = int(amount)
+                except Exception:
+                    amount = None
+            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
+            TxObj = sendCoin.prepTransaction()
+            if not from_addy or not to_addy or amount is None:
+                return jsonify({"error": "Missing required fields."}), 400
+            if not TxObj:
+                return jsonify({"error": "Insufficient balance"}), 400
             script_pubkey = sendCoin.script_public_key(from_addy)
-            verified = True
-            for index in range(len(TxObj.tx_ins)):
-                if not TxObj.verify_input(index, script_pubkey):
-                    verified = False
-                    break
+            verified = all(TxObj.verify_input(i, script_pubkey) for i in range(len(TxObj.tx_ins)))
             if verified:
-                # update_utxo_set(TxObj, UTXOS)
                 MEMPOOL[TxObj.TxId] = TxObj
-                message = f"Transaction added to mempool: {TxObj.TxId}"
+                logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
                 broadcastTx(TxObj)
+                return jsonify({"success": True, "txid": TxObj.TxId}), 200
             else:
-                message = "Transaction verification failed."
+                return jsonify({"error": "Transaction verification failed."}), 400
+        else:
+            from_addy = request.form.get("fromAddress")
+            to_addy = request.form.get("toAddress")
+            amount = request.form.get("Amount", type=float)
+            # print(f"[DEBUG][WALLET] Extracted: from={from_addy}, to={to_addy}, amount={amount}")
+            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
+            TxObj = sendCoin.prepTransaction()
+            # print(f"[DEBUG][WALLET] sendTDC/prepTransaction result: TxObj={TxObj}")
+            if not from_addy or not to_addy or amount is None:
+                # print(f"[DEBUG][WALLET] Missing field(s): from={from_addy}, to={to_addy}, amount={amount}")
+                message = 'Please fill out all the fields.'
+                return render_template("wallet.html", message=message)
+            if not TxObj:
+                # print(f"[DEBUG][WALLET] Transaction creation failed (TxObj is None).")
+                message = 'Insufficient balance'
+            else:
+                script_pubkey = sendCoin.script_public_key(from_addy)
+                # print(f"[DEBUG][WALLET] script_pubkey for {from_addy}: {script_pubkey}")
+                verified = True
+                for index in range(len(TxObj.tx_ins)):
+                    if not TxObj.verify_input(index, script_pubkey):
+                        verified = False
+                        break
+                if verified:
+                    # print(f"[DEBUG][WALLET] Transaction verified. Adding to MEMPOOL.")
+                    # update_utxo_set(TxObj, UTXOS)
+                    MEMPOOL[TxObj.TxId] = TxObj
+                    logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
+                    # print(f"[DEBUG][WALLET] Added Tx {TxObj.TxId} to MEMPOOL. Keys now: {list(MEMPOOL.keys())}")
+                    message = f"Transaction added to mempool: {TxObj.TxId}"
+
+                    broadcastTx(TxObj)
+                else:
+                    message = "Transaction verification failed."
+            return render_template("wallet.html", message=message)
+    # print(f"[DEBUG][WALLET] MEMPOOL keys after POST: {list(MEMPOOL.keys())}")
+    # print(f"[DEBUG][WALLET] UTXOS keys after POST: {list(UTXOS.keys())}")
+    # print(f"[DEBUG][WALLET] TxObj dict: {TxObj.to_dict() if hasattr(TxObj, 'to_dict') else str(TxObj)}")
     return render_template("wallet.html", message=message)
 
 @app.route('/stake', methods=['GET', 'POST'])
@@ -450,113 +502,150 @@ def stake_page():
     spendable_balance = 0 # Initialize spendable balance from UTXOs
 
     if request.method == 'POST':
-        action = request.form.get("action")
-        fromAddress = request.form.get("fromAddress")
-        addr = fromAddress # record address from POST to display metrics later
-
-        if not fromAddress:
-            message = "Please provide your wallet address."
-        else:
+        reload_utxos_from_chain()
+        if request.is_json:
+            data = request.get_json()
+            action = data.get("action")
+            fromAddress = data.get("fromAddress")
             acct = account.get_account(fromAddress)
             if acct is None:
-                message = "Account not found. Please create an account first."
+                return jsonify({"error": "Account not found."}), 400
+            try:
+                if action == "stake":
+                    # Process staking form.
+                    amount_TDC = float(data.get("amount", 0)) # Use float for TDC input
+                    lock_duration = int(data.get("lock_duration", 0))
+                    if amount_TDC is None or lock_duration is None:
+                        return jsonify({"error": "Please fill out all fields for staking."}), 400
+                    elif amount_TDC <= 0 or lock_duration <= 0:
+                         return jsonify({"error": "Amount and lock duration must be positive."}), 400
+                    else:
+                        amount = int(amount_TDC * 100000000)  # Convert TDC to satoshis
+                        stakeTx = acct.create_stake_transaction(amount, lock_duration, UTXOS, fromAddress)
+                    if not stakeTx:
+                        return jsonify({"error": "Insufficient balance or error preparing stake transaction."}), 400
+                    else:
+                        # Verify inputs before adding to mempool
+                        verified = True
+                        script_pubkey = acct.script_public_key(fromAddress)
+                        for i in range(len(stakeTx.tx_ins)):
+                            if not stakeTx.verify_input(i, script_pubkey):
+                                verified = False
+                                return jsonify({"error": f"Input verification failed for input {i}."}), 400
+                                break
+                        if verified:
+                            MEMPOOL[stakeTx.TxId] = stakeTx
+                            logging.info(f"SUCCESS: Stake transaction {stakeTx.TxId} by {fromAddress} for {amount} satoshis added to mempool.")
+                            broadcastTx(stakeTx) # Broadcast the transaction
+                            return jsonify({"success": True, "txid": stakeTx.TxId}), 200
+
+                elif action == "unstake":
+                    # Process unstake form.
+                    unstake_amount_TDC = float(data.get("amount_unstake")) # Use float
+                    if unstake_amount_TDC is None:
+                        return jsonify({"error": "Please specify an amount to unstake."}), 400
+                    elif unstake_amount_TDC <= 0:
+                         return jsonify({"error": "Unstake amount must be positive."}), 400
+                    else:
+                        unstake_amount = int(unstake_amount_TDC * 100000000)  # Convert TDC to satoshis
+                        unstakeTx = acct.create_unstake_transaction(unstake_amount, UTXOS)
+                        if not unstakeTx:
+                            return jsonify({"error": "Could not create unstake transaction. Check lock time, staked amount, or balance."}), 400
+                        script_pubkey = acct.script_public_key(fromAddress)
+                        verified = all(unstakeTx.verify_input(i, script_pubkey) for i in range(len(unstakeTx.tx_ins)))
+                    if verified:
+                        MEMPOOL[unstakeTx.TxId] = unstakeTx
+                        logging.info(f"SUCCESS: Unstake transaction {unstakeTx.TxId} by {fromAddress} for {unstake_amount} satoshis added to mempool.")
+                        broadcastTx(unstakeTx)
+                        return jsonify({"success": True, "txid": unstakeTx.TxId}), 200
+                    else:
+                        return jsonify({"error": "Input verification failed."}), 400
+                else:
+                    return jsonify({"error": "Invalid action."}), 400
+            except Exception as e:
+                import traceback
+                traceback.print_exc()
+                return jsonify({"error": f"An unexpected error occurred: {str(e)}"}), 500
+        # For non-JSON POST, handle form data
+        else:
+             # --- Browser POST (form) ---
+            action = request.form.get("action")
+            fromAddress = request.form.get("fromAddress")
+            addr = fromAddress # record address from POST to display metrics later
+
+            if not fromAddress:
+                message = "Please provide your wallet address."
             else:
-                try:
-                    if action == "stake":
-                        # Process staking form.
-                        amount_TDC = request.form.get("amount", type=float) # Use float for TDC input
-                        lock_duration = request.form.get("lock_duration", type=int)
-                        if amount_TDC is None or lock_duration is None:
-                            message = "Please fill out all fields for staking."
-                        elif amount_TDC <= 0 or lock_duration <= 0:
-                             message = "Amount and lock duration must be positive."
-                        else:
-                            amount = int(amount_TDC * 100000000)  # Convert TDC to satoshis
-                            stakeTx = acct.create_stake_transaction(amount, lock_duration, UTXOS, fromAddress)
-                        if not stakeTx:
-                            message = "Insufficient balance or error preparing stake transaction."
-                        else:
-                            # Verify inputs before adding to mempool
-                            verified = True
-                            script_pubkey = acct.script_public_key(fromAddress)
-                            for i in range(len(stakeTx.tx_ins)):
-                                if not stakeTx.verify_input(i, script_pubkey):
-                                    verified = False
-                                    message = f"Input verification failed for input {i}."
-                                    break
-                            if verified:
-                                MEMPOOL[stakeTx.TxId] = stakeTx
-                                # update_utxo_set(stakeTx, UTXOS) # Update UTXOs locally
-                                # No need to update acct fields here; already done in create_stake_transaction
-                                broadcastTx(stakeTx) # Broadcast the transaction
-                                message = f"Stake transaction created and broadcasted with TxID {stakeTx.TxId}. Your stake increased by {amount_TDC} TDC."
-
-                    # elif action == "claim":
-                    #     # Process claim rewards form.
-                    #     claim_amount_TDC = request.form.get("amount_claim", type=float) # Use float
-                    #     if claim_amount_TDC is None:
-                    #         message = "Please specify an amount to claim."
-                    #     elif claim_amount_TDC <= 0:
-                    #          message = "Claim amount must be positive."
-                    #     else:
-                    #         claim_amount = int(claim_amount_TDC * 100000000)  # Convert TDC to satoshis
-
-                    #          # --- DEBUG: Print balance before ---
-                    #         print(f"DEBUG: Claiming {claim_amount_TDC} TDC ({claim_amount} satoshis) for {acct.public_addr}")
-                    #         # print(f"DEBUG: Pending rewards BEFORE claim: {acct.pending_rewards}")
-                    #         # --- End DEBUG ---
-                    #         # Check if claim amount exceeds pending rewards
-                    #         if claim_amount > acct.unspent:
-                    #             message = "Claim amount exceeds available rewards."
-                    #         else:
-                    #             claimTx = acct.create_claim_rewards_transaction(claim_amount, UTXOS)
-                    #             if not claimTx:
-                    #                 message = "Could not create claim transaction. Insufficient rewards or error."
-                    #             else:
-                    #                 # No inputs to verify for claim tx (it's like coinbase)
-                    #                 MEMPOOL[claimTx.TxId] = claimTx
-                    #                 # update_utxo_set(claimTx, UTXOS) # Update UTXOs locally
-                    #                 # Account rewards are likely updated within create_claim_rewards_transaction or need manual update
-                    #                 # acct.pending_rewards -= claim_amount # Assuming this happens in create_claim or needs to be done here
-                    #                 # acct.save_to_db() # Save changes if any
-                    #                 broadcastTx(claimTx) # Broadcast the transaction
-                    #                 message = f"Claim rewards transaction created and broadcasted with TxID: {claimTx.TxId}"
-                    #         # --- DEBUG: Print balance after ---
-                    #         print(f"DEBUG: Pending rewards AFTER claim: {acct.pending_rewards}")
-
-                    elif action == "unstake":
-                        # Process unstake form.
-                        unstake_amount_TDC = request.form.get("amount_unstake", type=float) # Use float
-                        if unstake_amount_TDC is None:
-                            message = "Please specify an amount to unstake."
-                        elif unstake_amount_TDC <= 0:
-                             message = "Unstake amount must be positive."
-                        else:
-                            unstake_amount = int(unstake_amount_TDC * 100000000)  # Convert TDC to satoshis
-                            unstakeTx = acct.create_unstake_transaction(unstake_amount, UTXOS)
-                            if not unstakeTx:
-                                message = "Could not create unstake transaction. Check lock time, staked amount, or balance."
+                acct = account.get_account(fromAddress)
+                if acct is None:
+                    message = "Account not found. Please create an account first."
+                else:
+                    try:
+                        if action == "stake":
+                            # Process staking form.
+                            amount_TDC = request.form.get("amount", type=float) # Use float for TDC input
+                            lock_duration = request.form.get("lock_duration", type=int)
+                            if amount_TDC is None or lock_duration is None:
+                                message = "Please fill out all fields for staking."
+                            elif amount_TDC <= 0 or lock_duration <= 0:
+                                message = "Amount and lock duration must be positive."
+                            else:
+                                amount = int(amount_TDC * 100000000)  # Convert TDC to satoshis
+                                stakeTx = acct.create_stake_transaction(amount, lock_duration, UTXOS, fromAddress)
+                            if not stakeTx:
+                                message = "Insufficient balance or error preparing stake transaction."
                             else:
                                 # Verify inputs before adding to mempool
                                 verified = True
                                 script_pubkey = acct.script_public_key(fromAddress)
-                                for i in range(len(unstakeTx.tx_ins)):
-                                    if not unstakeTx.verify_input(i, script_pubkey):
+                                for i in range(len(stakeTx.tx_ins)):
+                                    if not stakeTx.verify_input(i, script_pubkey):
                                         verified = False
                                         message = f"Input verification failed for input {i}."
                                         break
                                 if verified:
-                                    MEMPOOL[unstakeTx.TxId] = unstakeTx
-                                    # update_utxo_set(unstakeTx, UTXOS) # Update UTXOs locally
-                                    # No need to update acct fields here; already done in create_unstake_transaction
-                                    broadcastTx(unstakeTx) # Broadcast the transaction
-                                    message = f"Unstake transaction created and broadcasted with TxID: {unstakeTx.TxId}"
-                    else:
-                        message = "Invalid action."
-                except Exception as e:
-                    import traceback
-                    traceback.print_exc() # Print full traceback to console for debugging
-                    message = f"An unexpected error occurred: {str(e)}"
+                                    MEMPOOL[stakeTx.TxId] = stakeTx
+                                    logging.info(f"SUCCESS: Stake transaction {stakeTx.TxId} by {fromAddress} for {amount} satoshis added to mempool.")
+
+                                    # update_utxo_set(stakeTx, UTXOS) # Update UTXOs locally
+                                    # No need to update acct fields here; already done in create_stake_transaction
+                                    broadcastTx(stakeTx) # Broadcast the transaction
+                                    message = f"Stake transaction created and broadcasted with TxID {stakeTx.TxId}. Your stake increased by {amount_TDC} TDC."
+
+                        elif action == "unstake":
+                            # Process unstake form.
+                            unstake_amount_TDC = request.form.get("amount_unstake", type=float) # Use float
+                            if unstake_amount_TDC is None:
+                                message = "Please specify an amount to unstake."
+                            elif unstake_amount_TDC <= 0:
+                                message = "Unstake amount must be positive."
+                            else:
+                                unstake_amount = int(unstake_amount_TDC * 100000000)  # Convert TDC to satoshis
+                                unstakeTx = acct.create_unstake_transaction(unstake_amount, UTXOS)
+                                if not unstakeTx:
+                                    message = "Could not create unstake transaction. Check lock time, staked amount, or balance."
+                                else:
+                                    # Verify inputs before adding to mempool
+                                    verified = True
+                                    script_pubkey = acct.script_public_key(fromAddress)
+                                    for i in range(len(unstakeTx.tx_ins)):
+                                        if not unstakeTx.verify_input(i, script_pubkey):
+                                            verified = False
+                                            message = f"Input verification failed for input {i}."
+                                            break
+                                    if verified:
+                                        MEMPOOL[unstakeTx.TxId] = unstakeTx
+                                        logging.info(f"SUCCESS: Unstake transaction {unstakeTx.TxId} by {fromAddress} for {unstake_amount} satoshis added to mempool.")
+                                        # update_utxo_set(unstakeTx, UTXOS) # Update UTXOs locally
+                                        # No need to update acct fields here; already done in create_unstake_transaction
+                                        broadcastTx(unstakeTx) # Broadcast the transaction
+                                        message = f"Unstake transaction created and broadcasted with TxID: {unstakeTx.TxId}"
+                        else:
+                            message = "Invalid action."
+                    except Exception as e:
+                        import traceback
+                        traceback.print_exc() # Print full traceback to console for debugging
+                        message = f"An unexpected error occurred: {str(e)}"
     else:
         # For GET, try to get the address from a query parameter.
         addr = request.args.get("fromAddress")
@@ -662,3 +751,39 @@ if __name__ == '__main__':
      # test_utxos = manager.dict()
      # test_mempool = manager.dict()
      main({}, {}, test_port, test_local_port) # Pass empty dicts for standalone
+
+
+# -----------------------Legacy Code-----------------------
+
+                    # elif action == "claim":
+                    #     # Process claim rewards form.
+                    #     claim_amount_TDC = request.form.get("amount_claim", type=float) # Use float
+                    #     if claim_amount_TDC is None:
+                    #         message = "Please specify an amount to claim."
+                    #     elif claim_amount_TDC <= 0:
+                    #          message = "Claim amount must be positive."
+                    #     else:
+                    #         claim_amount = int(claim_amount_TDC * 100000000)  # Convert TDC to satoshis
+
+                    #          # --- DEBUG: Print balance before ---
+                    #         print(f"DEBUG: Claiming {claim_amount_TDC} TDC ({claim_amount} satoshis) for {acct.public_addr}")
+                    #         # print(f"DEBUG: Pending rewards BEFORE claim: {acct.pending_rewards}")
+                    #         # --- End DEBUG ---
+                    #         # Check if claim amount exceeds pending rewards
+                    #         if claim_amount > acct.unspent:
+                    #             message = "Claim amount exceeds available rewards."
+                    #         else:
+                    #             claimTx = acct.create_claim_rewards_transaction(claim_amount, UTXOS)
+                    #             if not claimTx:
+                    #                 message = "Could not create claim transaction. Insufficient rewards or error."
+                    #             else:
+                    #                 # No inputs to verify for claim tx (it's like coinbase)
+                    #                 MEMPOOL[claimTx.TxId] = claimTx
+                    #                 # update_utxo_set(claimTx, UTXOS) # Update UTXOs locally
+                    #                 # Account rewards are likely updated within create_claim_rewards_transaction or need manual update
+                    #                 # acct.pending_rewards -= claim_amount # Assuming this happens in create_claim or needs to be done here
+                    #                 # acct.save_to_db() # Save changes if any
+                    #                 broadcastTx(claimTx) # Broadcast the transaction
+                    #                 message = f"Claim rewards transaction created and broadcasted with TxID: {claimTx.TxId}"
+                    #         # --- DEBUG: Print balance after ---
+                    #         print(f"DEBUG: Pending rewards AFTER claim: {acct.pending_rewards}")

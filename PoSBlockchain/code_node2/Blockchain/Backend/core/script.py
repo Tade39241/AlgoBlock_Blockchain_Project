@@ -5,6 +5,7 @@ which is fundamental for creating transactions that send coins to a specific add
 
 from Blockchain.Backend.util.util import encode_base58, int_to_little_endian, little_endian_to_int, encode, read_varint, decode_base58
 from Blockchain.Backend.core.EllepticCurve.op import OP_CODE_FUNCTION, op_checksig, op_dup, op_checklocktimeverify, op_drop
+import hashlib
 
 
 class Script:
@@ -151,3 +152,42 @@ class StakingScript(Script):
 
     def is_staking(self):
         return True
+    
+    @classmethod
+    def from_dict(cls, d):
+        # Accepts either a dict with 'cmds' or a list directly
+        cmds = d.get('cmds', d) if isinstance(d, dict) else d
+        if len(cmds) != 3:
+            raise ValueError("StakingScript expects exactly 3 cmds")
+        # cmds[1] is the hash160, cmds[2] is lock_time as bytes
+        hash160 = cmds[1]
+        lock_bytes = cmds[2]
+        if isinstance(lock_bytes, bytes):
+            lock_time = int.from_bytes(lock_bytes, 'big')
+        elif isinstance(lock_bytes, int):
+            lock_time = lock_bytes
+            lock_bytes = lock_time.to_bytes(8, 'big')
+        else:
+            raise ValueError("Invalid lock_time format in StakingScript cmds")
+        # Reconstruct address from hash160 for constructor
+        # Use mainnet prefix (b'\x00') for address
+        import hashlib
+        prefix = b'\x00'
+        payload = prefix + hash160
+        checksum = hashlib.sha256(hashlib.sha256(payload).digest()).digest()[:4]
+        address_bytes = payload + checksum
+        BASE58_ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz'
+        num = int.from_bytes(address_bytes, 'big')
+        address = ''
+        while num > 0:
+            num, mod = divmod(num, 58)
+            address = BASE58_ALPHABET[mod] + address
+        # Add '1's for leading zeros
+        n_pad = 0
+        for b in address_bytes:
+            if b == 0:
+                n_pad += 1
+            else:
+                break
+        address = '1' * n_pad + address
+        return cls(address, lock_time)

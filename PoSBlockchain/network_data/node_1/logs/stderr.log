@@ -1,3 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Frontend/run.py", line 551, in stake_page
+    unstakeTx = acct.create_unstake_transaction(unstake_amount, UTXOS)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/client/account.py", line 645, in create_unstake_transaction
+    raise ValueError("Unstake amount exceeds staked funds.")
+ValueError: Unstake amount exceeds staked funds.
 Process Process-4:
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
@@ -14,3 +21,18 @@ Traceback (most recent call last):
     fd, addr = self._accept()
                ^^^^^^^^^^^^^^
 KeyboardInterrupt
+Traceback (most recent call last):
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_1/start_node.py", line 270, in transaction_loop
+    for tx in mem_pool.values():
+              ^^^^^^^^^^^^^^^^^
+  File "<string>", line 2, in values
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/managers.py", line 820, in _callmethod
+    conn.send((self._id, methodname, args, kwds))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 206, in send
+    self._send_bytes(_ForkingPickler.dumps(obj))
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe

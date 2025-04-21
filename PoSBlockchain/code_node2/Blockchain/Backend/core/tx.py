@@ -368,15 +368,16 @@ class TxOut:
     
     @classmethod
     def from_dict(cls, d):
-        # If script_publickey is a dict, reconstruct the script object as needed
         script = d['script_publickey']
-        if isinstance(script, dict):
-            # If you have a Script or StakingScript class with from_dict, use it
-            # Otherwise, adjust as needed for your script structure
+        # If script is a dict, extract cmds
+        cmds = script.get('cmds', script) if isinstance(script, dict) else script
+        # StakingScript: cmds[0] == b'\x00'
+        if isinstance(cmds, list) and len(cmds) == 3 and cmds[0] == b'\x00':
             from Blockchain.Backend.core.script import StakingScript
-            script_obj = StakingScript.from_dict(script) if hasattr(StakingScript, 'from_dict') else StakingScript(**script)
+            script_obj = StakingScript.from_dict(script)
         else:
-            script_obj = script
+            from Blockchain.Backend.core.script import Script
+            script_obj = Script.from_dict(script)
         return cls(
             amount=d['amount'],
             script_publickey=script_obj

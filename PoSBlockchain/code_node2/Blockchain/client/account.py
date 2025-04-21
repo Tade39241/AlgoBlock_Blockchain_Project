@@ -15,9 +15,8 @@ class account:
         self.public_addr = None
         self.public_key = None
         self.unspent = 0           # Calculated from UTXOs owned by the user, stored in satoshis.
-        self.staked = 100            # Funds the user has explicitly staked, stored in satoshis.
+        self.staked = 0            # Funds the user has explicitly staked, stored in satoshis.
         # self.pending_rewards = 0   # Rewards allocated to the user, awaiting claim, stored in satoshis.
-        self.locked_until = 0
         # New field to store staking/unstaking events (list of dicts)
         self.staking_history = []
 
@@ -89,7 +88,6 @@ class account:
                 'public_key': self.public_key.hex() if isinstance(self.public_key, bytes) else self.public_key,
                 'staked': self.staked,
                 'unspent': self.unspent,
-                'locked_until': self.locked_until,
                 'staking_history': json.dumps(self.staking_history) if isinstance(self.staking_history, list) else self.staking_history
             }
             
@@ -229,24 +227,6 @@ class account:
     #     # The claim_tx, once confirmed, will add a UTXO for the user's address.
     #     self.save_to_db()
     #     return claim_tx
-    
-    def select_utxos(self, amount, utxo_set):
-        """
-        Select UTXOs from the public address.
-        Returns a list of tuples: (txid, index, tx_out)
-        """
-        h160_public = decode_base58(self.public_addr)
-        selected = []
-        total = 0
-        for (txid, index), tx_out in utxo_set.items():
-            cmds = tx_out.script_publickey.cmds
-            if len(cmds) >= 3 and cmds[2] == h160_public:
-                selected.append((txid, index, tx_out))
-                total += tx_out.amount
-                if total >= amount:
-                    return selected
-        raise ValueError(f"Insufficient balance. Found {total}, needed {amount}")
-
 
     def sign(self, data):
         """Sign data with private key."""
@@ -489,7 +469,6 @@ class account:
     #     # Update off-chain account fields
     #     self.staked += amount
     #     self.unspent -= amount
-    #     self.locked_until = lock_time
     #     self.staking_history.append({
     #         "action": "stake",
     #         "amount": amount,
@@ -520,7 +499,6 @@ class account:
         # Update off-chain account fields
         self.staked += amount
         self.unspent -= amount
-        self.locked_until = lock_time
         self.staking_history.append({
             "action": "stake",
             "amount": amount,

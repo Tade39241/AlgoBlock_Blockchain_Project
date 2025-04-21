@@ -1119,3 +1119,190 @@
 2025-04-21 12:42:03,868 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
 2025-04-21 12:42:03,868 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
 2025-04-21 12:43:03,878 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:31:51,196 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,201 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:31:51,204 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,205 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,205 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,599 INFO:Ensured table exists in data/node.db
+2025-04-21 13:31:51,601 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:31:51,601 INFO:Block written successfully.
+2025-04-21 13:31:56,608 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:31:56,609 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:31:56,610 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:32:56,621 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:47:06,282 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:06,283 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:47:06,284 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:51:46,479 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,480 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:51:46,480 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:53:46,004 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,004 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 13:53:46,005 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:10:58,550 INFO:Ensured table exists in data/account.db
+2025-04-21 17:10:58,551 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:10:58,551 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:11:58,560 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:16:56,236 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,236 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:16:56,238 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:17:56,246 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:26:24,202 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,202 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:26:24,202 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:31:11,561 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,561 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:31:11,562 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:32:11,573 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:33:11,587 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 17:34:11,597 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:02:47,811 INFO:Ensured table exists in data/account.db
+2025-04-21 18:02:47,812 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:02:47,812 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:03:47,818 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:05:03,558 INFO:Ensured table exists in data/account.db
+2025-04-21 18:05:03,559 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:05:03,559 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:18:13,588 INFO:Ensured table exists in data/account.db
+2025-04-21 18:18:13,590 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:18:13,590 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:24:53,600 INFO:Ensured table exists in data/account.db
+2025-04-21 18:24:53,602 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:24:53,605 INFO:Ensured table exists in data/account.db
+2025-04-21 18:24:53,605 INFO:Ensured table exists in data/account.db
+2025-04-21 18:24:53,606 INFO:Ensured table exists in data/account.db
+2025-04-21 18:24:53,980 INFO:Ensured table exists in data/node.db
+2025-04-21 18:24:53,982 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:24:53,983 INFO:Block written successfully.
+2025-04-21 18:24:58,991 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:24:58,993 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:24:58,994 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:25:59,003 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:40:59,811 INFO:Ensured table exists in data/account.db
+2025-04-21 18:40:59,812 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:40:59,815 INFO:Ensured table exists in data/account.db
+2025-04-21 18:40:59,815 INFO:Ensured table exists in data/account.db
+2025-04-21 18:40:59,815 INFO:Ensured table exists in data/account.db
+2025-04-21 18:41:00,185 INFO:Ensured table exists in data/node.db
+2025-04-21 18:41:00,187 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:41:00,188 INFO:Block written successfully.
+2025-04-21 18:41:05,196 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:41:05,198 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:41:05,199 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:55:25,761 INFO:Ensured table exists in data/account.db
+2025-04-21 18:55:25,762 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 18:55:25,763 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:01:01,746 INFO:Ensured table exists in data/account.db
+2025-04-21 19:01:01,748 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:01:01,749 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:39:47,796 INFO:Ensured table exists in data/account.db
+2025-04-21 19:39:47,797 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:39:47,797 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:16,565 INFO:Ensured table exists in data/account.db
+2025-04-21 19:46:16,566 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:16,566 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:38,811 INFO:Ensured table exists in data/account.db
+2025-04-21 19:46:38,812 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:38,816 INFO:Ensured table exists in data/account.db
+2025-04-21 19:46:38,816 INFO:Ensured table exists in data/account.db
+2025-04-21 19:46:38,816 INFO:Ensured table exists in data/account.db
+2025-04-21 19:46:39,280 INFO:Ensured table exists in data/node.db
+2025-04-21 19:46:39,286 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:39,288 INFO:Block written successfully.
+2025-04-21 19:46:44,291 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:44,292 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:46:44,293 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:52:16,473 INFO:Ensured table exists in data/account.db
+2025-04-21 19:52:16,474 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 19:52:16,474 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:00:38,075 INFO:Ensured table exists in data/account.db
+2025-04-21 20:00:38,076 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:00:38,079 INFO:Ensured table exists in data/account.db
+2025-04-21 20:00:38,080 INFO:Ensured table exists in data/account.db
+2025-04-21 20:00:38,080 INFO:Ensured table exists in data/account.db
+2025-04-21 20:00:38,451 INFO:Ensured table exists in data/node.db
+2025-04-21 20:00:38,453 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:00:38,454 INFO:Block written successfully.
+2025-04-21 20:00:43,456 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:00:43,457 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:00:43,458 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:07:52,540 INFO:Ensured table exists in data/account.db
+2025-04-21 20:07:52,541 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:07:52,541 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:08:26,883 INFO:Ensured table exists in data/account.db
+2025-04-21 20:08:26,884 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:08:26,887 INFO:Ensured table exists in data/account.db
+2025-04-21 20:08:26,887 INFO:Ensured table exists in data/account.db
+2025-04-21 20:08:26,888 INFO:Ensured table exists in data/account.db
+2025-04-21 20:08:27,258 INFO:Ensured table exists in data/node.db
+2025-04-21 20:08:27,260 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:08:27,261 INFO:Block written successfully.
+2025-04-21 20:08:32,270 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:08:32,272 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:08:32,273 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:18:41,854 INFO:Ensured table exists in data/account.db
+2025-04-21 20:18:41,855 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:18:41,855 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:40:06,674 INFO:Ensured table exists in data/account.db
+2025-04-21 20:40:06,675 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:40:06,678 INFO:Ensured table exists in data/account.db
+2025-04-21 20:40:06,678 INFO:Ensured table exists in data/account.db
+2025-04-21 20:40:06,678 INFO:Ensured table exists in data/account.db
+2025-04-21 20:40:07,048 INFO:Ensured table exists in data/node.db
+2025-04-21 20:40:07,049 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:40:07,050 INFO:Block written successfully.
+2025-04-21 20:40:12,055 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:40:12,057 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:40:12,057 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:41:12,030 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 20:42:12,039 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:03:16,266 INFO:Ensured table exists in data/account.db
+2025-04-21 21:03:16,267 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:03:16,270 INFO:Ensured table exists in data/account.db
+2025-04-21 21:03:16,270 INFO:Ensured table exists in data/account.db
+2025-04-21 21:03:16,270 INFO:Ensured table exists in data/account.db
+2025-04-21 21:03:16,641 INFO:Ensured table exists in data/node.db
+2025-04-21 21:03:16,643 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:03:16,644 INFO:Block written successfully.
+2025-04-21 21:03:21,652 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:03:21,654 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:03:21,655 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:05:08,651 INFO:Ensured table exists in data/account.db
+2025-04-21 21:05:08,653 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:05:08,656 INFO:Ensured table exists in data/account.db
+2025-04-21 21:05:08,656 INFO:Ensured table exists in data/account.db
+2025-04-21 21:05:08,656 INFO:Ensured table exists in data/account.db
+2025-04-21 21:05:09,026 INFO:Ensured table exists in data/node.db
+2025-04-21 21:05:09,027 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:05:09,028 INFO:Block written successfully.
+2025-04-21 21:05:14,034 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:05:14,035 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:05:14,035 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:39:40,851 INFO:Ensured table exists in data/account.db
+2025-04-21 21:39:40,853 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:39:40,854 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:40:40,863 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:46:54,634 INFO:Ensured table exists in data/account.db
+2025-04-21 21:46:54,635 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:46:54,638 INFO:Ensured table exists in data/account.db
+2025-04-21 21:46:54,638 INFO:Ensured table exists in data/account.db
+2025-04-21 21:46:54,638 INFO:Ensured table exists in data/account.db
+2025-04-21 21:46:55,009 INFO:Ensured table exists in data/node.db
+2025-04-21 21:46:55,012 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:46:55,012 INFO:Block written successfully.
+2025-04-21 21:47:00,019 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:47:00,020 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:47:00,021 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:49:33,530 INFO:Ensured table exists in data/account.db
+2025-04-21 21:49:33,531 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:49:33,534 INFO:Ensured table exists in data/account.db
+2025-04-21 21:49:33,534 INFO:Ensured table exists in data/account.db
+2025-04-21 21:49:33,534 INFO:Ensured table exists in data/account.db
+2025-04-21 21:49:33,907 INFO:Ensured table exists in data/node.db
+2025-04-21 21:49:33,909 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:49:33,910 INFO:Block written successfully.
+2025-04-21 21:49:38,917 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:49:38,918 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:49:38,919 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-21 21:50:38,923 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/data/blockchain.db

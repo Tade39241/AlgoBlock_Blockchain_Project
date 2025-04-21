@@ -64,6 +64,7 @@ def patched_accountdb_init(self, db_path=None):
     self.filepath = self.filename
     self.conn = None
     self.connect()
+    self.table_name = "account"
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS account
     (public_addr TEXT PRIMARY KEY,

@@ -22,7 +22,7 @@ from Blockchain.Backend.util.util import hash256, merkle_root, decode_base58
 from Blockchain.client.account import account
 from Blockchain.Backend.core.database.db import BlockchainDB, AccountDB, NodeDB
 from Blockchain.Backend.core.tx import Coinbase_tx, Tx, TxIn, TxOut
-from Blockchain.Backend.core.script import StakingScript
+from Blockchain.Backend.core.script import Script, StakingScript
 from multiprocessing import Process, Manager
 from validatorNode.main import ValidatorSelector
 from Blockchain.Backend.core.network.syncManager import syncManager
@@ -353,6 +353,9 @@ class Blockchain:
             acc_data = ACCOUNTS[addr]
             script = StakingScript(addr, lock_time=0)
             tx_outs.append(TxOut(amount=acc_data['staked'], script_publickey=script))
+            h160 = decode_base58(addr)
+            p2pkh_script = Script().p2pkh_script(h160)
+            tx_outs.append(TxOut(amount=acc_data['unspent'], script_publickey=p2pkh_script))
     
         # 2. Create the genesis transaction
         genesis_tx = Tx(version=1, tx_ins=[], tx_outs=tx_outs, locktime=0)
@@ -535,17 +538,17 @@ class Blockchain:
         tempMemPool = dict(self.mem_pool)
 
         for tx_key, tx in tempMemPool.items():
-            print(f"Checking tx {tx_key} for inclusion in block...")
+            # print(f"Checking tx {tx_key} for inclusion in block...")
             if not hasattr(tx, 'tx_ins'):
                 try:
                     tx = Tx.to_obj(tx)
                 except Exception as e:
-                    print(f"Skipping invalid transaction from mem_pool: {e}")
+                    # print(f"Skipping invalid transaction from mem_pool: {e}")
                     deleteTxs.append(tx_key)
                     continue
 
-            print(f"  Inputs: {[ (txin.prev_tx.hex(), txin.prev_index) for txin in tx.tx_ins ]}")
-            print(f"  UTXO set keys: {list(self.utxos.keys())[:5]} ...")  # Print first 5 for brevity
+            # print(f"  Inputs: {[ (txin.prev_tx.hex(), txin.prev_index) for txin in tx.tx_ins ]}")
+            # print(f"  UTXO set keys: {list(self.utxos.keys())[:5]} ...")  # Print first 5 for brevity
 
             if not self.doubleSpendingAttempt(tx):
                 print(f"  -> Adding tx {tx_key} to block")
@@ -614,9 +617,9 @@ class Blockchain:
             for missing_tx, missing_ref in missing_references:
                 print(f"  Transaction {missing_tx} references missing transaction {missing_ref}.")
     
-        print("DEBUG: UTXO set construction complete. Final UTXO set:")
-        for k, v in self.utxos.items():
-            print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
+        # print("DEBUG: UTXO set construction complete. Final UTXO set:")
+        # for k, v in self.utxos.items():
+        #     print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
     
     # def buildUTXOS(self):
     #     allTxs = {}
@@ -678,7 +681,7 @@ class Blockchain:
             if txin.prev_tx not in self.prevTxs and key in self.utxos:
                 self.prevTxs.append(txin.prev_tx)
             else:
-                print(f"    [DoubleSpend] txin.prev_tx: {txin.prev_tx.hex()}, prev_index: {txin.prev_index}, key in utxos: {key in self.utxos}, prevTxs: {self.prevTxs}")
+                print(f"[DoubleSpend] txin.prev_tx: {txin.prev_tx.hex()}, prev_index: {txin.prev_index}, key in utxos: {key in self.utxos}, prevTxs: {self.prevTxs}")
                 return True
         return False
 
@@ -979,7 +982,7 @@ class Blockchain:
         self.BroadcastBlock(new_block)
         blockheader.to_hex()
         self.remove_spent_Transactions()
-        print(f"[DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: {list(self.mem_pool.keys())}")
+        # print(f"[DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: {list(self.mem_pool.keys())}")
         self.remove_trans_from_mempool()
         self.store_uxtos_in_cache()
         self.convert_to_json()
@@ -990,8 +993,8 @@ class Blockchain:
         time.sleep(5)
         self.buildUTXOS()
 
-        print("[DEBUG] UTXO set rebuilt.")
-        print("[DEBUG][UTXO SET AFTER BLOCK]")
+        # print("[DEBUG] UTXO set rebuilt.")
+        # print("[DEBUG][UTXO SET AFTER BLOCK]")
         for k, v in self.utxos.items():
             print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
         self.clean_mempool_against_chain(self.mem_pool)

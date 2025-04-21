@@ -1,3 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Frontend/run.py", line 551, in stake_page
+    unstakeTx = acct.create_unstake_transaction(unstake_amount, UTXOS)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/client/account.py", line 645, in create_unstake_transaction
+    raise ValueError("Unstake amount exceeds staked funds.")
+ValueError: Unstake amount exceeds staked funds.
 Process Process-4:
 Traceback (most recent call last):
   File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap

@@ -15951,3 +15951,434 @@
 2025-04-21 12:43:07,934 INFO:127.0.0.1 - - [21/Apr/2025 12:43:07] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
 2025-04-21 12:43:07,936 INFO:127.0.0.1 - - [21/Apr/2025 12:43:07] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
 2025-04-21 12:43:08,507 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:50,005 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:50,033 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:50,407 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 13:31:51,100 INFO:127.0.0.1 - - [21/Apr/2025 13:31:51] "GET / HTTP/1.1" 200 -
+2025-04-21 13:31:51,131 INFO:127.0.0.1 - - [21/Apr/2025 13:31:51] "GET / HTTP/1.1" 200 -
+2025-04-21 13:31:51,133 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:51,134 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,134 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,134 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,134 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:51,605 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:51,605 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:51,812 INFO:Block written successfully.
+2025-04-21 13:31:51,813 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:51,815 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:53,822 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:56,614 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:56,615 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:56,615 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:58,635 INFO:Ensured table exists in data/account.db
+2025-04-21 13:31:59,285 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:59,286 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:59,505 INFO:Block written successfully.
+2025-04-21 13:31:59,507 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:31:59,508 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:01,514 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:21,143 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:56,631 INFO:Ensured table exists in data/account.db
+2025-04-21 13:32:56,633 INFO:Ensured table exists in data/account.db
+2025-04-21 13:32:56,634 INFO:Ensured table exists in data/account.db
+2025-04-21 13:32:58,658 INFO:Ensured table exists in data/account.db
+2025-04-21 13:32:59,054 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:59,054 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:59,251 INFO:Block written successfully.
+2025-04-21 13:32:59,258 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:32:59,259 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:33:01,265 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:05,080 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:05,090 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:05,091 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:05,416 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 13:47:06,181 INFO:127.0.0.1 - - [21/Apr/2025 13:47:06] "GET / HTTP/1.1" 200 -
+2025-04-21 13:47:06,185 INFO:127.0.0.1 - - [21/Apr/2025 13:47:06] "GET / HTTP/1.1" 200 -
+2025-04-21 13:47:06,187 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:06,287 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:06,288 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:06,288 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:08,307 INFO:Ensured table exists in data/account.db
+2025-04-21 13:47:08,700 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:08,700 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:08,890 INFO:Block written successfully.
+2025-04-21 13:47:08,891 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:08,892 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:47:10,893 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:45,398 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:45,418 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:45,419 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:45,728 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 13:51:46,384 INFO:127.0.0.1 - - [21/Apr/2025 13:51:46] "GET / HTTP/1.1" 200 -
+2025-04-21 13:51:46,480 INFO:127.0.0.1 - - [21/Apr/2025 13:51:46] "GET / HTTP/1.1" 200 -
+2025-04-21 13:51:46,482 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:46,483 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,483 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,483 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,483 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,484 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,484 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:46,484 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:48,501 INFO:Ensured table exists in data/account.db
+2025-04-21 13:51:48,910 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:48,910 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:49,102 INFO:Block written successfully.
+2025-04-21 13:51:49,103 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:49,104 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:51:51,111 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:52:16,493 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:52:16,496 INFO:Ensured table exists in data/account.db
+2025-04-21 13:52:16,498 INFO:Ensured table exists in data/account.db
+2025-04-21 13:52:16,499 INFO:Ensured table exists in data/account.db
+2025-04-21 13:52:16,500 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:45,066 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:45,088 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:45,089 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:45,619 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 13:53:45,888 INFO:127.0.0.1 - - [21/Apr/2025 13:53:45] "GET / HTTP/1.1" 200 -
+2025-04-21 13:53:46,009 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,009 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,010 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,146 INFO:127.0.0.1 - - [21/Apr/2025 13:53:46] "GET / HTTP/1.1" 200 -
+2025-04-21 13:53:46,148 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:46,149 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,149 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,149 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:46,150 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:48,031 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:48,427 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:48,427 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:48,622 INFO:Block written successfully.
+2025-04-21 13:53:48,624 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:48,624 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:50,632 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:58,872 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:58,873 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:53:58,874 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:58,875 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:58,876 INFO:Ensured table exists in data/account.db
+2025-04-21 13:53:58,968 INFO:127.0.0.1 - - [21/Apr/2025 13:53:58] "GET /address/1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz HTTP/1.1" 200 -
+2025-04-21 13:53:58,985 INFO:127.0.0.1 - - [21/Apr/2025 13:53:58] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
+2025-04-21 13:53:58,990 INFO:127.0.0.1 - - [21/Apr/2025 13:53:58] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:03,533 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:03,533 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:03,535 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:03,538 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:03,539 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:03,553 INFO:127.0.0.1 - - [21/Apr/2025 13:54:03] "GET /address/1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz HTTP/1.1" 200 -
+2025-04-21 13:54:03,565 INFO:127.0.0.1 - - [21/Apr/2025 13:54:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:03,568 INFO:127.0.0.1 - - [21/Apr/2025 13:54:03] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
+2025-04-21 13:54:04,783 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:04,795 INFO:127.0.0.1 - - [21/Apr/2025 13:54:04] "GET /block HTTP/1.1" 200 -
+2025-04-21 13:54:04,808 INFO:127.0.0.1 - - [21/Apr/2025 13:54:04] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:04,810 INFO:127.0.0.1 - - [21/Apr/2025 13:54:04] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 13:54:06,052 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:06,054 INFO:127.0.0.1 - - [21/Apr/2025 13:54:06] "GET /block HTTP/1.1" 200 -
+2025-04-21 13:54:06,065 INFO:127.0.0.1 - - [21/Apr/2025 13:54:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:06,068 INFO:127.0.0.1 - - [21/Apr/2025 13:54:06] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 13:54:09,337 INFO:127.0.0.1 - - [21/Apr/2025 13:54:09] "[32mGET /block?BlockHeader=1555814ac11186a9a72c940d179954abad575b746c8e24d492f95455e50a148b HTTP/1.1[0m" 302 -
+2025-04-21 13:54:09,341 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:09,359 INFO:127.0.0.1 - - [21/Apr/2025 13:54:09] "GET /block/1555814ac11186a9a72c940d179954abad575b746c8e24d492f95455e50a148b?refreshtime=10 HTTP/1.1" 200 -
+2025-04-21 13:54:09,380 INFO:127.0.0.1 - - [21/Apr/2025 13:54:09] "[33mGET /block/static/images/search.png HTTP/1.1[0m" 404 -
+2025-04-21 13:54:09,382 INFO:127.0.0.1 - - [21/Apr/2025 13:54:09] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:11,290 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:11,291 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:11,292 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:11,293 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:11,293 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:11,306 INFO:127.0.0.1 - - [21/Apr/2025 13:54:11] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD HTTP/1.1" 200 -
+2025-04-21 13:54:11,323 INFO:127.0.0.1 - - [21/Apr/2025 13:54:11] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
+2025-04-21 13:54:11,325 INFO:127.0.0.1 - - [21/Apr/2025 13:54:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 13:54:16,156 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:16,157 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:16,158 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:16,158 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:16,159 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:18,050 INFO:127.0.0.1 - - [21/Apr/2025 13:54:18] "[32mGET /search?search=1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig HTTP/1.1[0m" 302 -
+2025-04-21 13:54:18,054 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:18,054 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 13:54:18,055 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:18,056 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:18,057 INFO:Ensured table exists in data/account.db
+2025-04-21 13:54:18,066 INFO:127.0.0.1 - - [21/Apr/2025 13:54:18] "GET /address/1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig HTTP/1.1" 200 -
+2025-04-21 13:54:18,095 INFO:127.0.0.1 - - [21/Apr/2025 13:54:18] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
+2025-04-21 13:54:18,096 INFO:127.0.0.1 - - [21/Apr/2025 13:54:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:10:57,356 INFO:Ensured table exists in data/account.db
+2025-04-21 17:10:57,378 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:10:57,379 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:10:57,658 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 17:10:58,456 INFO:127.0.0.1 - - [21/Apr/2025 17:10:58] "GET / HTTP/1.1" 200 -
+2025-04-21 17:10:58,470 INFO:127.0.0.1 - - [21/Apr/2025 17:10:58] "GET / HTTP/1.1" 200 -
+2025-04-21 17:10:58,555 INFO:Ensured table exists in data/account.db
+2025-04-21 17:10:58,555 INFO:Ensured table exists in data/account.db
+2025-04-21 17:10:58,555 INFO:Ensured table exists in data/account.db
+2025-04-21 17:11:00,585 INFO:Ensured table exists in data/account.db
+2025-04-21 17:11:01,257 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:01,259 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:02,142 INFO:Block written successfully.
+2025-04-21 17:11:02,163 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:02,177 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:04,192 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:20,909 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:20,922 INFO:127.0.0.1 - - [21/Apr/2025 17:11:20] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:20,947 INFO:127.0.0.1 - - [21/Apr/2025 17:11:20] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:20,948 INFO:127.0.0.1 - - [21/Apr/2025 17:11:20] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:20,956 INFO:127.0.0.1 - - [21/Apr/2025 17:11:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-21 17:11:22,961 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:22,964 INFO:127.0.0.1 - - [21/Apr/2025 17:11:22] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:22,975 INFO:127.0.0.1 - - [21/Apr/2025 17:11:22] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:22,975 INFO:127.0.0.1 - - [21/Apr/2025 17:11:22] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:24,987 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:24,989 INFO:127.0.0.1 - - [21/Apr/2025 17:11:24] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:24,999 INFO:127.0.0.1 - - [21/Apr/2025 17:11:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:24,999 INFO:127.0.0.1 - - [21/Apr/2025 17:11:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:27,011 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:27,013 INFO:127.0.0.1 - - [21/Apr/2025 17:11:27] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:27,023 INFO:127.0.0.1 - - [21/Apr/2025 17:11:27] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:27,024 INFO:127.0.0.1 - - [21/Apr/2025 17:11:27] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:29,037 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:29,039 INFO:127.0.0.1 - - [21/Apr/2025 17:11:29] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:29,051 INFO:127.0.0.1 - - [21/Apr/2025 17:11:29] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:29,051 INFO:127.0.0.1 - - [21/Apr/2025 17:11:29] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:31,059 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:31,061 INFO:127.0.0.1 - - [21/Apr/2025 17:11:31] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:31,068 INFO:127.0.0.1 - - [21/Apr/2025 17:11:31] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:31,068 INFO:127.0.0.1 - - [21/Apr/2025 17:11:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:33,077 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:33,079 INFO:127.0.0.1 - - [21/Apr/2025 17:11:33] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:33,092 INFO:127.0.0.1 - - [21/Apr/2025 17:11:33] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:33,092 INFO:127.0.0.1 - - [21/Apr/2025 17:11:33] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:35,104 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:35,107 INFO:127.0.0.1 - - [21/Apr/2025 17:11:35] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:35,118 INFO:127.0.0.1 - - [21/Apr/2025 17:11:35] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:35,119 INFO:127.0.0.1 - - [21/Apr/2025 17:11:35] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:37,129 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:37,131 INFO:127.0.0.1 - - [21/Apr/2025 17:11:37] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:37,142 INFO:127.0.0.1 - - [21/Apr/2025 17:11:37] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:37,142 INFO:127.0.0.1 - - [21/Apr/2025 17:11:37] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:39,154 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:39,157 INFO:127.0.0.1 - - [21/Apr/2025 17:11:39] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:39,165 INFO:127.0.0.1 - - [21/Apr/2025 17:11:39] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:39,166 INFO:127.0.0.1 - - [21/Apr/2025 17:11:39] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:41,179 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:41,181 INFO:127.0.0.1 - - [21/Apr/2025 17:11:41] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:41,192 INFO:127.0.0.1 - - [21/Apr/2025 17:11:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:41,192 INFO:127.0.0.1 - - [21/Apr/2025 17:11:41] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:43,206 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:43,208 INFO:127.0.0.1 - - [21/Apr/2025 17:11:43] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:43,218 INFO:127.0.0.1 - - [21/Apr/2025 17:11:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:43,218 INFO:127.0.0.1 - - [21/Apr/2025 17:11:43] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:45,231 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:45,233 INFO:127.0.0.1 - - [21/Apr/2025 17:11:45] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:45,243 INFO:127.0.0.1 - - [21/Apr/2025 17:11:45] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:45,244 INFO:127.0.0.1 - - [21/Apr/2025 17:11:45] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:47,265 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:47,271 INFO:127.0.0.1 - - [21/Apr/2025 17:11:47] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:47,284 INFO:127.0.0.1 - - [21/Apr/2025 17:11:47] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:47,284 INFO:127.0.0.1 - - [21/Apr/2025 17:11:47] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:49,295 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:49,298 INFO:127.0.0.1 - - [21/Apr/2025 17:11:49] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:49,308 INFO:127.0.0.1 - - [21/Apr/2025 17:11:49] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:49,308 INFO:127.0.0.1 - - [21/Apr/2025 17:11:49] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:51,323 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:51,325 INFO:127.0.0.1 - - [21/Apr/2025 17:11:51] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:51,336 INFO:127.0.0.1 - - [21/Apr/2025 17:11:51] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:51,337 INFO:127.0.0.1 - - [21/Apr/2025 17:11:51] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:53,350 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:53,352 INFO:127.0.0.1 - - [21/Apr/2025 17:11:53] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:53,364 INFO:127.0.0.1 - - [21/Apr/2025 17:11:53] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:53,364 INFO:127.0.0.1 - - [21/Apr/2025 17:11:53] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:55,381 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:55,383 INFO:127.0.0.1 - - [21/Apr/2025 17:11:55] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:55,408 INFO:127.0.0.1 - - [21/Apr/2025 17:11:55] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:55,408 INFO:127.0.0.1 - - [21/Apr/2025 17:11:55] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:57,418 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:57,420 INFO:127.0.0.1 - - [21/Apr/2025 17:11:57] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:57,431 INFO:127.0.0.1 - - [21/Apr/2025 17:11:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:57,433 INFO:127.0.0.1 - - [21/Apr/2025 17:11:57] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:11:58,567 INFO:Ensured table exists in data/account.db
+2025-04-21 17:11:58,568 INFO:Ensured table exists in data/account.db
+2025-04-21 17:11:58,569 INFO:Ensured table exists in data/account.db
+2025-04-21 17:11:59,449 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:11:59,452 INFO:127.0.0.1 - - [21/Apr/2025 17:11:59] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:11:59,465 INFO:127.0.0.1 - - [21/Apr/2025 17:11:59] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:11:59,466 INFO:127.0.0.1 - - [21/Apr/2025 17:11:59] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:16:55,126 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:55,130 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:55,131 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:55,716 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 17:16:56,116 INFO:127.0.0.1 - - [21/Apr/2025 17:16:56] "GET / HTTP/1.1" 200 -
+2025-04-21 17:16:56,190 INFO:127.0.0.1 - - [21/Apr/2025 17:16:56] "GET / HTTP/1.1" 200 -
+2025-04-21 17:16:56,192 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:56,192 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,193 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,193 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,193 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,241 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,241 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:56,241 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:58,263 INFO:Ensured table exists in data/account.db
+2025-04-21 17:16:58,735 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:58,737 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:58,926 INFO:Block written successfully.
+2025-04-21 17:16:58,928 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:16:58,928 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:00,936 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:26,202 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:26,206 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:26,207 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:26,208 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:26,209 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,217 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:56,220 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,221 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,221 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,222 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,254 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,255 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:56,256 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:58,282 INFO:Ensured table exists in data/account.db
+2025-04-21 17:17:58,672 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:58,672 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:58,868 INFO:Block written successfully.
+2025-04-21 17:17:58,871 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:17:58,872 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:18:00,880 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:23,051 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:23,081 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:23,082 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:23,559 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 17:26:24,109 INFO:127.0.0.1 - - [21/Apr/2025 17:26:24] "GET / HTTP/1.1" 200 -
+2025-04-21 17:26:24,194 INFO:127.0.0.1 - - [21/Apr/2025 17:26:24] "GET / HTTP/1.1" 200 -
+2025-04-21 17:26:24,196 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:24,197 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,198 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,198 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,198 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,205 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,206 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,206 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:24,207 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:26,218 INFO:Ensured table exists in data/node.db
+2025-04-21 17:26:26,605 INFO:Ensured table exists in data/node.db
+2025-04-21 17:26:26,607 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:26,608 INFO:Block written successfully.
+2025-04-21 17:26:31,619 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:31,623 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:40,001 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:40,025 INFO:127.0.0.1 - - [21/Apr/2025 17:26:40] "GET /mempool HTTP/1.1" 200 -
+2025-04-21 17:26:40,047 INFO:127.0.0.1 - - [21/Apr/2025 17:26:40] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:26:40,048 INFO:127.0.0.1 - - [21/Apr/2025 17:26:40] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:26:41,286 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:41,296 INFO:127.0.0.1 - - [21/Apr/2025 17:26:41] "GET /block HTTP/1.1" 200 -
+2025-04-21 17:26:41,310 INFO:127.0.0.1 - - [21/Apr/2025 17:26:41] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:26:41,313 INFO:127.0.0.1 - - [21/Apr/2025 17:26:41] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:26:43,153 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:43,156 INFO:127.0.0.1 - - [21/Apr/2025 17:26:43] "GET /block HTTP/1.1" 200 -
+2025-04-21 17:26:43,171 INFO:127.0.0.1 - - [21/Apr/2025 17:26:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:26:43,171 INFO:127.0.0.1 - - [21/Apr/2025 17:26:43] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:26:54,208 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:26:54,214 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:54,215 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:54,215 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:54,216 INFO:Ensured table exists in data/account.db
+2025-04-21 17:26:54,244 INFO:127.0.0.1 - - [21/Apr/2025 17:26:54] "POST /stake HTTP/1.1" 200 -
+2025-04-21 17:31:10,725 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:10,729 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:10,730 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:11,315 INFO: * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-21 17:31:11,475 INFO:127.0.0.1 - - [21/Apr/2025 17:31:11] "GET / HTTP/1.1" 200 -
+2025-04-21 17:31:11,565 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,566 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,566 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,567 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:11,818 INFO:127.0.0.1 - - [21/Apr/2025 17:31:11] "GET / HTTP/1.1" 200 -
+2025-04-21 17:31:11,823 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:11,824 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,825 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,826 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,826 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,827 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:11,839 INFO:127.0.0.1 - - [21/Apr/2025 17:31:11] "POST /wallet HTTP/1.1" 200 -
+2025-04-21 17:31:13,585 INFO:Ensured table exists in data/node.db
+2025-04-21 17:31:13,978 INFO:Ensured table exists in data/node.db
+2025-04-21 17:31:13,979 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:13,980 INFO:Block written successfully.
+2025-04-21 17:31:15,607 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:15,617 INFO:127.0.0.1 - - [21/Apr/2025 17:31:15] "GET /block HTTP/1.1" 200 -
+2025-04-21 17:31:15,635 INFO:127.0.0.1 - - [21/Apr/2025 17:31:15] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:31:15,636 INFO:127.0.0.1 - - [21/Apr/2025 17:31:15] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:31:18,985 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:18,988 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:41,849 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:31:41,852 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:41,855 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:41,855 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:41,856 INFO:Ensured table exists in data/account.db
+2025-04-21 17:31:41,878 INFO:127.0.0.1 - - [21/Apr/2025 17:31:41] "POST /stake HTTP/1.1" 200 -
+2025-04-21 17:32:11,580 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,581 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,582 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,886 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:11,888 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,889 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,889 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,890 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,891 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:11,900 INFO:127.0.0.1 - - [21/Apr/2025 17:32:11] "POST /wallet HTTP/1.1" 200 -
+2025-04-21 17:32:13,608 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:13,996 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:13,996 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:14,182 INFO:Block written successfully.
+2025-04-21 17:32:14,185 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:14,186 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:16,194 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:41,911 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:32:41,914 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:41,916 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:41,917 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:41,917 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:41,919 INFO:Ensured table exists in data/account.db
+2025-04-21 17:32:41,933 INFO:127.0.0.1 - - [21/Apr/2025 17:32:41] "POST /wallet HTTP/1.1" 200 -
+2025-04-21 17:33:11,594 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,595 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,596 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,945 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:11,949 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,949 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,950 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,950 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,952 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:11,968 INFO:127.0.0.1 - - [21/Apr/2025 17:33:11] "POST /wallet HTTP/1.1" 200 -
+2025-04-21 17:33:13,623 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:14,023 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:14,023 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:14,213 INFO:Block written successfully.
+2025-04-21 17:33:14,216 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:14,218 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:16,226 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:41,979 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:33:41,983 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:41,984 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:41,984 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:41,985 INFO:Ensured table exists in data/account.db
+2025-04-21 17:33:41,998 INFO:127.0.0.1 - - [21/Apr/2025 17:33:41] "POST /stake HTTP/1.1" 200 -
+2025-04-21 17:34:06,305 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:34:06,309 INFO:127.0.0.1 - - [21/Apr/2025 17:34:06] "GET /block HTTP/1.1" 200 -
+2025-04-21 17:34:06,324 INFO:127.0.0.1 - - [21/Apr/2025 17:34:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-21 17:34:06,325 INFO:127.0.0.1 - - [21/Apr/2025 17:34:06] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-21 17:34:11,602 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:11,604 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:11,605 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:12,006 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:34:12,009 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:12,010 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:12,011 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:12,011 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:12,018 INFO:127.0.0.1 - - [21/Apr/2025 17:34:12] "POST /stake HTTP/1.1" 200 -
+2025-04-21 17:34:13,632 INFO:Ensured table exists in data/account.db
+2025-04-21 17:34:14,092 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:34:14,092 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:34:14,282 INFO:Block written successfully.
+2025-04-21 17:34:14,302 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+2025-04-21 17:34:14,304 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db

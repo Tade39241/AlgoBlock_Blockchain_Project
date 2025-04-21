@@ -1,3 +1,0 @@
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_1/start_node.py", line 2
-    import sys
-IndentationError: unexpected indent
