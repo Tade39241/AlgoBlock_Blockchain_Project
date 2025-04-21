@@ -160,7 +160,7 @@ class Tx:
             return False
 
         return True
-    
+
     @classmethod
     def to_obj(cls, item):
         """
@@ -195,7 +195,6 @@ class Tx:
             TxOutList.append(TxOut(tx_out['amount'],Script(cmdsout)))
             cmdsout = []
         return cls(1, TxInList, TxOutList, 0)
-
 
     def to_dict(self):
         """
@@ -324,6 +323,7 @@ class TxIn:
         # print(f"DEBUG: Serialized TxIn: {result.hex()}")
         return result
     
+    
     @classmethod
     def parse(cls, s):
         """
@@ -365,3 +365,19 @@ class TxOut:
         amount = little_endian_to_int(s.read(8))
         script_publickey = Script.parse(s)
         return cls(amount, script_publickey)
+    
+    @classmethod
+    def from_dict(cls, d):
+        # If script_publickey is a dict, reconstruct the script object as needed
+        script = d['script_publickey']
+        if isinstance(script, dict):
+            # If you have a Script or StakingScript class with from_dict, use it
+            # Otherwise, adjust as needed for your script structure
+            from Blockchain.Backend.core.script import StakingScript
+            script_obj = StakingScript.from_dict(script) if hasattr(StakingScript, 'from_dict') else StakingScript(**script)
+        else:
+            script_obj = script
+        return cls(
+            amount=d['amount'],
+            script_publickey=script_obj
+        )

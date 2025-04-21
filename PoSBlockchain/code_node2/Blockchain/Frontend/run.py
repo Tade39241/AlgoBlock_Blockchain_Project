@@ -315,6 +315,7 @@ def showBlock(BlockHeader):
 
 @app.route('/address/<publicAddress>')
 def address(publicAddress):
+    reload_utxos_from_chain()
 
     # Validate publicAddress…
     if not (len(publicAddress) < 35 and publicAddress[0] == "1"):
@@ -626,6 +627,14 @@ def broadcastTx(TxObj):
         import traceback
         traceback.print_exc()
         print(f"Error during broadcastTx setup: {err}")
+
+def reload_utxos_from_chain():
+    global UTXOS
+    from Blockchain.Backend.core.pos_blockchain import Blockchain
+    blockchain = Blockchain(UTXOS, MEMPOOL, None, None, localHostPort, "127.0.0.1")
+    blockchain.buildUTXOS()
+    UTXOS = blockchain.get_utxos()
+    print("[Frontend] UTXO set reloaded from blockchain.")
 
 
 def main(utxos, mem_pool,port, localPort):

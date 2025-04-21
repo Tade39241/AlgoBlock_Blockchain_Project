@@ -418,8 +418,8 @@ class account:
             return False  # Insufficient funds.
         
         change = total - amount
-        TxOuts = self.prepareStakeTxOut(amount, change, fromAddress)
         lock_time = int(time.time()) + lock_duration
+        TxOuts = self.prepareStakeTxOut(amount, change, fromAddress,lock_time)
         TxObj = Tx(1, TxIns, TxOuts, lock_time)
         self.signStakeTransaction(TxObj)
         TxObj.TxId = TxObj.id()
@@ -515,23 +515,26 @@ class account:
 
     def prepare_unstake_tx_ins(self, unstake_amount, utxo_set):
         """
-        Select UTXOs (from the user's staking script) that represent staked funds.
-        Only UTXOs with the user's pubkey hash are selected.
+        Select staking UTXOs (with StakingScript) that belong to the user and are unlocked.
         """
         user_h160 = decode_base58(self.public_addr)
         selected_ins = []
         total = 0
+        now = int(time.time())
         for (txid, idx), tx_out in utxo_set.items():
             if tx_out is None:
                 continue
             cmds = tx_out.script_publickey.cmds
-            if len(cmds) >= 3 and cmds[2] == user_h160:
-                selected_ins.append((txid, idx, tx_out))
-                total += tx_out.amount
-                if total >= unstake_amount:
-                    break
+            # StakingScript: cmds[0] == b'\x00', cmds[1] == user_h160, cmds[2] == locktime
+            if len(cmds) == 3 and cmds[0] == b'\x00' and cmds[1] == user_h160:
+                lock_time = int.from_bytes(cmds[2], 'big')
+                if now >= lock_time:
+                    selected_ins.append((txid, idx, tx_out))
+                    total += tx_out.amount
+                    if total >= unstake_amount:
+                        break
         if total < unstake_amount:
-            raise ValueError("Not enough staked funds available for unstake.")
+            raise ValueError("Not enough unlocked staked funds to unstake.")
         return [
             TxIn(
                 prev_tx=bytes.fromhex(txid),
@@ -541,33 +544,36 @@ class account:
             )
             for txid, idx, _ in selected_ins
         ]
-    
-    # def prepare_unstake_tx_ins(self, unstake_amount, utxo_set):
-        # user_h160 = decode_base58(self.public_addr)
-        # selected_ins = []
-        # total = 0
-        # now = int(time.time())
-        # for (txid, idx), tx_out in utxo_set.items():
-        #     cmds = tx_out.script_publickey.cmds
-        #     if len(cmds) == 3 and cmds[0] == b'\x00' and cmds[1] == user_h160:
-        #         lock_time = int.from_bytes(cmds[2], 'big')
-        #         if now >= lock_time:
-        #             selected_ins.append((txid, idx, tx_out))
-        #             total += tx_out.amount
-        #             if total >= unstake_amount:
-        #                 break
-        # if total < unstake_amount:
-        #     raise ValueError("Not enough unlocked staked funds to unstake.")
-        # return [
-        #     TxIn(
-        #         prev_tx=bytes.fromhex(txid),
-        #         prev_index=idx,
-        #         script_sig=Script(),
-        #         sequence=0xFFFFFFFF
-        #     )
-        #     for txid, idx, _ in selected_ins
-        # ]
 
+    # def prepare_unstake_tx_ins(self, unstake_amount, utxo_set):
+    #     """
+    #     Select UTXOs (from the user's staking script) that represent staked funds.
+    #     Only UTXOs with the user's pubkey hash are selected.
+    #     """
+    #     user_h160 = decode_base58(self.public_addr)
+    #     selected_ins = []
+    #     total = 0
+    #     for (txid, idx), tx_out in utxo_set.items():
+    #         if tx_out is None:
+    #             continue
+    #         cmds = tx_out.script_publickey.cmds
+    #         if len(cmds) >= 3 and cmds[2] == user_h160:
+    #             selected_ins.append((txid, idx, tx_out))
+    #             total += tx_out.amount
+    #             if total >= unstake_amount:
+    #                 break
+    #     if total < unstake_amount:
+    #         raise ValueError("Not enough staked funds available for unstake.")
+    #     return [
+    #         TxIn(
+    #             prev_tx=bytes.fromhex(txid),
+    #             prev_index=idx,
+    #             script_sig=Script(),
+    #             sequence=0xFFFFFFFF
+    #         )
+    #         for txid, idx, _ in selected_ins
+    #     ]
+    
 
     # def create_claim_rewards_transaction(self, claim_amount, utxo_set):
     #     """

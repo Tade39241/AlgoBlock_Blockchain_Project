@@ -3,7 +3,7 @@ The code defines a way to construct a standard Bitcoin P2PKH script,
 which is fundamental for creating transactions that send coins to a specific address.
 """
 
-from Blockchain.Backend.util.util import int_to_little_endian, little_endian_to_int, encode, read_varint, decode_base58
+from Blockchain.Backend.util.util import encode_base58, int_to_little_endian, little_endian_to_int, encode, read_varint, decode_base58
 from Blockchain.Backend.core.EllepticCurve.op import OP_CODE_FUNCTION, op_checksig, op_dup, op_checklocktimeverify, op_drop
 
 
@@ -105,6 +105,24 @@ class Script:
     @classmethod
     def p2pkh_script(cls,h160):
         return cls([0x76,0xa9, h160, 0x88, 0xac])
+    
+    @classmethod
+    def from_dict(cls, d):
+        # If your script stores commands as a list of hex strings, convert them back to bytes or int as needed
+        cmds = []
+        for cmd in d.get('cmds', []):
+            if isinstance(cmd, str):
+                try:
+                    # Try to decode as hex, fallback to int if not hex
+                    cmds.append(bytes.fromhex(cmd))
+                except ValueError:
+                    try:
+                        cmds.append(int(cmd))
+                    except Exception:
+                        cmds.append(cmd)
+            else:
+                cmds.append(cmd)
+        return cls(cmds)
 
 class StakingScript(Script):
     def __init__(self, address, lock_time):
@@ -127,6 +145,9 @@ class StakingScript(Script):
             decoded_hash160,# who can claim
             lock_bytes      # the locktime
         ]
+
+    def is_staking(self):
+        return True
 
     def is_staking(self):
         return True

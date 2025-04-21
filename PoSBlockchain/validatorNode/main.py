@@ -1,3 +1,5 @@
+import sys
+import os
 import random
 import json
 from network.connection import Node
@@ -6,6 +8,9 @@ from database.db import AccountDB
 import configparser
 import time
 from Blockchain.Backend.util.util import decode_base58, encode_base58, hash256
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'code_node2'))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
 
 VALIDATOR_ADDRESS = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
 

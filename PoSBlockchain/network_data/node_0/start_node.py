@@ -221,18 +221,18 @@ def simulate_random_transactions(volume, interval=30, tx_types="all"):
             
             try:
                 # --- Add Debugging ---
-                print(f"[Sim Debug 3350/{threading.get_ident()}] Creating AccountDB instance...")
+                print(f"[Sim Debug 33999/{threading.get_ident()}] Creating AccountDB instance...")
                 db_instance = AccountDB()
-                print(f"[Sim Debug 3350/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                print(f"[Sim Debug 33999/{threading.get_ident()}] Instance type: {type(db_instance)}")
                 if hasattr(db_instance, 'table_name'):
-                    print(f"[Sim Debug 3350/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                    print(f"[Sim Debug 33999/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
                 else:
-                    print(f"[Sim Debug 3350/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                    print(f"[Sim Debug 33999/{threading.get_ident()}] Instance LACKS table_name attribute!")
                 # --- End Debugging ---
 
-                print(f"[Sim Debug 3350/{threading.get_ident()}] Calling db_instance.read()...")
+                print(f"[Sim Debug 33999/{threading.get_ident()}] Calling db_instance.read()...")
                 accounts = db_instance.read() # Use the instance we just checked
-                print(f"[Sim Debug 3350/{threading.get_ident()}] db_instance.read() completed.")
+                print(f"[Sim Debug 33999/{threading.get_ident()}] db_instance.read() completed.")
 
                 eligible_senders = [a for a in accounts if a.get('unspent', 0) > 0]
 
@@ -318,7 +318,7 @@ def simulate_random_transactions(volume, interval=30, tx_types="all"):
                 
 
             except AttributeError as ae:
-                 print(f"[Sim ATTRIBUTE ERROR 3350/{threading.get_ident()}] {ae}")
+                 print(f"[Sim ATTRIBUTE ERROR 33999/{threading.get_ident()}] {ae}")
                  # Print attributes of the instance that caused the error if possible
                  try:
                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")

@@ -98,34 +98,81 @@ class BlockHeader:
         result += self.validator_pubkey  # assumed already bytes (compressed)
 
         return result
-
+    
     def serialise_with_signature(self):
         """Serialize the block header including the signature (with a 1-byte length prefix)."""
         result = self.serialise_without_signature()
-        
+    
         if self.signature is None:
             # If no signature is present, write a single 0 byte.
             result += int_to_little_endian(0, 1)
         else:
-            # Handle different signature types properly
-            if isinstance(self.signature, bytes):
+            # Normalize signature to bytes (DER encoding if Signature object)
+            if hasattr(self.signature, 'der'):
+                sig_bytes = self.signature.der()
+            elif isinstance(self.signature, bytes):
                 sig_bytes = self.signature
-            elif hasattr(self.signature, 'r') and hasattr(self.signature, 's'):
-                # Convert Signature object to bytes
-                r_bytes = self.signature.r.to_bytes(32, 'big')
-                s_bytes = self.signature.s.to_bytes(32, 'big')
-                sig_bytes = r_bytes + s_bytes
+            elif isinstance(self.signature, str):
+                # Assume hex string
+                sig_bytes = bytes.fromhex(self.signature)
             else:
-                # Convert to string representation first if needed
-                sig_bytes = str(self.signature).encode()
-            
+                raise TypeError(f"BlockHeader.signature must be Signature, bytes, or hex str, got {type(self.signature)}")
+    
             sig_length = len(sig_bytes)
             if sig_length > 255:
                 raise Exception("Signature length exceeds 255 bytes")
             result += int_to_little_endian(sig_length, 1)
             result += sig_bytes
-
+    
+            print("[DEBUG serialise_with_signature] BlockHeader fields before serialization:")
+            print(f"  version: {self.version}")
+            print(f"  prevBlockHash: {self.prevBlockHash} ({type(self.prevBlockHash)})")
+            print(f"  merkleRoot: {self.merkleRoot} ({type(self.merkleRoot)})")
+            print(f"  timestamp: {self.timestamp}")
+            print(f"  validator_pubkey: {self.validator_pubkey} ({type(self.validator_pubkey)})")
+            print(f"  signature: {self.signature} ({type(self.signature)})")
+            print(f"  serialized header: {result.hex()}")
+            print(f"[DEBUG] Signature type: {type(self.signature)}, value: {self.signature}")
+    
         return result
+
+    # def serialise_with_signature(self):
+    #     """Serialize the block header including the signature (with a 1-byte length prefix)."""
+    #     result = self.serialise_without_signature()
+        
+    #     if self.signature is None:
+    #         # If no signature is present, write a single 0 byte.
+    #         result += int_to_little_endian(0, 1)
+    #     else:
+    #         # Handle different signature types properly
+    #         if isinstance(self.signature, bytes):
+    #             sig_bytes = self.signature
+    #         elif hasattr(self.signature, 'r') and hasattr(self.signature, 's'):
+    #             # Convert Signature object to bytes
+    #             r_bytes = self.signature.r.to_bytes(32, 'big')
+    #             s_bytes = self.signature.s.to_bytes(32, 'big')
+    #             sig_bytes = r_bytes + s_bytes
+    #         else:
+    #             # Convert to string representation first if needed
+    #             sig_bytes = str(self.signature).encode()
+            
+    #         sig_length = len(sig_bytes)
+    #         if sig_length > 255:
+    #             raise Exception("Signature length exceeds 255 bytes")
+    #         result += int_to_little_endian(sig_length, 1)
+    #         result += sig_bytes
+
+    #         print("[DEBUG serialise_with_signature] BlockHeader fields before serialization:")
+    #         print(f"  version: {self.version}")
+    #         print(f"  prevBlockHash: {self.prevBlockHash} ({type(self.prevBlockHash)})")
+    #         print(f"  merkleRoot: {self.merkleRoot} ({type(self.merkleRoot)})")
+    #         print(f"  timestamp: {self.timestamp}")
+    #         print(f"  validator_pubkey: {self.validator_pubkey} ({type(self.validator_pubkey)})")
+    #         print(f"  signature: {self.signature} ({type(self.signature)})")
+    #         print(f"  serialized header: {result.hex()}")
+    #         print(f"[DEBUG] Signature type: {type(self.signature)}, value: {self.signature}")
+
+    #     return result
     
     # def serialise(self):
     #     result = int_to_little_endian(self.version, 4)
@@ -150,7 +197,9 @@ class BlockHeader:
         self.prevBlockHash = self.prevBlockHash.hex()
         self.merkleRoot = self.merkleRoot.hex()
         self.validator_pubkey = self.validator_pubkey.hex()
-        if self.signature:
+        if isinstance(self.signature, Signature):
+            self.signature = self.signature.der().hex()
+        elif isinstance(self.signature, bytes):
             self.signature = self.signature.hex()
 
     def to_bytes(self):
@@ -209,6 +258,7 @@ class BlockHeader:
     #         return False
     def validate_block(self, validators=None):
         """Validate block signature and, if provided, validator status."""
+        print(f"[ValidateBlockDEBUG] signature: {self.signature}")
         try:
             # Ensure signature is a Signature object
             if not isinstance(self.signature, Signature):

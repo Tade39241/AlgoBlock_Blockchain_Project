@@ -22,49 +22,161 @@ Testing database connections...
   - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
   - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
   - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
-[DEBUG] PID 3396 binding to ('127.0.0.1', 9002)
+[DEBUG] PID 34038 binding to ('127.0.0.1', 9002)
 SERVER STARTED
 LISTENING at 127.0.0.1:9002
 [syncManager] Received port check magic, closing connection.
 [DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Receiver] Received envelope with command: b'block' and payload length: 318 bytes
+Successfully parsed signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+[HANDLECONN_DEBUG] Reconstructed BlockHeader: <Blockchain.Backend.core.blockheader.BlockHeader object at 0x1079428a0>
+[HANDLECONN_DEBUG]Signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04) <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' (<class 'bytes'>)
+  merkleRoot: b'M\x89\xc3Lz\xe7o;>\xb7\xc9\x89\xd3\x9f\xb41K\x1cy\xf5\x1f3\xecA\xff\xc7\tS2q\x0cT' (<class 'bytes'>)
+  timestamp: 0
+  validator_pubkey: b'\x03\x87\xc9d\xaag\xe3?\x0b\x93\xd3"\x1b\x1b\xdf\xce8\'F\xccwr\xe7I|\xa2gx&\xf5\x8d\x90\x1d' (<class 'bytes'>)
+  signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000000000000000000000000000000000000000000000000000000000000000000000540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d46304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+[HANDLECONN_DEBUG]Serialized header: 010000000000000000000000000000000000000000000000000000000000000000000000540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d46304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+New Block Received : 0
+Blocks to process: 1
+Processing block with hash: 991a4fcc...
+[DEBUG/PRB] BlockHeader fields for block 991a4fccf943a1588563ce3fccefb82a2c28165658396f02e13e91f20d610d9d:
+  version: 1
+  prevBlockHash: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' (<class 'bytes'>)
+  merkleRoot: b'M\x89\xc3Lz\xe7o;>\xb7\xc9\x89\xd3\x9f\xb41K\x1cy\xf5\x1f3\xecA\xff\xc7\tS2q\x0cT' (<class 'bytes'>)
+  timestamp: 0
+  validator_pubkey: b'\x03\x87\xc9d\xaag\xe3?\x0b\x93\xd3"\x1b\x1b\xdf\xce8\'F\xccwr\xe7I|\xa2gx&\xf5\x8d\x90\x1d' (<class 'bytes'>)
+  signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00' (<class 'bytes'>)
+  merkleRoot: b'M\x89\xc3Lz\xe7o;>\xb7\xc9\x89\xd3\x9f\xb41K\x1cy\xf5\x1f3\xecA\xff\xc7\tS2q\x0cT' (<class 'bytes'>)
+  timestamp: 0
+  validator_pubkey: b'\x03\x87\xc9d\xaag\xe3?\x0b\x93\xd3"\x1b\x1b\xdf\xce8\'F\xccwr\xe7I|\xa2gx&\xf5\x8d\x90\x1d' (<class 'bytes'>)
+  signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000000000000000000000000000000000000000000000000000000000000000000000540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d46304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+  serialized header (with sig): 010000000000000000000000000000000000000000000000000000000000000000000000540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d46304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+  serialized header (no sig): 010000000000000000000000000000000000000000000000000000000000000000000000540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d
+  computed block hash: 991a4fccf943a1588563ce3fccefb82a2c28165658396f02e13e91f20d610d9d
+[ValidateBlockDEBUG] signature: Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+Processed transaction with ID: 540c71325309c7ff41ec331ff5791c4b31b49fd389c9b73e3b6fe77a4cc3894d
+Attempting atomic write of block to database file: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+[LocalChain] Block 0 successfully integrated (atomic write).
+[DEBUG] UTXO set rebuilt.
+[Mempool Cleanup] No confirmed transactions found in mempool.
+[DEBUG] Mempool cleaned against chain.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
 [syncManager] Received validator selection message.
-[DEBUG] Selected validator: {'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'staked': 10000000000, 'unspent': 0, 'locked_until': 0, 'staking_history': '[]'}
+[DEBUG] Selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
 [DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
 [DEBUG] AccountDB using path: data/account.db
 [DEBUG] AccountDB using path: data/account.db
 [DEBUG] AccountDB using path: data/account.db
 Database path used: data/account.db
 Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
-[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
-[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
-[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 2
-[syncManager] Creating block at height 2
-[syncManager/DEBUG] MEMPOOL CONTENTS: {}
-[syncManager] Block 2 created successfully
-Testing database connections...
-  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
-  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
-  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
-Server started on port 9002
-Waiting for web UI at http://localhost:5902…
-Web UI up, starting simulation
-[Sim] Transaction simulation is disabled for this node.
-Node 2 active on port 9002, web: 5902
-Node 2 active on port 9002, web: 5902
-Node 2 active on port 9002, web: 5902
-\nShutting down node 2 gracefully...
-Testing database connections...
+[syncManager] Not the selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+Received account update from port 9000 for address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] AccountDB using path: data/account.db
+Successfully updated local account database for 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Receiver] Received envelope with command: b'block' and payload length: 272 bytes
+Successfully parsed signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+[HANDLECONN_DEBUG] Reconstructed BlockHeader: <Blockchain.Backend.core.blockheader.BlockHeader object at 0x1079426c0>
+[HANDLECONN_DEBUG]Signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2) <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x99\x1aO\xcc\xf9C\xa1X\x85c\xce?\xcc\xef\xb8*,(\x16VX9o\x02\xe1>\x91\xf2\ra\r\x9d' (<class 'bytes'>)
+  merkleRoot: b'\x16\xc8\x02Z`q\x80\xbe\x89~e\xf9\xa2@r*\x86I\xa7\xd5^\xb0\x12q\xe6\x08\x13\xba\x8d]\xbb\xd1' (<class 'bytes'>)
+  timestamp: 1745195679
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000009d0d610df2913ee1026f39585616282c2ab8efcc3fce638558a143f9cc4f1a99d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c8169f9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+[HANDLECONN_DEBUG]Serialized header: 010000009d0d610df2913ee1026f39585616282c2ab8efcc3fce638558a143f9cc4f1a99d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c8169f9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+New Block Received : 1
+Blocks to process: 1
+Processing block with hash: 73a9055b...
+[DEBUG/PRB] BlockHeader fields for block 73a9055bd01b25bbec72ddfd59acae81ea589fb6e10828f615d265af5ea5bd0a:
+  version: 1
+  prevBlockHash: b'\x99\x1aO\xcc\xf9C\xa1X\x85c\xce?\xcc\xef\xb8*,(\x16VX9o\x02\xe1>\x91\xf2\ra\r\x9d' (<class 'bytes'>)
+  merkleRoot: b'\x16\xc8\x02Z`q\x80\xbe\x89~e\xf9\xa2@r*\x86I\xa7\xd5^\xb0\x12q\xe6\x08\x13\xba\x8d]\xbb\xd1' (<class 'bytes'>)
+  timestamp: 1745195679
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x99\x1aO\xcc\xf9C\xa1X\x85c\xce?\xcc\xef\xb8*,(\x16VX9o\x02\xe1>\x91\xf2\ra\r\x9d' (<class 'bytes'>)
+  merkleRoot: b'\x16\xc8\x02Z`q\x80\xbe\x89~e\xf9\xa2@r*\x86I\xa7\xd5^\xb0\x12q\xe6\x08\x13\xba\x8d]\xbb\xd1' (<class 'bytes'>)
+  timestamp: 1745195679
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000009d0d610df2913ee1026f39585616282c2ab8efcc3fce638558a143f9cc4f1a99d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c8169f9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+  serialized header (with sig): 010000009d0d610df2913ee1026f39585616282c2ab8efcc3fce638558a143f9cc4f1a99d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c8169f9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+  serialized header (no sig): 010000009d0d610df2913ee1026f39585616282c2ab8efcc3fce638558a143f9cc4f1a99d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c8169f9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4
+  computed block hash: 73a9055bd01b25bbec72ddfd59acae81ea589fb6e10828f615d265af5ea5bd0a
+[ValidateBlockDEBUG] signature: Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+Processed transaction with ID: d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c816
+Attempting atomic write of block to database file: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+[LocalChain] Block 1 successfully integrated (atomic write).
+[DEBUG] UTXO set rebuilt.
+[Mempool Cleanup] No confirmed transactions found in mempool.
+[DEBUG] Mempool cleaned against chain.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
+[syncManager] Not the selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+Received account update from port 9000 for address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] AccountDB using path: data/account.db
+Successfully updated local account database for 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Receiver] Received envelope with command: b'block' and payload length: 272 bytes
+Successfully parsed signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+[HANDLECONN_DEBUG] Reconstructed BlockHeader: <Blockchain.Backend.core.blockheader.BlockHeader object at 0x1079418e0>
+[HANDLECONN_DEBUG]Signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8) <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b's\xa9\x05[\xd0\x1b%\xbb\xecr\xdd\xfdY\xac\xae\x81\xeaX\x9f\xb6\xe1\x08(\xf6\x15\xd2e\xaf^\xa5\xbd\n' (<class 'bytes'>)
+  merkleRoot: b'"\xc4\x0c1\x92<\x95#\xda\xe9\xe8\xf9\xfe\x11gc\xfcvf\xab\x8ac\xc0\x8b\x13_\xafm\xf5\xd8\x9fe' (<class 'bytes'>)
+  timestamp: 1745195739
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000000abda55eaf65d215f62808e1b69f58ea81aeac59fddd72ecbb251bd05b05a973659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422db9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+[HANDLECONN_DEBUG]Serialized header: 010000000abda55eaf65d215f62808e1b69f58ea81aeac59fddd72ecbb251bd05b05a973659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422db9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8Testing database connections...
   - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
   - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
   - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
 [DEBUG] AccountDB using path: data/account.db
-[Node Setup] Last block height is: 1
+[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...
 DEBUG: Starting UTXO set construction.
 DEBUG: UTXO set construction complete.
-[Node Setup] UTXO set constructed.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz PRINTED FROM ADD BLOCK
 Transactions added to block: []
 Transactions removed from mempool: []
-Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with stake 10000000000 PRINTED FROM ADD BLOCK
 Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
 Standard lookup failed, trying direct database access
 Detected node_id 2
@@ -92,16 +204,326 @@ Trying to connect from 9002: to: 9001...
 Connected to host at port 9001
 Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9001
 Account update broadcast to 2 nodes
-[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x102b7b230> to 9000
+Block signature: 3045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509 of type <class 'str'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf2$"\x9dpL\x98\xf8B\x1c\x81\xddA\xbe\x1f\xca?t\xe3\x94\x8f\xf8)\x9a;\xf6\xb8\x1e23{C' (<class 'bytes'>)
+  merkleRoot: b'\xb1c\x02\x00~\x80\xf4\x07>Q\x1ch\xa7L\x81A\xb0S<V\xf0\xb0\xc6\x0c\x1c\xfc\x12\xf3\xe6\xf4\x8e\xf9' (<class 'bytes'>)
+  timestamp: 1745195799
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf2$"\x9dpL\x98\xf8B\x1c\x81\xddA\xbe\x1f\xca?t\xe3\x94\x8f\xf8)\x9a;\xf6\xb8\x1e23{C' (<class 'bytes'>)
+  merkleRoot: b'\xb1c\x02\x00~\x80\xf4\x07>Q\x1ch\xa7L\x81A\xb0S<V\xf0\xb0\xc6\x0c\x1c\xfc\x12\xf3\xe6\xf4\x8e\xf9' (<class 'bytes'>)
+  timestamp: 1745195799
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x1055e4e90> to 9000
 Trying to connect from 9002: to: 9000...
 Connected to host
-[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x102b7b230> to 9001
+[DEBUG/BLOCK] Block 3 TxIDs: ['f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b1']
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf2$"\x9dpL\x98\xf8B\x1c\x81\xddA\xbe\x1f\xca?t\xe3\x94\x8f\xf8)\x9a;\xf6\xb8\x1e23{C' (<class 'bytes'>)
+  merkleRoot: b'\xb1c\x02\x00~\x80\xf4\x07>Q\x1ch\xa7L\x81A\xb0S<V\xf0\xb0\xc6\x0c\x1c\xfc\x12\xf3\xe6\xf4\x8e\xf9' (<class 'bytes'>)
+  timestamp: 1745195799
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
+[DEBUG/BLOCK] Block serialized bytes: 03000000a700000001000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c85090101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff020103ffffffff0100f2052a010000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x1055e4e90> to 9001
 Trying to connect from 9002: to: 9001...
 Connected to host
+[DEBUG/BLOCK] Block 3 TxIDs: ['f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b1']
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf2$"\x9dpL\x98\xf8B\x1c\x81\xddA\xbe\x1f\xca?t\xe3\x94\x8f\xf8)\x9a;\xf6\xb8\x1e23{C' (<class 'bytes'>)
+  merkleRoot: b'\xb1c\x02\x00~\x80\xf4\x07>Q\x1ch\xa7L\x81A\xb0S<V\xf0\xb0\xc6\x0c\x1c\xfc\x12\xf3\xe6\xf4\x8e\xf9' (<class 'bytes'>)
+  timestamp: 1745195799
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
+[DEBUG/BLOCK] Block serialized bytes: 03000000a700000001000000437b33321eb8f63b9a29f88f94e3743fca1fbe41dd811c42f8984c709d2224f2f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b117930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1473045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c85090101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff020103ffffffff0100f2052a010000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
 [DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: []
-Block 2 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 304402206e608884d24823837871b8fb78395bf2b06e47715a05268e2910809b682817d902207f58afbd0d563f2b89510eaea995690472cdc5c462126db82217ce3466df116a with BlockHash 0fc37c6f0a5dd64405cc1e651ac7055f780a11848118dbc1387585ee59bc4f13
+Block 3 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 3045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509 with BlockHash f9b1c8d8fb1d8861bdaf1bac67bfaf96a58cc04416da98454c1e9b772370ccaf
 DEBUG: Starting UTXO set construction.
 DEBUG: UTXO set construction complete.
 [DEBUG] UTXO set rebuilt.
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 30440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 30440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8
+Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 3045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
 [Mempool Cleanup] No confirmed transactions found in mempool.
 [DEBUG] Mempool cleaned against chain.
+Selected Validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz PRINTED FROM ADD BLOCK
+Transactions added to block: []
+Transactions removed from mempool: []
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Creating coinbase reward for address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Looking up validator account: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Standard lookup failed, trying direct database access
+Detected node_id 2
+Trying database path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Found account in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db!
+Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz credited with 5000000000 TDC.
+Saving validator account changes
+Account updated successfully in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Broadcasting account update to node at port 9000
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9000
+Trying to connect from 9002: to: 9000...
+Connected to host at port 9000
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9000
+Broadcasting account update to node at port 9001
+Publishing account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz to node at port 9001
+Trying to connect from 9002: to: 9001...
+Connected to host at port 9001
+Account update for 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz sent to port 9001
+Account update broadcast to 2 nodes
+Block signature: 3044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6 of type <class 'str'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf9\xb1\xc8\xd8\xfb\x1d\x88a\xbd\xaf\x1b\xacg\xbf\xaf\x96\xa5\x8c\xc0D\x16\xda\x98EL\x1e\x9bw#p\xcc\xaf' (<class 'bytes'>)
+  merkleRoot: b'\xc93\x8f\xd5I\x9fg\xbe\x93@\x13\xeb\xa6\n\xd7\x1a\xc4e\xce\xcee\x9e\x8d!S\x84\x90\x84~H\xd6\xc6' (<class 'bytes'>)
+  timestamp: 1745195859
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf9\xb1\xc8\xd8\xfb\x1d\x88a\xbd\xaf\x1b\xacg\xbf\xaf\x96\xa5\x8c\xc0D\x16\xda\x98EL\x1e\x9bw#p\xcc\xaf' (<class 'bytes'>)
+  merkleRoot: b'\xc93\x8f\xd5I\x9fg\xbe\x93@\x13\xeb\xa6\n\xd7\x1a\xc4e\xce\xcee\x9e\x8d!S\x84\x90\x84~H\xd6\xc6' (<class 'bytes'>)
+  timestamp: 1745195859
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+New Block Received : 2
+Blocks to process: 1
+Processing block with hash: f224229d...
+[DEBUG/PRB] BlockHeader fields for block f224229d704c98f8421c81dd41be1fca3f74e3948ff8299a3bf6b81e32337b43:
+  version: 1
+  prevBlockHash: b's\xa9\x05[\xd0\x1b%\xbb\xecr\xdd\xfdY\xac\xae\x81\xeaX\x9f\xb6\xe1\x08(\xf6\x15\xd2e\xaf^\xa5\xbd\n' (<class 'bytes'>)
+  merkleRoot: b'"\xc4\x0c1\x92<\x95#\xda\xe9\xe8\xf9\xfe\x11gc\xfcvf\xab\x8ac\xc0\x8b\x13_\xafm\xf5\xd8\x9fe' (<class 'bytes'>)
+  timestamp: 1745195739
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b's\xa9\x05[\xd0\x1b%\xbb\xecr\xdd\xfdY\xac\xae\x81\xeaX\x9f\xb6\xe1\x08(\xf6\x15\xd2e\xaf^\xa5\xbd\n' (<class 'bytes'>)
+  merkleRoot: b'"\xc4\x0c1\x92<\x95#\xda\xe9\xe8\xf9\xfe\x11gc\xfcvf\xab\x8ac\xc0\x8b\x13_\xafm\xf5\xd8\x9fe' (<class 'bytes'>)
+  timestamp: 1745195739
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000000abda55eaf65d215f62808e1b69f58ea81aeac59fddd72ecbb251bd05b05a973659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422db9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+  serialized header (with sig): 010000000abda55eaf65d215f62808e1b69f58ea81aeac59fddd72ecbb251bd05b05a973659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422db9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b44630440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8
+  serialized header (no sig): 010000000abda55eaf65d215f62808e1b69f58ea81aeac59fddd72ecbb251bd05b05a973659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422db9205680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4
+  computed block hash: f224229d704c98f8421c81dd41be1fca3f74e3948ff8299a3bf6b81e32337b43
+[ValidateBlockDEBUG] signature: Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+Processed transaction with ID: 659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422
+Attempting atomic write of block to database file: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+[LocalChain] Block 2 successfully integrated (atomic write).
+[DEBUG] UTXO set rebuilt.
+[Mempool Cleanup] No confirmed transactions found in mempool.
+[DEBUG] Mempool cleaned against chain.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 3
+[syncManager] Creating block at height 3
+[syncManager/DEBUG] MEMPOOL CONTENTS: {}
+[syncManager] Block 3 created successfully
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
+[syncManager] I AM THE SELECTED VALIDATOR! - Address 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz Producing next block.
+[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...
+[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height 4
+[syncManager] Creating block at height 4
+[syncManager/DEBUG] MEMPOOL CONTENTS: {}
+[syncManager] Block 4 created successfully
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+Received account update from port 9000 for address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] AccountDB using path: data/account.db
+Successfully updated local account database for 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[DEBUG] Incoming TX serialized hex: 010000000116c8025a607180be897e65f9a240722a8649a7d55eb01271e60813ba8d5dbbd1000000006a4730440220778d37fdd6c985a602d966cf715773ed5750043c9d812848591265c62732d7ad02206520f92f3bc428ab7f7964289ecb592f00042bcbc6b356194589a1281378ef1401210248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4ffffffff0100f2052a010000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000006805976060970568
+[DEBUG] Incoming TX TxId: a8fb60e3826e0eb9586eb5a19ec62101a32856bad09c72efc5f105c1a2dd64e2
+Transaction Received : a8fb60e3826e0eb9586eb5a19ec62101a32856bad09c72efc5f105c1a2dd64e2
+[DEBUG] MemoryPool now has: ['a8fb60e3826e0eb9586eb5a19ec62101a32856bad09c72efc5f105c1a2dd64e2']
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+[DEBUG] AccountDB using path: data/account.db
+Database path used: data/account.db
+Account object created: address=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, staked=10000000000 satoshis (100.0 coins), unspent=0 satoshis (0.0 coins), 
+[syncManager] Not the selected validator: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+Received account update from port 9000 for address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] AccountDB using path: data/account.db
+Successfully updated local account database for 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Receiver] Received envelope with command: b'block' and payload length: 470 bytes
+Successfully parsed signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81)
+[HANDLECONN_DEBUG] Reconstructed BlockHeader: <Blockchain.Backend.core.blockheader.BlockHeader object at 0x107942e40>
+[HANDLECONN_DEBUG]Signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81) <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x8d\xb9\xbb\xedg{\xaaK3#\x8c[\xdfg\xf8\xfep\xff\xf47NA\x97\xb8\x1f\x06\xe0\x81V\xca\xa7\x9a' (<class 'bytes'>)
+  merkleRoot: b'\x8a\x06\xf3w\xa0\x90\xb2\xe4@\xfb\xfbJ\x10;\xa3I]N\x10b\x80o\xc0\xa4\xdd\xec`\xa9\xa9Z\xb4\x9a' (<class 'bytes'>)
+  timestamp: 1745195919
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000009aa7ca5681e0061fb897414e37f4ff70fef867df5b8c23334baa7b67edbbb98d9ab45aa9a960ecdda4c06f8062104e5d49a33b104afbfb40e4b290a077f3068a8f9305680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4463044022038d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49022059cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81)
+[HANDLECONN_DEBUG]Serialized header: 010000009aa7ca5681e0061fb897414e37f4ff70fef867df5b8c23334baa7b67edbbb98d9ab45aa9a960ecdda4c06f8062104e5d49a33b104afbfb40e4b290a077f3068a8f9305680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4463044022038d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49022059cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81
+New Block Received : 5
+Blocks to process: 1
+Processing block with hash: a03f51c7...
+[DEBUG/PRB] BlockHeader fields for block a03f51c72e3a7baf78e377acc40d1e160e54ff6e55ce040c06c94debe8d35c6d:
+  version: 1
+  prevBlockHash: b'\x8d\xb9\xbb\xedg{\xaaK3#\x8c[\xdfg\xf8\xfep\xff\xf47NA\x97\xb8\x1f\x06\xe0\x81V\xca\xa7\x9a' (<class 'bytes'>)
+  merkleRoot: b'\x8a\x06\xf3w\xa0\x90\xb2\xe4@\xfb\xfbJ\x10;\xa3I]N\x10b\x80o\xc0\xa4\xdd\xec`\xa9\xa9Z\xb4\x9a' (<class 'bytes'>)
+  timestamp: 1745195919
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\x8d\xb9\xbb\xedg{\xaaK3#\x8c[\xdfg\xf8\xfep\xff\xf47NA\x97\xb8\x1f\x06\xe0\x81V\xca\xa7\x9a' (<class 'bytes'>)
+  merkleRoot: b'\x8a\x06\xf3w\xa0\x90\xb2\xe4@\xfb\xfbJ\x10;\xa3I]N\x10b\x80o\xc0\xa4\xdd\xec`\xa9\xa9Z\xb4\x9a' (<class 'bytes'>)
+  timestamp: 1745195919
+  validator_pubkey: b'\x02H\xc1\x03\xd0L\xc2h@\xfa\x00\r\x96\x140\x1f\xa5\xae\xe9\xd7\x9b:\x97.a\xc0q#ge\x850\xb4' (<class 'bytes'>)
+  signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 010000009aa7ca5681e0061fb897414e37f4ff70fef867df5b8c23334baa7b67edbbb98d9ab45aa9a960ecdda4c06f8062104e5d49a33b104afbfb40e4b290a077f3068a8f9305680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4463044022038d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49022059cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81)
+  serialized header (with sig): 010000009aa7ca5681e0061fb897414e37f4ff70fef867df5b8c23334baa7b67edbbb98d9ab45aa9a960ecdda4c06f8062104e5d49a33b104afbfb40e4b290a077f3068a8f9305680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4463044022038d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49022059cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81
+  serialized header (no sig): 010000009aa7ca5681e0061fb897414e37f4ff70fef867df5b8c23334baa7b67edbbb98d9ab45aa9a960ecdda4c06f8062104e5d49a33b104afbfb40e4b290a077f3068a8f9305680248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4
+  computed block hash: a03f51c72e3a7baf78e377acc40d1e160e54ff6e55ce040c06c94debe8d35c6d
+[ValidateBlockDEBUG] signature: Signature(38d34068a70b399d16afa11c3ebb2b8c0b63aa186c2832e3b7dee85c4d5cad49,59cfbe835337d3336e0882531ddd2cdb911d544c1238ed2db431a0d1bd1b9a81)
+Processed transaction with ID: 63837feecd758941ee1babbfb48822b1e2c9dca96abb5d40923875963cefaf25
+Processed transaction with ID: a8fb60e3826e0eb9586eb5a19ec62101a32856bad09c72efc5f105c1a2dd64e2
+Attempting atomic write of block to database file: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+[LocalChain] Block 5 successfully integrated (atomic write).
+[DEBUG] UTXO set rebuilt.
+[Mempool Cleanup] Removed confirmed transactions from mempool: ['a8fb60e3826e0eb9586eb5a19ec62101a32856bad09c72efc5f105c1a2dd64e2']
+[DEBUG] Mempool cleaned against chain.
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_2/data/account.db
+Server started on port 9002
+Waiting for web UI at http://localhost:5902…
+Web UI up, starting simulation
+[Sim] Transaction simulation is disabled for this node.
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+Node 2 active on port 9002, web: 5902
+\nShutting down node 2 gracefully...
+
+  serialized header: 01000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6)
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x1055e7380> to 9000
+Trying to connect from 9002: to: 9000...
+Connected to host
+[DEBUG/BLOCK] Block 4 TxIDs: ['c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c9']
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf9\xb1\xc8\xd8\xfb\x1d\x88a\xbd\xaf\x1b\xacg\xbf\xaf\x96\xa5\x8c\xc0D\x16\xda\x98EL\x1e\x9bw#p\xcc\xaf' (<class 'bytes'>)
+  merkleRoot: b'\xc93\x8f\xd5I\x9fg\xbe\x93@\x13\xeb\xa6\n\xd7\x1a\xc4e\xce\xcee\x9e\x8d!S\x84\x90\x84~H\xd6\xc6' (<class 'bytes'>)
+  timestamp: 1745195859
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6)
+[DEBUG/BLOCK] Block serialized bytes: 04000000a700000001000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da60101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff020104ffffffff0100f2052a010000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x1055e7380> to 9001
+Trying to connect from 9002: to: 9001...
+Connected to host
+[DEBUG/BLOCK] Block 4 TxIDs: ['c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c9']
+[DEBUG serialise_with_signature] BlockHeader fields before serialization:
+  version: 1
+  prevBlockHash: b'\xf9\xb1\xc8\xd8\xfb\x1d\x88a\xbd\xaf\x1b\xacg\xbf\xaf\x96\xa5\x8c\xc0D\x16\xda\x98EL\x1e\x9bw#p\xcc\xaf' (<class 'bytes'>)
+  merkleRoot: b'\xc93\x8f\xd5I\x9fg\xbe\x93@\x13\xeb\xa6\n\xd7\x1a\xc4e\xce\xcee\x9e\x8d!S\x84\x90\x84~H\xd6\xc6' (<class 'bytes'>)
+  timestamp: 1745195859
+  validator_pubkey: b'\x03[`[\x12\x1b\x03\x82\xb3@\xddU\xbb\x96\x0b\xd7<\x19\xbb[HMa\x83{A\xbe\xb2\x9b\x1e\x83A\xb1' (<class 'bytes'>)
+  signature: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6) (<class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>)
+  serialized header: 01000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6
+[DEBUG] Signature type: <class 'Blockchain.Backend.core.EllepticCurve.EllepticCurve.Signature'>, value: Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6)
+[DEBUG/BLOCK] Block serialized bytes: 04000000a700000001000000afcc7023779b1e4c4598da1644c08ca596afbf67ac1bafbd61881dfbd8c8b1f9c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c953930568035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1463044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da60101000000010000000000000000000000000000000000000000000000000000000000000000ffffffff020104ffffffff0100f2052a010000001976a914da47123efc51379131bef1bf2ba8c91f60dd72a888ac00000000
+[DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: []
+Block 4 created successfully by Validator 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz with Signature 3044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6 with BlockHash 8db9bbed677baa4b33238c5bdf67f8fe70fff4374e4197b81f06e08156caa79a
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+[DEBUG] UTXO set rebuilt.
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 304402207d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7022028bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04
+Signature(7d8a2f2ed51567653e4e8b8550bd71b71ab0a5141d4017cc38ba7ab868dd78c7,28bf19c2aa2ef6122d842e69d79845650d09c56f6e67191aba1d22718b92fa04)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 30440220033609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc295602202d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2
+Signature(33609eb1b0a8d6dc38e8c72006e9e032d9c28d0ffe80489b2819c60abcc2956,2d5e9e61fdb2a0db5b01a33506b615b342e0fc41b4b8fff697986c9ebfdf38f2)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 30440220422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc022072b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8
+Signature(422102b732f017cb05671f093464f17fc5e96f9902746e0b140b34580bb6b8bc,72b95b2a2e73efd626c6d0b6d71b018cc17b4ad784ba2673a1aebc5bfb5258b8)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 3045022100c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec0930902203503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509
+Signature(c5e4c5239670334ff43ba678a976195637474c5907706cda546314443ec09309,3503b2ee1a1b22d8fe8e75aaf15305342211d6d2326950db8764e710157c8509)
+DEBUG: BlockHeader signature field type: <class 'str'>, value: 3044022051ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c022005c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6
+Signature(51ad7a8c2e910545162e8aed3a06a688c24ece343a20b2e4876cf531127f3d9c,5c37db84f9fc8e6deb07462323bba508973468466b9b6f00a0d17b865d09da6)
+[Mempool Cleanup] No confirmed transactions found in mempool.
+[DEBUG] Mempool cleaned against chain.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.
+DEBUG: Starting UTXO set construction.
+DEBUG: UTXO set construction complete.

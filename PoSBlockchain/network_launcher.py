@@ -23,7 +23,6 @@ sys.path.append(PROJECT_ROOT)
 
 # Import validator node selector
 sys.path.append(os.path.join(PROJECT_ROOT, 'validatorNode'))
-from validatorNode.main import ValidatorSelector
 
 class NetworkLauncher:
     def __init__(self, num_nodes=3, base_port=9000, web_base_port=5900, data_dir="network_data",
@@ -408,26 +407,37 @@ class NetworkLauncher:
         PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
     
         script_content = f"""
+
+# Add paths
+
+
 import sys
 import os
 import time
 import signal
 import json
 import sqlite3
+import threading
 
-# Add paths
 sys.path.append("{PROJECT_ROOT}")
 sys.path.append("{validator_dir}")
 sys.path.insert(0, "{PROJECT_ROOT}/code_node2")
 
+from Blockchain.Backend.core.network.connection import Node
+from Blockchain.Backend.core.network.network import NetworkEnvelope
+
 # Custom database paths
-data_dir = os.path.join("{validator_dir}", "data")
+data_dir = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node", "data")
+if not os.path.exists(data_dir):
+    os.makedirs(data_dir, exist_ok=True)
 blockchain_db_path = os.path.join(data_dir, "blockchain.db")
 node_db_path = os.path.join(data_dir, "node.db")
 account_db_path = os.path.join(data_dir, "account.db")
 
 # Patch database classes for correct paths
 from code_node2.Blockchain.Backend.core.database.db import NodeDB, BlockchainDB, AccountDB
+
+VALIDATOR_ADDRESS = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
 
 def patched_nodedb_init(self, db_path=None):
     self.filename = node_db_path if not db_path else db_path
@@ -442,9 +452,11 @@ def patched_nodedb_init(self, db_path=None):
 NodeDB.__init__ = patched_nodedb_init
 
 def patched_blockchaindb_init(self, db_path=None):
+    self.filename = node_db_path if not db_path else db_path
     self.filepath = blockchain_db_path if not db_path else db_path
     self.table_name = "blocks"
     self.conn = None
+    print(f"[DEBUG] BlockchainDB will use path: {{self.filepath}}")
     self.connect()
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS blocks
@@ -530,7 +542,24 @@ from code_node2.Blockchain.Backend.util.util import decode_base58, encode_base58
 from code_node2.Blockchain.Backend.core.tx import Tx, TxOut
 from code_node2.Blockchain.Backend.core.script import Script
 
-VALIDATOR_ADDRESS = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
+# --- SyncManager for receiving blocks ---
+def start_sync_server(host, port):
+    from code_node2.Blockchain.Backend.core.network.syncManager import syncManager
+    from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
+    # Use dummy shared dicts for mempool/utxos (not used by validator)
+    mem_pool = {{}}
+    utxos = {{}}
+    newBlockAvailable = {{}}
+    secondaryChain = {{}}
+    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
+    sync = syncManager(host, port, mem_pool, blockchain=blockchain)
+    sync.spinUpServer()
+
+# Start sync server in background thread
+def launch_sync_thread(host, port):
+    t = threading.Thread(target=start_sync_server, args=(host, port), daemon=True)
+    t.start()
+    print(f"[Validator] Sync server started on {{host}}:{{port}}")
 
 def build_utxos_from_blocks(blocks):
     utxos = {{}}
@@ -591,9 +620,26 @@ class ValidatorSelector:
         return validators[-1][0]
 
     def broadcast_selection(self, selected_validator):
-        # Implement your network broadcast logic here
-        print(f"Broadcasting selected validator: {{selected_validator}} to peers: {{self.peer_list}}")
-        # (You can import and use your Node/NetworkEnvelope classes as needed.)
+        message_dict = {{
+            "type": "validator_selection",
+            "selected_validator": selected_validator
+        }}
+        payload = json.dumps(message_dict).encode()
+        envelope = NetworkEnvelope(b'valselect', payload)
+        
+        for peer in self.peer_list:
+            try:
+                peer_host = peer[0]
+                peer_port = int(peer[1])  # Convert port to integer if necessary.
+                node = Node(self.host, peer_port)
+                sock = node.connect(peer_port)
+                print(f"Connecting to peer {{peer_host}}:{{peer_port}} to broadcast selection...")
+                sock.sendall(envelope.serialise())
+                sock.close()
+                print(f"[ValidatorSelector] Successfully sent validator selection to {{(peer_host, peer_port)}}")
+            except Exception as e:
+                print(f"[ValidatorSelector] Error sending selection to {{(peer_host, peer_port)}}: {{e}}")
+
 
     def run(self):
         while True:
@@ -617,6 +663,21 @@ if __name__ == '__main__':
     port = {validator_port}
     peer_list = {peer_list}
     print(f"Starting validator node on port {{port}} with custom DB paths")
+
+    from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
+    utxos = {{}}
+    mem_pool = {{}}
+    newBlockAvailable = {{}}
+    secondaryChain = {{}}
+
+    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
+    if blockchain.fetch_last_block() is None:
+        print("[Validator] No blocks found, creating genesis block...")
+        blockchain.GenesisBlock()
+        print("[Validator] Genesis block created and broadcast.")
+    else:
+        print("[Validator] Blockchain already initialized.")
+
     validator = ValidatorSelector(host, port, peer_list)
     validator.run()
     """
@@ -1147,52 +1208,52 @@ if __name__ == '__main__':
             from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
             
             # Patch select_validator method to handle string JSON properly
-            original_select_validator = Blockchain.select_validator
-            def patched_select_validator(self):
-                """Fixed version that handles JSON data correctly"""
-                try:
-                    # Get raw account data directly using SQL
-                    connection = sqlite3.connect(self.account_db.filepath)
-                    cursor = connection.cursor()
-                    cursor.execute("SELECT public_addr, data FROM accounts")
-                    raw_accounts = cursor.fetchall()
-                    connection.close()
+            # original_select_validator = Blockchain.select_validator
+            # def patched_select_validator(self):
+            #     """Fixed version that handles JSON data correctly"""
+            #     try:
+            #         # Get raw account data directly using SQL
+            #         connection = sqlite3.connect(self.account_db.filepath)
+            #         cursor = connection.cursor()
+            #         cursor.execute("SELECT public_addr, data FROM accounts")
+            #         raw_accounts = cursor.fetchall()
+            #         connection.close()
                     
-                    if not raw_accounts:
-                        raise Exception("No accounts found in database")
+            #         if not raw_accounts:
+            #             raise Exception("No accounts found in database")
                     
-                    # Parse JSON data for each account
-                    accounts = []
-                    for addr, data_str in raw_accounts:
-                        try:
-                            # This line fails if data_str is already a dict
-                            account_data = json.loads(data_str) if isinstance(data_str, str) else data_str
-                            if account_data.get('staked', 0) > 0:
-                                accounts.append(account_data)
-                                print(f"Found validator with stake: {account_data['public_addr']} - {account_data['staked']}")
-                        except Exception as e:
-                            print(f"Error parsing account data: {e}")
-                            print(f"Raw data: {data_str[:50]}...")
+            #         # Parse JSON data for each account
+            #         accounts = []
+            #         for addr, data_str in raw_accounts:
+            #             try:
+            #                 # This line fails if data_str is already a dict
+            #                 account_data = json.loads(data_str) if isinstance(data_str, str) else data_str
+            #                 if account_data.get('staked', 0) > 0:
+            #                     accounts.append(account_data)
+            #                     print(f"Found validator with stake: {account_data['public_addr']} - {account_data['staked']}")
+            #             except Exception as e:
+            #                 print(f"Error parsing account data: {e}")
+            #                 print(f"Raw data: {data_str[:50]}...")
                     
-                    if not accounts:
-                        raise Exception("No validators available. Ensure at least one account has a stake.")
+            #         if not accounts:
+            #             raise Exception("No validators available. Ensure at least one account has a stake.")
                     
-                    # Rest of selection logic
-                    total_stake = sum(acc['staked'] for acc in accounts)
-                    rand = random.uniform(0, total_stake)
-                    cumulative = 0
+            #         # Rest of selection logic
+            #         total_stake = sum(acc['staked'] for acc in accounts)
+            #         rand = random.uniform(0, total_stake)
+            #         cumulative = 0
                     
-                    for acc in accounts:
-                        cumulative += acc['staked']
-                        if rand <= cumulative:
-                            return acc
+            #         for acc in accounts:
+            #             cumulative += acc['staked']
+            #             if rand <= cumulative:
+            #                 return acc
                     
-                    return accounts[-1]  # Fallback
-                except Exception as e:
-                    print(f"Error in patched_select_validator: {e}")
-                    raise
+            #         return accounts[-1]  # Fallback
+            #     except Exception as e:
+            #         print(f"Error in patched_select_validator: {e}")
+            #         raise
             
-            Blockchain.select_validator = patched_select_validator
+            # Blockchain.select_validator = patched_select_validator
             
             # Update NodeDB with all nodes
             self.update_node_db()

@@ -95,7 +95,7 @@ class syncManager:
                 if sig_field and not isinstance(sig_field, Signature):
                     try:
                         blockObj.BlockHeader.signature = Signature.parse(sig_field)
-                        # print(f"Successfully parsed signature: {blockObj.BlockHeader.signature}")
+                        print(f"Successfully parsed signature: {blockObj.BlockHeader.signature}")
                     except Exception as e:
                         print(f"Error parsing signature in handleConnection: {e}")
                         # Don't proceed with invalid signature
@@ -111,15 +111,17 @@ class syncManager:
                 # Create the test_dict with properly converted values
                 reconstructed_dict = BlockHeader(
                     blockObj.BlockHeader.version,
-                    prev_block_hash,
-                    merkle_root,
+                    to_bytes_field(prev_block_hash),
+                    to_bytes_field(merkle_root),
                     blockObj.BlockHeader.timestamp,
-                    validator_pubkey,
-                    bytes.fromhex(blockObj.BlockHeader.signature.der().hex())
-                    )
+                    to_bytes_field(validator_pubkey),
+                    blockObj.BlockHeader.signature  # Already a Signature object!
+                )
+                print(f"[HANDLECONN_DEBUG] Reconstructed BlockHeader: {reconstructed_dict}")
                 # print(test_dict.__dict__)
-                # print(f"Signature: {reconstructed_dict.signature}")
-                
+                print(f"[HANDLECONN_DEBUG]Signature: {reconstructed_dict.signature} {type(reconstructed_dict.signature)}")
+                print(f"[HANDLECONN_DEBUG]Serialized header: {reconstructed_dict.serialise_with_signature().hex()}")   
+
                 # Generate a block hash from the existing header
                 reconstructed_dict.blockHash = reconstructed_dict.generateBlockHash()
                 # print(f"Reconstructed block hash: {reconstructed_dict.blockHash}")
@@ -148,23 +150,7 @@ class syncManager:
                 # print('[DEBUG] payload:', payload)
                 message = json.loads(payload)
                 if message.get("type") == "validator_selection":
-                    selected_validator = message["selected_validator"]
-                    
-                    # Check if Genesis Block needs to be created
-                    if hasattr(self.blockchain, 'needs_genesis') and self.blockchain.needs_genesis:
-                        print("[syncManager] Creating Genesis Block after validator selection...")
-                        try:
-                            # Create Genesis Block using the validator information
-                            self.blockchain.GenesisBlock()
-                            self.blockchain.needs_genesis = False
-                            print("[syncManager] Genesis Block created successfully")
-                            # --- ADD THIS: Start sync after Genesis block is created ---
-                            self.blockchain.startSync()
-                            print("[syncManager] Sync started after Genesis block creation.")
-                        except Exception as e:
-                            print(f"[syncManager] Error creating Genesis Block: {e}")
-                            import traceback
-                            traceback.print_exc()
+                    selected_validator = message["selected_validator"]                   
                     
                     print(f"[DEBUG] Selected validator: {selected_validator}")
                     print(f"[DEBUG] My public address: {self.my_public_addr}")
@@ -217,9 +203,11 @@ class syncManager:
                                 
                             print(f"[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height {blockHeight}")
                         else:
-                            # Use blockchain's constants for genesis block
-                            blockHeight = 0
-                            prevBlockHash = ZERO_HASH
+                            print("[syncManager] I am the selected validator, creating genesis block.")
+                            self.blockchain.GenesisBlock()
+                            print("[syncManager] Genesis block created and broadcast.")
+                            return
+                            
                         
                         try:
                             print(f"[syncManager] Creating block at height {blockHeight}")
@@ -348,6 +336,31 @@ class syncManager:
 
         for blockHash, block in tempBlocks.items():
             try:
+                # Robustly extract a dict representation of the block
+                if isinstance(block, list):
+                    block_dict = block[0]
+                elif isinstance(block, dict):
+                    block_dict = block
+                elif hasattr(block, "to_dict"):
+                    block_dict = block.to_dict()
+                else:
+                    print(f"[syncManager] Unexpected block type: {type(block)} for blockHash {blockHash}")
+                    continue
+
+                block_height = block_dict['Height']
+                block_hash = block_dict['BlockHeader']['blockHash']
+
+
+                blockchainDB = BlockchainDB()
+                last_block = blockchainDB.lastBlock()
+                if last_block:
+                    last_block_height = last_block[0]['Height']
+                    last_block_hash = last_block[0]['BlockHeader']['blockHash']
+                    # If block at this height and hash already exists, skip processing
+                    if last_block_height == block_height and last_block_hash == block_hash:
+                        print(f"[syncManager] Block at height {block_height} with hash {block_hash} already exists. Skipping.")
+                        continue
+
                 print(f"Processing block with hash: {blockHash[:8]}...")
                 
                 # Add blockHash to deletion list regardless of outcome, to avoid reprocessing.
@@ -364,53 +377,132 @@ class syncManager:
                     print(f"Signature type: {type(block.BlockHeader.signature)}")
                     # If the signature is already processed, skip this block.
                     
-
-                # Process BlockHeader from dictionary if needed.
+                 # --- PATCH START: Always reconstruct BlockHeader from dict and parse signature ---
                 if isinstance(block.BlockHeader, dict):
                     header_data = block.BlockHeader
+                    sig_field = header_data.get('signature')
                     signature_obj = None
 
-                    if header_data.get('signature'):
-                        try:
-                            sig_data = to_bytes_field(header_data['signature'])
-                            signature_obj = Signature.parse(BytesIO(sig_data))
-                            print(f"Successfully parsed signature from dict: {signature_obj}")
-                        except Exception as e:
-                            print(f"Error parsing signature from dict: {e}")
-                            # Store in secondary chain for review.
-                            self.secondaryChain[blockHash] = block
-                            print(f"[LocalChain] Block with invalid signature stored for review.")
-                            
+                    # Always parse the signature as a Signature object
+                    if isinstance(sig_field, Signature):
+                        signature_obj = sig_field
+                    elif isinstance(sig_field, bytes):
+                        signature_obj = Signature.parse(sig_field)
+                    elif isinstance(sig_field, str) and sig_field:
+                        signature_obj = Signature.parse(bytes.fromhex(sig_field))
+                    else:
+                        print(f"Error: signature field is not a valid type: {type(sig_field)}")
+                        self.secondaryChain[blockHash] = block
+                        print(f"[LocalChain] Block with invalid signature stored for review.")
+                        continue
 
-                    try:
-                        BlockHeaderObj = BlockHeader(
-                            version=header_data['version'],
-                            prevBlockHash=to_bytes_field(header_data['prevBlockHash']),
-                            merkleRoot=to_bytes_field(header_data['merkleRoot']),
-                            timestamp=header_data['timestamp'],
-                            validator_pubkey=to_bytes_field(header_data['validator_pubkey']),
-                            signature=signature_obj
-                        )
-                    except Exception as e:
-                        print(f"Error creating BlockHeader: {e}")
-                        
+                    # Now reconstruct the BlockHeader with the correct signature object
+                    BlockHeaderObj = BlockHeader(
+                        version=header_data['version'],
+                        prevBlockHash=to_bytes_field(header_data['prevBlockHash']),
+                        merkleRoot=to_bytes_field(header_data['merkleRoot']),
+                        timestamp=header_data['timestamp'],
+                        validator_pubkey=to_bytes_field(header_data['validator_pubkey']),
+                        signature=signature_obj
+                    )
                 else:
                     BlockHeaderObj = block.BlockHeader
+                    # If signature is not a Signature object, parse it
                     if hasattr(BlockHeaderObj, 'signature') and BlockHeaderObj.signature and not isinstance(BlockHeaderObj.signature, Signature):
-                        try:
-                            BlockHeaderObj.signature = Signature.parse(BytesIO(BlockHeaderObj.signature))
-                            print(f"Successfully parsed signature: {BlockHeaderObj.signature}")
-                        except Exception as e:
-                            print(f"Error parsing signature from object: {e}")
-                            self.secondaryChain[blockHash] = block
-                            print(f"[LocalChain] Block with invalid signature stored for review.")
-                            
+                        BlockHeaderObj.signature = Signature.parse(BlockHeaderObj.signature)
+                    if not hasattr(BlockHeaderObj, 'signature') or BlockHeaderObj.signature is None:
+                        print("Error: Block header has no signature")
+                        self.secondaryChain[blockHash] = block
+                        print(f"[LocalChain] Block with no signature stored for review.")
+                        continue
+                # --- PATCH END ---
+                # Process BlockHeader from dictionary if needed.
+                # if isinstance(block.BlockHeader, dict):
+                #     header_data = block.BlockHeader
+                #     signature_obj = None
+                #     sig_field = header_data.get('signature')
+
+                #     if isinstance(sig_field, Signature):
+                #         signature_obj = sig_field
+                #     elif isinstance(sig_field, bytes):
+                #         try:
+                #             signature_obj = Signature.parse(sig_field)
+                #             print(f"Successfully parsed signature from bytes: {signature_obj}")
+                #         except Exception as e:
+                #             print(f"Error parsing signature from bytes: {e}")
+                #             self.secondaryChain[blockHash] = block
+                #             print(f"[LocalChain] Block with invalid signature stored for review.")
+                #             continue
+                #     elif isinstance(sig_field, str) and sig_field:
+                #         try:
+                #             sig_bytes = bytes.fromhex(sig_field)
+                #             signature_obj = Signature.parse(sig_bytes)
+                #             print(f"Successfully parsed signature from hex string: {signature_obj}")
+                #         except Exception as e:
+                #             print(f"Error parsing signature from hex string: {e}")
+                #             self.secondaryChain[blockHash] = block
+                #             print(f"[LocalChain] Block with invalid signature stored for review.")
+                #             continue
+                #     else:
+                #         print(f"Error: signature field is not a valid type: {type(sig_field)}")
+                #         self.secondaryChain[blockHash] = block
+                #         print(f"[LocalChain] Block with invalid signature stored for review.")
+                #         continue
+
+                #     try:
+                #         BlockHeaderObj = BlockHeader(
+                #             version=header_data['version'],
+                #             prevBlockHash=to_bytes_field(header_data['prevBlockHash']),
+                #             merkleRoot=to_bytes_field(header_data['merkleRoot']),
+                #             timestamp=header_data['timestamp'],
+                #             validator_pubkey=to_bytes_field(header_data['validator_pubkey']),
+                #             signature=signature_obj
+                #         )
+                #     except Exception as e:
+                #         print(f"Error creating BlockHeader: {e}")
+                #         continue
+                    
+                    # --- ADD DEBUG PRINTS HERE ---
+                    print(f"[DEBUG/PRB] BlockHeader fields for block {blockHash}:")
+                    print(f"  version: {BlockHeaderObj.version}")
+                    print(f"  prevBlockHash: {BlockHeaderObj.prevBlockHash} ({type(BlockHeaderObj.prevBlockHash)})")
+                    print(f"  merkleRoot: {BlockHeaderObj.merkleRoot} ({type(BlockHeaderObj.merkleRoot)})")
+                    print(f"  timestamp: {BlockHeaderObj.timestamp}")
+                    print(f"  validator_pubkey: {BlockHeaderObj.validator_pubkey} ({type(BlockHeaderObj.validator_pubkey)})")
+                    print(f"  signature: {BlockHeaderObj.signature} ({type(BlockHeaderObj.signature)})")
+                    print(f"  serialized header (with sig): {BlockHeaderObj.serialise_with_signature().hex()}")
+                    print(f"  serialized header (no sig): {BlockHeaderObj.serialise_without_signature().hex()}")
+                    print(f"  computed block hash: {BlockHeaderObj.generateBlockHash()}")
+                    # --- END DEBUG PRINTS ---
+                # else:
+                #     BlockHeaderObj = block.BlockHeader
+                #     if hasattr(BlockHeaderObj, 'signature') and BlockHeaderObj.signature and not isinstance(BlockHeaderObj.signature, Signature):
+                #         try:
+                #             BlockHeaderObj.signature = Signature.parse(BlockHeaderObj.signature)
+                #             print(f"Successfully parsed signature: {BlockHeaderObj.signature}")
+                #         except Exception as e:
+                #             print(f"Error parsing signature from object: {e}")
+                #             self.secondaryChain[blockHash] = block
+                #             print(f"[LocalChain] Block with invalid signature stored for review.")
+                #             continue
 
                     if not hasattr(BlockHeaderObj, 'signature') or BlockHeaderObj.signature is None:
                         print("Error: Block header has no signature")
                         self.secondaryChain[blockHash] = block
                         print(f"[LocalChain] Block with no signature stored for review.")
-                        
+                        continue
+                
+                print(f"[DEBUG/PRB] BlockHeader fields for block {blockHash}:")
+                print(f"  version: {BlockHeaderObj.version}")
+                print(f"  prevBlockHash: {BlockHeaderObj.prevBlockHash} ({type(BlockHeaderObj.prevBlockHash)})")
+                print(f"  merkleRoot: {BlockHeaderObj.merkleRoot} ({type(BlockHeaderObj.merkleRoot)})")
+                print(f"  timestamp: {BlockHeaderObj.timestamp}")
+                print(f"  validator_pubkey: {BlockHeaderObj.validator_pubkey} ({type(BlockHeaderObj.validator_pubkey)})")
+                print(f"  signature: {BlockHeaderObj.signature} ({type(BlockHeaderObj.signature)})")
+                print(f"  serialized header (with sig): {BlockHeaderObj.serialise_with_signature().hex()}")
+                print(f"  serialized header (no sig): {BlockHeaderObj.serialise_without_signature().hex()}")
+                print(f"  computed block hash: {BlockHeaderObj.generateBlockHash()}")
+                                        
 
                 # Before validation, check for a block height conflict.
                 # (Assuming block.Height is present and your db provides a read_all_blocks method.)
@@ -486,52 +578,6 @@ class syncManager:
                                     print(f"UTXO update failed (non-critical): {e}")
                                     import traceback
                                     traceback.print_exc() # Print full traceback for debugging UTXO errors
-
-                            # if utxos is not None:
-                            #     try:
-                            #         local_utxos = dict(utxos)
-                            #         # local_utxos[tx_id] = tx_obj
-                            #         for idx, tx_out in enumerate(tx_obj.tx_outs):
-                            #             local_utxos[(tx_id, idx)] = tx_out
-                            #         for txin_data in tx_obj.tx_ins: # Iterate through the data first
-                            #             txin_obj = None
-                            #             # Check if it's already a TxIn object
-                            #             if isinstance(txin_data, TxIn):
-                            #                 txin_obj = txin_data
-                            #             # Check if it's a dictionary and try to convert it
-                            #             elif isinstance(txin_data, dict):
-                            #                 try:
-                            #                     # Assuming TxIn has a constructor or a method like from_dict/to_obj
-                            #                     # You might need to adjust this based on your TxIn class definition
-                            #                     txin_obj = TxIn(
-                            #                         prev_tx=bytes.fromhex(txin_data['prev_tx']),
-                            #                         prev_index=txin_data['prev_index'],
-                            #                         script_sig=txin_data.get('script_sig', b''), # Use .get for optional fields
-                            #                         sequence=txin_data.get('sequence', 0xffffffff) # Use .get for optional fields
-                            #                     )
-                            #                 except KeyError as ke:
-                            #                     print(f"Warning: Missing key {ke} in txin dictionary: {txin_data}")
-                            #                     continue # Skip this invalid input
-                            #                 except Exception as conv_e:
-                            #                     print(f"Warning: Could not convert txin dict to object: {conv_e}")
-                            #                     continue # Skip this invalid input
-                            #             else:
-                            #                 print(f"Warning: Unexpected data type in tx_ins: {type(txin_data)}")
-                            #                 continue # Skip unknown types
-
-                            #             # Proceed only if we have a valid TxIn object
-                            #             if txin_obj:
-                            #                 key = txin_obj.prev_tx.hex() # Now access prev_tx safely
-                            #                 if key in local_utxos:
-                            #                     del local_utxos[key]
-
-                            #         utxos.clear()
-                            #         for k, v in local_utxos.items():
-                            #             utxos[k] = v
-                            #     except Exception as e:
-                            #         print(f"UTXO update failed (non-critical): {e}")
-                            #         import traceback
-                            #         traceback.print_exc() # Print full traceback for debugging UTXO errors
 
                             if mem_pool is not None:
                                 try:
@@ -787,6 +833,7 @@ class syncManager:
             db = BlockchainDB()
             blocks = db.read_all_blocks()
             for block in blocks:
+                
                 block_obj = block[0] if isinstance(block, (list, tuple)) else block
                 for tx in block_obj.get('Txs', []):
                     txid = None

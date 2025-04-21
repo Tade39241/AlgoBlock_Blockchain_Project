@@ -280,6 +280,18 @@ def get_validator_account(validator_addr):
     print(f"WARNING: Could not find validator account for {validator_addr}")
     return None
 
+def blockheader_to_dict_for_db(blockheader):
+    """Convert a BlockHeader object to a dict with all fields as hex strings for DB storage."""
+    return {
+        'version': blockheader.version,
+        'prevBlockHash': blockheader.prevBlockHash.hex() if isinstance(blockheader.prevBlockHash, bytes) else blockheader.prevBlockHash,
+        'merkleRoot': blockheader.merkleRoot.hex() if isinstance(blockheader.merkleRoot, bytes) else blockheader.merkleRoot,
+        'timestamp': blockheader.timestamp,
+        'validator_pubkey': blockheader.validator_pubkey.hex() if isinstance(blockheader.validator_pubkey, bytes) else blockheader.validator_pubkey,
+        'signature': blockheader.signature.der().hex() if hasattr(blockheader.signature, 'der') else (blockheader.signature.hex() if isinstance(blockheader.signature, bytes) else blockheader.signature),
+        'blockHash': blockheader.blockHash
+    }
+
 class Blockchain:
     def __init__(self, utxos, mem_pool,newBlockAvailable,secondaryChain,localHostPort, host):
         self.utxos = utxos
@@ -289,7 +301,6 @@ class Blockchain:
         self.secondaryChain = secondaryChain
         self.localHostPort = localHostPort
         self.host = host
-
 
     def write_on_disk(self,block):
         blockchainDB = BlockchainDB()
@@ -305,29 +316,129 @@ class Blockchain:
     #     self.addBlock(BlockHeight, prevBlockHash)
     #     self.buildUTXOS()
 
+    # def GenesisBlock(self):
+    #     BlockHeight = 0
+    #     prevBlockHash = ZERO_HASH
+
+    #     # Build initial UTXOs for each account
+    #     from reset_accounts import ACCOUNTS
+    #     tx_outs = []
+    #     for addr, acc_data in ACCOUNTS.items():
+    #         # Give as staked (StakingScript)
+    #         script = StakingScript(addr, lock_time=0)  # lock_time=0 means immediately available for PoS
+    #         tx_outs.append(TxOut(amount=acc_data['staked'], script_publickey=script))
+
+    #     # Create a single genesis transaction with all outputs
+    #     genesis_tx = Tx(version=1, tx_ins=[], tx_outs=tx_outs, locktime=0)
+    #     genesis_tx.TxId = genesis_tx.id()
+
+    #     # Create the genesis block with this transaction
+    #     coinbaseTx = genesis_tx
+    #     self.TxIds = [bytes.fromhex(coinbaseTx.id())]
+    #     self.add_trans_in_block = [coinbaseTx]
+    #     self.remove_spent_transactions = []
+
+
+
+    
     def GenesisBlock(self):
         BlockHeight = 0
         prevBlockHash = ZERO_HASH
-
-        # Build initial UTXOs for each account
+        self.Blocksize = 0
+    
+        # 1. Build initial UTXOs for each account, sorted by address
         from reset_accounts import ACCOUNTS
         tx_outs = []
-        for addr, acc_data in ACCOUNTS.items():
-            # Give as staked (StakingScript)
-            script = StakingScript(addr, lock_time=0)  # lock_time=0 means immediately available for PoS
+        for addr in sorted(ACCOUNTS.keys()):
+            acc_data = ACCOUNTS[addr]
+            script = StakingScript(addr, lock_time=0)
             tx_outs.append(TxOut(amount=acc_data['staked'], script_publickey=script))
-
-        # Create a single genesis transaction with all outputs
+    
+        # 2. Create the genesis transaction
         genesis_tx = Tx(version=1, tx_ins=[], tx_outs=tx_outs, locktime=0)
         genesis_tx.TxId = genesis_tx.id()
-
-        # Create the genesis block with this transaction
-        coinbaseTx = genesis_tx
-        self.TxIds = [bytes.fromhex(coinbaseTx.id())]
-        self.add_trans_in_block = [coinbaseTx]
+        self.Blocksize += len(genesis_tx.serialise())
+    
+        # 3. Set up block transaction lists
+        self.TxIds = [bytes.fromhex(genesis_tx.id())]
+        self.add_trans_in_block = [genesis_tx]
         self.remove_spent_transactions = []
-        
+    
+        # 4. Compute Merkle root
+        merkle_root_bytes = merkle_root(self.TxIds)[::-1]
+        merkleRoot_hex = merkle_root_bytes.hex()
+    
+        # 5. Use a fixed validator account and fixed timestamp
+        validator_addr = sorted(ACCOUNTS.keys())[0]
+        validator_account = account.get_account(validator_addr)
+        if validator_account is None:
+            raise Exception("No validator account found for genesis block.")
+    
+        fixed_timestamp = 0
+    
+        # 6. Create BlockHeader
+        blockheader = BlockHeader(
+            VERSION,
+            prevBlockHash=bytes.fromhex(prevBlockHash),
+            merkleRoot=bytes.fromhex(merkleRoot_hex),
+            timestamp=fixed_timestamp,
+            validator_pubkey=validator_account.public_key,
+            signature=None
+        )
 
+        # (Re-assign validator_pubkey if needed after signing, to ensure it's not overwritten)
+        blockheader.validator_pubkey = validator_account.public_key
+
+        # 7. Sign the block header
+        block_data = blockheader.serialise_without_signature()
+
+
+        block_signature = self.sign_block(block_data, validator_account.privateKey)
+        print(f"Block signature GENESIS BLOCK: {block_signature} of type {type(block_signature)}")
+        blockheader.signature = bytes.fromhex(block_signature)
+        blockheader.signature = Signature.parse(blockheader.signature) 
+        print(f"Block signature: {block_signature} of type {type(block_signature)}")
+    
+        # 8. Verify signature
+        public_key_hex = validator_account.public_key.hex()
+        if not self.verify_block_signature(blockheader.to_dict(), bytes.fromhex(public_key_hex)):
+            raise Exception("Invalid block signature. Genesis block rejected.")
+    
+        # 9. Compute blockHash
+        blockheader.blockHash = hash256(blockheader.serialise_with_signature()).hex()
+    
+        # 10. Create the block (for broadcast)
+        genesis_block = Block(
+            Height=BlockHeight,
+            Blocksize=self.Blocksize,
+            BlockHeader=blockheader,
+            TxCount=len(self.add_trans_in_block),
+            Txs=self.add_trans_in_block,
+        )
+
+        serialized_header = blockheader.serialise_with_signature()
+
+        # print("[DEBUG] Genesis block fields:")
+        # print(f"  validator_addr: {validator_addr}")
+        # print(f"  timestamp: {fixed_timestamp}")
+        # print(f"  tx_outs: {[str(tx_out.__dict__) for tx_out in tx_outs]}")
+        # print(f"  serialized header: {blockheader.serialise_with_signature().hex()}")
+
+        new_block = Block.to_obj(genesis_block)
+        self.BroadcastBlock(new_block)
+        blockheader.to_hex()
+        self.remove_spent_Transactions()
+        self.remove_trans_from_mempool()
+        self.store_uxtos_in_cache()
+        self.convert_to_json()
+        print(f"Block {BlockHeight} created successfully by Validator {validator_addr} with Signature {block_signature} with BlockHash {blockheader.blockHash}")
+    
+        new_block = Block(BlockHeight, self.Blocksize, blockheader.__dict__, len(self.TxJson), self.TxJson)
+        self.write_on_disk([new_block.__dict__])
+        time.sleep(5)
+        self.buildUTXOS()
+        print("[Node Setup] Genesis Block created and written to disk.")
+        self.clean_mempool_against_chain(self.mem_pool)
 
     def get_all_blocks(self):
         """
@@ -719,6 +830,8 @@ class Blockchain:
     
     def addBlock(self, BlockHeight, prevBlockHash,selected_validator=None):
         """Create and add a new block to the blockchain using PoS."""
+        validator_addr = selected_validator  # Always a string
+        print(f"Selected Validator: {validator_addr} PRINTED FROM ADD BLOCK")
 
         # Force reinitialization of the AccountDB connection in this thread.
         self.account_db.conn = None 
@@ -732,16 +845,14 @@ class Blockchain:
         # if selected_validator is None:
         #     validator = self.select_validator()
         # else:
-        validator = selected_validator
-        print(f"Selected Validator: {validator['public_addr']} with stake {validator['staked']} PRINTED FROM ADD BLOCK")
 
         # Retrieve the validator's account so we can use their public address.
-        validator_account = get_validator_account(validator['public_addr'])
+        validator_account = get_validator_account(validator_addr)
         if validator_account is None:
-            raise Exception(f"Validator account {validator['public_addr']} not found.")
+            raise Exception(f"Validator account {validator_addr} not found.")
 
         # 3. Create Coinbase Transaction
-        coinbaseInstance = Coinbase_tx(BlockHeight, validator['public_addr'])
+        coinbaseInstance = Coinbase_tx(BlockHeight, validator_addr)
         coinbaseTx = coinbaseInstance.coinbase_transaction()
         self.Blocksize += len(coinbaseTx.serialise())
 
@@ -751,9 +862,9 @@ class Blockchain:
          # 4a. Credit only the selected validator's account.
         total_reward = coinbaseTx.tx_outs[0].amount
         # Re-fetch the account to get the latest pending_rewards:
-        validator_account = get_validator_account(validator['public_addr'])
+        validator_account = get_validator_account(validator_addr)
         # validator_account.pending_rewards += total_reward
-        print(f"Validator {validator['public_addr']} credited with {total_reward} TDC.")
+        print(f"Validator {validator_addr} credited with {total_reward} TDC.")
         # print("New pending rewards:", validator_account.pending_rewards)
         validator_account.save_to_db()
 
@@ -790,6 +901,8 @@ class Blockchain:
         # 9. Sign the block_data
         block_signature = self.sign_block(block_data, validator_account.privateKey)
         blockheader.signature = bytes.fromhex(block_signature)
+        blockheader.signature = Signature.parse(blockheader.signature)  # <--- ADD THIS LINE
+        print(f"Block signature: {block_signature} of type {type(block_signature)}")
 
         # 10. Verify the block signature before adding to the blockchain
         public_key_hex = validator_account.public_key.hex()
@@ -817,8 +930,9 @@ class Blockchain:
         self.remove_trans_from_mempool()
         self.store_uxtos_in_cache()
         self.convert_to_json()
-        print(f"Block {BlockHeight} created successfully by Validator {validator['public_addr']} with Signature {block_signature} with BlockHash {blockheader.blockHash}")
+        print(f"Block {BlockHeight} created successfully by Validator {validator_addr} with Signature {block_signature} with BlockHash {blockheader.blockHash}")
         new_block = Block(BlockHeight, self.Blocksize, blockheader.__dict__, len(self.TxJson), self.TxJson)
+        # Ensure all tx_outs are TxOut objects before serialization
         self.write_on_disk([new_block.__dict__])
         time.sleep(5)
         self.buildUTXOS()
@@ -826,32 +940,49 @@ class Blockchain:
 
         self.clean_mempool_against_chain(self.mem_pool)
         print("[DEBUG] Mempool cleaned against chain.")
-        
 
-   
     def setup_node(self):
         """
         Initialize the node by:
         - Checking if the blockchain exists
-        - If no blockchain exists, setting a flag to indicate Genesis Block needs to be created later
+        - If no blockchain exists, wait for validator selection or genesis block from network
         - Building the UTXO set from the stored blockchain (if any)
-        - Starting the synchronization service to listen for incoming blocks and messages
         """
-        # Check if there is an existing blockchain
         last_block = self.fetch_last_block()
         if last_block is None:
-            print("[Node Setup] No existing blockchain found.")
-            # Instead of creating Genesis Block now, set a flag
-            self.needs_genesis = True
-            print("[Node Setup] Genesis Block creation deferred until validator is selected.")
+            print("[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...")
+            # Do NOT call self.GenesisBlock() here!
+            # Just start syncManager to listen for blocks and valselect messages
+            # (syncManager will call GenesisBlock if this node is selected)
         else:
             print(f"[Node Setup] Last block height is: {last_block[0]['Height']}")
-            # Set this to False since we already have a blockchain
-            self.needs_genesis = False
-            
-            # Build the current UTXO set from the stored blockchain
             self.buildUTXOS()
             print("[Node Setup] UTXO set constructed.")
+
+   
+    # def setup_node(self):
+    #     """
+    #     Initialize the node by:
+    #     - Checking if the blockchain exists
+    #     - If no blockchain exists, setting a flag to indicate Genesis Block needs to be created later
+    #     - Building the UTXO set from the stored blockchain (if any)
+    #     - Starting the synchronization service to listen for incoming blocks and messages
+    #     """
+    #     # Check if there is an existing blockchain
+    #     last_block = self.fetch_last_block()
+    #     if last_block is None:
+    #         print("[Node Setup] No existing blockchain found.")
+    #         # Instead of creating Genesis Block now, set a flag
+    #         self.needs_genesis = True
+    #         print("[Node Setup] Genesis Block creation deferred until validator is selected.")
+    #     else:
+    #         print(f"[Node Setup] Last block height is: {last_block[0]['Height']}")
+    #         # Set this to False since we already have a blockchain
+    #         self.needs_genesis = False
+            
+    #         # Build the current UTXO set from the stored blockchain
+    #         self.buildUTXOS()
+    #         print("[Node Setup] UTXO set constructed.")
         
         # Start the sync process so the node can listen for incoming blocks and transactions
         # self.startSync()

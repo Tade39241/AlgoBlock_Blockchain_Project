@@ -1,3 +1,4 @@
+from Blockchain.Backend.core.EllepticCurve.EllepticCurve import Signature
 from Blockchain.Backend.core.blockheader import BlockHeader
 from Blockchain.Backend.util.util import int_to_little_endian, little_endian_to_int, encode, read_varint
 from Blockchain.Backend.core.tx import Tx
@@ -34,15 +35,27 @@ class Block:
         else:
             raise TypeError("Unsupported type for Block.to_obj; expected dict or list.")
 
-        # Reconstruct the BlockHeader.
         header_data = block_dict['BlockHeader']
+        sig_hex = header_data.get('signature')
+        print(f"DEBUG: BlockHeader signature field type: {type(sig_hex)}, value: {sig_hex}")
+        if sig_hex:
+            sig_bytes = bytes.fromhex(sig_hex)
+            try:
+                signature = Signature.parse(sig_bytes)
+                print(signature)
+            except Exception as e:
+                print(f"Error parsing signature from dict: {e}")
+                signature = None
+        else:
+            signature = None
+
         block_header = BlockHeader(
             header_data['version'],
             bytes.fromhex(header_data['prevBlockHash']),
             bytes.fromhex(header_data['merkleRoot']),
             header_data['timestamp'],
             bytes.fromhex(header_data['validator_pubkey']),
-            bytes.fromhex(header_data['signature']) if header_data.get('signature') else None
+            signature
         )
         block_header.blockHash = header_data['blockHash']
 
@@ -76,6 +89,7 @@ class Block:
         return cls(Height, BlockSize, blockHeader, numTxs, Txs)
 
     def serialise(self):
+        print(f"[DEBUG/BLOCK] Block {self.Height} TxIDs: {[tx.id() for tx in self.Txs]}")
         result = int_to_little_endian(self.Height, 4)
         result += int_to_little_endian(self.Blocksize, 4)
         result += self.BlockHeader.serialise_with_signature()
@@ -84,10 +98,13 @@ class Block:
         for tx in self.Txs:
             result += tx.serialise()
 
+        print(f"[DEBUG/BLOCK] Block serialized bytes: {result.hex()}")
         return result
         
     
     def to_dict(self):
         dt = self.__dict__
-        self.BlockHeader = self.BlockHeader.to_dict()
+        if hasattr(self.BlockHeader, "__dict__"):
+            self.BlockHeader = self.BlockHeader.__dict__
+            # Do NOT call .to_dict() on BlockHeader or Txs
         return dt

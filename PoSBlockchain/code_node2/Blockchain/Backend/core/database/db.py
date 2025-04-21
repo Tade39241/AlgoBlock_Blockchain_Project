@@ -18,18 +18,29 @@ def resolve_db_path(filename, node_id=None):
     If node_id is not given, try to extract it from the current working directory.
     """
     cwd = os.getcwd()
+    db_paths = []
+
+    # Check for validator_node in cwd
+    if "validator_node" in cwd:
+        db_paths.append(os.path.join(
+            "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data",
+            "validator_node/data", filename
+        ))
+
     if node_id is None:
         import re
         match = re.search(r'node_(\d+)', cwd)
         if match:
             node_id = int(match.group(1))
     # Try the most likely paths first
-    db_paths = []
+    
     if node_id is not None:
         db_paths.append(os.path.join(
             "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data",
             f"node_{node_id}/data/{filename}"
         ))
+
+    # Add the default paths 
     db_paths.extend([
         os.path.join("data", filename),
         filename,
