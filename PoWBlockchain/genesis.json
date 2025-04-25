@@ -1,0 +1,49 @@
+[
+    {
+    "Height": 0,
+    "Blocksize": 167,
+    "BlockHeader": {
+        "version": 1,
+        "prevBlockHash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "merkleRoot": "6282fa5c7132036a8d599a79cae9b59e5e4d3b4612d98ed624b90038d7928f3f",
+        "timestamp": 1600000000,
+        "bits": "ffff001f",
+        "nonce": 0,
+        "blockHash": "40177a34e0f1d315ef0deb6719621370eac4789ce790e66449af534ede7c1a66"
+    },
+    "TxCount": 1,
+    "Txs": [
+        {
+        "version": 1,
+        "tx_ins": [
+            {
+            "prev_tx": "0000000000000000000000000000000000000000000000000000000000000000",
+            "prev_index": 4294967295,
+            "script_sig": {
+                "cmds": [
+                0
+                ]
+            },
+            "sequence": 4294967295
+            }
+        ],
+        "tx_outs": [
+            {
+            "amount": 5000000000,
+            "script_publickey": {
+                "cmds": [
+                118,
+                169,
+                "666e296b7ec184f28e787385839f7ab4bc741565",
+                136,
+                172
+                ]
+            }
+            }
+        ],
+        "locktime": 0,
+        "TxId": "6282fa5c7132036a8d599a79cae9b59e5e4d3b4612d98ed624b90038d7928f3f"
+        }
+    ]
+    }
+]

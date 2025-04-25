@@ -1,0 +1,4 @@
+2025-02-07 22:19:10,977 INFO:Ensured table exists in data/account.db
+2025-02-07 22:19:10,981 INFO:Ensured table exists in data/blockchain.db
+2025-02-07 22:19:10,981 INFO:Ensured table exists in data/blockchain.db
+2025-02-07 22:19:11,167 INFO: * Running on http://127.0.0.1:5900/ (Press CTRL+C to quit)

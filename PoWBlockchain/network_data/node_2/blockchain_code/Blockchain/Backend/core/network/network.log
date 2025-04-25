@@ -1,0 +1,1754 @@
+[BlockchainDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[Node 2 ReorgManager] Initialised.
+[Node 2 ReorgManager] Initialised.
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Server] SERVER STARTED. LISTENING at 127.0.0.1:9002
+[Node 2 Server] SERVER STARTED. LISTENING at 127.0.0.1:9002
+ * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51407)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51407)
+[Node 2 Handler ('127.0.0.1', 51407)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51407)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51407)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51407)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51407)] Attempting to add peer node (Port: 51407)
+[Node 2 Handler ('127.0.0.1', 51407)] Attempting to add peer node (Port: 51407)
+[Node 2 addNode] Added new peer port: 51407
+[Node 2 addNode] Added new peer port: 51407
+[Node 2 Handler ('127.0.0.1', 51407)] Block Received: Height=1, Hash=ff4e3327...
+[Node 2 Handler ('127.0.0.1', 51407)] Block Received: Height=1, Hash=ff4e3327...
+[Node 2 Handler ('127.0.0.1', 51407)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51407)] Closing connection.
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51415)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51415)
+[Node 2 Handler ('127.0.0.1', 51415)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51415)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51415)] Received port check magic, closing.
+[Node 2 Handler ('127.0.0.1', 51415)] Received port check magic, closing.
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Downloader] Starting download from 127.0.0.1:9000...
+[Node 2 Downloader] Starting download from 127.0.0.1:9000...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Downloader] Sent requestBlock to 127.0.0.1:9000
+[Node 2 Downloader] Sent requestBlock to 127.0.0.1:9000
+[Node 2 Downloader 9000] Received command: b'block'
+[Node 2 Downloader 9000] Received command: b'block'
+[Node 2 Downloader 9000] Received Block: Height=1, Hash=ff4e3327...
+[Node 2 Downloader 9000] Received Block: Height=1, Hash=ff4e3327...
+[Node 2 Downloader 9000] Received command: b'portlist'
+[Node 2 Downloader 9000] Received command: b'portlist'
+[Node 2 Downloader 9000] Received portlist: [9000, 9001, 9002, 51396, 51401, 51416]
+[Node 2 Downloader 9000] Received portlist: [9000, 9001, 9002, 51396, 51401, 51416]
+[Node 2 Downloader 9000] Added 3 new peer(s) from received list.
+[Node 2 Downloader 9000] Added 3 new peer(s) from received list.
+[Node 2 Downloader 9000] Received command: b'Finished'
+[Node 2 Downloader 9000] Received command: b'Finished'
+[Node 2 Downloader 9000] Received FinishedSending message. Download complete.
+[Node 2 Downloader 9000] Received FinishedSending message. Download complete.
+[Node 2 Downloader] Connection to 127.0.0.1:9000 closed.
+[Node 2 Downloader] Connection to 127.0.0.1:9000 closed.
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Downloader] Starting download from 127.0.0.1:9001...
+[Node 2 Downloader] Starting download from 127.0.0.1:9001...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Downloader] Sent requestBlock to 127.0.0.1:9001
+[Node 2 Downloader] Sent requestBlock to 127.0.0.1:9001
+[Node 2 Downloader 9001] Received command: b'block'
+[Node 2 Downloader 9001] Received command: b'block'
+[Node 2 Downloader 9001] Received Block: Height=1, Hash=ff4e3327...
+[Node 2 Downloader 9001] Received Block: Height=1, Hash=ff4e3327...
+[Node 2 Downloader 9001] Received command: b'portlist'
+[Node 2 Downloader 9001] Received command: b'portlist'
+[Node 2 Downloader 9001] Received portlist: [9000, 9001, 9002, 51396, 51401, 51406, 51417]
+[Node 2 Downloader 9001] Received portlist: [9000, 9001, 9002, 51396, 51401, 51406, 51417]
+[Node 2 Downloader 9001] Added 2 new peer(s) from received list.
+[Node 2 Downloader 9001] Added 2 new peer(s) from received list.
+[Node 2 Downloader 9001] Received command: b'Finished'
+[Node 2 Downloader 9001] Received command: b'Finished'
+[Node 2 Downloader 9001] Received FinishedSending message. Download complete.
+[Node 2 Downloader 9001] Received FinishedSending message. Download complete.
+[Node 2 Downloader] Connection to 127.0.0.1:9001 closed.
+[Node 2 Downloader] Connection to 127.0.0.1:9001 closed.
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Downloader] Starting download from 127.0.0.1:51407...
+[Node 2 Downloader] Starting download from 127.0.0.1:51407...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Downloader] Connection to 127.0.0.1:51407 closed.
+[Node 2 Downloader] Connection to 127.0.0.1:51407 closed.
+Starting new HTTP connection (1): localhost:5902
+Starting new HTTP connection (1): localhost:5902
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+http://localhost:5902 "GET / HTTP/1.1" 200 1535
+http://localhost:5902 "GET / HTTP/1.1" 200 1535
+[BlockchainDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[Node 2 ReorgManager] Initialised.
+[Node 2 ReorgManager] Initialised.
+[Node 2 LostCompetition] Processing block 1 (ff4e3327...) under lock.
+[Node 2 LostCompetition] Processing block 1 (ff4e3327...) under lock.
+[Node 2 LostCompetition] Block 1 Merkle root VALID.
+[Node 2 LostCompetition] Block 1 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 1
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 1
+[Node 2 LostCompetition] Appending valid next block 1 (ff4e3327...)
+[Node 2 LostCompetition] Appending valid next block 1 (ff4e3327...)
+[Node 2 ApplyState] Applying state for block 1
+[Node 2 ApplyState] Applying state for block 1
+[BlockchainDB 2] Writing Block 1. Hash in dict: ff4e3327f7970d5cf31f5ae69e2ebc06532afbbcacbaaafdb05e985f7c0d0000
+[BlockchainDB 2] Writing Block 1. Hash in dict: ff4e3327f7970d5cf31f5ae69e2ebc06532afbbcacbaaafdb05e985f7c0d0000
+[Node 2 ReorgCheck] Checking for better forks (current height 1)...
+[Node 2 ReorgCheck] Checking for better forks (current height 1)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51422)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51422)
+[Node 2 Handler ('127.0.0.1', 51422)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51422)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51422)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51422)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51422)] Attempting to add peer node (Port: 51422)
+[Node 2 Handler ('127.0.0.1', 51422)] Attempting to add peer node (Port: 51422)
+[Node 2 addNode] Added new peer port: 51422
+[Node 2 addNode] Added new peer port: 51422
+[Node 2 Handler ('127.0.0.1', 51422)] Block Received: Height=2, Hash=33bdafb9...
+[Node 2 Handler ('127.0.0.1', 51422)] Block Received: Height=2, Hash=33bdafb9...
+[Node 2 Handler ('127.0.0.1', 51422)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51422)] Closing connection.
+[Node 2 LostCompetition] Processing block 2 (33bdafb9...) under lock.
+[Node 2 LostCompetition] Processing block 2 (33bdafb9...) under lock.
+[Node 2 LostCompetition] Block 2 Merkle root VALID.
+[Node 2 LostCompetition] Block 2 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 2
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 2
+[Node 2 LostCompetition] Appending valid next block 2 (33bdafb9...)
+[Node 2 LostCompetition] Appending valid next block 2 (33bdafb9...)
+[Node 2 ApplyState] Applying state for block 2
+[Node 2 ApplyState] Applying state for block 2
+[BlockchainDB 2] Writing Block 2. Hash in dict: 33bdafb99aa5b43a5d461d261aa6ba932d5364c0e9ae906b277a4f558e3a0000
+[BlockchainDB 2] Writing Block 2. Hash in dict: 33bdafb99aa5b43a5d461d261aa6ba932d5364c0e9ae906b277a4f558e3a0000
+[Node 2 ReorgCheck] Checking for better forks (current height 2)...
+[Node 2 ReorgCheck] Checking for better forks (current height 2)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 3
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 3
+[Node 2 ApplyState] Applying state for block 3
+[Node 2 ApplyState] Applying state for block 3
+[BlockchainDB 2] Writing Block 3. Hash in dict: d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000
+[BlockchainDB 2] Writing Block 3. Hash in dict: d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 3 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 3 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 3 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 3 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 4
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 4
+[Node 2 ApplyState] Applying state for block 4
+[Node 2 ApplyState] Applying state for block 4
+[BlockchainDB 2] Writing Block 4. Hash in dict: 0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000
+[BlockchainDB 2] Writing Block 4. Hash in dict: 0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 4 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 4 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 4 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 4 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 4 (0e618bae) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51446)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51446)
+[Node 2 Handler ('127.0.0.1', 51446)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51446)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51446)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51446)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51446)] Attempting to add peer node (Port: 51446)
+[Node 2 Handler ('127.0.0.1', 51446)] Attempting to add peer node (Port: 51446)
+[Node 2 addNode] Added new peer port: 51446
+[Node 2 addNode] Added new peer port: 51446
+[Node 2 Handler ('127.0.0.1', 51446)] Block Received: Height=5, Hash=14f05a28...
+[Node 2 Handler ('127.0.0.1', 51446)] Block Received: Height=5, Hash=14f05a28...
+[Node 2 Handler ('127.0.0.1', 51446)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51446)] Closing connection.
+[Node 2 LostCompetition] Processing block 5 (14f05a28...) under lock.
+[Node 2 LostCompetition] Processing block 5 (14f05a28...) under lock.
+[Node 2 LostCompetition] Block 5 Merkle root VALID.
+[Node 2 LostCompetition] Block 5 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 5
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 5
+[Node 2 LostCompetition] Appending valid next block 5 (14f05a28...)
+[Node 2 LostCompetition] Appending valid next block 5 (14f05a28...)
+[Node 2 ApplyState] Applying state for block 5
+[Node 2 ApplyState] Applying state for block 5
+[BlockchainDB 2] Writing Block 5. Hash in dict: 14f05a28c84f2b5d9a9bc9aebceddc8f5f53ec565be2a3a8e02b30a450d80000
+[BlockchainDB 2] Writing Block 5. Hash in dict: 14f05a28c84f2b5d9a9bc9aebceddc8f5f53ec565be2a3a8e02b30a450d80000
+[Node 2 ReorgCheck] Checking for better forks (current height 5)...
+[Node 2 ReorgCheck] Checking for better forks (current height 5)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 6
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 6
+[Node 2 ApplyState] Applying state for block 6
+[Node 2 ApplyState] Applying state for block 6
+[BlockchainDB 2] Writing Block 6. Hash in dict: 07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000
+[BlockchainDB 2] Writing Block 6. Hash in dict: 07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 6 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 6 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 6 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 6 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 6 (07b86cb2) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 7
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 7
+[Node 2 ApplyState] Applying state for block 7
+[Node 2 ApplyState] Applying state for block 7
+[BlockchainDB 2] Writing Block 7. Hash in dict: 079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000
+[BlockchainDB 2] Writing Block 7. Hash in dict: 079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 7 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 7 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 7 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 7 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 7 (079c238f) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51477)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51477)
+[Node 2 Handler ('127.0.0.1', 51477)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51477)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51477)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51477)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51477)] Attempting to add peer node (Port: 51477)
+[Node 2 Handler ('127.0.0.1', 51477)] Attempting to add peer node (Port: 51477)
+[Node 2 addNode] Added new peer port: 51477
+[Node 2 addNode] Added new peer port: 51477
+[Node 2 Handler ('127.0.0.1', 51477)] Block Received: Height=8, Hash=4b07a897...
+[Node 2 Handler ('127.0.0.1', 51477)] Block Received: Height=8, Hash=4b07a897...
+[Node 2 Handler ('127.0.0.1', 51477)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51477)] Closing connection.
+[Node 2 LostCompetition] Processing block 8 (4b07a897...) under lock.
+[Node 2 LostCompetition] Processing block 8 (4b07a897...) under lock.
+[Node 2 LostCompetition] Block 8 Merkle root VALID.
+[Node 2 LostCompetition] Block 8 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 8
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 8
+[Node 2 LostCompetition] Appending valid next block 8 (4b07a897...)
+[Node 2 LostCompetition] Appending valid next block 8 (4b07a897...)
+[Node 2 ApplyState] Applying state for block 8
+[Node 2 ApplyState] Applying state for block 8
+[BlockchainDB 2] Writing Block 8. Hash in dict: 4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000
+[BlockchainDB 2] Writing Block 8. Hash in dict: 4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000
+[Node 2 ReorgCheck] Checking for better forks (current height 8)...
+[Node 2 ReorgCheck] Checking for better forks (current height 8)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 9
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 9
+[Node 2 ApplyState] Applying state for block 9
+[Node 2 ApplyState] Applying state for block 9
+[BlockchainDB 2] Writing Block 9. Hash in dict: f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000
+[BlockchainDB 2] Writing Block 9. Hash in dict: f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 9 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 9 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 9 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 9 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 9 (f3713f73) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 10
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 10
+[Node 2 ApplyState] Applying state for block 10
+[Node 2 ApplyState] Applying state for block 10
+[BlockchainDB 2] Writing Block 10. Hash in dict: 61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000
+[BlockchainDB 2] Writing Block 10. Hash in dict: 61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 10 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 10 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 10 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 10 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 10 (61365087) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 11
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 11
+[Node 2 ApplyState] Applying state for block 11
+[Node 2 ApplyState] Applying state for block 11
+[BlockchainDB 2] Writing Block 11. Hash in dict: 6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000
+[BlockchainDB 2] Writing Block 11. Hash in dict: 6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 11 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 11 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 11 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 11 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 11 (6d0b5115) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51526)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51526)
+[Node 2 Handler ('127.0.0.1', 51526)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51526)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51526)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51526)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51526)] Attempting to add peer node (Port: 51526)
+[Node 2 Handler ('127.0.0.1', 51526)] Attempting to add peer node (Port: 51526)
+[Node 2 addNode] Added new peer port: 51526
+[Node 2 addNode] Added new peer port: 51526
+[Node 2 Handler ('127.0.0.1', 51526)] Block Received: Height=12, Hash=66f78b03...
+[Node 2 Handler ('127.0.0.1', 51526)] Block Received: Height=12, Hash=66f78b03...
+[Node 2 Handler ('127.0.0.1', 51526)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51526)] Closing connection.
+[Node 2 LostCompetition] Processing block 12 (66f78b03...) under lock.
+[Node 2 LostCompetition] Processing block 12 (66f78b03...) under lock.
+[Node 2 LostCompetition] Block 12 Merkle root VALID.
+[Node 2 LostCompetition] Block 12 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 12
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 12
+[Node 2 LostCompetition] Appending valid next block 12 (66f78b03...)
+[Node 2 LostCompetition] Appending valid next block 12 (66f78b03...)
+[Node 2 ApplyState] Applying state for block 12
+[Node 2 ApplyState] Applying state for block 12
+[BlockchainDB 2] Writing Block 12. Hash in dict: 66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000
+[BlockchainDB 2] Writing Block 12. Hash in dict: 66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000
+[Node 2 ReorgCheck] Checking for better forks (current height 12)...
+[Node 2 ReorgCheck] Checking for better forks (current height 12)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51541)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51541)
+[Node 2 Handler ('127.0.0.1', 51541)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51541)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51541)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51541)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51541)] Attempting to add peer node (Port: 51541)
+[Node 2 Handler ('127.0.0.1', 51541)] Attempting to add peer node (Port: 51541)
+[Node 2 addNode] Added new peer port: 51541
+[Node 2 addNode] Added new peer port: 51541
+[Node 2 Handler ('127.0.0.1', 51541)] Block Received: Height=13, Hash=47928e36...
+[Node 2 Handler ('127.0.0.1', 51541)] Block Received: Height=13, Hash=47928e36...
+[Node 2 Handler ('127.0.0.1', 51541)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51541)] Closing connection.
+[Node 2 LostCompetition] Processing block 13 (47928e36...) under lock.
+[Node 2 LostCompetition] Processing block 13 (47928e36...) under lock.
+[Node 2 LostCompetition] Block 13 Merkle root VALID.
+[Node 2 LostCompetition] Block 13 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 13
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 13
+[Node 2 LostCompetition] Appending valid next block 13 (47928e36...)
+[Node 2 LostCompetition] Appending valid next block 13 (47928e36...)
+[Node 2 ApplyState] Applying state for block 13
+[Node 2 ApplyState] Applying state for block 13
+[BlockchainDB 2] Writing Block 13. Hash in dict: 47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000
+[BlockchainDB 2] Writing Block 13. Hash in dict: 47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000
+[Node 2 ReorgCheck] Checking for better forks (current height 13)...
+[Node 2 ReorgCheck] Checking for better forks (current height 13)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 14
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 14
+[Node 2 ApplyState] Applying state for block 14
+[Node 2 ApplyState] Applying state for block 14
+[BlockchainDB 2] Writing Block 14. Hash in dict: 5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000
+[BlockchainDB 2] Writing Block 14. Hash in dict: 5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 14 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 14 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 14 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 14 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51526
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51526
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51541
+[Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51541
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 15
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 15
+[Node 2 ApplyState] Applying state for block 15
+[Node 2 ApplyState] Applying state for block 15
+[BlockchainDB 2] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+[BlockchainDB 2] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 15 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 15 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 15 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 15 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51526
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51526
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51541
+[Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51541
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51582)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51582)
+[Node 2 Handler ('127.0.0.1', 51582)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51582)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51582)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51582)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51582)] Attempting to add peer node (Port: 51582)
+[Node 2 Handler ('127.0.0.1', 51582)] Attempting to add peer node (Port: 51582)
+[Node 2 addNode] Added new peer port: 51582
+[Node 2 addNode] Added new peer port: 51582
+[Node 2 Handler ('127.0.0.1', 51582)] Block Received: Height=16, Hash=fd92aeec...
+[Node 2 Handler ('127.0.0.1', 51582)] Block Received: Height=16, Hash=fd92aeec...
+[Node 2 Handler ('127.0.0.1', 51582)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51582)] Closing connection.
+[Node 2 LostCompetition] Processing block 16 (fd92aeec...) under lock.
+[Node 2 LostCompetition] Processing block 16 (fd92aeec...) under lock.
+[Node 2 LostCompetition] Block 16 Merkle root VALID.
+[Node 2 LostCompetition] Block 16 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 16
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 16
+[Node 2 LostCompetition] Appending valid next block 16 (fd92aeec...)
+[Node 2 LostCompetition] Appending valid next block 16 (fd92aeec...)
+[Node 2 ApplyState] Applying state for block 16
+[Node 2 ApplyState] Applying state for block 16
+[BlockchainDB 2] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+[BlockchainDB 2] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+[Node 2 ReorgCheck] Checking for better forks (current height 16)...
+[Node 2 ReorgCheck] Checking for better forks (current height 16)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 17
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 17
+[Node 2 ApplyState] Applying state for block 17
+[Node 2 ApplyState] Applying state for block 17
+[BlockchainDB 2] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+[BlockchainDB 2] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 17 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 17 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 17 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 17 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51526
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51526
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51541
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51541
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51582
+[Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51582
+[Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 18
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 18
+[Node 2 ApplyState] Applying state for block 18
+[Node 2 ApplyState] Applying state for block 18
+[BlockchainDB 2] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+[BlockchainDB 2] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9000
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9000
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+[Node 2 Publisher] Published Block 18 to 127.0.0.1:9000
+[Node 2 Publisher] Published Block 18 to 127.0.0.1:9000
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9001
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9001
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 2 Publisher] Published Block 18 to 127.0.0.1:9001
+[Node 2 Publisher] Published Block 18 to 127.0.0.1:9001
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51396
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51396
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51401
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51401
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51406
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51406
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51407
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51407
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51416
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51416
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51417
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51417
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51422
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51422
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51446
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51446
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51477
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51477
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51526
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51526
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51541
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51541
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[NodeDB 2] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/node.db
+[SyncManager Init 2] NodeDB initialized.
+[SyncManager Init 2] NodeDB initialized.
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51582
+[Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51582
+[Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+[Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+127.0.0.1 - - [25/Apr/2025 18:23:13] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51630)
+[Node 2 Server] Accepted connection from ('127.0.0.1', 51630)
+[Node 2 Handler ('127.0.0.1', 51630)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51630)] Handling connection...
+[Node 2 Handler ('127.0.0.1', 51630)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51630)] Received command: b'block'
+[Node 2 Handler ('127.0.0.1', 51630)] Attempting to add peer node (Port: 51630)
+[Node 2 Handler ('127.0.0.1', 51630)] Attempting to add peer node (Port: 51630)
+[Node 2 addNode] Added new peer port: 51630
+[Node 2 addNode] Added new peer port: 51630
+[Node 2 Handler ('127.0.0.1', 51630)] Block Received: Height=19, Hash=2491713d...
+[Node 2 Handler ('127.0.0.1', 51630)] Block Received: Height=19, Hash=2491713d...
+[Node 2 Handler ('127.0.0.1', 51630)] Closing connection.
+[Node 2 Handler ('127.0.0.1', 51630)] Closing connection.
+[Node 2 LostCompetition] Processing block 19 (2491713d...) under lock.
+[Node 2 LostCompetition] Processing block 19 (2491713d...) under lock.
+[Node 2 LostCompetition] Block 19 Merkle root VALID.
+[Node 2 LostCompetition] Block 19 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 19
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 19
+[Node 2 LostCompetition] Appending valid next block 19 (2491713d...)
+[Node 2 LostCompetition] Appending valid next block 19 (2491713d...)
+[Node 2 ApplyState] Applying state for block 19
+[Node 2 ApplyState] Applying state for block 19
+[BlockchainDB 2] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+[BlockchainDB 2] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+[Node 2 ReorgCheck] Checking for better forks (current height 19)...
+[Node 2 ReorgCheck] Checking for better forks (current height 19)...
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+[Node 2 LostCompetition] Finished checking newBlockAvailable.
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+127.0.0.1 - - [25/Apr/2025 18:23:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+127.0.0.1 - - [25/Apr/2025 18:23:24] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:24] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -

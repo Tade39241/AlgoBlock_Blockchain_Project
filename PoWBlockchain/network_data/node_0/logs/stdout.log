@@ -1,0 +1,2284 @@
+DB Module: PROJECT_ROOT determined as: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain
+DB Module: Logging to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/database.log
+DB Module: PROJECT_ROOT determined as: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain
+DB Module: Logging to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/database.log
+Testing database connections...
+  - Connected to node database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+  - Connected to blockchain database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+  - Connected to account database: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/account.db
+Starting node 0 on port 9000 with custom DB paths
+Account details: {"public_addr": "1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig", "privateKey": "96535626569238604192129746772702330856431841702880282095447645155889990991526", "public_key": "0248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4"}
+All accounts written to DB at: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/account.db
+Account details: public_addr=1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig, balance=None
+[Blockchain Init Node 0] Received my_public_addr: '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig' (Type: <class 'str'>)
+[BlockchainDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Flask App Node 0] Starting on port 5900...
+ * Serving Flask app 'blockchain_code.Blockchain.Frontend.run' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+[Node 0 ReorgManager] Initialised.
+[Node 0 ReorgManager] Initialised.
+[start_node 0 DEBUG] Blockchain object before syncManager init: <blockchain_code.Blockchain.Backend.core.blockchain.Blockchain object at 0x102f6d550> (Type: <class 'multiprocessing.managers.AutoProxy[Blockchain]'>)
+[start_node 0 DEBUG] Blockchain has 'db' attribute: False
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+Server started on port 9000
+[Node 0 Server] SERVER STARTED. LISTENING at 127.0.0.1:9000
+[Node 0 Server] SERVER STARTED. LISTENING at 127.0.0.1:9000
+ * Running on http://127.0.0.1:5900/ (Press CTRL+C to quit)
+ * Running on http://127.0.0.1:5900/ (Press CTRL+C to quit)
+[startSync Node 0] Starting sync action: Downloading missing blocks
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling startDownload from 127.0.0.1:9001
+[Node 0 Downloader] Starting download from 127.0.0.1:9001...
+[Node 0 Downloader] Starting download from 127.0.0.1:9001...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Node 0 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 0 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Downloader] Sent requestBlock to 127.0.0.1:9001
+[Node 0 Downloader] Sent requestBlock to 127.0.0.1:9001
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Downloader 9001] Received command: b'portlist'
+[Node 0 Downloader 9001] Received command: b'portlist'
+DEBUG: length from varint = 4
+DEBUG: chunk #0 = 28230000
+DEBUG: chunk #1 = 29230000
+DEBUG: chunk #2 = 2a230000
+DEBUG: chunk #3 = c4c80000
+[Node 0 Downloader 9001] Received portlist: [9000, 9001, 9002, 51396]
+[Node 0 Downloader 9001] Received portlist: [9000, 9001, 9002, 51396]
+[Node 0 Downloader 9001] Added 1 new peer(s) from received list.
+[Node 0 Downloader 9001] Added 1 new peer(s) from received list.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Downloader 9001] Received command: b'Finished'
+[Node 0 Downloader 9001] Received command: b'Finished'
+[Node 0 Downloader 9001] Received FinishedSending message. Download complete.
+[Node 0 Downloader 9001] Received FinishedSending message. Download complete.
+[Node 0 Downloader] Connection to 127.0.0.1:9001 closed.
+[Node 0 Downloader] Connection to 127.0.0.1:9001 closed.
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling startDownload from 127.0.0.1:9002
+[Node 0 Downloader] Starting download from 127.0.0.1:9002...
+[Node 0 Downloader] Starting download from 127.0.0.1:9002...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Node 0 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 0 Downloader] Requesting blocks after local tip: 40177a34...
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connection refused by target ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Downloader] Connection to 127.0.0.1:9002 closed.
+[Node 0 Downloader] Connection to 127.0.0.1:9002 closed.
+[Startup] Node 0 syncing blockchain …
+[Startup] Node 0 sync complete
+Waiting for web UI at http://localhost:5900…
+Starting new HTTP connection (1): localhost:5900
+Starting new HTTP connection (1): localhost:5900
+127.0.0.1 - - [25/Apr/2025 18:22:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:22:54] "GET / HTTP/1.1" 200 -
+http://localhost:5900 "GET / HTTP/1.1" 200 1535
+http://localhost:5900 "GET / HTTP/1.1" 200 1535
+Web UI up, starting simulation
+[Blockchain Init Node 0] Received my_public_addr: '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig' (Type: <class 'str'>)
+[BlockchainDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Node 0 ReorgManager] Initialised.
+[Node 0 ReorgManager] Initialised.
+Mining process for node 0 starting
+Building UTXO set within mining process for node 0
+UTXO set built successfully
+Mining process using node_id: 0
+Target set successfully
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 0
+[Node 0 MainLoop] Current tip hash: 40177a34...
+Attempting to mine block 1 (Prev: 40177a34...)
+[Node 0 AddBlock] Starting to build block 1...
+[Node 0 AddBlock 1] Reading mempool...
+[Node 0 AddBlock 1] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 1] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 1] Calculated fee: 0
+[Node 0 AddBlock 1] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x01']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c816
+[Node 0 AddBlock 1] Coinbase Tx created successfully. ID: d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c816
+[Node 0 AddBlock 1] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 1] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 1] Coinbase amount updated with fee.
+[Node 0 AddBlock 1] Combined 1 transactions.
+[Node 0 AddBlock 1] Calculating Merkle root...
+[Node 0 AddBlock 1] Adjusting target...
+[Node 0 AddBlock 1] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 1] Creating block header...
+[Node 0 AddBlock 1] Block header created.
+[Node 0 AddBlock 1] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:22:54 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+Mining process started on node 0
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51401)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51401)
+[Node 0 Handler ('127.0.0.1', 51401)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51401)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51401)] Received command: b'requestBlock'
+[Node 0 Handler ('127.0.0.1', 51401)] Received command: b'requestBlock'
+[Node 0 Handler ('127.0.0.1', 51401)] Attempting to add peer node (Port: 51401)
+[Node 0 Handler ('127.0.0.1', 51401)] Attempting to add peer node (Port: 51401)
+[Node 0 addNode] Added new peer port: 51401
+[Node 0 addNode] Added new peer port: 51401
+[Node 0 Handler ('127.0.0.1', 51401)] Received requestBlock after: 40177a34...
+[Node 0 Handler ('127.0.0.1', 51401)] Received requestBlock after: 40177a34...
+[Node 0 Sender ('127.0.0.1', 51401)] Preparing response for requestBlock after 40177a34...
+[Node 0 Sender ('127.0.0.1', 51401)] Preparing response for requestBlock after 40177a34...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Node 0 fetchBlocks] Found 0 blocks to send after 40177a34.
+[Node 0 fetchBlocks] Found 0 blocks to send after 40177a34.
+[Node 0 Sender ('127.0.0.1', 51401)] Finished sending 0/0 blocks.
+[Node 0 Sender ('127.0.0.1', 51401)] Finished sending 0/0 blocks.
+[Node 0 Sender ('127.0.0.1', 51401)] Sent 0 blocks.
+[Node 0 Sender ('127.0.0.1', 51401)] Sent 0 blocks.
+[Node 0 Sender ('127.0.0.1', 51401)] No orphan blocks to send.
+[Node 0 Sender ('127.0.0.1', 51401)] No orphan blocks to send.
+[Node 0 Sender ('127.0.0.1', 51401)] Sent port list: [9000, 9001, 9002, 51396, 51401]
+[Node 0 Sender ('127.0.0.1', 51401)] Sent port list: [9000, 9001, 9002, 51396, 51401]
+[Node 0 Sender ('127.0.0.1', 51401)] Sent FinishedSending message.
+[Node 0 Sender ('127.0.0.1', 51401)] Sent FinishedSending message.
+[Node 0 Handler ('127.0.0.1', 51401)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51401)] Closing connection.
+
+ Golden hash found! Nonce: 53,776, Hashrate: 30088.51 h/s
+[Node 0 AddBlock 1] blockheader.mine() returned. competitionOver = False
+[Node 0 AddBlock 1] Mining successful. Nonce: 53775
+[Node 0 AddBlock 1] Acquiring state lock to add block...
+[Node 0 AddBlock 1] State lock acquired.
+[Node 0 AddBlock 1] Double-checking chain tip...
+[Node 0 AddBlock 1] Current tip: Height=0, Hash=40177a34...
+[Node 0 AddBlock 1] Creating Block object...
+[Node 0 AddBlock 1] Creating block dict...
+[Node 0 AddBlock 1] Creating block dict...
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 1
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 1
+[Node 0 AddBlock 1] Block dict created.
+[Node 0 AddBlock 1] Adjusting block dict for DB consistency...
+[Node 0 AddBlock 1] Block dict adjustment complete.
+[Node 0 AddBlock 1] Calling apply_state_for_block...
+[Node 0 ApplyState] Applying state for block 1
+[Node 0 ApplyState] Applying state for block 1
+[ApplyState] Attempting TxOut.from_dict for ('d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c816', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '87ddb8e9146d2772a4d0f01d2d6d30307510b7d0', 136, 172]}}
+[ApplyState] Successfully added UTXO ('d1bb5d8dba1308e67112b05ed5a749862a7240a2f9657e89be8071605a02c816', 0)
+[Node 0 AddBlock 1] apply_state_for_block successful.
+[Node 0 AddBlock 1] Writing block to DB...
+[BlockchainDB 0] Writing Block 1. Hash in dict: ff4e3327f7970d5cf31f5ae69e2ebc06532afbbcacbaaafdb05e985f7c0d0000
+[BlockchainDB 0] Writing Block 1. Hash in dict: ff4e3327f7970d5cf31f5ae69e2ebc06532afbbcacbaaafdb05e985f7c0d0000
+[Node 0 AddBlock 1] DB write successful.
+[Node 0 AddBlock 1] Broadcasting block...
+[BroadcastBlock] Broadcasting block b"\xffN3'\xf7\x97\r\\\xf3\x1fZ\xe6\x9e.\xbc\x06S*\xfb\xbc\xac\xba\xaa\xfd\xb0^\x98_|\r\x00\x00" to network.
+[startSync Node 0] Starting sync action: Publishing block b"\xffN3'\xf7\x97\r\\\xf3\x1fZ\xe6\x9e.\xbc\x06S*\xfb\xbc\xac\xba\xaa\xfd\xb0^\x98_|\r\x00\x00"
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002, 51396, 51401]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:9001
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Publisher] Published Block 1 to 127.0.0.1:9001
+[Node 0 Publisher] Published Block 1 to 127.0.0.1:9001
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:9002
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connected successfully to ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Publisher] Published Block 1 to 127.0.0.1:9002
+[Node 0 Publisher] Published Block 1 to 127.0.0.1:9002
+[startSync Node 0] Processing peer 127.0.0.1:51396
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:51396
+[Node 51396] Attempting to connect to target ('127.0.0.1', 51396)
+[Node 51396] Connection refused by target ('127.0.0.1', 51396)
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51401
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 1 (ff4e3327) to 127.0.0.1:51401
+[Node 51401] Attempting to connect to target ('127.0.0.1', 51401)
+[Node 51401] Connection refused by target ('127.0.0.1', 51401)
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 AddBlock 1] Broadcast initiated.
+[Node 0 AddBlock 1] State lock released.
+[Node 0 AddBlock 1] END
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 1
+[Node 0 MainLoop] Current tip hash: ff4e3327...
+Attempting to mine block 2 (Prev: ff4e3327...)
+[Node 0 AddBlock] Starting to build block 2...
+[Node 0 AddBlock 2] Reading mempool...
+[Node 0 AddBlock 2] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 2] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 2] Calculated fee: 0
+[Node 0 AddBlock 2] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x02']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422
+[Node 0 AddBlock 2] Coinbase Tx created successfully. ID: 659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422
+[Node 0 AddBlock 2] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 2] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 2] Coinbase amount updated with fee.
+[Node 0 AddBlock 2] Combined 1 transactions.
+[Node 0 AddBlock 2] Calculating Merkle root...
+[Node 0 AddBlock 2] Adjusting target...
+[Node 0 AddBlock 2] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 2] Creating block header...
+[Node 0 AddBlock 2] Block header created.
+[Node 0 AddBlock 2] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:22:56 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51413)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51413)
+[Node 0 Handler ('127.0.0.1', 51413)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51413)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51413)] Received port check magic, closing.
+[Node 0 Handler ('127.0.0.1', 51413)] Received port check magic, closing.
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51416)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51416)
+[Node 0 Handler ('127.0.0.1', 51416)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51416)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51416)] Received command: b'requestBlock'
+[Node 0 Handler ('127.0.0.1', 51416)] Received command: b'requestBlock'
+[Node 0 Handler ('127.0.0.1', 51416)] Attempting to add peer node (Port: 51416)
+[Node 0 Handler ('127.0.0.1', 51416)] Attempting to add peer node (Port: 51416)
+[Node 0 addNode] Added new peer port: 51416
+[Node 0 addNode] Added new peer port: 51416
+[Node 0 Handler ('127.0.0.1', 51416)] Received requestBlock after: 40177a34...
+[Node 0 Handler ('127.0.0.1', 51416)] Received requestBlock after: 40177a34...
+[Node 0 Sender ('127.0.0.1', 51416)] Preparing response for requestBlock after 40177a34...
+[Node 0 Sender ('127.0.0.1', 51416)] Preparing response for requestBlock after 40177a34...
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[Node 0 fetchBlocks] Found 1 blocks to send after 40177a34.
+[Node 0 fetchBlocks] Found 1 blocks to send after 40177a34.
+Nonce is unexpectedly bytes during serialise. Using directly. Value: 0fd20000
+Nonce is unexpectedly bytes during serialise. Using directly. Value: 0fd20000
+[Node 0 Sender ('127.0.0.1', 51416)] Finished sending 1/1 blocks.
+[Node 0 Sender ('127.0.0.1', 51416)] Finished sending 1/1 blocks.
+[Node 0 Sender ('127.0.0.1', 51416)] Sent 1 blocks.
+[Node 0 Sender ('127.0.0.1', 51416)] Sent 1 blocks.
+[Node 0 Sender ('127.0.0.1', 51416)] No orphan blocks to send.
+[Node 0 Sender ('127.0.0.1', 51416)] No orphan blocks to send.
+[Node 0 Sender ('127.0.0.1', 51416)] Sent port list: [9000, 9001, 9002, 51396, 51401, 51416]
+[Node 0 Sender ('127.0.0.1', 51416)] Sent port list: [9000, 9001, 9002, 51396, 51401, 51416]
+[Node 0 Sender ('127.0.0.1', 51416)] Sent FinishedSending message.
+[Node 0 Sender ('127.0.0.1', 51416)] Sent FinishedSending message.
+[Node 0 Handler ('127.0.0.1', 51416)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51416)] Closing connection.
+
+ Golden hash found! Nonce: 75,289, Hashrate: 27237.53 h/s
+[Node 0 AddBlock 2] blockheader.mine() returned. competitionOver = False
+[Node 0 AddBlock 2] Mining successful. Nonce: 75288
+[Node 0 AddBlock 2] Acquiring state lock to add block...
+[Node 0 AddBlock 2] State lock acquired.
+[Node 0 AddBlock 2] Double-checking chain tip...
+[Node 0 AddBlock 2] Current tip: Height=1, Hash=ff4e3327...
+[Node 0 AddBlock 2] Creating Block object...
+[Node 0 AddBlock 2] Creating block dict...
+[Node 0 AddBlock 2] Creating block dict...
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 2
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 2
+[Node 0 AddBlock 2] Block dict created.
+[Node 0 AddBlock 2] Adjusting block dict for DB consistency...
+[Node 0 AddBlock 2] Block dict adjustment complete.
+[Node 0 AddBlock 2] Calling apply_state_for_block...
+[Node 0 ApplyState] Applying state for block 2
+[Node 0 ApplyState] Applying state for block 2
+[ApplyState] Attempting TxOut.from_dict for ('659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '87ddb8e9146d2772a4d0f01d2d6d30307510b7d0', 136, 172]}}
+[ApplyState] Successfully added UTXO ('659fd8f56daf5f138bc0638aab6676fc636711fef9e8e9da23953c92310cc422', 0)
+[Node 0 AddBlock 2] apply_state_for_block successful.
+[Node 0 AddBlock 2] Writing block to DB...
+[BlockchainDB 0] Writing Block 2. Hash in dict: 33bdafb99aa5b43a5d461d261aa6ba932d5364c0e9ae906b277a4f558e3a0000
+[BlockchainDB 0] Writing Block 2. Hash in dict: 33bdafb99aa5b43a5d461d261aa6ba932d5364c0e9ae906b277a4f558e3a0000
+[Node 0 AddBlock 2] DB write successful.
+[Node 0 AddBlock 2] Broadcasting block...
+[BroadcastBlock] Broadcasting block b"3\xbd\xaf\xb9\x9a\xa5\xb4:]F\x1d&\x1a\xa6\xba\x93-Sd\xc0\xe9\xae\x90k'zOU\x8e:\x00\x00" to network.
+[startSync Node 0] Starting sync action: Publishing block b"3\xbd\xaf\xb9\x9a\xa5\xb4:]F\x1d&\x1a\xa6\xba\x93-Sd\xc0\xe9\xae\x90k'zOU\x8e:\x00\x00"
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002, 51396, 51401, 51416]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:9001
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Publisher] Published Block 2 to 127.0.0.1:9001
+[Node 0 Publisher] Published Block 2 to 127.0.0.1:9001
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:9002
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connected successfully to ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Publisher] Published Block 2 to 127.0.0.1:9002
+[Node 0 Publisher] Published Block 2 to 127.0.0.1:9002
+[startSync Node 0] Processing peer 127.0.0.1:51396
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51396
+[Node 51396] Attempting to connect to target ('127.0.0.1', 51396)
+[Node 51396] Connection refused by target ('127.0.0.1', 51396)
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51401
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51401
+[Node 51401] Attempting to connect to target ('127.0.0.1', 51401)
+[Node 51401] Connection refused by target ('127.0.0.1', 51401)
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51416
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 2 (33bdafb9) to 127.0.0.1:51416
+[Node 51416] Attempting to connect to target ('127.0.0.1', 51416)
+[Node 51416] Connection refused by target ('127.0.0.1', 51416)
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 0 AddBlock 2] Broadcast initiated.
+[Node 0 AddBlock 2] State lock released.
+[Node 0 AddBlock 2] END
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 2
+[Node 0 MainLoop] Current tip hash: 33bdafb9...
+Attempting to mine block 3 (Prev: 33bdafb9...)
+[Node 0 AddBlock] Starting to build block 3...
+[Node 0 AddBlock 3] Reading mempool...
+[Node 0 AddBlock 3] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 3] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 3] Calculated fee: 0
+[Node 0 AddBlock 3] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x03']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 5e81a1c8352f426adcce369d74a862e31cd77a8e6c2815944aa87562c3b8130a
+[Node 0 AddBlock 3] Coinbase Tx created successfully. ID: 5e81a1c8352f426adcce369d74a862e31cd77a8e6c2815944aa87562c3b8130a
+[Node 0 AddBlock 3] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 3] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 3] Coinbase amount updated with fee.
+[Node 0 AddBlock 3] Combined 1 transactions.
+[Node 0 AddBlock 3] Calculating Merkle root...
+[Node 0 AddBlock 3] Adjusting target...
+[Node 0 AddBlock 3] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 3] Creating block header...
+[Node 0 AddBlock 3] Block header created.
+[Node 0 AddBlock 3] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:22:58 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51426)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51426)
+[Node 0 Handler ('127.0.0.1', 51426)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51426)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51426)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51426)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51426)] Attempting to add peer node (Port: 51426)
+[Node 0 Handler ('127.0.0.1', 51426)] Attempting to add peer node (Port: 51426)
+[Node 0 addNode] Added new peer port: 51426
+[Node 0 addNode] Added new peer port: 51426
+[Node 0 Handler ('127.0.0.1', 51426)] Block Received: Height=3, Hash=d7eeeccf...
+[Node 0 Handler ('127.0.0.1', 51426)] Block Received: Height=3, Hash=d7eeeccf...
+[Node 0 Handler ('127.0.0.1', 51426)] Closing connection.
+[Mine Loop 6946] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 3] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51426)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000': <Blockchain.Backend.core.block.Block object at 0x103cc0140>}
+[Node 0 LostCompetition] Processing block 3 (d7eeeccf...) under lock.
+[Node 0 LostCompetition] Processing block 3 (d7eeeccf...) under lock.
+[Node 0 LostCompetition] Block 3 Merkle root VALID.
+[Node 0 LostCompetition] Block 3 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 3
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 3
+[Node 0 LostCompetition] Appending valid next block 3 (d7eeeccf...)
+[Node 0 LostCompetition] Appending valid next block 3 (d7eeeccf...)
+[Node 0 ApplyState] Applying state for block 3
+[Node 0 ApplyState] Applying state for block 3
+[ApplyState] Attempting TxOut.from_dict for ('f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b1', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('f98ef4e6f312fc1c0cc6b0f0563c53b041814ca7681c513e07f4807e000263b1', 0)
+[BlockchainDB 0] Writing Block 3. Hash in dict: d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000
+[BlockchainDB 0] Writing Block 3. Hash in dict: d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000
+[Node 0 ReorgCheck] Checking for better forks (current height 3)...
+[Node 0 ReorgCheck] Checking for better forks (current height 3)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 3] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 3
+[Node 0 MainLoop] Current tip hash: d7eeeccf...
+Attempting to mine block 4 (Prev: d7eeeccf...)
+[Node 0 AddBlock] Starting to build block 4...
+[Node 0 AddBlock 4] Reading mempool...
+[Node 0 AddBlock 4] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 4] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 4] Calculated fee: 0
+[Node 0 AddBlock 4] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x04']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 3dd3ca1875d130001284b14cf51615547e4ab5eb597dabbdad1d7f5f194f6dab
+[Node 0 AddBlock 4] Coinbase Tx created successfully. ID: 3dd3ca1875d130001284b14cf51615547e4ab5eb597dabbdad1d7f5f194f6dab
+[Node 0 AddBlock 4] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 4] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 4] Coinbase amount updated with fee.
+[Node 0 AddBlock 4] Combined 1 transactions.
+[Node 0 AddBlock 4] Calculating Merkle root...
+[Node 0 AddBlock 4] Adjusting target...
+[Node 0 AddBlock 4] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 4] Creating block header...
+[Node 0 AddBlock 4] Block header created.
+[Node 0 AddBlock 4] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:22:59 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51435)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51435)
+[Node 0 Handler ('127.0.0.1', 51435)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51435)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51435)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51435)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51435)] Attempting to add peer node (Port: 51435)
+[Node 0 Handler ('127.0.0.1', 51435)] Attempting to add peer node (Port: 51435)
+[Node 0 addNode] Added new peer port: 51435
+[Node 0 addNode] Added new peer port: 51435
+[Node 0 Handler ('127.0.0.1', 51435)] Block Received: Height=4, Hash=0e618bae...
+[Node 0 Handler ('127.0.0.1', 51435)] Block Received: Height=4, Hash=0e618bae...
+[Node 0 Handler ('127.0.0.1', 51435)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51435)] Closing connection.
+[Mine Loop 9229] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 4] blockheader.mine() returned. competitionOver = True
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000': <Blockchain.Backend.core.block.Block object at 0x103cc0950>}
+[Node 0 LostCompetition] Processing block 4 (0e618bae...) under lock.
+[Node 0 LostCompetition] Processing block 4 (0e618bae...) under lock.
+[Node 0 LostCompetition] Block 4 Merkle root VALID.
+[Node 0 LostCompetition] Block 4 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 4
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 4
+[Node 0 LostCompetition] Appending valid next block 4 (0e618bae...)
+[Node 0 LostCompetition] Appending valid next block 4 (0e618bae...)
+[Node 0 ApplyState] Applying state for block 4
+[Node 0 ApplyState] Applying state for block 4
+[ApplyState] Attempting TxOut.from_dict for ('c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c9', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('c6d6487e84908453218d9e65cece65c41ad70aa6eb134093be679f49d58f33c9', 0)
+[BlockchainDB 0] Writing Block 4. Hash in dict: 0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000
+[BlockchainDB 0] Writing Block 4. Hash in dict: 0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000
+[Node 0 ReorgCheck] Checking for better forks (current height 4)...
+[Node 0 ReorgCheck] Checking for better forks (current height 4)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 4] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 4
+[Node 0 MainLoop] Current tip hash: 0e618bae...
+Attempting to mine block 5 (Prev: 0e618bae...)
+[Node 0 AddBlock] Starting to build block 5...
+[Node 0 AddBlock 5] Reading mempool...
+[Node 0 AddBlock 5] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 5] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 5] Calculated fee: 0
+[Node 0 AddBlock 5] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x05']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 63837feecd758941ee1babbfb48822b1e2c9dca96abb5d40923875963cefaf25
+[Node 0 AddBlock 5] Coinbase Tx created successfully. ID: 63837feecd758941ee1babbfb48822b1e2c9dca96abb5d40923875963cefaf25
+[Node 0 AddBlock 5] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 5] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 5] Coinbase amount updated with fee.
+[Node 0 AddBlock 5] Combined 1 transactions.
+[Node 0 AddBlock 5] Calculating Merkle root...
+[Node 0 AddBlock 5] Adjusting target...
+[Node 0 AddBlock 5] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 5] Creating block header...
+[Node 0 AddBlock 5] Block header created.
+[Node 0 AddBlock 5] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:22:59 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+
+ Golden hash found! Nonce: 60,106, Hashrate: 22102.80 h/s
+[Node 0 AddBlock 5] blockheader.mine() returned. competitionOver = False
+[Node 0 AddBlock 5] Mining successful. Nonce: 60105
+[Node 0 AddBlock 5] Acquiring state lock to add block...
+[Node 0 AddBlock 5] State lock acquired.
+[Node 0 AddBlock 5] Double-checking chain tip...
+[Node 0 AddBlock 5] Current tip: Height=4, Hash=0e618bae...
+[Node 0 AddBlock 5] Creating Block object...
+[Node 0 AddBlock 5] Creating block dict...
+[Node 0 AddBlock 5] Creating block dict...
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 5
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 5
+[Node 0 AddBlock 5] Block dict created.
+[Node 0 AddBlock 5] Adjusting block dict for DB consistency...
+[Node 0 AddBlock 5] Block dict adjustment complete.
+[Node 0 AddBlock 5] Calling apply_state_for_block...
+[Node 0 ApplyState] Applying state for block 5
+[Node 0 ApplyState] Applying state for block 5
+[ApplyState] Attempting TxOut.from_dict for ('63837feecd758941ee1babbfb48822b1e2c9dca96abb5d40923875963cefaf25', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '87ddb8e9146d2772a4d0f01d2d6d30307510b7d0', 136, 172]}}
+[ApplyState] Successfully added UTXO ('63837feecd758941ee1babbfb48822b1e2c9dca96abb5d40923875963cefaf25', 0)
+[Node 0 AddBlock 5] apply_state_for_block successful.
+[Node 0 AddBlock 5] Writing block to DB...
+[BlockchainDB 0] Writing Block 5. Hash in dict: 14f05a28c84f2b5d9a9bc9aebceddc8f5f53ec565be2a3a8e02b30a450d80000
+[BlockchainDB 0] Writing Block 5. Hash in dict: 14f05a28c84f2b5d9a9bc9aebceddc8f5f53ec565be2a3a8e02b30a450d80000
+[Node 0 AddBlock 5] DB write successful.
+[Node 0 AddBlock 5] Broadcasting block...
+[BroadcastBlock] Broadcasting block b'\x14\xf0Z(\xc8O+]\x9a\x9b\xc9\xae\xbc\xed\xdc\x8f_S\xecV[\xe2\xa3\xa8\xe0+0\xa4P\xd8\x00\x00' to network.
+[startSync Node 0] Starting sync action: Publishing block b'\x14\xf0Z(\xc8O+]\x9a\x9b\xc9\xae\xbc\xed\xdc\x8f_S\xecV[\xe2\xa3\xa8\xe0+0\xa4P\xd8\x00\x00'
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002, 51396, 51401, 51416, 51426, 51435]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:9001
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Publisher] Published Block 5 to 127.0.0.1:9001
+[Node 0 Publisher] Published Block 5 to 127.0.0.1:9001
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:9002
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connected successfully to ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Publisher] Published Block 5 to 127.0.0.1:9002
+[Node 0 Publisher] Published Block 5 to 127.0.0.1:9002
+[startSync Node 0] Processing peer 127.0.0.1:51396
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51396
+[Node 51396] Attempting to connect to target ('127.0.0.1', 51396)
+[Node 51396] Connection refused by target ('127.0.0.1', 51396)
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51401
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51401
+[Node 51401] Attempting to connect to target ('127.0.0.1', 51401)
+[Node 51401] Connection refused by target ('127.0.0.1', 51401)
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51416
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51416
+[Node 51416] Attempting to connect to target ('127.0.0.1', 51416)
+[Node 51416] Connection refused by target ('127.0.0.1', 51416)
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51426
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51426
+[Node 51426] Attempting to connect to target ('127.0.0.1', 51426)
+[Node 51426] Connection refused by target ('127.0.0.1', 51426)
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51435
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 5 (14f05a28) to 127.0.0.1:51435
+[Node 51435] Attempting to connect to target ('127.0.0.1', 51435)
+[Node 51435] Connection refused by target ('127.0.0.1', 51435)
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[Node 0 AddBlock 5] Broadcast initiated.
+[Node 0 AddBlock 5] State lock released.
+[Node 0 AddBlock 5] END
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 5
+[Node 0 MainLoop] Current tip hash: 14f05a28...
+Attempting to mine block 6 (Prev: 14f05a28...)
+[Node 0 AddBlock] Starting to build block 6...
+[Node 0 AddBlock 6] Reading mempool...
+[Node 0 AddBlock 6] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 6] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 6] Calculated fee: 0
+[Node 0 AddBlock 6] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x06']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: c2cbe34d67fe6ff79d8c276125824e8b7bbfdaceaffa011ac5453e259d75b29b
+[Node 0 AddBlock 6] Coinbase Tx created successfully. ID: c2cbe34d67fe6ff79d8c276125824e8b7bbfdaceaffa011ac5453e259d75b29b
+[Node 0 AddBlock 6] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 6] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 6] Coinbase amount updated with fee.
+[Node 0 AddBlock 6] Combined 1 transactions.
+[Node 0 AddBlock 6] Calculating Merkle root...
+[Node 0 AddBlock 6] Adjusting target...
+[Node 0 AddBlock 6] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 6] Creating block header...
+[Node 0 AddBlock 6] Block header created.
+[Node 0 AddBlock 6] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:02 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+Frontend using blockchain DB path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+127.0.0.1 - - [25/Apr/2025 18:23:03] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:03] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:03] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:03] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51455)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51455)
+[Node 0 Handler ('127.0.0.1', 51455)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51455)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51455)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51455)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51455)] Attempting to add peer node (Port: 51455)
+[Node 0 Handler ('127.0.0.1', 51455)] Attempting to add peer node (Port: 51455)
+[Node 0 addNode] Added new peer port: 51455
+[Node 0 addNode] Added new peer port: 51455
+[Node 0 Handler ('127.0.0.1', 51455)] Block Received: Height=6, Hash=07b86cb2...
+[Node 0 Handler ('127.0.0.1', 51455)] Block Received: Height=6, Hash=07b86cb2...
+[Node 0 Handler ('127.0.0.1', 51455)] Closing connection.
+[Mine Loop 37512] newBlockAvailable is True. Competition lost.
+[Node 0 Handler ('127.0.0.1', 51455)] Closing connection.
+[Node 0 AddBlock 6] blockheader.mine() returned. competitionOver = True
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000': <Blockchain.Backend.core.block.Block object at 0x103cc0c80>}
+[Node 0 LostCompetition] Processing block 6 (07b86cb2...) under lock.
+[Node 0 LostCompetition] Processing block 6 (07b86cb2...) under lock.
+[Node 0 LostCompetition] Block 6 Merkle root VALID.
+[Node 0 LostCompetition] Block 6 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 6
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 6
+[Node 0 LostCompetition] Appending valid next block 6 (07b86cb2...)
+[Node 0 LostCompetition] Appending valid next block 6 (07b86cb2...)
+[Node 0 ApplyState] Applying state for block 6
+[Node 0 ApplyState] Applying state for block 6
+[ApplyState] Attempting TxOut.from_dict for ('699e834d23cc5e62bbbd5089922dde8c255acf42f13495e9f7f2a3c1b10d936f', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('699e834d23cc5e62bbbd5089922dde8c255acf42f13495e9f7f2a3c1b10d936f', 0)
+[BlockchainDB 0] Writing Block 6. Hash in dict: 07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000
+[BlockchainDB 0] Writing Block 6. Hash in dict: 07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000
+[Node 0 ReorgCheck] Checking for better forks (current height 6)...
+[Node 0 ReorgCheck] Checking for better forks (current height 6)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 6] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 6
+[Node 0 MainLoop] Current tip hash: 07b86cb2...
+Attempting to mine block 7 (Prev: 07b86cb2...)
+[Node 0 AddBlock] Starting to build block 7...
+[Node 0 AddBlock 7] Reading mempool...
+[Node 0 AddBlock 7] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 7] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 7] Calculated fee: 0
+[Node 0 AddBlock 7] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x07']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 44576fcfeabbefe30e4eb35faa5fd95d6eb0e1e965b17ab76a340d6583142f72
+[Node 0 AddBlock 7] Coinbase Tx created successfully. ID: 44576fcfeabbefe30e4eb35faa5fd95d6eb0e1e965b17ab76a340d6583142f72
+[Node 0 AddBlock 7] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 7] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 7] Coinbase amount updated with fee.
+[Node 0 AddBlock 7] Combined 1 transactions.
+[Node 0 AddBlock 7] Calculating Merkle root...
+[Node 0 AddBlock 7] Adjusting target...
+[Node 0 AddBlock 7] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 7] Creating block header...
+[Node 0 AddBlock 7] Block header created.
+[Node 0 AddBlock 7] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:04 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+Node 0 active on port 9000, web: 5900
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51465)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51465)
+[Node 0 Handler ('127.0.0.1', 51465)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51465)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51465)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51465)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51465)] Attempting to add peer node (Port: 51465)
+[Node 0 Handler ('127.0.0.1', 51465)] Attempting to add peer node (Port: 51465)
+[Node 0 addNode] Added new peer port: 51465
+[Node 0 addNode] Added new peer port: 51465
+[Node 0 Handler ('127.0.0.1', 51465)] Block Received: Height=7, Hash=079c238f...
+[Node 0 Handler ('127.0.0.1', 51465)] Block Received: Height=7, Hash=079c238f...
+[Mine Loop 2049] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 7] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51465)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51465)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000': <Blockchain.Backend.core.block.Block object at 0x103cc03b0>}
+[Node 0 LostCompetition] Processing block 7 (079c238f...) under lock.
+[Node 0 LostCompetition] Processing block 7 (079c238f...) under lock.
+[Node 0 LostCompetition] Block 7 Merkle root VALID.
+[Node 0 LostCompetition] Block 7 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 7
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 7
+[Node 0 LostCompetition] Appending valid next block 7 (079c238f...)
+[Node 0 LostCompetition] Appending valid next block 7 (079c238f...)
+[Node 0 ApplyState] Applying state for block 7
+[Node 0 ApplyState] Applying state for block 7
+[ApplyState] Attempting TxOut.from_dict for ('447ca2151e0e5f3885e475330a28ce68027a0e6acb712051e2719df7c16548fc', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('447ca2151e0e5f3885e475330a28ce68027a0e6acb712051e2719df7c16548fc', 0)
+[BlockchainDB 0] Writing Block 7. Hash in dict: 079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000
+[BlockchainDB 0] Writing Block 7. Hash in dict: 079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000
+[Node 0 ReorgCheck] Checking for better forks (current height 7)...
+[Node 0 ReorgCheck] Checking for better forks (current height 7)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 7] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 7
+[Node 0 MainLoop] Current tip hash: 079c238f...
+Attempting to mine block 8 (Prev: 079c238f...)
+[Node 0 AddBlock] Starting to build block 8...
+[Node 0 AddBlock 8] Reading mempool...
+[Node 0 AddBlock 8] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 8] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 8] Calculated fee: 0
+[Node 0 AddBlock 8] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x08']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 53d99539051bcf152a2170e0bddc52e060a0751b0eb9aa7d74f1f8e547190801
+[Node 0 AddBlock 8] Coinbase Tx created successfully. ID: 53d99539051bcf152a2170e0bddc52e060a0751b0eb9aa7d74f1f8e547190801
+[Node 0 AddBlock 8] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 8] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 8] Coinbase amount updated with fee.
+[Node 0 AddBlock 8] Combined 1 transactions.
+[Node 0 AddBlock 8] Calculating Merkle root...
+[Node 0 AddBlock 8] Adjusting target...
+[Node 0 AddBlock 8] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 8] Creating block header...
+[Node 0 AddBlock 8] Block header created.
+[Node 0 AddBlock 8] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:04 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51476)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51476)
+[Node 0 Handler ('127.0.0.1', 51476)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51476)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51476)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51476)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51476)] Attempting to add peer node (Port: 51476)
+[Node 0 Handler ('127.0.0.1', 51476)] Attempting to add peer node (Port: 51476)
+[Node 0 addNode] Added new peer port: 51476
+[Node 0 addNode] Added new peer port: 51476
+[Node 0 Handler ('127.0.0.1', 51476)] Block Received: Height=8, Hash=4b07a897...
+[Node 0 Handler ('127.0.0.1', 51476)] Block Received: Height=8, Hash=4b07a897...
+[Mine Loop 6884] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 8] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51476)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51476)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000': <Blockchain.Backend.core.block.Block object at 0x103cc1700>}
+[Node 0 LostCompetition] Processing block 8 (4b07a897...) under lock.
+[Node 0 LostCompetition] Processing block 8 (4b07a897...) under lock.
+[Node 0 LostCompetition] Block 8 Merkle root VALID.
+[Node 0 LostCompetition] Block 8 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 8
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 8
+[Node 0 LostCompetition] Appending valid next block 8 (4b07a897...)
+[Node 0 LostCompetition] Appending valid next block 8 (4b07a897...)
+[Node 0 ApplyState] Applying state for block 8
+[Node 0 ApplyState] Applying state for block 8
+[ApplyState] Attempting TxOut.from_dict for ('b54fe50e1b590bb3a61cb9a8f19abfdb260e36e392778962ccffafd163cc76d1', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '2ba28698085529f90afe2a5cffc24d226878a823', 136, 172]}}
+[ApplyState] Successfully added UTXO ('b54fe50e1b590bb3a61cb9a8f19abfdb260e36e392778962ccffafd163cc76d1', 0)
+[BlockchainDB 0] Writing Block 8. Hash in dict: 4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000
+[BlockchainDB 0] Writing Block 8. Hash in dict: 4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000
+[Node 0 ReorgCheck] Checking for better forks (current height 8)...
+[Node 0 ReorgCheck] Checking for better forks (current height 8)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 8] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 8
+[Node 0 MainLoop] Current tip hash: 4b07a897...
+Attempting to mine block 9 (Prev: 4b07a897...)
+[Node 0 AddBlock] Starting to build block 9...
+[Node 0 AddBlock 9] Reading mempool...
+[Node 0 AddBlock 9] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 9] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 9] Calculated fee: 0
+[Node 0 AddBlock 9] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\t']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 945e3618850678e168c604711a24db96f24150fd6bdf3750dd462beea392747f
+[Node 0 AddBlock 9] Coinbase Tx created successfully. ID: 945e3618850678e168c604711a24db96f24150fd6bdf3750dd462beea392747f
+[Node 0 AddBlock 9] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 9] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 9] Coinbase amount updated with fee.
+[Node 0 AddBlock 9] Combined 1 transactions.
+[Node 0 AddBlock 9] Calculating Merkle root...
+[Node 0 AddBlock 9] Adjusting target...
+[Node 0 AddBlock 9] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 9] Creating block header...
+[Node 0 AddBlock 9] Block header created.
+[Node 0 AddBlock 9] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:04 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51488)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51488)
+[Node 0 Handler ('127.0.0.1', 51488)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51488)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51488)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51488)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51488)] Attempting to add peer node (Port: 51488)
+[Node 0 Handler ('127.0.0.1', 51488)] Attempting to add peer node (Port: 51488)
+[Node 0 addNode] Added new peer port: 51488
+[Node 0 addNode] Added new peer port: 51488
+[Node 0 Handler ('127.0.0.1', 51488)] Block Received: Height=9, Hash=f3713f73...
+[Node 0 Handler ('127.0.0.1', 51488)] Block Received: Height=9, Hash=f3713f73...
+[Mine Loop 6825] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 9] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51488)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51488)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000': <Blockchain.Backend.core.block.Block object at 0x103cc1220>}
+[Node 0 LostCompetition] Processing block 9 (f3713f73...) under lock.
+[Node 0 LostCompetition] Processing block 9 (f3713f73...) under lock.
+[Node 0 LostCompetition] Block 9 Merkle root VALID.
+[Node 0 LostCompetition] Block 9 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 9
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 9
+[Node 0 LostCompetition] Appending valid next block 9 (f3713f73...)
+[Node 0 LostCompetition] Appending valid next block 9 (f3713f73...)
+[Node 0 ApplyState] Applying state for block 9
+[Node 0 ApplyState] Applying state for block 9
+[ApplyState] Attempting TxOut.from_dict for ('c464dca3f67128ff1d6056b4dd7716882c0e34b132fe08bf5ab622af3c238ec2', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('c464dca3f67128ff1d6056b4dd7716882c0e34b132fe08bf5ab622af3c238ec2', 0)
+[BlockchainDB 0] Writing Block 9. Hash in dict: f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000
+[BlockchainDB 0] Writing Block 9. Hash in dict: f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000
+[Node 0 ReorgCheck] Checking for better forks (current height 9)...
+[Node 0 ReorgCheck] Checking for better forks (current height 9)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 9] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 9
+[Node 0 MainLoop] Current tip hash: f3713f73...
+Attempting to mine block 10 (Prev: f3713f73...)
+[Node 0 AddBlock] Starting to build block 10...
+[Node 0 AddBlock 10] Reading mempool...
+[Node 0 AddBlock 10] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 10] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 10] Calculated fee: 0
+[Node 0 AddBlock 10] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\n']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: d737e1ebb5b913e3c98768daead71491678a3ec9101a4f865fab0bbe15312edb
+[Node 0 AddBlock 10] Coinbase Tx created successfully. ID: d737e1ebb5b913e3c98768daead71491678a3ec9101a4f865fab0bbe15312edb
+[Node 0 AddBlock 10] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 10] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 10] Coinbase amount updated with fee.
+[Node 0 AddBlock 10] Combined 1 transactions.
+[Node 0 AddBlock 10] Calculating Merkle root...
+[Node 0 AddBlock 10] Adjusting target...
+[Node 0 AddBlock 10] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 10] Creating block header...
+[Node 0 AddBlock 10] Block header created.
+[Node 0 AddBlock 10] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:05 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51499)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51499)
+[Node 0 Handler ('127.0.0.1', 51499)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51499)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51499)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51499)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51499)] Attempting to add peer node (Port: 51499)
+[Node 0 Handler ('127.0.0.1', 51499)] Attempting to add peer node (Port: 51499)
+[Node 0 addNode] Added new peer port: 51499
+[Node 0 addNode] Added new peer port: 51499
+[Node 0 Handler ('127.0.0.1', 51499)] Block Received: Height=10, Hash=61365087...
+[Node 0 Handler ('127.0.0.1', 51499)] Block Received: Height=10, Hash=61365087...
+[Mine Loop 18099] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 10] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51499)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51499)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000': <Blockchain.Backend.core.block.Block object at 0x103c98800>}
+[Node 0 LostCompetition] Processing block 10 (61365087...) under lock.
+[Node 0 LostCompetition] Processing block 10 (61365087...) under lock.
+[Node 0 LostCompetition] Block 10 Merkle root VALID.
+[Node 0 LostCompetition] Block 10 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 10
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 10
+[Node 0 LostCompetition] Appending valid next block 10 (61365087...)
+[Node 0 LostCompetition] Appending valid next block 10 (61365087...)
+[Node 0 ApplyState] Applying state for block 10
+[Node 0 ApplyState] Applying state for block 10
+[ApplyState] Attempting TxOut.from_dict for ('3faa1bb9717cb115c1424592237dd02cb424e236cf315e98205160e69b806cb4', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('3faa1bb9717cb115c1424592237dd02cb424e236cf315e98205160e69b806cb4', 0)
+[BlockchainDB 0] Writing Block 10. Hash in dict: 61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000
+[BlockchainDB 0] Writing Block 10. Hash in dict: 61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000
+[Node 0 ReorgCheck] Checking for better forks (current height 10)...
+[Node 0 ReorgCheck] Checking for better forks (current height 10)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 10] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 10
+[Node 0 MainLoop] Current tip hash: 61365087...
+Attempting to mine block 11 (Prev: 61365087...)
+[Node 0 AddBlock] Starting to build block 11...
+[Node 0 AddBlock 11] Reading mempool...
+[Node 0 AddBlock 11] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 11] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 11] Calculated fee: 0
+[Node 0 AddBlock 11] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x0b']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 69cc6bdc83c3cab15314430aba1acbc9be8eb72f6b83b849feea7ebf2f4bcae9
+[Node 0 AddBlock 11] Coinbase Tx created successfully. ID: 69cc6bdc83c3cab15314430aba1acbc9be8eb72f6b83b849feea7ebf2f4bcae9
+[Node 0 AddBlock 11] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 11] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 11] Coinbase amount updated with fee.
+[Node 0 AddBlock 11] Combined 1 transactions.
+[Node 0 AddBlock 11] Calculating Merkle root...
+[Node 0 AddBlock 11] Adjusting target...
+[Node 0 AddBlock 11] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 11] Creating block header...
+[Node 0 AddBlock 11] Block header created.
+[Node 0 AddBlock 11] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:05 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51510)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51510)
+[Node 0 Handler ('127.0.0.1', 51510)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51510)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51510)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51510)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51510)] Attempting to add peer node (Port: 51510)
+[Node 0 Handler ('127.0.0.1', 51510)] Attempting to add peer node (Port: 51510)
+[Node 0 addNode] Added new peer port: 51510
+[Node 0 addNode] Added new peer port: 51510
+[Node 0 Handler ('127.0.0.1', 51510)] Block Received: Height=11, Hash=6d0b5115...
+[Node 0 Handler ('127.0.0.1', 51510)] Block Received: Height=11, Hash=6d0b5115...
+[Mine Loop 7787] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 11] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51510)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51510)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000': <Blockchain.Backend.core.block.Block object at 0x103cc2120>}
+[Node 0 LostCompetition] Processing block 11 (6d0b5115...) under lock.
+[Node 0 LostCompetition] Processing block 11 (6d0b5115...) under lock.
+[Node 0 LostCompetition] Block 11 Merkle root VALID.
+[Node 0 LostCompetition] Block 11 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 11
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 11
+[Node 0 LostCompetition] Appending valid next block 11 (6d0b5115...)
+[Node 0 LostCompetition] Appending valid next block 11 (6d0b5115...)
+[Node 0 ApplyState] Applying state for block 11
+[Node 0 ApplyState] Applying state for block 11
+[ApplyState] Attempting TxOut.from_dict for ('874198fcd4e7e99a00074be429a636d0430845cf4d51abdeefb53446f574f2fd', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('874198fcd4e7e99a00074be429a636d0430845cf4d51abdeefb53446f574f2fd', 0)
+[BlockchainDB 0] Writing Block 11. Hash in dict: 6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000
+[BlockchainDB 0] Writing Block 11. Hash in dict: 6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000
+[Node 0 ReorgCheck] Checking for better forks (current height 11)...
+[Node 0 ReorgCheck] Checking for better forks (current height 11)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 11] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 11
+[Node 0 MainLoop] Current tip hash: 6d0b5115...
+Attempting to mine block 12 (Prev: 6d0b5115...)
+[Node 0 AddBlock] Starting to build block 12...
+[Node 0 AddBlock 12] Reading mempool...
+[Node 0 AddBlock 12] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 12] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 12] Calculated fee: 0
+[Node 0 AddBlock 12] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x0c']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: b5609801872d3c8be098dd600de3ad0240a79ddf13347661e64c7ea04fe9a2af
+[Node 0 AddBlock 12] Coinbase Tx created successfully. ID: b5609801872d3c8be098dd600de3ad0240a79ddf13347661e64c7ea04fe9a2af
+[Node 0 AddBlock 12] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 12] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 12] Coinbase amount updated with fee.
+[Node 0 AddBlock 12] Combined 1 transactions.
+[Node 0 AddBlock 12] Calculating Merkle root...
+[Node 0 AddBlock 12] Adjusting target...
+[Node 0 AddBlock 12] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 12] Creating block header...
+[Node 0 AddBlock 12] Block header created.
+[Node 0 AddBlock 12] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:06 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51525)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51525)
+[Node 0 Handler ('127.0.0.1', 51525)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51525)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51525)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51525)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51525)] Attempting to add peer node (Port: 51525)
+[Node 0 Handler ('127.0.0.1', 51525)] Attempting to add peer node (Port: 51525)
+[Node 0 addNode] Added new peer port: 51525
+[Node 0 addNode] Added new peer port: 51525
+[Node 0 Handler ('127.0.0.1', 51525)] Block Received: Height=12, Hash=66f78b03...
+[Node 0 Handler ('127.0.0.1', 51525)] Block Received: Height=12, Hash=66f78b03...
+[Mine Loop 16944] newBlockAvailable is True. Competition lost.
+[Node 0 Handler ('127.0.0.1', 51525)] Closing connection.
+[Node 0 AddBlock 12] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51525)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000': <Blockchain.Backend.core.block.Block object at 0x103cc22a0>}
+[Node 0 LostCompetition] Processing block 12 (66f78b03...) under lock.
+[Node 0 LostCompetition] Processing block 12 (66f78b03...) under lock.
+[Node 0 LostCompetition] Block 12 Merkle root VALID.
+[Node 0 LostCompetition] Block 12 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 12
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 12
+[Node 0 LostCompetition] Appending valid next block 12 (66f78b03...)
+[Node 0 LostCompetition] Appending valid next block 12 (66f78b03...)
+[Node 0 ApplyState] Applying state for block 12
+[Node 0 ApplyState] Applying state for block 12
+[ApplyState] Attempting TxOut.from_dict for ('cdfd2d8503176628dcf8ef12e3b33995a2d4d556431545259fdbedabd92393f4', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '2ba28698085529f90afe2a5cffc24d226878a823', 136, 172]}}
+[ApplyState] Successfully added UTXO ('cdfd2d8503176628dcf8ef12e3b33995a2d4d556431545259fdbedabd92393f4', 0)
+[BlockchainDB 0] Writing Block 12. Hash in dict: 66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000
+[BlockchainDB 0] Writing Block 12. Hash in dict: 66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000
+[Node 0 ReorgCheck] Checking for better forks (current height 12)...
+[Node 0 ReorgCheck] Checking for better forks (current height 12)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 12] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 12
+[Node 0 MainLoop] Current tip hash: 66f78b03...
+Attempting to mine block 13 (Prev: 66f78b03...)
+[Node 0 AddBlock] Starting to build block 13...
+[Node 0 AddBlock 13] Reading mempool...
+[Node 0 AddBlock 13] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 13] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 13] Calculated fee: 0
+[Node 0 AddBlock 13] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\r']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: ec2df0ffd16c3218f7dcb9d0a734210a47cceb256d9385302947a67d64d36011
+[Node 0 AddBlock 13] Coinbase Tx created successfully. ID: ec2df0ffd16c3218f7dcb9d0a734210a47cceb256d9385302947a67d64d36011
+[Node 0 AddBlock 13] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 13] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 13] Coinbase amount updated with fee.
+[Node 0 AddBlock 13] Combined 1 transactions.
+[Node 0 AddBlock 13] Calculating Merkle root...
+[Node 0 AddBlock 13] Adjusting target...
+[Node 0 AddBlock 13] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 13] Creating block header...
+[Node 0 AddBlock 13] Block header created.
+[Node 0 AddBlock 13] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:07 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51540)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51540)
+[Node 0 Handler ('127.0.0.1', 51540)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51540)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51540)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51540)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51540)] Attempting to add peer node (Port: 51540)
+[Node 0 Handler ('127.0.0.1', 51540)] Attempting to add peer node (Port: 51540)
+[Node 0 addNode] Added new peer port: 51540
+[Node 0 addNode] Added new peer port: 51540
+[Node 0 Handler ('127.0.0.1', 51540)] Block Received: Height=13, Hash=47928e36...
+[Node 0 Handler ('127.0.0.1', 51540)] Block Received: Height=13, Hash=47928e36...
+[Mine Loop 4794] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 13] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51540)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51540)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000': <Blockchain.Backend.core.block.Block object at 0x103cc28d0>}
+[Node 0 LostCompetition] Processing block 13 (47928e36...) under lock.
+[Node 0 LostCompetition] Processing block 13 (47928e36...) under lock.
+[Node 0 LostCompetition] Block 13 Merkle root VALID.
+[Node 0 LostCompetition] Block 13 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 13
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 13
+[Node 0 LostCompetition] Appending valid next block 13 (47928e36...)
+[Node 0 LostCompetition] Appending valid next block 13 (47928e36...)
+[Node 0 ApplyState] Applying state for block 13
+[Node 0 ApplyState] Applying state for block 13
+[ApplyState] Attempting TxOut.from_dict for ('c04a9012ecbe74e7e6632cc7d5d45d723b34d6eb209ebe4ecc46dbc18953459c', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '2ba28698085529f90afe2a5cffc24d226878a823', 136, 172]}}
+[ApplyState] Successfully added UTXO ('c04a9012ecbe74e7e6632cc7d5d45d723b34d6eb209ebe4ecc46dbc18953459c', 0)
+[BlockchainDB 0] Writing Block 13. Hash in dict: 47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000
+[BlockchainDB 0] Writing Block 13. Hash in dict: 47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000
+[Node 0 ReorgCheck] Checking for better forks (current height 13)...
+[Node 0 ReorgCheck] Checking for better forks (current height 13)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 13] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 13
+[Node 0 MainLoop] Current tip hash: 47928e36...
+Attempting to mine block 14 (Prev: 47928e36...)
+[Node 0 AddBlock] Starting to build block 14...
+[Node 0 AddBlock 14] Reading mempool...
+[Node 0 AddBlock 14] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 14] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 14] Calculated fee: 0
+[Node 0 AddBlock 14] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x0e']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 31f8fd937a8fafb94bbd3c74b74e641550da5e45cd1c8369aa65d140adcc988e
+[Node 0 AddBlock 14] Coinbase Tx created successfully. ID: 31f8fd937a8fafb94bbd3c74b74e641550da5e45cd1c8369aa65d140adcc988e
+[Node 0 AddBlock 14] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 14] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 14] Coinbase amount updated with fee.
+[Node 0 AddBlock 14] Combined 1 transactions.
+[Node 0 AddBlock 14] Calculating Merkle root...
+[Node 0 AddBlock 14] Adjusting target...
+[Node 0 AddBlock 14] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 14] Creating block header...
+[Node 0 AddBlock 14] Block header created.
+[Node 0 AddBlock 14] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:07 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51555)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51555)
+[Node 0 Handler ('127.0.0.1', 51555)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51555)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51555)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51555)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51555)] Attempting to add peer node (Port: 51555)
+[Node 0 Handler ('127.0.0.1', 51555)] Attempting to add peer node (Port: 51555)
+[Node 0 addNode] Added new peer port: 51555
+[Node 0 addNode] Added new peer port: 51555
+[Node 0 Handler ('127.0.0.1', 51555)] Block Received: Height=14, Hash=5a2e29f6...
+[Node 0 Handler ('127.0.0.1', 51555)] Block Received: Height=14, Hash=5a2e29f6...
+[Mine Loop 16087] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 14] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51555)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51555)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000': <Blockchain.Backend.core.block.Block object at 0x102afa930>}
+[Node 0 LostCompetition] Processing block 14 (5a2e29f6...) under lock.
+[Node 0 LostCompetition] Processing block 14 (5a2e29f6...) under lock.
+[Node 0 LostCompetition] Block 14 Merkle root VALID.
+[Node 0 LostCompetition] Block 14 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 14
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 14
+[Node 0 LostCompetition] Appending valid next block 14 (5a2e29f6...)
+[Node 0 LostCompetition] Appending valid next block 14 (5a2e29f6...)
+[Node 0 ApplyState] Applying state for block 14
+[Node 0 ApplyState] Applying state for block 14
+[ApplyState] Attempting TxOut.from_dict for ('6c3719f8e352e7e101f751e9598997560d232aa230bc6805756fbf03a9dfb068', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('6c3719f8e352e7e101f751e9598997560d232aa230bc6805756fbf03a9dfb068', 0)
+[BlockchainDB 0] Writing Block 14. Hash in dict: 5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000
+[BlockchainDB 0] Writing Block 14. Hash in dict: 5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000
+[Node 0 ReorgCheck] Checking for better forks (current height 14)...
+[Node 0 ReorgCheck] Checking for better forks (current height 14)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 14] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 14
+[Node 0 MainLoop] Current tip hash: 5a2e29f6...
+Attempting to mine block 15 (Prev: 5a2e29f6...)
+[Node 0 AddBlock] Starting to build block 15...
+[Node 0 AddBlock 15] Reading mempool...
+[Node 0 AddBlock 15] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 15] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 15] Calculated fee: 0
+[Node 0 AddBlock 15] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x0f']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 52cafb218278d743a9a9c012d944c14db6b2cfcfd97bac8eea6a0af4c13dc8cb
+[Node 0 AddBlock 15] Coinbase Tx created successfully. ID: 52cafb218278d743a9a9c012d944c14db6b2cfcfd97bac8eea6a0af4c13dc8cb
+[Node 0 AddBlock 15] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 15] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 15] Coinbase amount updated with fee.
+[Node 0 AddBlock 15] Combined 1 transactions.
+[Node 0 AddBlock 15] Calculating Merkle root...
+[Node 0 AddBlock 15] Adjusting target...
+[Node 0 AddBlock 15] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 15] Creating block header...
+[Node 0 AddBlock 15] Block header created.
+[Node 0 AddBlock 15] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:08 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51568)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51568)
+[Node 0 Handler ('127.0.0.1', 51568)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51568)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51568)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51568)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51568)] Attempting to add peer node (Port: 51568)
+[Node 0 Handler ('127.0.0.1', 51568)] Attempting to add peer node (Port: 51568)
+[Node 0 addNode] Added new peer port: 51568
+[Node 0 addNode] Added new peer port: 51568
+[Node 0 Handler ('127.0.0.1', 51568)] Block Received: Height=15, Hash=4822fa72...
+[Node 0 Handler ('127.0.0.1', 51568)] Block Received: Height=15, Hash=4822fa72...
+[Mine Loop 7703] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 15] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51568)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51568)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000': <Blockchain.Backend.core.block.Block object at 0x103c9a090>}
+[Node 0 LostCompetition] Processing block 15 (4822fa72...) under lock.
+[Node 0 LostCompetition] Processing block 15 (4822fa72...) under lock.
+[Node 0 LostCompetition] Block 15 Merkle root VALID.
+[Node 0 LostCompetition] Block 15 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 15
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 15
+[Node 0 LostCompetition] Appending valid next block 15 (4822fa72...)
+[Node 0 LostCompetition] Appending valid next block 15 (4822fa72...)
+[Node 0 ApplyState] Applying state for block 15
+[Node 0 ApplyState] Applying state for block 15
+[ApplyState] Attempting TxOut.from_dict for ('8ec52ba8bcea89778f61616dd5db4f8b22984f32db9f3f1198ed3f6c5a08d32c', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('8ec52ba8bcea89778f61616dd5db4f8b22984f32db9f3f1198ed3f6c5a08d32c', 0)
+[BlockchainDB 0] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+[BlockchainDB 0] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+[Node 0 ReorgCheck] Checking for better forks (current height 15)...
+[Node 0 ReorgCheck] Checking for better forks (current height 15)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 15] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 15
+[Node 0 MainLoop] Current tip hash: 4822fa72...
+Attempting to mine block 16 (Prev: 4822fa72...)
+[Node 0 AddBlock] Starting to build block 16...
+[Node 0 AddBlock 16] Reading mempool...
+[Node 0 AddBlock 16] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 16] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 16] Calculated fee: 0
+[Node 0 AddBlock 16] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x10']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 94fada16ee1961c2e310b614d167318aa4259dc5391ea2fe60f887d901e4fc57
+[Node 0 AddBlock 16] Coinbase Tx created successfully. ID: 94fada16ee1961c2e310b614d167318aa4259dc5391ea2fe60f887d901e4fc57
+[Node 0 AddBlock 16] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 16] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 16] Coinbase amount updated with fee.
+[Node 0 AddBlock 16] Combined 1 transactions.
+[Node 0 AddBlock 16] Calculating Merkle root...
+[Node 0 AddBlock 16] Adjusting target...
+[Node 0 AddBlock 16] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 16] Creating block header...
+[Node 0 AddBlock 16] Block header created.
+[Node 0 AddBlock 16] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:08 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+
+ Golden hash found! Nonce: 14,394, Hashrate: 25619.31 h/s
+[Node 0 AddBlock 16] blockheader.mine() returned. competitionOver = False
+[Node 0 AddBlock 16] Mining successful. Nonce: 14393
+[Node 0 AddBlock 16] Acquiring state lock to add block...
+[Node 0 AddBlock 16] State lock acquired.
+[Node 0 AddBlock 16] Double-checking chain tip...
+[Node 0 AddBlock 16] Current tip: Height=15, Hash=4822fa72...
+[Node 0 AddBlock 16] Creating Block object...
+[Node 0 AddBlock 16] Creating block dict...
+[Node 0 AddBlock 16] Creating block dict...
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 16
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 16
+[Node 0 AddBlock 16] Block dict created.
+[Node 0 AddBlock 16] Adjusting block dict for DB consistency...
+[Node 0 AddBlock 16] Block dict adjustment complete.
+[Node 0 AddBlock 16] Calling apply_state_for_block...
+[Node 0 ApplyState] Applying state for block 16
+[Node 0 ApplyState] Applying state for block 16
+[ApplyState] Attempting TxOut.from_dict for ('94fada16ee1961c2e310b614d167318aa4259dc5391ea2fe60f887d901e4fc57', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '87ddb8e9146d2772a4d0f01d2d6d30307510b7d0', 136, 172]}}
+[ApplyState] Successfully added UTXO ('94fada16ee1961c2e310b614d167318aa4259dc5391ea2fe60f887d901e4fc57', 0)
+[Node 0 AddBlock 16] apply_state_for_block successful.
+[Node 0 AddBlock 16] Writing block to DB...
+[BlockchainDB 0] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+[BlockchainDB 0] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+[Node 0 AddBlock 16] DB write successful.
+[Node 0 AddBlock 16] Broadcasting block...
+[BroadcastBlock] Broadcasting block b'\xfd\x92\xae\xecR)\xb2\xd0\x8c10\xaf\xc3\xec\x19\x87/\xa5\x87W\xe5\xe4!\x08\x9a\xd8\xa3E\x12\x8b\x00\x00' to network.
+[startSync Node 0] Starting sync action: Publishing block b'\xfd\x92\xae\xecR)\xb2\xd0\x8c10\xaf\xc3\xec\x19\x87/\xa5\x87W\xe5\xe4!\x08\x9a\xd8\xa3E\x12\x8b\x00\x00'
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002, 51396, 51401, 51416, 51426, 51435, 51455, 51465, 51476, 51488, 51499, 51510, 51525, 51540, 51555, 51568]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9001
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Publisher] Published Block 16 to 127.0.0.1:9001
+[Node 0 Publisher] Published Block 16 to 127.0.0.1:9001
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9002
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connected successfully to ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Publisher] Published Block 16 to 127.0.0.1:9002
+[Node 0 Publisher] Published Block 16 to 127.0.0.1:9002
+[startSync Node 0] Processing peer 127.0.0.1:51396
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51396
+[Node 51396] Attempting to connect to target ('127.0.0.1', 51396)
+[Node 51396] Connection refused by target ('127.0.0.1', 51396)
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51401
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51401
+[Node 51401] Attempting to connect to target ('127.0.0.1', 51401)
+[Node 51401] Connection refused by target ('127.0.0.1', 51401)
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51416
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51416
+[Node 51416] Attempting to connect to target ('127.0.0.1', 51416)
+[Node 51416] Connection refused by target ('127.0.0.1', 51416)
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51426
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51426
+[Node 51426] Attempting to connect to target ('127.0.0.1', 51426)
+[Node 51426] Connection refused by target ('127.0.0.1', 51426)
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51435
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51435
+[Node 51435] Attempting to connect to target ('127.0.0.1', 51435)
+[Node 51435] Connection refused by target ('127.0.0.1', 51435)
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51455
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51455
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51455
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51455
+[Node 51455] Attempting to connect to target ('127.0.0.1', 51455)
+[Node 51455] Connection refused by target ('127.0.0.1', 51455)
+[Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51465
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51465
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51465
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51465
+[Node 51465] Attempting to connect to target ('127.0.0.1', 51465)
+[Node 51465] Connection refused by target ('127.0.0.1', 51465)
+[Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51476
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51476
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51476
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51476
+[Node 51476] Attempting to connect to target ('127.0.0.1', 51476)
+[Node 51476] Connection refused by target ('127.0.0.1', 51476)
+[Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51488
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51488
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51488
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51488
+[Node 51488] Attempting to connect to target ('127.0.0.1', 51488)
+[Node 51488] Connection refused by target ('127.0.0.1', 51488)
+[Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51499
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51499
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51499
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51499
+[Node 51499] Attempting to connect to target ('127.0.0.1', 51499)
+[Node 51499] Connection refused by target ('127.0.0.1', 51499)
+[Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51510
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51510
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51510
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51510
+[Node 51510] Attempting to connect to target ('127.0.0.1', 51510)
+[Node 51510] Connection refused by target ('127.0.0.1', 51510)
+[Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51525
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51525. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51525. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51525
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51525
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51525
+[Node 51525] Attempting to connect to target ('127.0.0.1', 51525)
+[Node 51525] Connection refused by target ('127.0.0.1', 51525)
+[Node 0 Connector] Connected to 127.0.0.1:51525 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51525 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51540
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51540
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51540
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51540
+[Node 51540] Attempting to connect to target ('127.0.0.1', 51540)
+[Node 51540] Connection refused by target ('127.0.0.1', 51540)
+[Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51555
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51555
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51555
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51555
+[Node 51555] Attempting to connect to target ('127.0.0.1', 51555)
+[Node 51555] Connection refused by target ('127.0.0.1', 51555)
+[Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51568
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51568
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51568
+[Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51568
+[Node 51568] Attempting to connect to target ('127.0.0.1', 51568)
+[Node 51568] Connection refused by target ('127.0.0.1', 51568)
+[Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+[Node 0 AddBlock 16] Broadcast initiated.
+[Node 0 AddBlock 16] State lock released.
+[Node 0 AddBlock 16] END
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 16
+[Node 0 MainLoop] Current tip hash: fd92aeec...
+Attempting to mine block 17 (Prev: fd92aeec...)
+[Node 0 AddBlock] Starting to build block 17...
+[Node 0 AddBlock 17] Reading mempool...
+[Node 0 AddBlock 17] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 17] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 17] Calculated fee: 0
+[Node 0 AddBlock 17] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x11']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: a452b6d1e4dc77ee0bf55e3275639835453e19a009abe92ca42441a9c0e35b56
+[Node 0 AddBlock 17] Coinbase Tx created successfully. ID: a452b6d1e4dc77ee0bf55e3275639835453e19a009abe92ca42441a9c0e35b56
+[Node 0 AddBlock 17] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 17] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 17] Coinbase amount updated with fee.
+[Node 0 AddBlock 17] Combined 1 transactions.
+[Node 0 AddBlock 17] Calculating Merkle root...
+[Node 0 AddBlock 17] Adjusting target...
+[Node 0 AddBlock 17] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 17] Creating block header...
+[Node 0 AddBlock 17] Block header created.
+[Node 0 AddBlock 17] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:09 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51598)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51598)
+[Node 0 Handler ('127.0.0.1', 51598)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51598)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51598)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51598)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51598)] Attempting to add peer node (Port: 51598)
+[Node 0 Handler ('127.0.0.1', 51598)] Attempting to add peer node (Port: 51598)
+[Node 0 addNode] Added new peer port: 51598
+[Node 0 addNode] Added new peer port: 51598
+[Node 0 Handler ('127.0.0.1', 51598)] Block Received: Height=17, Hash=96b77839...
+[Node 0 Handler ('127.0.0.1', 51598)] Block Received: Height=17, Hash=96b77839...
+[Mine Loop 13242] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 17] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51598)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51598)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000': <Blockchain.Backend.core.block.Block object at 0x103cc2d80>}
+[Node 0 LostCompetition] Processing block 17 (96b77839...) under lock.
+[Node 0 LostCompetition] Processing block 17 (96b77839...) under lock.
+[Node 0 LostCompetition] Block 17 Merkle root VALID.
+[Node 0 LostCompetition] Block 17 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 17
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 17
+[Node 0 LostCompetition] Appending valid next block 17 (96b77839...)
+[Node 0 LostCompetition] Appending valid next block 17 (96b77839...)
+[Node 0 ApplyState] Applying state for block 17
+[Node 0 ApplyState] Applying state for block 17
+[ApplyState] Attempting TxOut.from_dict for ('80600dfcfeac9b377922a2014b5de3e204e0398edcafefab951d4090c76f33cd', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('80600dfcfeac9b377922a2014b5de3e204e0398edcafefab951d4090c76f33cd', 0)
+[BlockchainDB 0] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+[BlockchainDB 0] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+[Node 0 ReorgCheck] Checking for better forks (current height 17)...
+[Node 0 ReorgCheck] Checking for better forks (current height 17)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 17] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 17
+[Node 0 MainLoop] Current tip hash: 96b77839...
+Attempting to mine block 18 (Prev: 96b77839...)
+[Node 0 AddBlock] Starting to build block 18...
+[Node 0 AddBlock 18] Reading mempool...
+[Node 0 AddBlock 18] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 18] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 18] Calculated fee: 0
+[Node 0 AddBlock 18] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x12']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 45212048ae65f0c08df09a671e5ca237276db48c7a898f20942cd435582ddbec
+[Node 0 AddBlock 18] Coinbase Tx created successfully. ID: 45212048ae65f0c08df09a671e5ca237276db48c7a898f20942cd435582ddbec
+[Node 0 AddBlock 18] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 18] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 18] Coinbase amount updated with fee.
+[Node 0 AddBlock 18] Combined 1 transactions.
+[Node 0 AddBlock 18] Calculating Merkle root...
+[Node 0 AddBlock 18] Adjusting target...
+[Node 0 AddBlock 18] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 18] Creating block header...
+[Node 0 AddBlock 18] Block header created.
+[Node 0 AddBlock 18] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:09 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51612)
+[Node 0 Server] Accepted connection from ('127.0.0.1', 51612)
+[Node 0 Handler ('127.0.0.1', 51612)] Handling connection...
+[Node 0 Handler ('127.0.0.1', 51612)] Handling connection...
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Node 0 Handler ('127.0.0.1', 51612)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51612)] Received command: b'block'
+[Node 0 Handler ('127.0.0.1', 51612)] Attempting to add peer node (Port: 51612)
+[Node 0 Handler ('127.0.0.1', 51612)] Attempting to add peer node (Port: 51612)
+[Node 0 addNode] Added new peer port: 51612
+[Node 0 addNode] Added new peer port: 51612
+[Node 0 Handler ('127.0.0.1', 51612)] Block Received: Height=18, Hash=60cd6bf1...
+[Node 0 Handler ('127.0.0.1', 51612)] Block Received: Height=18, Hash=60cd6bf1...
+[Mine Loop 4594] newBlockAvailable is True. Competition lost.
+[Node 0 AddBlock 18] blockheader.mine() returned. competitionOver = True
+[Node 0 Handler ('127.0.0.1', 51612)] Closing connection.
+[Node 0 Handler ('127.0.0.1', 51612)] Closing connection.
+[Node 0 LostCompetition DEBUG] Entered. newBlockAvailable: {'60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000': <Blockchain.Backend.core.block.Block object at 0x103cc3170>}
+[Node 0 LostCompetition] Processing block 18 (60cd6bf1...) under lock.
+[Node 0 LostCompetition] Processing block 18 (60cd6bf1...) under lock.
+[Node 0 LostCompetition] Block 18 Merkle root VALID.
+[Node 0 LostCompetition] Block 18 Merkle root VALID.
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 18
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 18
+[Node 0 LostCompetition] Appending valid next block 18 (60cd6bf1...)
+[Node 0 LostCompetition] Appending valid next block 18 (60cd6bf1...)
+[Node 0 ApplyState] Applying state for block 18
+[Node 0 ApplyState] Applying state for block 18
+[ApplyState] Attempting TxOut.from_dict for ('66579d1e4670ad08394f153df7eb3bcb7bccac604fe9112937db6bcdd3a6b169', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, 'da47123efc51379131bef1bf2ba8c91f60dd72a8', 136, 172]}}
+[ApplyState] Successfully added UTXO ('66579d1e4670ad08394f153df7eb3bcb7bccac604fe9112937db6bcdd3a6b169', 0)
+[BlockchainDB 0] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+[BlockchainDB 0] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+[Node 0 ReorgCheck] Checking for better forks (current height 18)...
+[Node 0 ReorgCheck] Checking for better forks (current height 18)...
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 LostCompetition] Finished checking newBlockAvailable.
+[Node 0 AddBlock 18] Competition lost. Returning.
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 18
+[Node 0 MainLoop] Current tip hash: 60cd6bf1...
+Attempting to mine block 19 (Prev: 60cd6bf1...)
+[Node 0 AddBlock] Starting to build block 19...
+[Node 0 AddBlock 19] Reading mempool...
+[Node 0 AddBlock 19] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 19] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 19] Calculated fee: 0
+[Node 0 AddBlock 19] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x13']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: 96acd05af50d7127aed93bc2424b9750a3c7e907b80439c313eb1a2f9f13df32
+[Node 0 AddBlock 19] Coinbase Tx created successfully. ID: 96acd05af50d7127aed93bc2424b9750a3c7e907b80439c313eb1a2f9f13df32
+[Node 0 AddBlock 19] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 19] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 19] Coinbase amount updated with fee.
+[Node 0 AddBlock 19] Combined 1 transactions.
+[Node 0 AddBlock 19] Calculating Merkle root...
+[Node 0 AddBlock 19] Adjusting target...
+[Node 0 AddBlock 19] Target adjusted. New bits: ffff001f
+[Node 0 AddBlock 19] Creating block header...
+[Node 0 AddBlock 19] Block header created.
+[Node 0 AddBlock 19] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:09 2025[Mine Loop Start] Initial Nonce: 0, Target: 0000ffff00000000000000000000000000000000000000000000000000000000
+
+ Golden hash found! Nonce: 83,260, Hashrate: 24971.33 h/s
+[Node 0 AddBlock 19] blockheader.mine() returned. competitionOver = False
+[Node 0 AddBlock 19] Mining successful. Nonce: 83259
+[Node 0 AddBlock 19] Acquiring state lock to add block...
+[Node 0 AddBlock 19] State lock acquired.
+[Node 0 AddBlock 19] Double-checking chain tip...
+[Node 0 AddBlock 19] Current tip: Height=18, Hash=60cd6bf1...
+[Node 0 AddBlock 19] Creating Block object...
+[Node 0 AddBlock 19] Creating block dict...
+[Node 0 AddBlock 19] Creating block dict...
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 19
+Coinbase TxIn 00000000 script_sig['cmds'] converted height to int: 19
+[Node 0 AddBlock 19] Block dict created.
+[Node 0 AddBlock 19] Adjusting block dict for DB consistency...
+[Node 0 AddBlock 19] Block dict adjustment complete.
+[Node 0 AddBlock 19] Calling apply_state_for_block...
+[Node 0 ApplyState] Applying state for block 19
+[Node 0 ApplyState] Applying state for block 19
+[ApplyState] Attempting TxOut.from_dict for ('96acd05af50d7127aed93bc2424b9750a3c7e907b80439c313eb1a2f9f13df32', 0) with data: {'amount': 5000000000, 'script_pubkey': {'cmds': [118, 169, '87ddb8e9146d2772a4d0f01d2d6d30307510b7d0', 136, 172]}}
+[ApplyState] Successfully added UTXO ('96acd05af50d7127aed93bc2424b9750a3c7e907b80439c313eb1a2f9f13df32', 0)
+[Node 0 AddBlock 19] apply_state_for_block successful.
+[Node 0 AddBlock 19] Writing block to DB...
+[BlockchainDB 0] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+[BlockchainDB 0] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+[Node 0 AddBlock 19] DB write successful.
+[Node 0 AddBlock 19] Broadcasting block...
+[BroadcastBlock] Broadcasting block b'$\x91q=0U\xf4\xd41\x06v\xbf\x85rk\xe0y\\\x11\x82\x9dx\x9ay\n\xa1\x89\xbc\xd9+\x00\x00' to network.
+[startSync Node 0] Starting sync action: Publishing block b'$\x91q=0U\xf4\xd41\x06v\xbf\x85rk\xe0y\\\x11\x82\x9dx\x9ay\n\xa1\x89\xbc\xd9+\x00\x00'
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[startSync Node 0 DEBUG]: Port list for sync: [9000, 9001, 9002, 51396, 51401, 51416, 51426, 51435, 51455, 51465, 51476, 51488, 51499, 51510, 51525, 51540, 51555, 51568, 51598, 51612]
+[startSync Node 0] Skipping self (127.0.0.1:9000)
+[startSync Node 0] Processing peer 127.0.0.1:9001
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9001
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9001
+[Node 9001] Attempting to connect to target ('127.0.0.1', 9001)
+[Node 9001] Connected successfully to ('127.0.0.1', 9001)
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+[Node 0 Publisher] Published Block 19 to 127.0.0.1:9001
+[Node 0 Publisher] Published Block 19 to 127.0.0.1:9001
+[startSync Node 0] Processing peer 127.0.0.1:9002
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9002
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9002
+[Node 9002] Attempting to connect to target ('127.0.0.1', 9002)
+[Node 9002] Connected successfully to ('127.0.0.1', 9002)
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+[Node 0 Publisher] Published Block 19 to 127.0.0.1:9002
+[Node 0 Publisher] Published Block 19 to 127.0.0.1:9002
+[startSync Node 0] Processing peer 127.0.0.1:51396
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51396
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51396
+[Node 51396] Attempting to connect to target ('127.0.0.1', 51396)
+[Node 51396] Connection refused by target ('127.0.0.1', 51396)
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51401
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51401
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51401
+[Node 51401] Attempting to connect to target ('127.0.0.1', 51401)
+[Node 51401] Connection refused by target ('127.0.0.1', 51401)
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51416
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51416
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51416
+[Node 51416] Attempting to connect to target ('127.0.0.1', 51416)
+[Node 51416] Connection refused by target ('127.0.0.1', 51416)
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51426
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51426
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51426
+[Node 51426] Attempting to connect to target ('127.0.0.1', 51426)
+[Node 51426] Connection refused by target ('127.0.0.1', 51426)
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51435
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51435
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51435
+[Node 51435] Attempting to connect to target ('127.0.0.1', 51435)
+[Node 51435] Connection refused by target ('127.0.0.1', 51435)
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51455
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51455
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51455
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51455
+[Node 51455] Attempting to connect to target ('127.0.0.1', 51455)
+[Node 51455] Connection refused by target ('127.0.0.1', 51455)
+[Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51465
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51465
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51465
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51465
+[Node 51465] Attempting to connect to target ('127.0.0.1', 51465)
+[Node 51465] Connection refused by target ('127.0.0.1', 51465)
+[Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51476
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51476
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51476
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51476
+[Node 51476] Attempting to connect to target ('127.0.0.1', 51476)
+[Node 51476] Connection refused by target ('127.0.0.1', 51476)
+[Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51488
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51488
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51488
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51488
+[Node 51488] Attempting to connect to target ('127.0.0.1', 51488)
+[Node 51488] Connection refused by target ('127.0.0.1', 51488)
+[Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51499
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51499
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51499
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51499
+[Node 51499] Attempting to connect to target ('127.0.0.1', 51499)
+[Node 51499] Connection refused by target ('127.0.0.1', 51499)
+[Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51510
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51510
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51510
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51510
+[Node 51510] Attempting to connect to target ('127.0.0.1', 51510)
+[Node 51510] Connection refused by target ('127.0.0.1', 51510)
+[Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51525
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51525. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51525. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51525
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51525
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51525
+[Node 51525] Attempting to connect to target ('127.0.0.1', 51525)
+[Node 51525] Connection refused by target ('127.0.0.1', 51525)
+[Node 0 Connector] Connected to 127.0.0.1:51525 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51525 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51540
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51540
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51540
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51540
+[Node 51540] Attempting to connect to target ('127.0.0.1', 51540)
+[Node 51540] Connection refused by target ('127.0.0.1', 51540)
+[Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51555
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51555
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51555
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51555
+[Node 51555] Attempting to connect to target ('127.0.0.1', 51555)
+[Node 51555] Connection refused by target ('127.0.0.1', 51555)
+[Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51568
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51568
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51568
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51568
+[Node 51568] Attempting to connect to target ('127.0.0.1', 51568)
+[Node 51568] Connection refused by target ('127.0.0.1', 51568)
+[Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51598
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51598. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51598. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51598
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51598
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51598
+[Node 51598] Attempting to connect to target ('127.0.0.1', 51598)
+[Node 51598] Connection refused by target ('127.0.0.1', 51598)
+[Node 0 Connector] Connected to 127.0.0.1:51598 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51598 from local port OS-assigned
+[startSync Node 0] Processing peer 127.0.0.1:51612
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51612. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[SyncManager Init 0] Initialized. Listening on 127.0.0.1:51612. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[NodeDB 0] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/node.db
+[SyncManager Init 0] NodeDB initialized.
+[SyncManager Init 0] NodeDB initialized.
+[startSync Node 0] Calling publishBlock to 127.0.0.1:51612
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51612
+[Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51612
+[Node 51612] Attempting to connect to target ('127.0.0.1', 51612)
+[Node 51612] Connection refused by target ('127.0.0.1', 51612)
+[Node 0 Connector] Connected to 127.0.0.1:51612 from local port OS-assigned
+[Node 0 Connector] Connected to 127.0.0.1:51612 from local port OS-assigned
+[Node 0 AddBlock 19] Broadcast initiated.
+[Node 0 AddBlock 19] State lock released.
+[Node 0 AddBlock 19] END
+[Node 0 MainLoop DEBUG] Before main loop - newBlockAvailable: {}
+[Node 0 MainLoop] Current height: 19
+[Node 0 MainLoop] Current tip hash: 2491713d...
+Attempting to mine block 20 (Prev: 2491713d...)
+[Node 0 AddBlock] Starting to build block 20...
+[Node 0 AddBlock 20] Reading mempool...
+[Node 0 AddBlock 20] Mempool read. Selected 0 txs. Size so far: 80
+[Node 0 AddBlock 20] Calculating fee...
+[CalculateFee DEBUG] No transactions selected, returning 0.
+[Node 0 AddBlock 20] Calculated fee: 0
+[Node 0 AddBlock 20] Creating coinbase tx...
+DEBUG Coinbase: TxIn created. ScriptSig cmds: [b'\x14']
+DEBUG Coinbase: Decoding address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+DEBUG Coinbase: Creating p2pkh script for h160: 87ddb8e9146d2772a4d0f01d2d6d30307510b7d0
+DEBUG Coinbase: Script created: [118, 169, b"\x87\xdd\xb8\xe9\x14m'r\xa4\xd0\xf0\x1d-m00u\x10\xb7\xd0", 136, 172]
+DEBUG Coinbase: TxOut created. Amount: 5000000000
+DEBUG Coinbase: Tx object created.
+DEBUG Coinbase: Calculating TxID...
+DEBUG Coinbase: TxID calculated: ffb339d7cfb5095aba67afdf791a41231f48de3b8662682a55b0ee0197a7c0c3
+[Node 0 AddBlock 20] Coinbase Tx created successfully. ID: ffb339d7cfb5095aba67afdf791a41231f48de3b8662682a55b0ee0197a7c0c3
+[Node 0 AddBlock 20] Coinbase added to tx list. List size: 1
+[Node 0 AddBlock 20] Coinbase created. Size: 87. Total size: 167
+[Node 0 AddBlock 20] Coinbase amount updated with fee.
+[Node 0 AddBlock 20] Combined 1 transactions.
+[Node 0 AddBlock 20] Calculating Merkle root...
+[Node 0 AddBlock 20] Adjusting target...
+[Node 0 AddBlock 20] Target adjusted. New bits: 4761571d
+[Node 0 AddBlock 20] Creating block header...
+[Node 0 AddBlock 20] Block header created.
+[Node 0 AddBlock 20] Calling blockheader.mine()...
+ Mining started at Fri Apr 25 18:23:13 2025[Mine Loop Start] Initial Nonce: 0, Target: 000000576147ae147ae000000000000000000000000000000000000000000000
+ Mining in progress 100000 Nonce: 100000 Hash: 82310764664117504372742261856302362087904326093924071303882954822262977693331 Time elapsed: 4.03sFrontend using blockchain DB path: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+[BlockchainDB None] Attempting to connect to: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+127.0.0.1 - - [25/Apr/2025 18:23:18] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:18] "GET /block HTTP/1.1" 200 -
+127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+ Mining in progress 200000 Nonce: 200000 Hash: 91246159190019134096058693467712112351554176668613584859104216871557877418991 Time elapsed: 7.95s Mining in progress 300000 Nonce: 300000 Hash: 69118990601790897759489035370251314303723110063977548995795672428372841485278 Time elapsed: 11.85s Mining in progress 400000 Nonce: 400000 Hash: 102721138217711939507048575463251965708736796022600531721587172208059014223726 Time elapsed: 15.74s Mining in progress 500000 Nonce: 500000 Hash: 56931629843437530399809631362253028272587712274806104876990508418111753876515 Time elapsed: 19.63s Mining in progress 600000 Nonce: 600000 Hash: 18910721878356586334517536476380753025120377729391925486673461839191474050216 Time elapsed: 23.90s\nShutting down node NODE_ID gracefully...
+\nShutting down node NODE_ID gracefully...
+Node 0 active on port 9000, web: 5900
+Node 0 active on port 9000, web: 5900
+Node 0 active on port 9000, web: 5900
+\nShutting down node NODE_ID gracefully...

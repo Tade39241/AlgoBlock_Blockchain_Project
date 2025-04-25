@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block title %} UTXOS {% endblock %}
+{% block content %}
+<div class ="grid-container1">
+    <h1>Unspent Transactions (UTXOS) </h1>
+    <div class = "blockheader">
+        <div class ="bheader">Transation ID</div>
+        <!-- <div class ="bheader">Index</div> -->
+    </div>
+
+    {% for TxInfo in allTransactions %}
+    <a id="detail" href="{{url_for('txDetails', txid=TxInfo[0])}}">
+        <div class="block">
+            <div class="block-item TxId">{{ TxInfo[0] }}</div>
+            <!-- Optional: Display the index (TxInfo[1]) -->
+            <!-- <div class="block-item TxIndex">{{ TxInfo[1] }}</div> -->
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

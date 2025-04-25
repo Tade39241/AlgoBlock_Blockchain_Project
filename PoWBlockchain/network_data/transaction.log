@@ -1,0 +1,696 @@
+2025-04-25 18:22:55,827 INFO: [Node 2 ReorgManager] Initialised.
+2025-04-25 18:22:55,831 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:55,833 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:55,834 INFO: [Node 2 Server] SERVER STARTED. LISTENING at 127.0.0.1:9002
+2025-04-25 18:22:55,836 INFO:  * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
+2025-04-25 18:22:55,941 INFO: [Node 2 Server] Accepted connection from ('127.0.0.1', 51407)
+2025-04-25 18:22:55,941 INFO: [Node 2 Handler ('127.0.0.1', 51407)] Handling connection...
+2025-04-25 18:22:55,942 INFO: [Node 2 addNode] Added new peer port: 51407
+2025-04-25 18:22:55,942 INFO: [Node 2 Handler ('127.0.0.1', 51407)] Block Received: Height=1, Hash=ff4e3327...
+2025-04-25 18:22:55,943 INFO: [Node 2 Handler ('127.0.0.1', 51407)] Closing connection.
+2025-04-25 18:22:57,568 INFO: 127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+2025-04-25 18:22:57,570 INFO: [Node 2 Server] Accepted connection from ('127.0.0.1', 51415)
+2025-04-25 18:22:57,570 INFO: [Node 2 Handler ('127.0.0.1', 51415)] Handling connection...
+2025-04-25 18:22:57,570 INFO: [Node 2 Handler ('127.0.0.1', 51415)] Received port check magic, closing.
+2025-04-25 18:22:57,839 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:57,840 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:57,840 INFO: [Node 2 Downloader] Starting download from 127.0.0.1:9000...
+2025-04-25 18:22:57,842 INFO: [Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+2025-04-25 18:22:57,842 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:22:57,842 INFO: [Node 2 Downloader] Sent requestBlock to 127.0.0.1:9000
+2025-04-25 18:22:57,844 INFO: [Node 2 Downloader 9000] Received Block: Height=1, Hash=ff4e3327...
+2025-04-25 18:22:57,846 INFO: [Node 2 Downloader 9000] Received portlist: [9000, 9001, 9002, 51396, 51401, 51416]
+2025-04-25 18:22:57,846 INFO: [Node 2 Downloader 9000] Added 3 new peer(s) from received list.
+2025-04-25 18:22:57,847 INFO: [Node 2 Downloader 9000] Received FinishedSending message. Download complete.
+2025-04-25 18:22:57,847 INFO: [Node 2 Downloader] Connection to 127.0.0.1:9000 closed.
+2025-04-25 18:22:57,847 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:57,848 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:57,848 INFO: [Node 2 Downloader] Starting download from 127.0.0.1:9001...
+2025-04-25 18:22:57,849 INFO: [Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+2025-04-25 18:22:57,849 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:22:57,849 INFO: [Node 2 Downloader] Sent requestBlock to 127.0.0.1:9001
+2025-04-25 18:22:57,851 INFO: [Node 2 Downloader 9001] Received Block: Height=1, Hash=ff4e3327...
+2025-04-25 18:22:57,852 INFO: [Node 2 Downloader 9001] Received portlist: [9000, 9001, 9002, 51396, 51401, 51406, 51417]
+2025-04-25 18:22:57,853 INFO: [Node 2 Downloader 9001] Added 2 new peer(s) from received list.
+2025-04-25 18:22:57,853 INFO: [Node 2 Downloader 9001] Received FinishedSending message. Download complete.
+2025-04-25 18:22:57,853 INFO: [Node 2 Downloader] Connection to 127.0.0.1:9001 closed.
+2025-04-25 18:22:57,854 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:57,854 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:57,855 INFO: [Node 2 Downloader] Starting download from 127.0.0.1:51407...
+2025-04-25 18:22:57,855 INFO: [Node 2 Downloader] Requesting blocks after local tip: 40177a34...
+2025-04-25 18:22:57,856 INFO: [Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+2025-04-25 18:22:57,856 INFO: [Node 2 Downloader] Connection to 127.0.0.1:51407 closed.
+2025-04-25 18:22:57,902 INFO: 127.0.0.1 - - [25/Apr/2025 18:22:57] "GET / HTTP/1.1" 200 -
+2025-04-25 18:22:57,910 INFO: [Node 2 ReorgManager] Initialised.
+2025-04-25 18:22:57,913 INFO: [Node 2 LostCompetition] Processing block 1 (ff4e3327...) under lock.
+2025-04-25 18:22:57,914 INFO: [Node 2 LostCompetition] Appending valid next block 1 (ff4e3327...)
+2025-04-25 18:22:57,914 INFO: [Node 2 ApplyState] Applying state for block 1
+2025-04-25 18:22:57,914 INFO: [BlockchainDB 2] Writing Block 1. Hash in dict: ff4e3327f7970d5cf31f5ae69e2ebc06532afbbcacbaaafdb05e985f7c0d0000
+2025-04-25 18:22:57,916 INFO: [Node 2 ReorgCheck] Checking for better forks (current height 1)...
+2025-04-25 18:22:57,916 INFO: [Node 2 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:22:58,820 INFO: [Node 2 Server] Accepted connection from ('127.0.0.1', 51422)
+2025-04-25 18:22:58,821 INFO: [Node 2 Handler ('127.0.0.1', 51422)] Handling connection...
+2025-04-25 18:22:58,822 INFO: [Node 2 addNode] Added new peer port: 51422
+2025-04-25 18:22:58,822 INFO: [Node 2 Handler ('127.0.0.1', 51422)] Block Received: Height=2, Hash=33bdafb9...
+2025-04-25 18:22:58,823 INFO: [Node 2 Handler ('127.0.0.1', 51422)] Closing connection.
+2025-04-25 18:22:58,839 INFO: [Node 2 LostCompetition] Processing block 2 (33bdafb9...) under lock.
+2025-04-25 18:22:58,840 INFO: [Node 2 LostCompetition] Appending valid next block 2 (33bdafb9...)
+2025-04-25 18:22:58,840 INFO: [Node 2 ApplyState] Applying state for block 2
+2025-04-25 18:22:58,840 INFO: [BlockchainDB 2] Writing Block 2. Hash in dict: 33bdafb99aa5b43a5d461d261aa6ba932d5364c0e9ae906b277a4f558e3a0000
+2025-04-25 18:22:58,841 INFO: [Node 2 ReorgCheck] Checking for better forks (current height 2)...
+2025-04-25 18:22:58,842 INFO: [Node 2 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:22:59,169 INFO: [Node 2 ApplyState] Applying state for block 3
+2025-04-25 18:22:59,170 INFO: [BlockchainDB 2] Writing Block 3. Hash in dict: d7eeeccf28a564b409b4930b26fdb64e3bc84991c141254966132665c3550000
+2025-04-25 18:22:59,172 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:59,173 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:59,173 INFO: [Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9000
+2025-04-25 18:22:59,173 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:22:59,174 INFO: [Node 2 Publisher] Published Block 3 to 127.0.0.1:9000
+2025-04-25 18:22:59,174 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:59,175 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:59,175 INFO: [Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:9001
+2025-04-25 18:22:59,175 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:22:59,176 INFO: [Node 2 Publisher] Published Block 3 to 127.0.0.1:9001
+2025-04-25 18:22:59,176 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:59,177 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:59,177 INFO: [Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51396
+2025-04-25 18:22:59,177 INFO: [Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:22:59,178 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:59,178 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:59,179 INFO: [Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51401
+2025-04-25 18:22:59,179 INFO: [Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:22:59,179 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:22:59,180 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:22:59,180 INFO: [Node 2 Publisher] Publishing Block 3 (d7eeeccf) to 127.0.0.1:51406
+2025-04-25 18:22:59,180 INFO: [Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:22:59,181 INFO: [SyncManager Init 2] Initial2025-04-25 18:22:59,611 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51436)
+2025-04-25 18:22:59,611 INFO: [Node 1 Handler ('127.0.0.1', 51436)] Handling connection...
+2025-04-25 18:22:59,612 INFO: [Node 1 addNode] Added new peer port: 51436
+2025-04-25 18:22:59,612 INFO: [Node 1 Handler ('127.0.0.1', 51436)] Block Received: Height=4, Hash=0e618bae...
+2025-04-25 18:22:59,613 INFO: [Node 1 Handler ('127.0.0.1', 51436)] Closing connection.
+2025-04-25 18:22:59,613 INFO: [Node 1 LostCompetition] Processing block 4 (0e618bae...) under lock.
+2025-04-25 18:22:59,614 INFO: [Node 1 LostCompetition] Appending valid next block 4 (0e618bae...)
+2025-04-25 18:22:59,614 INFO: [Node 1 ApplyState] Applying state for block 4
+2025-04-25 18:22:59,614 INFO: [BlockchainDB 1] Writing Block 4. Hash in dict: 0e618baeaf05bf67184205189c164e26b7dfb22442e7beb932f1e221a3380000
+2025-04-25 18:22:59,615 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 4)...
+2025-04-25 18:22:59,615 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:02,445 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51445)
+2025-04-25 18:23:02,447 INFO: [Node 1 Handler ('127.0.0.1', 51445)] Handling connection...
+2025-04-25 18:23:02,449 INFO: [Node 1 addNode] Added new peer port: 51445
+2025-04-25 18:23:02,449 INFO: [Node 1 Handler ('127.0.0.1', 51445)] Block Received: Height=5, Hash=14f05a28...
+2025-04-25 18:23:02,450 INFO: [Node 1 Handler ('127.0.0.1', 51445)] Closing connection.
+2025-04-25 18:23:02,452 INFO: [Node 1 LostCompetition] Processing block 5 (14f05a28...) under lock.
+2025-04-25 18:23:02,454 INFO: [Node 1 LostCompetition] Appending valid next block 5 (14f05a28...)
+2025-04-25 18:23:02,454 INFO: [Node 1 ApplyState] Applying state for block 5
+2025-04-25 18:23:02,456 INFO: [BlockchainDB 1] Writing Block 5. Hash in dict: 14f05a28c84f2b5d9a9bc9aebceddc8f5f53ec565be2a3a8e02b30a450d80000
+2025-04-25 18:23:02,462 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 5)...
+2025-04-25 18:23:02,465 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:04,131 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51456)
+2025-04-25 18:23:04,131 INFO: [Node 1 Handler ('127.0.0.1', 51456)] Handling connection...
+2025-04-25 18:23:04,132 INFO: [Node 1 addNode] Added new peer port: 51456
+2025-04-25 18:23:04,132 INFO: [Node 1 Handler ('127.0.0.1', 51456)] Block Received: Height=6, Hash=07b86cb2...
+2025-04-25 18:23:04,133 INFO: [Node 1 Handler ('127.0.0.1', 51456)] Closing connection.
+2025-04-25 18:23:04,133 INFO: [Node 1 LostCompetition] Processing block 6 (07b86cb2...) under lock.
+2025-04-25 18:23:04,134 INFO: [Node 1 LostCompetition] Appending valid next block 6 (07b86cb2...)
+2025-04-25 18:23:04,134 INFO: [Node 1 ApplyState] Applying state for block 6
+2025-04-25 18:23:04,134 INFO: [BlockchainDB 1] Writing Block 6. Hash in dict: 07b86cb254af2bb2fdd2186290398d9c1372e2af68ec061ee28b076bf0270000
+2025-04-25 18:23:04,135 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 6)...
+2025-04-25 18:23:04,136 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:04,309 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51466)
+2025-04-25 18:23:04,309 INFO: [Node 1 Handler ('127.0.0.1', 51466)] Handling connection...
+2025-04-25 18:23:04,310 INFO: [Node 1 addNode] Added new peer port: 51466
+2025-04-25 18:23:04,310 INFO: [Node 1 Handler ('127.0.0.1', 51466)] Block Received: Height=7, Hash=079c238f...
+2025-04-25 18:23:04,311 INFO: [Node 1 Handler ('127.0.0.1', 51466)] Closing connection.
+2025-04-25 18:23:04,311 INFO: [Node 1 LostCompetition] Processing block 7 (079c238f...) under lock.
+2025-04-25 18:23:04,311 INFO: [Node 1 LostCompetition] Appending valid next block 7 (079c238f...)
+2025-04-25 18:23:04,312 INFO: [Node 1 ApplyState] Applying state for block 7
+2025-04-25 18:23:04,312 INFO: [BlockchainDB 1] Writing Block 7. Hash in dict: 079c238fb8586bf082aeb5087e765b9619972ecd1f793d29366da0db27600000
+2025-04-25 18:23:04,313 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 7)...
+2025-04-25 18:23:04,313 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:04,653 INFO: [Node 1 ApplyState] Applying state for block 8
+2025-04-25 18:23:04,654 INFO: [BlockchainDB 1] Writing Block 8. Hash in dict: 4b07a897759a6ff2e9f4376d24d4598edee50aa66dc6da78fe34da8e9cbb0000
+2025-04-25 18:23:04,655 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,656 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,656 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:9000
+2025-04-25 18:23:04,657 INFO: [Node 1 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:23:04,657 INFO: [Node 1 Publisher] Published Block 8 to 127.0.0.1:9000
+2025-04-25 18:23:04,657 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,658 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,658 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:9002
+2025-04-25 18:23:04,659 INFO: [Node 1 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+2025-04-25 18:23:04,659 INFO: [Node 1 Publisher] Published Block 8 to 127.0.0.1:9002
+2025-04-25 18:23:04,659 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,660 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,660 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51396
+2025-04-25 18:23:04,661 INFO: [Node 1 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:04,661 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,661 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,662 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51401
+2025-04-25 18:23:04,662 INFO: [Node 1 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:04,662 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,663 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,663 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51406
+2025-04-25 18:23:04,664 INFO: [Node 1 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:23:04,664 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,664 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,665 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51417
+2025-04-25 18:23:04,665 INFO: [Node 1 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+2025-04-25 18:23:04,665 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51421. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,666 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,666 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51421
+2025-04-25 18:23:04,667 INFO: [Node 1 Connector] Connected to 127.0.0.1:51421 from local port OS-assigned
+2025-04-25 18:23:04,667 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51427. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,667 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,668 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51427
+2025-04-25 18:23:04,668 INFO: [Node 1 Connector] Connected to 127.0.0.1:51427 from local port OS-assigned
+2025-04-25 18:23:04,668 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51436. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,669 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,669 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51436
+2025-04-25 18:23:04,669 INFO: [Node 1 Connector] Connected to 127.0.0.1:51436 from local port OS-assigned
+2025-04-25 18:23:04,670 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51445. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,670 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,671 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51445
+2025-04-25 18:23:04,671 INFO: [Node 1 Connector] Connected to 127.0.0.1:51445 from local port OS-assigned
+2025-04-25 18:23:04,671 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51456. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,672 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,672 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51456
+2025-04-25 18:23:04,672 INFO: [Node 1 Connector] Connected to 127.0.0.1:51456 from local port OS-assigned
+2025-04-25 18:23:04,673 INFO: [SyncManager Init 1] Initialized. Listening on 127.0.0.1:51466. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_1/data/blockchain.db
+2025-04-25 18:23:04,673 INFO: [SyncManager Init 1] NodeDB initialized.
+2025-04-25 18:23:04,673 INFO: [Node 1 Publisher] Publishing Block 8 (4b07a897) to 127.0.0.1:51466
+2025-04-25 18:23:04,674 INFO: [Node 1 Connector] Connected to 127.0.0.1:51466 from local port OS-assigned
+2025-04-25 18:23:05,005 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51489)
+2025-04-25 18:23:05,005 INFO: [Node 1 Handler ('127.0.0.1', 51489)] Handling connection...
+2025-04-25 18:23:05,006 INFO: [Node 1 addNode] Added new peer port: 51489
+2025-04-25 18:23:05,006 INFO: [Node 1 Handler ('127.0.0.1', 51489)] Block Received: Height=9, Hash=f3713f73...
+2025-04-25 18:23:05,007 INFO: [Node 1 Handler ('127.0.0.1', 51489)] Closing connection.
+2025-04-25 18:23:05,007 INFO: [Node 1 LostCompetition] Processing block 9 (f3713f73...) under lock.
+2025-04-25 18:23:05,008 INFO: [Node 1 LostCompetition] Appending valid next block 9 (f3713f73...)
+2025-04-25 18:23:05,008 INFO: [Node 1 ApplyState] Applying state for block 9
+2025-04-25 18:23:05,008 INFO: [BlockchainDB 1] Writing Block 9. Hash in dict: f3713f7371cfd8b4b500cb37ca7183095920fd57e41ef81ab05f00a4c3c60000
+2025-04-25 18:23:05,009 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 9)...
+2025-04-25 18:23:05,009 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:05,808 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51500)
+2025-04-25 18:23:05,809 INFO: [Node 1 Handler ('127.0.0.1', 51500)] Handling connection...
+2025-04-25 18:23:05,809 INFO: [Node 1 addNode] Added new peer port: 51500
+2025-04-25 18:23:05,809 INFO: [Node 1 Handler ('127.0.0.1', 51500)] Block Received: Height=10, Hash=61365087...
+2025-04-25 18:23:05,810 INFO: [Node 1 Handler ('127.0.0.1', 51500)] Closing connection.
+2025-04-25 18:23:05,810 INFO: [Node 1 LostCompetition] Processing block 10 (61365087...) under lock.
+2025-04-25 18:23:05,811 INFO: [Node 1 LostCompetition] Appending valid next block 10 (61365087...)
+2025-04-25 18:23:05,811 INFO: [Node 1 ApplyState] Applying state for block 10
+2025-04-25 18:23:05,812 INFO: [BlockchainDB 1] Writing Block 10. Hash in dict: 61365087c8b8cc0de47e05e796c651c203d216cdf9b9be00d0f5da56b3010000
+2025-04-25 18:23:05,813 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 10)...
+2025-04-25 18:23:05,813 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:06,186 INFO: [Node 1 Server] Accepted connection from ('127.0.0.1', 51511)
+2025-04-25 18:23:06,187 INFO: [Node 1 Handler ('127.0.0.1', 51511)] Handling connection...
+2025-04-25 18:23:06,187 INFO: [Node 1 addNode] Added new peer port: 51511
+2025-04-25 18:23:06,187 INFO: [Node 1 Handler ('127.0.0.1', 51511)] Block Received: Height=11, Hash=6d0b5115...
+2025-04-25 18:23:06,188 INFO: [Node 1 Handler ('127.0.0.1', 51511)] Closing connection.
+2025-04-25 18:23:06,188 INFO: [Node 1 LostCompetition] Processing block 11 (6d0b5115...) under lock.
+2025-04-25 18:23:06,189 INFO: [Node 1 LostCompetition] Appending valid next block 11 (6d0b5115...)
+2025-04-25 18:23:06,189 INFO: [Node 1 ApplyState] Applying state for block 11
+2025-04-25 18:23:06,189 INFO: [BlockchainDB 1] Writing Block 11. Hash in dict: 6d0b5115a231c5a1b7ecfd891380aedef8f343e01aaafe99709eac5120cb0000
+2025-04-25 18:23:06,190 INFO: [Node 1 ReorgCheck] Checking for better forks (current height 11)...
+2025-04-25 18:23:06,190 INFO: [Node 1 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:06,482 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:06] "GET /block HTTP/1.1" 200 -
+2025-04-25 18:23:06,497 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-25 18:23:06,498 INFO: 122025-04-25 18:23:06,948 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51525)
+2025-04-25 18:23:06,949 INFO: [Node 0 Handler ('127.0.0.1', 51525)] Handling connection...
+2025-04-25 18:23:06,949 INFO: [Node 0 addNode] Added new peer port: 51525
+2025-04-25 18:23:06,949 INFO: [Node 0 Handler ('127.0.0.1', 51525)] Block Received: Height=12, Hash=66f78b03...
+2025-04-25 18:23:06,950 INFO: [Node 0 Handler ('127.0.0.1', 51525)] Closing connection.
+2025-04-25 18:23:06,950 INFO: [Node 0 LostCompetition] Processing block 12 (66f78b03...) under lock.
+2025-04-25 18:23:06,951 INFO: [Node 0 LostCompetition] Appending valid next block 12 (66f78b03...)
+2025-04-25 18:23:06,951 INFO: [Node 0 ApplyState] Applying state for block 12
+2025-04-25 18:23:06,952 INFO: [BlockchainDB 0] Writing Block 12. Hash in dict: 66f78b03e243a822a62d69ee19bea8d489bdff0c143009d719da36499c2e0000
+2025-04-25 18:23:06,953 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 12)...
+2025-04-25 18:23:06,953 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:07,221 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51540)
+2025-04-25 18:23:07,221 INFO: [Node 0 Handler ('127.0.0.1', 51540)] Handling connection...
+2025-04-25 18:23:07,222 INFO: [Node 0 addNode] Added new peer port: 51540
+2025-04-25 18:23:07,222 INFO: [Node 0 Handler ('127.0.0.1', 51540)] Block Received: Height=13, Hash=47928e36...
+2025-04-25 18:23:07,223 INFO: [Node 0 Handler ('127.0.0.1', 51540)] Closing connection.
+2025-04-25 18:23:07,223 INFO: [Node 0 LostCompetition] Processing block 13 (47928e36...) under lock.
+2025-04-25 18:23:07,223 INFO: [Node 0 LostCompetition] Appending valid next block 13 (47928e36...)
+2025-04-25 18:23:07,224 INFO: [Node 0 ApplyState] Applying state for block 13
+2025-04-25 18:23:07,224 INFO: [BlockchainDB 0] Writing Block 13. Hash in dict: 47928e361f67fbd075db572170841a86447d0ad97b4b5a21849ccd01a1a50000
+2025-04-25 18:23:07,225 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 13)...
+2025-04-25 18:23:07,225 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:07,937 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51555)
+2025-04-25 18:23:07,937 INFO: [Node 0 Handler ('127.0.0.1', 51555)] Handling connection...
+2025-04-25 18:23:07,937 INFO: [Node 0 addNode] Added new peer port: 51555
+2025-04-25 18:23:07,938 INFO: [Node 0 Handler ('127.0.0.1', 51555)] Block Received: Height=14, Hash=5a2e29f6...
+2025-04-25 18:23:07,938 INFO: [Node 0 Handler ('127.0.0.1', 51555)] Closing connection.
+2025-04-25 18:23:07,939 INFO: [Node 0 LostCompetition] Processing block 14 (5a2e29f6...) under lock.
+2025-04-25 18:23:07,939 INFO: [Node 0 LostCompetition] Appending valid next block 14 (5a2e29f6...)
+2025-04-25 18:23:07,940 INFO: [Node 0 ApplyState] Applying state for block 14
+2025-04-25 18:23:07,940 INFO: [BlockchainDB 0] Writing Block 14. Hash in dict: 5a2e29f6ca757b47f05c6a56b8b1b26dc7b7c8260a45a14ec66e60919b9b0000
+2025-04-25 18:23:07,941 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 14)...
+2025-04-25 18:23:07,941 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:08,315 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51568)
+2025-04-25 18:23:08,315 INFO: [Node 0 Handler ('127.0.0.1', 51568)] Handling connection...
+2025-04-25 18:23:08,315 INFO: [Node 0 addNode] Added new peer port: 51568
+2025-04-25 18:23:08,315 INFO: [Node 0 Handler ('127.0.0.1', 51568)] Block Received: Height=15, Hash=4822fa72...
+2025-04-25 18:23:08,316 INFO: [Node 0 Handler ('127.0.0.1', 51568)] Closing connection.
+2025-04-25 18:23:08,316 INFO: [Node 0 LostCompetition] Processing block 15 (4822fa72...) under lock.
+2025-04-25 18:23:08,317 INFO: [Node 0 LostCompetition] Appending valid next block 15 (4822fa72...)
+2025-04-25 18:23:08,317 INFO: [Node 0 ApplyState] Applying state for block 15
+2025-04-25 18:23:08,318 INFO: [BlockchainDB 0] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+2025-04-25 18:23:08,319 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 15)...
+2025-04-25 18:23:08,319 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:08,984 INFO: [Node 0 ApplyState] Applying state for block 16
+2025-04-25 18:23:08,984 INFO: [BlockchainDB 0] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+2025-04-25 18:23:08,986 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,986 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,987 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9001
+2025-04-25 18:23:08,987 INFO: [Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:08,988 INFO: [Node 0 Publisher] Published Block 16 to 127.0.0.1:9001
+2025-04-25 18:23:08,988 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,988 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,989 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:9002
+2025-04-25 18:23:08,989 INFO: [Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+2025-04-25 18:23:08,990 INFO: [Node 0 Publisher] Published Block 16 to 127.0.0.1:9002
+2025-04-25 18:23:08,990 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,990 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,991 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51396
+2025-04-25 18:23:08,991 INFO: [Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:08,991 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,992 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,992 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51401
+2025-04-25 18:23:08,993 INFO: [Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:08,993 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,993 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,994 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51416
+2025-04-25 18:23:08,994 INFO: [Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:08,994 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,995 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,995 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51426
+2025-04-25 18:23:08,995 INFO: [Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+2025-04-25 18:23:08,996 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,996 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,997 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51435
+2025-04-25 18:23:08,997 INFO: [Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+2025-04-25 18:23:08,997 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,998 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,998 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51455
+2025-04-25 18:23:08,998 INFO: [Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+2025-04-25 18:23:08,999 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:08,999 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:08,999 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51465
+2025-04-25 18:23:09,000 INFO: [Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+2025-04-25 18:23:09,000 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,000 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,001 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51476
+2025-04-25 18:23:09,001 INFO: [Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+2025-04-25 18:23:09,001 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,002 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,002 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51488
+2025-04-25 18:23:09,003 INFO: [Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+2025-04-25 18:23:09,003 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,003 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,004 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51499
+2025-04-25 18:23:09,004 INFO: [Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+2025-04-25 18:23:09,004 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,005 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,005 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51510
+2025-04-25 18:23:09,005 INFO: [Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+2025-04-25 18:23:09,005 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51525. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,006 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,006 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51525
+2025-04-25 18:23:09,007 INFO: [Node 0 Connector] Connected to 127.0.0.1:51525 from local port OS-assigned
+2025-04-25 18:23:09,007 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,007 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,008 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51540
+2025-04-25 18:23:09,008 INFO: [Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+2025-04-25 18:23:09,008 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,009 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,009 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51555
+2025-04-25 18:23:09,009 INFO: [Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+2025-04-25 18:23:09,010 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:09,010 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:09,010 INFO: [Node 0 Publisher] Publishing Block 16 (fd92aeec) to 127.0.0.1:51568
+2025-04-25 18:23:09,011 INFO: [Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+2025-04-25 18:23:09,626 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51598)
+2025-04-25 18:23:09,626 INFO: [Node 0 Handler ('127.0.0.1', 51598)] Handling connection...
+2025-04-25 18:23:09,626 INFO: [Node 0 addNode] Added new peer port: 51598
+2025-04-25 18:23:09,626 INFO: [Node 0 Handler ('127.0.0.1', 51598)] Block Received: Height=17, Hash=96b77839...
+2025-04-25 18:23:09,627 INFO: [Node 0 Handler ('127.0.0.1', 51598)] Closing connection.
+2025-04-25 18:23:09,628 INFO: [Node 0 LostCompetition] Processing block 17 (96b77839...) under lock.
+2025-04-25 18:23:09,628 INFO: [Node 0 LostCompetition] Appending valid next block 17 (96b77839...)
+2025-04-25 18:23:09,628 INFO: [Node 0 ApplyState] Applying state for block 17
+2025-04-25 18:23:09,629 INFO: [BlockchainDB 0] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+2025-04-25 18:23:09,630 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 17)...
+2025-04-25 18:23:09,630 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:09,892 INFO: [Node 0 Server] Accepted connection from ('127.0.0.1', 51612)
+2025-04-25 18:23:09,892 INFO: [Node 0 Handler ('127.0.0.1', 51612)] Handling connection...
+2025-04-25 18:23:09,892 INFO: [Node 0 addNode] Added new peer port: 51612
+2025-04-25 18:23:09,892 INFO: [Node 0 Handler ('127.0.0.1', 51612)] Block Received: Height=18, Hash=60cd6bf1...
+2025-04-25 18:23:09,893 INFO: [Node 0 Handler ('127.0.0.1', 51612)] Closing connection.
+2025-04-25 18:23:09,894 INFO: [Node 0 LostCompetition] Processing block 18 (60cd6bf1...) under lock.
+2025-04-25 18:23:09,894 INFO: [Node 0 LostCompetition] Appending valid next block 18 (60cd6bf1...)
+2025-04-25 18:23:09,894 INFO: [Node 0 ApplyState] Applying state for block 18
+2025-04-25 18:23:09,895 INFO: [BlockchainDB 0] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+2025-04-25 18:23:09,896 INFO: [Node 0 ReorgCheck] Checking for better forks (current height 18)...
+2025-04-25 18:23:09,896 INFO: [Node 0 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:13,333 INFO: [Node 0 ApplyState] Applying state for block 19
+2025-04-25 18:23:13,333 INFO: [BlockchainDB 0] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+2025-04-25 18:23:13,335 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,335 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,336 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9001
+2025-04-25 18:23:13,336 INFO: [Node 0 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:13,337 INFO: [Node 0 Publisher] Published Block 19 to 127.0.0.1:9001
+2025-04-25 18:23:13,337 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:9002. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,338 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,338 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:9002
+2025-04-25 18:23:13,338 INFO: [Node 0 Connector] Connected to 127.0.0.1:9002 from local port OS-assigned
+2025-04-25 18:23:13,339 INFO: [Node 0 Publisher] Published Block 19 to 127.0.0.1:9002
+2025-04-25 18:23:13,339 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,340 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,340 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51396
+2025-04-25 18:23:13,341 INFO: [Node 0 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:13,342 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,343 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,343 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51401
+2025-04-25 18:23:13,344 INFO: [Node 0 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:13,344 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,345 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,345 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51416
+2025-04-25 18:23:13,345 INFO: [Node 0 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:13,346 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51426. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,346 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,347 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51426
+2025-04-25 18:23:13,347 INFO: [Node 0 Connector] Connected to 127.0.0.1:51426 from local port OS-assigned
+2025-04-25 18:23:13,347 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51435. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,348 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,348 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51435
+2025-04-25 18:23:13,348 INFO: [Node 0 Connector] Connected to 127.0.0.1:51435 from local port OS-assigned
+2025-04-25 18:23:13,349 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51455. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,349 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,350 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51455
+2025-04-25 18:23:13,350 INFO: [Node 0 Connector] Connected to 127.0.0.1:51455 from local port OS-assigned
+2025-04-25 18:23:13,350 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51465. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,351 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,351 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51465
+2025-04-25 18:23:13,352 INFO: [Node 0 Connector] Connected to 127.0.0.1:51465 from local port OS-assigned
+2025-04-25 18:23:13,352 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51476. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,352 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,353 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51476
+2025-04-25 18:23:13,353 INFO: [Node 0 Connector] Connected to 127.0.0.1:51476 from local port OS-assigned
+2025-04-25 18:23:13,353 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51488. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,354 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,354 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51488
+2025-04-25 18:23:13,354 INFO: [Node 0 Connector] Connected to 127.0.0.1:51488 from local port OS-assigned
+2025-04-25 18:23:13,355 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51499. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,355 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,356 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51499
+2025-04-25 18:23:13,356 INFO: [Node 0 Connector] Connected to 127.0.0.1:51499 from local port OS-assigned
+2025-04-25 18:23:13,356 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51510. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,357 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,357 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51510
+2025-04-25 18:23:13,357 INFO: [Node 0 Connector] Connected to 127.0.0.1:51510 from local port OS-assigned
+2025-04-25 18:23:13,358 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51522025-04-25 18:23:20,577 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:20] "GET /block HTTP/1.1" 200 -
+2025-04-25 18:23:20,587 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:20] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-25 18:23:20,587 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:20] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+Connected to 127.0.0.1:51525 from local port OS-assigned
+2025-04-25 18:23:13,359 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51540. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,360 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,360 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51540
+2025-04-25 18:23:13,361 INFO: [Node 0 Connector] Connected to 127.0.0.1:51540 from local port OS-assigned
+2025-04-25 18:23:13,361 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51555. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,361 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,362 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51555
+2025-04-25 18:23:13,362 INFO: [Node 0 Connector] Connected to 127.0.0.1:51555 from local port OS-assigned
+2025-04-25 18:23:13,363 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51568. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,363 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,364 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51568
+2025-04-25 18:23:13,364 INFO: [Node 0 Connector] Connected to 127.0.0.1:51568 from local port OS-assigned
+2025-04-25 18:23:13,364 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51598. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,365 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,365 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51598
+2025-04-25 18:23:13,366 INFO: [Node 0 Connector] Connected to 127.0.0.1:51598 from local port OS-assigned
+2025-04-25 18:23:13,366 INFO: [SyncManager Init 0] Initialized. Listening on 127.0.0.1:51612. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_0/data/blockchain.db
+2025-04-25 18:23:13,366 INFO: [SyncManager Init 0] NodeDB initialized.
+2025-04-25 18:23:13,367 INFO: [Node 0 Publisher] Publishing Block 19 (2491713d) to 127.0.0.1:51612
+2025-04-25 18:23:13,367 INFO: [Node 0 Connector] Connected to 127.0.0.1:51612 from local port OS-assigned
+2025-04-25 18:23:18,712 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:18] "GET /block HTTP/1.1" 200 -
+2025-04-25 18:23:18,722 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-25 18:23:18,724 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:18] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+hain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,936 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,936 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9000
+2025-04-25 18:23:07,937 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:23:07,937 INFO: [Node 2 Publisher] Published Block 14 to 127.0.0.1:9000
+2025-04-25 18:23:07,937 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,938 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,938 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:9001
+2025-04-25 18:23:07,939 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:07,939 INFO: [Node 2 Publisher] Published Block 14 to 127.0.0.1:9001
+2025-04-25 18:23:07,939 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,940 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,940 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51396
+2025-04-25 18:23:07,941 INFO: [Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:07,941 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,941 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,942 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51401
+2025-04-25 18:23:07,942 INFO: [Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:07,942 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,943 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,943 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51406
+2025-04-25 18:23:07,943 INFO: [Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:23:07,944 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,944 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,944 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51407
+2025-04-25 18:23:07,945 INFO: [Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+2025-04-25 18:23:07,945 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,946 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,946 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51416
+2025-04-25 18:23:07,946 INFO: [Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:07,947 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,947 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,947 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51417
+2025-04-25 18:23:07,948 INFO: [Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+2025-04-25 18:23:07,948 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,949 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,949 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51422
+2025-04-25 18:23:07,949 INFO: [Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+2025-04-25 18:23:07,949 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,950 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,950 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51446
+2025-04-25 18:23:07,951 INFO: [Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+2025-04-25 18:23:07,951 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,951 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,952 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51477
+2025-04-25 18:23:07,952 INFO: [Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+2025-04-25 18:23:07,952 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,953 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,953 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51526
+2025-04-25 18:23:07,953 INFO: [Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+2025-04-25 18:23:07,954 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:07,954 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:07,954 INFO: [Node 2 Publisher] Publishing Block 14 (5a2e29f6) to 127.0.0.1:51541
+2025-04-25 18:23:07,955 INFO: [Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+2025-04-25 18:23:08,311 INFO: [Node 2 ApplyState] Applying state for block 15
+2025-04-25 18:23:08,311 INFO: [BlockchainDB 2] Writing Block 15. Hash in dict: 4822fa7289fbea614d5b1465c42e1968ab853fcac4e0f5201b747bb602980000
+2025-04-25 18:23:08,313 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,314 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,314 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9000
+2025-04-25 18:23:08,315 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:23:08,315 INFO: [Node 2 Publisher] Published Block 15 to 127.0.0.1:9000
+2025-04-25 18:23:08,315 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,316 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,316 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:9001
+2025-04-25 18:23:08,317 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:08,317 INFO: [Node 2 Publisher] Published Block 15 to 127.0.0.1:9001
+2025-04-25 18:23:08,317 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,318 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,318 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51396
+2025-04-25 18:23:08,319 INFO: [Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:08,319 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,320 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,320 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51401
+2025-04-25 18:23:08,320 INFO: [Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:08,321 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,321 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,322 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51406
+2025-04-25 18:23:08,322 INFO: [Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:23:08,322 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,323 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,323 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51407
+2025-04-25 18:23:08,324 INFO: [Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+2025-04-25 18:23:08,324 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,325 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,325 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51416
+2025-04-25 18:23:08,325 INFO: [Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:08,326 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,326 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,327 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51417
+2025-04-25 18:23:08,327 INFO: [Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+2025-04-25 18:23:08,327 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,328 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,328 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51422
+2025-04-25 18:23:08,329 INFO: [Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+2025-04-25 18:23:08,329 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,329 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,330 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51446
+2025-04-25 18:23:08,330 INFO: [Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+2025-04-25 18:23:08,331 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,331 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,331 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51477
+2025-04-25 18:23:08,332 INFO: [Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+2025-04-25 18:23:08,332 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,333 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,333 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51526
+2025-04-25 18:23:08,333 INFO: [Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+2025-04-25 18:23:08,334 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:08,334 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:08,334 INFO: [Node 2 Publisher] Publishing Block 15 (4822fa72) to 127.0.0.1:51541
+2025-04-25 18:23:08,335 INFO: [Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+2025-04-25 18:23:08,989 INFO: [Node 2 Server] Accepted connection from ('127.0.0.1', 51582)
+2025-04-25 18:23:08,989 INFO: [Node 2 Handler ('127.0.0.1', 51582)] Handling connection...
+2025-04-25 18:23:08,990 INFO: [Node 2 addNode] Added new peer port: 51582
+2025-04-25 18:23:08,990 INFO: [Node 2 Handler ('127.0.0.1', 51582)] Block Received: Height=16, Hash=fd92aeec...
+2025-04-25 18:23:08,991 INFO: [Node 2 Handler ('127.0.0.1', 51582)] Closing connection.
+2025-04-25 18:23:08,991 INFO: [Node 2 LostCompetition] Processing block 16 (fd92aeec...) under lock.
+2025-04-25 18:23:08,991 INFO: [Node 2 LostCompetition] Appending valid next block 16 (fd92aeec...)
+2025-04-25 18:23:08,992 INFO: [Node 2 ApplyState] Applying state for block 16
+2025-04-25 18:23:08,992 INFO: [BlockchainDB 2] Writing Block 16. Hash in dict: fd92aeec5229b2d08c3130afc3ec19872fa58757e5e421089ad8a345128b0000
+2025-04-25 18:23:08,993 INFO: [Node 2 ReorgCheck] Checking for better forks (current height 16)...
+2025-04-25 18:23:08,993 INFO: [Node 2 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:09,622 INFO: [Node 2 ApplyState] Applying state for block 17
+2025-04-25 18:23:09,623 INFO: [BlockchainDB 2] Writing Block 17. Hash in dict: 96b7783965d381f699e6d354809888cde807f84307405191d57402b99f910000
+2025-04-25 18:23:09,624 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,625 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,625 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9000
+2025-04-25 18:23:09,626 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:23:09,626 INFO: [Node 2 Publisher] Published Block 17 to 127.0.0.1:9000
+2025-04-25 18:23:09,626 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,627 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,627 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:9001
+2025-04-25 18:23:09,628 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:09,628 INFO: [Node 2 Publisher] Published Block 17 to 127.0.0.1:9001
+2025-04-25 18:23:09,628 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,629 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,629 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51396
+2025-04-25 18:23:09,629 INFO: [Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:09,630 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,630 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,631 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51401
+2025-04-25 18:23:09,631 INFO: [Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:09,631 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,632 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,632 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51406
+2025-04-25 18:23:09,632 INFO: [Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:23:09,633 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,633 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,633 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51407
+2025-04-25 18:23:09,634 INFO: [Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+2025-04-25 18:23:09,634 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,635 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,635 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51416
+2025-04-25 18:23:09,635 INFO: [Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:09,636 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,636 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,636 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51417
+2025-04-25 18:23:09,637 INFO: [Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+2025-04-25 18:23:09,637 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,638 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,638 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51422
+2025-04-25 18:23:09,638 INFO: [Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+2025-04-25 18:23:09,639 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,639 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,639 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51446
+2025-04-25 18:23:09,640 INFO: [Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+2025-04-25 18:23:09,640 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,640 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,641 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51477
+2025-04-25 18:23:09,641 INFO: [Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+2025-04-25 18:23:09,641 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,642 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,642 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51526
+2025-04-25 18:23:09,642 INFO: [Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+2025-04-25 18:23:09,643 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,643 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,643 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51541
+2025-04-25 18:23:09,644 INFO: [Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+2025-04-25 18:23:09,644 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,644 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,645 INFO: [Node 2 Publisher] Publishing Block 17 (96b77839) to 127.0.0.1:51582
+2025-04-25 18:23:09,645 INFO: [Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+2025-04-25 18:23:09,888 INFO: [Node 2 ApplyState] Applying state for block 18
+2025-04-25 18:23:09,889 INFO: [BlockchainDB 2] Writing Block 18. Hash in dict: 60cd6bf1efc237bc48acb093f85063a1571fa41821b04412ebc384ffbaf70000
+2025-04-25 18:23:09,890 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9000. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,891 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,891 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9000
+2025-04-25 18:23:09,892 INFO: [Node 2 Connector] Connected to 127.0.0.1:9000 from local port OS-assigned
+2025-04-25 18:23:09,892 INFO: [Node 2 Publisher] Published Block 18 to 127.0.0.1:9000
+2025-04-25 18:23:09,892 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:9001. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,893 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,893 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:9001
+2025-04-25 18:23:09,894 INFO: [Node 2 Connector] Connected to 127.0.0.1:9001 from local port OS-assigned
+2025-04-25 18:23:09,894 INFO: [Node 2 Publisher] Published Block 18 to 127.0.0.1:9001
+2025-04-25 18:23:09,894 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51396. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,895 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,895 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51396
+2025-04-25 18:23:09,895 INFO: [Node 2 Connector] Connected to 127.0.0.1:51396 from local port OS-assigned
+2025-04-25 18:23:09,896 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51401. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,896 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,896 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51401
+2025-04-25 18:23:09,897 INFO: [Node 2 Connector] Connected to 127.0.0.1:51401 from local port OS-assigned
+2025-04-25 18:23:09,897 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51406. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,898 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,898 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51406
+2025-04-25 18:23:09,898 INFO: [Node 2 Connector] Connected to 127.0.0.1:51406 from local port OS-assigned
+2025-04-25 18:23:09,898 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51407. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,899 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,899 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51407
+2025-04-25 18:23:09,900 INFO: [Node 2 Connector] Connected to 127.0.0.1:51407 from local port OS-assigned
+2025-04-25 18:23:09,900 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51416. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,900 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,901 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51416
+2025-04-25 18:23:09,901 INFO: [Node 2 Connector] Connected to 127.0.0.1:51416 from local port OS-assigned
+2025-04-25 18:23:09,901 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51417. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,902 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,902 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51417
+2025-04-25 18:23:09,903 INFO: [Node 2 Connector] Connected to 127.0.0.1:51417 from local port OS-assigned
+2025-04-25 18:23:09,903 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51422. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,903 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,904 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51422
+2025-04-25 18:23:09,904 INFO: [Node 2 Connector] Connected to 127.0.0.1:51422 from local port OS-assigned
+2025-04-25 18:23:09,904 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51446. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,905 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,905 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51446
+2025-04-25 18:23:09,905 INFO: [Node 2 Connector] Connected to 127.0.0.1:51446 from local port OS-assigned
+2025-04-25 18:23:09,905 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51477. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,906 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,906 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51477
+2025-04-25 18:23:09,907 INFO: [Node 2 Connector] Connected to 127.0.0.1:51477 from local port OS-assigned
+2025-04-25 18:23:09,907 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51526. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,907 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,908 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51526
+2025-04-25 18:23:09,908 INFO: [Node 2 Connector] Connected to 127.0.0.1:51526 from local port OS-assigned
+2025-04-25 18:23:09,908 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51541. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,909 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,909 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51541
+2025-04-25 18:23:09,909 INFO: [Node 2 Connector] Connected to 127.0.0.1:51541 from local port OS-assigned
+2025-04-25 18:23:09,910 INFO: [SyncManager Init 2] Initialized. Listening on 127.0.0.1:51582. DB: /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data/blockchain.db
+2025-04-25 18:23:09,910 INFO: [SyncManager Init 2] NodeDB initialized.
+2025-04-25 18:23:09,910 INFO: [Node 2 Publisher] Publishing Block 18 (60cd6bf1) to 127.0.0.1:51582
+2025-04-25 18:23:09,911 INFO: [Node 2 Connector] Connected to 127.0.0.1:51582 from local port OS-assigned
+2025-04-25 18:23:13,269 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:13] "GET /block HTTP/1.1" 200 -
+2025-04-25 18:23:13,294 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-25 18:23:13,295 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-25 18:23:13,338 INFO: [Node 2 Server] Accepted connection from ('127.0.0.1', 51630)
+2025-04-25 18:23:13,339 INFO: [Node 2 Handler ('127.0.0.1', 51630)] Handling connection...
+2025-04-25 18:23:13,339 INFO: [Node 2 addNode] Added new peer port: 51630
+2025-04-25 18:23:13,339 INFO: [Node 2 Handler ('127.0.0.1', 51630)] Block Received: Height=19, Hash=2491713d...
+2025-04-25 18:23:13,340 INFO: [Node 2 Handler ('127.0.0.1', 51630)] Closing connection.
+2025-04-25 18:23:13,341 INFO: [Node 2 LostCompetition] Processing block 19 (2491713d...) under lock.
+2025-04-25 18:23:13,342 INFO: [Node 2 LostCompetition] Appending valid next block 19 (2491713d...)
+2025-04-25 18:23:13,342 INFO: [Node 2 ApplyState] Applying state for block 19
+2025-04-25 18:23:13,343 INFO: [BlockchainDB 2] Writing Block 19. Hash in dict: 2491713d3055f4d4310676bf85726be0795c11829d789a790aa189bcd92b0000
+2025-04-25 18:23:13,344 INFO: [Node 2 ReorgCheck] Checking for better forks (current height 19)...
+2025-04-25 18:23:13,345 INFO: [Node 2 LostCompetition] Finished checking newBlockAvailable.
+2025-04-25 18:23:13,361 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:13] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-25 18:23:24,561 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:24] "GET /block HTTP/1.1" 200 -
+2025-04-25 18:23:24,571 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-25 18:23:24,571 INFO: 127.0.0.1 - - [25/Apr/2025 18:23:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
