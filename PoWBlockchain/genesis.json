@@ -1,5 +1,4 @@
-[
-    {
+{
     "Height": 0,
     "Blocksize": 167,
     "BlockHeader": {
@@ -45,5 +44,4 @@
         "TxId": "6282fa5c7132036a8d599a79cae9b59e5e4d3b4612d98ed624b90038d7928f3f"
         }
     ]
-    }
-]
+}

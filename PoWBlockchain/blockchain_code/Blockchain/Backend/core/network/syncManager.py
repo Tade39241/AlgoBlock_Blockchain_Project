@@ -159,26 +159,30 @@ class syncManager:
             # --- Process Actual Messages ---
             try:
                 # Read the next message envelope from the connection
+                 # --- ADD LOGGING BEFORE PARSE ---
+                logger.debug(f"[Node {self.node_id} Handler {current_addr}] Attempting to parse NetworkEnvelope...")
+                # --- END LOGGING ---
                 envelope = NetworkEnvelope.parse(current_conn.makefile('rb', None))
-                logger.debug(f"[Node {self.node_id} Handler {current_addr}] Received command: {envelope.command}")
-
-                # --- Add Peer Node ---
-                peer_port = current_addr[1]
-                if 1024 <= peer_port <= 65535 and peer_port != self.localHostPort:
-                    logger.debug(f"[Node {self.node_id} Handler {current_addr}] Attempting to add peer node (Port: {peer_port})")
-                    self.addNode(peer_port) # Pass the port to addNode
-                # else: # Optional: Log why it's skipped
-                #     logger.debug(f"[Node {self.node_id} Handler {current_addr}] Skipping addNode for port {peer_port} (Self or Invalid)")
-                # --- End Add Peer Node ---
-
+                # --- ADD LOGGING AFTER PARSE ---
+                logger.debug(f"[Node {self.node_id} Handler {current_addr}] Successfully parsed envelope. Command: {envelope.command}, Payload len: {len(envelope.payload)}")
+                # --- END LOGGING ---
+                
                 # --- Process based on command ---
                 if envelope.command == b'tx':
+                    # --- ADD LOGGING BEFORE TX PARSE ---
+                    logger.debug(f"[Node {self.node_id} Handler {current_addr}] Attempting to parse Tx from payload...")
+                    # --- END LOGGING ---
                     tx = Tx.parse(envelope.stream())
                     tx_id = tx.id() # Calculate ID
-                    logger.info(f"[Node {self.node_id} Handler {current_addr}] Transaction Received: {tx_id.hex()[:8]}...")
-                    # Store the Tx OBJECT in the shared MemoryPool dictionary
-                    # Add basic validation before adding? (e.g., size, syntax)
+                    # --- ADD LOGGING AFTER TX PARSE ---
+                    logger.debug(f"[Node {self.node_id} Handler {current_addr}] Successfully parsed Tx: {tx_id[:8]}")
+                    # --- END LOGGING ---
+                    logger.info(f"[Node {self.node_id} Handler {current_addr}] Transaction Received: {tx_id[:8]}...")
                     self.MemoryPool[tx_id] = tx
+                    # --- ADD LOGGING AFTER MEMPOOL ADD ---
+                    logger.debug(f"[Node {self.node_id} Handler {current_addr}] Added Tx {tx_id[:8]} to MemoryPool. Pool size: {len(self.MemoryPool)}")
+                    # --- END LOGGING ---
+
 
                 elif envelope.command == b'block':
                     blk = Block.parse(envelope.stream())
@@ -191,7 +195,7 @@ class syncManager:
 
                 elif envelope.command == requestBlock.command:
                     start_block_hash, end_block_hash = requestBlock.parse(envelope.stream()) # Assuming it returns start and end
-                    logger.info(f"[Node {self.node_id} Handler {current_addr}] Received requestBlock after: {start_block_hash.hex()[:8]}...")
+                    logger.info(f"[Node {self.node_id} Handler {current_addr}] Received requestBlock after: {start_block_hash[:8]}...")
                     # Delegate sending blocks back to the requestor
                     # Pass the connection object to the sending method
                     self.sendBlockToRequestor(start_block_hash, current_conn)
@@ -258,7 +262,7 @@ class syncManager:
     def sendBlockToRequestor(self, start_block_hash, requestor_conn):
         """Fetches and sends blocks, orphans, port list, and finished message to the requestor."""
         addr = requestor_conn.getpeername()
-        logger.info(f"[Node {self.node_id} Sender {addr}] Preparing response for requestBlock after {start_block_hash.hex()[:8]}...")
+        logger.info(f"[Node {self.node_id} Sender {addr}] Preparing response for requestBlock after {start_block_hash[:8]}...")
         blocksToSend = self.fetchBlocksFromBlockchain(start_block_hash)
 
         try:
@@ -306,11 +310,11 @@ class syncManager:
 
                 if foundStartBlock:
                     blocksToSend.append(block_dict) # Append the dictionary
-                elif current_hash_hex == start_block_hash.hex():
+                elif current_hash_hex == start_block_hash:
                     foundStartBlock = True
                     # Don't send the start_block_hash itself, only subsequent blocks
 
-            logger.info(f"[Node {self.node_id} fetchBlocks] Found {len(blocksToSend)} blocks to send after {start_block_hash.hex()[:8]}.")
+            logger.info(f"[Node {self.node_id} fetchBlocks] Found {len(blocksToSend)} blocks to send after {start_block_hash[:8]}.")
 
         except Exception as e:
             logger.error(f"[Node {self.node_id} fetchBlocks] Error reading blocks from DB: {e}", exc_info=True)
@@ -429,7 +433,7 @@ class syncManager:
         if not lastBlock:
             # Use standard Genesis hash if no blocks exist locally
             startBlock = ZERO_HASH
-            logger.info(f"[Node {self.node_id} Downloader] No local blocks found. Requesting from Genesis ({ZERO_HASH.hex()}).")
+            logger.info(f"[Node {self.node_id} Downloader] No local blocks found. Requesting from Genesis ({ZERO_HASH}).")
         else:
             try:
                 lastBlockHeaderHashHex = lastBlock['BlockHeader']['blockHash']
@@ -518,7 +522,7 @@ class syncManager:
 
     def publishTx(self, tx_obj, target_host, target_port):
         """Publishes a transaction object to a specific peer."""
-        logger.info(f"[Node {self.node_id} Publisher] Publishing Tx {tx_obj.id().hex()[:8]} to {target_host}:{target_port}")
+        logger.info(f"[Node {self.node_id} Publisher] Publishing Tx {tx_obj.id()[:8]} to {target_host}:{target_port}")
         sock = None
         connector = None
         try:
@@ -529,7 +533,7 @@ class syncManager:
 
             # Use Node's send method which handles envelope creation
             connector.send(tx_obj)
-            logger.info(f"[Node {self.node_id} Publisher] Published Tx {tx_obj.id().hex()[:8]} to {target_host}:{target_port}")
+            logger.info(f"[Node {self.node_id} Publisher] Published Tx {tx_obj.id()[:8]} to {target_host}:{target_port}")
 
         except Exception as e:
             logger.error(f"[Node {self.node_id} Publisher] Error publishing Tx to {target_host}:{target_port}: {e}", exc_info=True)

@@ -43,7 +43,7 @@ MAX_TARGET     = 0x0000ffff00000000000000000000000000000000000000000000000000000
 # Calculate new Target to keep our Block mine time under 5 minutes 
 # Reset Block Difficulty after every 10 Blocks
 """
-AVERAGE_BLOCK_MINE_TIME = 300
+AVERAGE_BLOCK_MINE_TIME = 120
 RESET_DIFFICULTY_AFTER_BLOCKS = 10
 AVERAGE_MINE_TIME = AVERAGE_BLOCK_MINE_TIME * RESET_DIFFICULTY_AFTER_BLOCKS
 
@@ -61,7 +61,6 @@ class Blockchain:
         self.my_public_addr = None  # Initialize with None
         self.node_id = node_id
         self.my_public_addr = my_public_addr
-        print(f"[Blockchain Init Node {node_id}] Received my_public_addr: '{my_public_addr}' (Type: {type(my_public_addr)})")
         self.db_path = db_path
         self.db = BlockchainDB(db_path=db_path,node_id=self.node_id) # Create DB instance per node 
         self.state_lock = Lock()
@@ -85,6 +84,10 @@ class Blockchain:
 
     def fetch_last_block(self):
         return self.db.lastBlock()
+    
+    def get_utxos(self):
+        """Return the current UTXOs."""
+        return dict(self.utxos)
     
     def get_last_block_hash(self):
         """Returns the hash of the last block as bytes, or ZERO_HASH bytes."""
@@ -237,67 +240,110 @@ class Blockchain:
         current_block_inputs = set() # Track inputs spent in this block: {(tx_hash, index)}
         block_size = 80
         max_block_size = 1000000 # Example max size
-        # self.Blocksize = 80
-        # self.TxIds = []
-        # self.add_trans_in_block = []
-        # self.remove_spent_transactions = []
-        # self.prevTxs = []
-        # deleteTxs = []
+
+        # --- ADDED: Log entry point ---
+        logger.debug(f"[Node {self.node_id} ReadMempool] Starting transaction selection.")
 
         with self.state_lock:
+            # --- ADDED: Log mempool state before selection ---
+            try:
+                # Create a copy for safe iteration and logging
+                tempMemPool = dict(self.mem_pool)
+                logger.debug(f"[Node {self.node_id} ReadMempool] Mempool size before selection: {len(tempMemPool)}")
+                if tempMemPool: # Log content only if not empty
+                    logger.debug(f"[Node {self.node_id} ReadMempool] Mempool content keys: {list(tempMemPool.keys())}")
+                # Also log UTXO set size for context
+                logger.debug(f"[Node {self.node_id} ReadMempool] Current UTXO set size: {len(self.utxos)}")
+            except Exception as log_e:
+                logger.error(f"[Node {self.node_id} ReadMempool] Error logging initial mempool state: {log_e}")
+                tempMemPool = {} # Ensure tempMemPool is defined
 
-            tempMemPool = dict(self.mem_pool)
-
+            # --- Iterate through a copy of the mempool ---
             for tx_id, tx_obj in tempMemPool.items():
+                # --- ADDED: Log which tx is being considered ---
+                logger.debug(f"[Node {self.node_id} ReadMempool] Considering Tx: {tx_id[:8]}...")
+
                 # Ensure tx_obj is a Tx object if mempool might store dicts
                 if not isinstance(tx_obj, Tx):
                      # Assuming Tx.to_obj exists and works on mempool data
                      try:
                          tx_obj = Tx.to_obj(tx_obj)
                      except Exception as e:
-                         logger.warning(f"[ReadMempool] Failed to convert mempool entry {tx_id[:8]} to Tx object: {e}. Skipping.")
+                         logger.warning(f"[Node {self.node_id} ReadMempool] Failed to convert mempool entry {tx_id[:8]} to Tx object: {e}. Skipping.")
                          continue
-                     
-                tx_size = len(tx_obj.serialise()) # Assuming serialise method exists
+
+                # --- Calculate Tx Size ---
+                try:
+                    tx_size = len(tx_obj.serialise()) # Assuming serialise method exists
+                except Exception as ser_e:
+                    logger.warning(f"[Node {self.node_id} ReadMempool] Failed to serialize Tx {tx_id[:8]}: {ser_e}. Skipping.")
+                    continue
+
+                # --- Check Block Size Limit ---
                 if block_size + tx_size > max_block_size:
+                    # --- ADDED: Log reason for skipping ---
+                    logger.debug(f"[Node {self.node_id} ReadMempool] Skipping Tx {tx_id[:8]}: Exceeds block size limit (Current: {block_size}, Tx: {tx_size}, Max: {max_block_size}).")
                     continue # Skip if block gets too large
 
-                # Double spending check (within block)
+                # --- Validate Inputs and Check Double Spending ---
                 is_double_spend = False
                 inputs_valid = True
                 inputs_for_this_tx = [] # Store inputs to add to current_block_inputs if valid
 
-                for txin in tx_obj.tx_ins:
-                    input_key = (txin.prev_tx.hex(), txin.prev_index)
+                if not hasattr(tx_obj, 'tx_ins') or not tx_obj.tx_ins:
+                     logger.warning(f"[Node {self.node_id} ReadMempool] Skipping Tx {tx_id[:8]}: Transaction has no inputs.")
+                     continue
 
-                     # Check double spend within block
+                for i, txin in enumerate(tx_obj.tx_ins):
+                    # --- ADDED: Log input being checked ---
+                    input_key = (txin.prev_tx.hex(), txin.prev_index)
+                    logger.debug(f"[Node {self.node_id} ReadMempool]   Checking input {i}: {input_key}")
+
+                    # Check double spend within block
                     if input_key in current_block_inputs:
                         is_double_spend = True
-                        logger.warning(f"[ReadMempool] Tx {tx_id[:8]} double spends input {input_key} within block. Skipping.")
-                        break
+                        # --- ADDED: Log reason for skipping ---
+                        logger.warning(f"[Node {self.node_id} ReadMempool] Skipping Tx {tx_id[:8]}: Input {input_key} double spent within this block.")
+                        break # Stop checking inputs for this tx
 
+                    # Check if input exists in current UTXO set (under lock)
                     if input_key not in self.utxos:
                         inputs_valid = False
-                        logger.warning(f"[ReadMempool] Tx {tx_id[:8]} input {input_key} not in UTXO set. Skipping.")
+                        # --- ADDED: Log reason for skipping ---
+                        logger.warning(f"[Node {self.node_id} ReadMempool] Skipping Tx {tx_id[:8]}: Input {input_key} not found in UTXO set.")
                         break # Input not found (already spent or invalid)
 
+                    # --- ADDED: Log input validity ---
+                    logger.debug(f"[Node {self.node_id} ReadMempool]   Input {input_key} is valid and available.")
                     inputs_for_this_tx.append(input_key) # Add to temp list
 
-
+                # --- Check results of validation ---
                 if is_double_spend or not inputs_valid:
-                    logger.warning(f"[ReadMempool] Tx {tx_id[:8]} double spends within block. Skipping.")
+                    # Logs for skipping are now inside the loop
                     continue
-                
-                # If valid, add to block lists
+
+                # --- If valid, add to block lists ---
+                # --- ADDED: Log selection ---
+                logger.info(f"[Node {self.node_id} ReadMempool] Selecting Tx: {tx_id[:8]}")
                 selected_txs_objs.append(tx_obj)
-                selected_tx_ids_bytes.append(bytes.fromhex(tx_id))
+                try:
+                    selected_tx_ids_bytes.append(bytes.fromhex(tx_id))
+                except ValueError:
+                    logger.error(f"[Node {self.node_id} ReadMempool] Failed to convert selected TxID '{tx_id}' to bytes. Skipping.")
+                    selected_txs_objs.pop() # Remove the object if ID conversion failed
+                    continue
+
                 block_size += tx_size
                 # Add inputs to tracking set
                 current_block_inputs.update(inputs_for_this_tx)
+                logger.debug(f"[Node {self.node_id} ReadMempool]   Added inputs {inputs_for_this_tx} to block's spent set.")
+                logger.debug(f"[Node {self.node_id} ReadMempool]   Block size now: {block_size}")
 
              # --- Lock Released ---
-        # logger.info(f"[ReadMempool] Selected {len(selected_txs_objs)} transactions for block.")
+        # --- ADDED: Log final selection result ---
+        logger.info(f"[Node {self.node_id} ReadMempool] Finished selection. Selected {len(selected_txs_objs)} transactions for block.")
         return selected_txs_objs, selected_tx_ids_bytes, block_size
+
 
 
 
@@ -824,27 +870,27 @@ class Blockchain:
         """Mines and adds a new block to the chain."""
         print(f"[Node {self.node_id} AddBlock] Starting to build block {BlockHeight}...")
         # --- Select Transactions (Needs lock if accessing shared mempool/utxos directly) ---
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Reading mempool...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Reading mempool...", flush=True)
         selected_txs, selected_tx_ids, block_size_so_far = self.read_trans_from_mempool()
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Mempool read. Selected {len(selected_txs)} txs. Size so far: {block_size_so_far}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Mempool read. Selected {len(selected_txs)} txs. Size so far: {block_size_so_far}", flush=True)
         # fee = self.calculate_fee(selected_txs)
 
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculating fee...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculating fee...", flush=True)
         fee = self.calculate_fee(selected_txs) # Pass selected_txs
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculated fee: {fee}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculated fee: {fee}", flush=True)
         
         timestamp = int(time.time())
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating coinbase tx...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating coinbase tx...", flush=True)
         coinbase_instance = Coinbase_tx(BlockHeight,self.my_public_addr)
         coinbaseTx = coinbase_instance.coinbase_transaction()
         # --- ADD LOGGING HERE ---
         if coinbaseTx:
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase Tx created successfully. ID: {coinbaseTx.id()}")
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase Tx created successfully. ID: {coinbaseTx.id()}")
             # Now try adding it to the list
             try:
                 final_tx_objs = [coinbaseTx] # Start list with coinbase
                 # ... (add mempool txs to final_tx_objs if any) ...
-                print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase added to tx list. List size: {len(final_tx_objs)}")
+                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase added to tx list. List size: {len(final_tx_objs)}")
                 # ... (continue with block creation, size calculation etc.) ...
             except Exception as e_list:
                 print(f"ERROR [Node {self.node_id} AddBlock {BlockHeight}] Failed handling created coinbaseTx: {e_list}")
@@ -857,32 +903,29 @@ class Blockchain:
         # --- END ADDED LOGGING ---
         coinbase_size = len(coinbaseTx.serialise())
         block_size_so_far += len(coinbaseTx.serialise())
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase created. Size: {coinbase_size}. Total size: {block_size_so_far}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase created. Size: {coinbase_size}. Total size: {block_size_so_far}", flush=True)
 
         coinbaseTx.tx_outs[0].amount = coinbaseTx.tx_outs[0].amount + fee
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase amount updated with fee.", flush=True)
-
-        # self.TxIds.insert(0, bytes.fromhex(coinbaseTx.id()))
-        # self.add_trans_in_block.insert(0, coinbaseTx)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Coinbase amount updated with fee.", flush=True)
 
         # Combine transactions
         final_tx_objs = [coinbaseTx] + selected_txs
         final_tx_ids_bytes = [bytes.fromhex(coinbaseTx.id())] + selected_tx_ids
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Combined {len(final_tx_objs)} transactions.", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Combined {len(final_tx_objs)} transactions.", flush=True)
 
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculating Merkle root...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calculating Merkle root...", flush=True)
         merkleRoot = merkle_root(final_tx_ids_bytes)[::-1].hex()
         # --- Adjust Target (Needs lock if modifying self.bits/self.current_target shared state) ---
         # Assuming adjustTarget handles its own locking or is safe
         
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Adjusting target...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Adjusting target...", flush=True)
         self.adjustTarget(BlockHeight)
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Target adjusted. New bits: {self.bits.hex()}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Target adjusted. New bits: {self.bits.hex()}", flush=True)
 
         # --- Create BlockHeader ---
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block header...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block header...", flush=True)
         blockheader = BlockHeader(VERSION, bytes.fromhex(prevBlockHash), merkleRoot, timestamp, self.bits, nonce = 0) # Ensure prevBlockHash is bytes
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block header created.", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block header created.", flush=True)
 
         # logger.info(f"[Node {self.node_id} AddBlock] Mining block {BlockHeight} with target {self.current_target:064x}...")
         print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calling blockheader.mine()...", flush=True)
@@ -890,7 +933,7 @@ class Blockchain:
         # --- Mine the block ---
         # Pass the lock to mine if it needs to check newBlockAvailable safely
         competitionOver = blockheader.mine(self.current_target, self.newBlockAvailable)
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] blockheader.mine() returned. competitionOver = {competitionOver}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] blockheader.mine() returned. competitionOver = {competitionOver}", flush=True)
         
         if competitionOver:
             self.LostCompetition()
@@ -902,16 +945,16 @@ class Blockchain:
         
         # --- If we won (found nonce) ---
         # logger.info(f"[Node {self.node_id} AddBlock] Mined block {BlockHeight} successfully with nonce {blockheader.nonce}.")
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Mining successful. Nonce: {blockheader.nonce}", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Mining successful. Nonce: {blockheader.nonce}", flush=True)
 
-        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Acquiring state lock to add block...", flush=True)
+        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Acquiring state lock to add block...", flush=True)
         # --- Acquire Lock to add the block ---
         with self.state_lock:
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] State lock acquired.", flush=True)
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] State lock acquired.", flush=True)
             # Double-check we didn't lose competition *just* before acquiring lock
             # This requires mine() to signal reliably or checking newBlockAvailable again
             # For simplicity, assume mine() handles this or check tip again:
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Double-checking chain tip...", flush=True)
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Double-checking chain tip...", flush=True)
             current_height = self.reorg_manager._get_current_height_unsafe()
             tip_hash = self.reorg_manager._get_tip_hash_unsafe()
             print(f"[Node {self.node_id} AddBlock {BlockHeight}] Current tip: Height={current_height}, Hash={tip_hash[:8]}...", flush=True)
@@ -920,25 +963,25 @@ class Blockchain:
                  return # Chain changed, discard mined block
                         
             # --- Create Block object ---
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating Block object...", flush=True)
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating Block object...", flush=True)
             newBlock = Block(BlockHeight, block_size_so_far, blockheader, len(final_tx_objs), final_tx_objs)
             # --- Use deepcopy before to_dict for applying/writing ---
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block dict...", flush=True)
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block dict...", flush=True)
             try:
-                print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block dict...", flush=True)
+                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Creating block dict...", flush=True)
                 newBlock_copy_for_dict = copy.deepcopy(newBlock)
                 # This call should ideally convert Txs to dicts and header fields appropriately.
                 # We will manually ensure consistency below based on syncManager's logic.
                 newBlockDict = newBlock_copy_for_dict.to_dict()
-                print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block dict created.", flush=True)
+                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block dict created.", flush=True)
 
                 # --- START: Manual Consistency Adjustment (Mirror syncManager) ---
-                print(f"[Node {self.node_id} AddBlock {BlockHeight}] Adjusting block dict for DB consistency...", flush=True)
+                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Adjusting block dict for DB consistency...", flush=True)
 
                 # 1. Ensure Txs are dictionaries
                 # Check if Block.to_dict already converted Txs. If not, convert them.
                 if newBlockDict.get('Txs') and isinstance(newBlockDict['Txs'][0], Tx):
-                    print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converting Tx objects in dict to dicts...", flush=True)
+                    # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converting Tx objects in dict to dicts...", flush=True)
                     newBlockDict['Txs'] = [tx.to_dict() for tx in newBlockDict['Txs']]
 
                 # 2. Ensure BlockHeader fields are in the correct format (hex/int)
@@ -947,24 +990,24 @@ class Blockchain:
                     # Convert bytes to hex if needed (assuming to_dict might leave them as bytes)
                     if isinstance(header_dict.get('prevBlockHash'), bytes):
                         header_dict['prevBlockHash'] = header_dict['prevBlockHash'].hex()
-                        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted prevBlockHash to hex.", flush=True)
+                        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted prevBlockHash to hex.", flush=True)
                     # Merkle root should already be hex from creation, but check just in case
                     if isinstance(header_dict.get('merkleRoot'), bytes):
                             header_dict['merkleRoot'] = header_dict['merkleRoot'].hex()
-                            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted merkleRoot to hex.", flush=True)
+                            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted merkleRoot to hex.", flush=True)
                     if isinstance(header_dict.get('bits'), bytes):
                         header_dict['bits'] = header_dict['bits'].hex()
-                        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted bits to hex.", flush=True)
+                        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted bits to hex.", flush=True)
 
                     # Ensure nonce is an integer (it should be after mining, but check)
                     if isinstance(header_dict.get('nonce'), bytes):
                         header_dict['nonce'] = little_endian_to_int(header_dict['nonce'])
-                        print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted nonce bytes to int.", flush=True)
+                        # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted nonce bytes to int.", flush=True)
                     elif not isinstance(header_dict.get('nonce'), int):
                             # If it's neither bytes nor int, try converting (e.g., from string if somehow corrupted)
                             try:
                                 header_dict['nonce'] = int(header_dict.get('nonce', 0))
-                                print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted nonce to int from other type.", flush=True)
+                                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted nonce to int from other type.", flush=True)
                             except (ValueError, TypeError):
                                 logger.error(f"[Node {self.node_id} AddBlock {BlockHeight}] Could not convert nonce '{header_dict.get('nonce')}' to int. Setting to 0.")
                                 header_dict['nonce'] = 0 # Fallback
@@ -972,7 +1015,7 @@ class Blockchain:
                     # blockHash should already be hex after mining/generateBlockHash
                     if isinstance(header_dict.get('blockHash'), bytes):
                             header_dict['blockHash'] = header_dict['blockHash'].hex()
-                            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted blockHash to hex.", flush=True)
+                            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Converted blockHash to hex.", flush=True)
 
                 print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block dict adjustment complete.", flush=True)
                 # --- END: Manual Consistency Adjustment ---
@@ -987,12 +1030,12 @@ class Blockchain:
             # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Block dict created.", flush=True) # Redundant log line
 
             # logger.info(f"[Node {self.node_id} AddBlock] Applying state and writing block {BlockHeight}...")
-            print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calling apply_state_for_block...", flush=True)
+            # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Calling apply_state_for_block...", flush=True)
             # Pass the *adjusted* newBlockDict to apply_state and write
             if self.reorg_manager.apply_state_for_block(newBlockDict):
-                print(f"[Node {self.node_id} AddBlock {BlockHeight}] apply_state_for_block successful.", flush=True)
+                # print(f"[Node {self.node_id} AddBlock {BlockHeight}] apply_state_for_block successful.", flush=True)
                 try:
-                    print(f"[Node {self.node_id} AddBlock {BlockHeight}] Writing block to DB...", flush=True)
+                    # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Writing block to DB...", flush=True)
                     # --- Write the *adjusted* block dict to DB ---
                     self.write_on_disk(newBlockDict) # Use the adjusted dict
                     # logger.info(f"[Node {self.node_id} AddBlock] Block {BlockHeight} added successfully.")
@@ -1000,11 +1043,11 @@ class Blockchain:
 
                     # Broadcast the new block AFTER adding it locally
                     # --- Broadcast the ORIGINAL block object ---
-                    print(f"[Node {self.node_id} AddBlock {BlockHeight}] Broadcasting block...", flush=True)
+                    # print(f"[Node {self.node_id} AddBlock {BlockHeight}] Broadcasting block...", flush=True)
                     self.BroadcastBlock(newBlock) # Pass the original Block object for network serialization
                     print(f"[Node {self.node_id} AddBlock {BlockHeight}] Broadcast initiated.", flush=True)
                     # Check for reorgs (unlikely right after adding own block, but for consistency)
-                    # self.reorg_manager.check_for_reorg(BlockHeight)
+                    self.reorg_manager.check_for_reorg(BlockHeight)
                 except Exception as e:
                     logger.error(f"[Node {self.node_id} AddBlock] ERROR writing block {BlockHeight} to DB after state apply: {e}. State inconsistent!", exc_info=True)
                     print(f"[Node {self.node_id} AddBlock {BlockHeight}] ERROR writing to DB: {e}", flush=True)
@@ -1085,7 +1128,7 @@ class Blockchain:
         """Main blockchain process"""
         print(f"Mining process for node {getattr(self, 'node_id', 'unknown')} starting")
         # logger.info(f"Mining process for node {self.node_id} starting")
-        print(f"Building UTXO set within mining process for node {getattr(self, 'node_id', 'unknown')}")
+        # print(f"Building UTXO set within mining process for node {getattr(self, 'node_id', 'unknown')}")
 
         try:
             self.buildUTXOS()
@@ -1112,12 +1155,12 @@ class Blockchain:
             pass
         # --- End check ---
 
-        print(f"Mining process using node_id: {self.node_id}")
+        # print(f"Mining process using node_id: {self.node_id}")
             # Continue anyway - we'll rebuild as needed
 
         try:
             self.settargetWhileBooting()
-            print("Target set successfully")
+            # print("Target set successfully")
         except Exception as e:
             print(f"Error setting target: {e}")
             traceback.print_exc()
@@ -1126,7 +1169,7 @@ class Blockchain:
         while True:
             try:
                  # --- ADD DEBUG LOGGING ---
-                print(f"[Node {self.node_id} MainLoop DEBUG] Before main loop - newBlockAvailable: {dict(self.newBlockAvailable)}")
+                # print(f"[Node {self.node_id} MainLoop DEBUG] Before main loop - newBlockAvailable: {dict(self.newBlockAvailable)}")
                 # logger.info(f"[Node {self.node_id} MainLoop DEBUG] Before main loop - newBlockAvailable: {dict(self.newBlockAvailable)}")
                 # --- END DEBUG LOGGING ---
 

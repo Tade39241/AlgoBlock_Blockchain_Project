@@ -42,15 +42,11 @@ NODE_ID = 2
 # Add both code/ and blockchain_code/ directories to the path
 sys.path.insert(0, os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain", 'blockchain_code'))
 
-# Custom database paths - make them absolute paths
-blockchain_db_path = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data", "blockchain.db")
-node_db_path = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data", "node.db")
-account_db_path = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2/data", "account.db")
-
-# Create data directory if needed
 data_dir = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2", "data")
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir)
+os.makedirs(data_dir, exist_ok=True)
+blockchain_db_path = os.path.join(data_dir, "blockchain.db")
+node_db_path       = os.path.join(data_dir, "node.db")
+account_db_path    = os.path.join(data_dir, "account.db")
 
 # Import and patch database classes BEFORE importing the Blockchain class
 sys.path.insert(0, "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/blockchain_code")
@@ -64,6 +60,13 @@ from blockchain_code.Blockchain.Frontend.run import main
 
 def miner_entry(utxos, mem_pool, newBlockAvailable, secondaryChain,localHostPort, localHost, node_id, db_path,my_public_addr):
             bc = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain,localHostPort, localHost, node_id=node_id, db_path=db_path, my_public_addr=my_public_addr)
+
+            print(f"[miner_entry 2] Performing initial sync…", flush=True)
+            try:
+                bc.startSync()
+                print(f"[miner_entry 2] Sync complete, starting miner", flush=True)
+            except Exception as e:
+                print(f"[miner_entry 2] Sync failed: {e}", flush=True)
             bc.main()
 
 # Test database connections
@@ -156,226 +159,172 @@ def signal_handler(sig, frame):
     print(f"\\nShutting down node NODE_ID gracefully...")
     sys.exit(0)
 
-# def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3):
+def simulate_random_transactions(volume, interval=30,num_nodes=3):
 
 
-#     # If volume is "none", don't start the simulator
-#     if volume == "none" or volume is None:
-#         print("[Sim] Transaction simulation disabled")
-#         return None
+    if volume == "none" or not volume:
+        print("[Sim] Transaction simulation disabled (volume is 'none' or empty).")
+        return None # Exit the function early
     
-#     import random
-#     import time
-#     import requests
-#     import threading
-#     import os # Import os for getpid
-#     import traceback # Import traceback for detailed error logging
+    import random
+    import time
+    import requests
+    import threading
+    import os # Import os for getpid
+    import traceback # Import traceback for detailed error logging
     
-#     # Adjust interval based on volume
-#     if volume == "high":
-#         target_network_tps = 10    # e.g. 10 transactions/sec total
-#         actual_interval = max(
-#             1,
-#             int(3 / target_network_tps)
-#         )
-#     elif volume == "medium":
-#         actual_interval = interval
-#     elif volume == "low":
-#         actual_interval = interval * 2
-#     else:
-#         actual_interval = None
+    # Adjust interval based on volume
+    if volume == "high":
+        target_network_tps = 10    # e.g. 10 transactions/sec total
+        actual_interval = max(
+            1,
+            int(3 / target_network_tps)
+        )
+    elif volume == "medium":
+        actual_interval = interval
+    elif volume == "low":
+        actual_interval = interval * 2
+    else:
+        actual_interval = None
         
-#     # Set transaction type weights based on tx_types parameter
-#     if tx_types == "transfers":
-#         tx_weights = [1, 0, 0]  # Only transfers
-#     elif tx_types == "stake":
-#         tx_weights = [0, 1, 1]  # Only staking operations
-#     elif tx_types == "mixed":
-#         tx_weights = [2, 1, 1]  # More balanced mix
-#     else:  # "all" - default
-#         tx_weights = [5, 2, 1]  # 5:2:1:1 ratio for transfer:stake:unstake
+    sim_account_db_path = account_db_path
 
-#     sim_account_db_path = account_db_path
+    my_address = default_account.public_addr
+    my_web_port = webport
 
-#     my_address = default_account.public_addr
-#     my_web_port = webport
+    def transaction_loop():
+        # Import necessary modules *inside* the thread function just in case
+        from blockchain_code.Blockchain.Backend.core.database.db import AccountDB
+        from blockchain_code.Blockchain.Backend.core.database.db import AccountDB, BlockchainDB
+        from blockchain_code.Blockchain.client.account import account
+        from blockchain_code.Blockchain.Backend.util.util import decode_base58
+        from blockchain_code.Blockchain.Backend.core.Tx import TxOut
+        from blockchain_code.Blockchain.client.sendTDC import update_utxo_set
 
-#     def transaction_loop():
-#         # Import necessary modules *inside* the thread function just in case
-#         from code_node2.Blockchain.Backend.core.database.db import AccountDB
-#         from code_node2.Blockchain.Backend.core.database.db import AccountDB, BlockchainDB
-#         from code_node2.Blockchain.client.account import account
-#         from code_node2.Blockchain.Backend.util.util import decode_base58
-#         from code_node2.Blockchain.Backend.core.tx import TxOut
+        # def get_utxo_set():
+        #     blockchain_db = BlockchainDB()
+        #     blocks = blockchain_db.read_all_blocks()
+        #     utxos = {}
+        #     spent = set()
+        #     for block in blocks:
+        #         txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
+        #         for tx_dict in txs:
+        #             txid = tx_dict['TxId']
+        #             for txin in tx_dict['tx_ins']:
+        #                 spent.add((txin['prev_tx'], txin['prev_index']))
+        #             for idx, tx_out in enumerate(tx_dict['tx_outs']):
+        #                 key = (txid, idx)
+        #                 if key not in spent:
+        #                     utxos[key] = TxOut.from_dict(tx_out)
+        #     for key in spent:
+        #         utxos.pop(key, None)
+        #     return utxos
 
-#         def get_utxo_set():
-#             blockchain_db = BlockchainDB()
-#             blocks = blockchain_db.read_all_blocks()
-#             utxos = {}
-#             spent = set()
-#             for block in blocks:
-#                 txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
-#                 for tx_dict in txs:
-#                     txid = tx_dict['TxId']
-#                     for txin in tx_dict['tx_ins']:
-#                         spent.add((txin['prev_tx'], txin['prev_index']))
-#                     for idx, tx_out in enumerate(tx_dict['tx_outs']):
-#                         key = (txid, idx)
-#                         if key not in spent:
-#                             utxos[key] = TxOut.from_dict(tx_out)
-#             for key in spent:
-#                 utxos.pop(key, None)
-#             return utxos
-
-#         while True:
-#             try:
-#                 utxos = get_utxo_set()
-
-#                 # Merge in pending mempool transactions so simulator  sees change outputs immediately
-#                 for tx in mem_pool.values():
-#                     update_utxo_set(tx, utxos)
-#                 # ← END ADD
-
-#                 acct = account.get_account(my_address)
-
-#                 # # --- Add Debugging ---
-#                 # print(f"[Sim Debug 6118/{threading.get_ident()}] Creating AccountDB instance...")
-#                 # db_instance = AccountDB()
-#                 # print(f"[Sim Debug 6118/{threading.get_ident()}] Instance type: {type(db_instance)}")
-#                 # if hasattr(db_instance, 'table_name'):
-#                 #     print(f"[Sim Debug 6118/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
-#                 # else:
-#                 #     print(f"[Sim Debug 6118/{threading.get_ident()}] Instance LACKS table_name attribute!")
-#                 # # --- End Debugging ---
-
-#                 if acct is None:
-#                     print(f"[Sim] Account {my_address} not found.")
-#                     time.sleep(actual_interval)
-#                     continue
+        while True:
+            print(f"[Sim Loop] Starting next iteration at height") # Assuming blockchain object is accessible
+            try:
+                for tx in list(mem_pool.values()):
+                    update_utxo_set(tx, utxos)
                 
-#                 print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
-#                 for (txid, idx), tx_out in utxos.items():
-#                     print(f"  {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
+                mem_pool.clear()
 
-#                 spendable, staked = acct.get_balance(utxos)
-#                 print(f"[DEBUG][SIM] Account {acct.public_addr} spendable={spendable} staked={staked}")
-#                 for (txid, idx), tx_out in utxos.items():
-#                     print(f"[DEBUG][SIM] UTXO {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
-#                 if spendable <= 0 and tx_types != "unstake":
-#                     print(f"[Sim] My address {my_address} has no spendable funds.")
-#                     time.sleep(actual_interval)
-#                     continue
+                acct = account.get_account(my_address)
+
+                # --- Add Debugging ---
+                print(f"[Sim Debug 20933/{threading.get_ident()}] Creating AccountDB instance...")
+                db_instance = AccountDB()
+                print(f"[Sim Debug 20933/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                if hasattr(db_instance, 'table_name'):
+                    print(f"[Sim Debug 20933/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                else:
+                    print(f"[Sim Debug 20933/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                # --- End Debugging ---
+
+                if acct is None:
+                    print(f"[Sim] Account {my_address} not found.")
+                    time.sleep(actual_interval)
+                    continue
+                
+                # print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"  {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
+
+                spendable = acct.get_balance(utxos)
+                print(f"[DEBUG][SIM] Account {acct.public_addr} spendable={spendable}")
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"[DEBUG][SIM] UTXO {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
+
+                if spendable <= 0:
+                    print(f"[Sim] My address {my_address} has no spendable funds.")
+                    time.sleep(actual_interval)
+                    continue
                     
-#                 if staked <= 0 and tx_types == "unstake":
-#                     print(f"[Sim] My address {my_address} has no staked funds to unstake.")
-#                     time.sleep(actual_interval)
-#                     continue
-                    
-#                 tx_type = random.choices(
-#                     ["transfer", "stake", "unstake"], 
-#                     weights=tx_weights, 
-#                     k=1
-#                 )[0]
+                max_amount = min(spendable, 35 * 100000000)
+                if max_amount < 1:
+                    print(f"[Sim] My address {my_address} has insufficient funds for transfer.")
+                    time.sleep(actual_interval)
+                    continue
+                amount = int(random.uniform(1 * 100000000, max_amount))
+
+                target_web_port = my_web_port
+
+                # Pick a random receiver (not myself)
+                db_instance = AccountDB()
+                accounts = db_instance.read()
+                eligible_receivers = [a for a in accounts if a['public_addr'] != my_address]
+
+                if not eligible_receivers:
+                    print("[Sim] No eligible receivers for transfer.")
+                    time.sleep(actual_interval)
+                    continue
+                receiver = random.choice(eligible_receivers)
+                params = {
+                    "fromAddress": my_address,
+                    "toAddress": receiver['public_addr'],
+                    "Amount": amount / 100000000 # Convert to TDC for API
+                }
+
+                endpoint = f"http://localhost:{target_web_port}/wallet"
+                # print(f"[Sim] Attempting to Send {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
+                logging.info(f"[Sim] Attempting to Send  {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
 
                 
-#                 max_amount = min(spendable, 35 * 100000000) if tx_type != "unstake" else min(staked, 35 * 100000000)
-#                 if max_amount < 1:
-#                     print(f"[Sim] My address {my_address} has insufficient funds for {tx_type}.")
-#                     time.sleep(actual_interval)
-#                     continue
-#                 amount = int(random.uniform(1 * 100000000, max_amount))
-
-#                 target_web_port = my_web_port
-
-#                 if tx_type == "transfer":
-#                     # Pick a random receiver (not myself)
-#                     db_instance = AccountDB()
-#                     accounts = db_instance.read()
-#                     eligible_receivers = [a for a in accounts if a['public_addr'] != my_address]
-#                     if not eligible_receivers:
-#                         print("[Sim] No eligible receivers for transfer.")
-#                         time.sleep(actual_interval)
-#                         continue
-#                     receiver = random.choice(eligible_receivers)
-#                     params = {
-#                         "fromAddress": my_address,
-#                         "toAddress": receiver['public_addr'],
-#                         "Amount": amount / 100000000 # Convert to TDC for API
-#                     }
-#                     endpoint = f"http://localhost:{target_web_port}/wallet"
-#                     print(f"[Sim] Attempting to Send {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
-#                     logging.info(f"[Sim] Attempting to Send  {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
-
-#                 elif tx_type == "stake":
-#                     params = {
-#                         "action": "stake",
-#                         "fromAddress": my_address,
-#                         "amount": amount / 100000000,
-#                         "lock_duration": random.randint(60*60, 60*60*24*30)
-#                     }
-#                     endpoint = f"http://localhost:{target_web_port}/stake"
-#                     print(f"[Sim] Attempting to stake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-#                     logging.info(f"[Sim] Attempting to stake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-
-        
-                
-#                 # elif tx_type == "claim":
-#                 #     params = {
-#                 #         "action": "claim", 
-#                 #         "fromAddress": sender['public_addr'], 
-#                 #         "amount_claim": amount
-#                 #     }
-
-#                 #     endpoint = f"http://localhost:{target_web_port}/stake"
-#                 #     print(f"[Sim] Claiming {amount} TDC from {sender['public_addr']} via node on web port {target_web_port}")
-                
-#                 elif tx_type == "unstake":
-#                     params = {
-#                         "action": "unstake",
-#                         "fromAddress": my_address,
-#                         "amount_unstake": amount / 100000000
-#                     }
-#                     endpoint = f"http://localhost:{target_web_port}/stake"
-#                     print(f"[Sim] Attempting to unstake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-#                     logging.info(f"[Sim] Attempting to unstake  {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-                
-#                 # Then send the request
-#                 try:
-#                     res = requests.post(endpoint, json=params, timeout=10)
-#                     print(f"[Sim] {tx_type.capitalize()} submitted: {res.status_code} {res.text[:100]}")
-#                     logging.info(f"[Sim] {tx_type.capitalize()} submitted: {res.status_code} {res.text[:100]}")
-#                 except Exception as e:
-#                     print(f"[Sim] Error submitting {tx_type}: {e}")
+                # Then send the request
+                try:
+                    res = requests.post(endpoint, json=params, timeout=10)
+                    # print(f"[Sim] transfer submitted: {res.status_code} {res.text[:100]}")
+                    logging.info(f"[Sim] TRANSFER submitted: {res.status_code} {res.text[:100]}")
+                except Exception as e:
+                    print(f"[Sim] Error submitting TRANSFER: {e}")
                 
 
-#             except AttributeError as ae:
-#                  print(f"[Sim ATTRIBUTE ERROR 6118/{threading.get_ident()}] {ae}")
-#                  # Print attributes of the instance that caused the error if possible
-#                  try:
-#                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
-#                  except NameError:
-#                      print("[Sim Debug] db_instance not defined at point of error.")
-#                  except Exception as e_inner:
-#                      print(f"[Sim Debug] Could not inspect instance: {e_inner}")
-#                  time.sleep(actual_interval) # Wait before retrying
+            except AttributeError as ae:
+                 print(f"[Sim ATTRIBUTE ERROR 20933/{threading.get_ident()}] {ae}")
+                 # Print attributes of the instance that caused the error if possible
+                 try:
+                     print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
+                 except NameError:
+                     print("[Sim Debug] db_instance not defined at point of error.")
+                 except Exception as e_inner:
+                     print(f"[Sim Debug] Could not inspect instance: {e_inner}")
+                 time.sleep(actual_interval) # Wait before retrying
 
-#             except requests.exceptions.RequestException as re:
-#                 print(f"[Sim] Network error during transaction simulation: {re}")
-#                 time.sleep(actual_interval) # Wait before retrying network errors
+            except requests.exceptions.RequestException as re:
+                print(f"[Sim] Network error during transaction simulation: {re}")
+                time.sleep(actual_interval) # Wait before retrying network errors
 
-#             except Exception as e:
-#                 print(f"[Sim] Unexpected error in transaction simulation: {e}")
-#                 traceback.print_exc() # Print full traceback for unexpected errors
-#                 time.sleep(actual_interval) # Wait before retrying general errors
+            except Exception as e:
+                print(f"[Sim] Unexpected error in transaction simulation: {e}")
+                traceback.print_exc() # Print full traceback for unexpected error
                 
-#             # Wait before next transaction using the calculated interval
-#             time.sleep(actual_interval)
+            # Wait before next transaction using the calculated interval
+            time.sleep(actual_interval)
     
-#     # Start simulation in a background thread
-#     sim_thread = threading.Thread(target=transaction_loop, daemon=True)
-#     sim_thread.start()
-#     print("[Sim] Transaction simulator started")
-#     return sim_thread
+    # Start simulation in a background thread
+    sim_thread = threading.Thread(target=transaction_loop, daemon=True)
+    sim_thread.start()
+    print("[Sim] Transaction simulator started")
+    return sim_thread
 
 
 # Register the Blockchain class with BaseManager
@@ -510,16 +459,15 @@ if __name__ == '__main__':
         mining_process.start()
         print(f"Mining process started on node {NODE_ID}")
 
-        # if "none" != "none" and "none":
-        #         print(f"[Sim] Starting transaction simulation: volume={"none"}, interval={"30"}, tx_types={all}")
-        #         simulate_random_transactions(
-        #             volume="none",
-        #             interval=30,
-        #             tx_types="all",
-        #             num_nodes=3
-        #         )
-        # else:
-        #     print("[Sim] Transaction simulation is disabled for this node.")
+        if "medium" != "none" and "medium":
+                print(f"[Sim] Starting transaction simulation: volume={"medium"}, interval={"30"}")
+                simulate_random_transactions(
+                    volume="medium",
+                    interval=30,
+                    num_nodes=3
+                )
+        else:
+            print("[Sim] Transaction simulation is disabled for this node.")
         # Node idles, waiting for instructions
         try:
             while True:

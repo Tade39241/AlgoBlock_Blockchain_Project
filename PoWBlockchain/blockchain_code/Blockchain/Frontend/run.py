@@ -1,6 +1,7 @@
+import logging
 import os
 import sys
-from flask import Flask, current_app, render_template, request, redirect, url_for, session
+from flask import Flask, current_app, jsonify, render_template, request, redirect, url_for, session
 from Blockchain.client.sendTDC import sendTDC
 from Blockchain.Backend.core.Tx import Tx
 from Blockchain.Backend.core.database.db import BlockchainDB, NodeDB
@@ -8,6 +9,17 @@ from Blockchain.Backend.util.util import encode_base58,decode_base58
 from Blockchain.Backend.core.network.syncManager import syncManager
 from hashlib import sha256
 from flask_qrcode import QRcode
+
+# --- Add this basic configuration near the top ---
+# Configure logging for this module/process
+log_format = '%(message)s'
+# Log INFO level messages and above to standard error
+logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr)
+# You could also configure a FileHandler here if you want logs in a separate file per process
+# --- End configuration ---
+
+# Get a logger for this module
+logger = logging.getLogger('run.py')
 
 app = Flask(__name__)
 qrcode = QRcode(app)
@@ -221,47 +233,122 @@ def address(publicAddress):
                             publicAddress=publicAddress,qrcode = qrcode)
     else:
         return "<h1> Invalid Identifier </h1>"
+    
+
 
 @app.route('/wallet', methods=['GET', 'POST'])
 def wallet():
+    print(f"[DEBUG][FLASK] request.form: {request.form} request.data: {request.data}")
+    global MEMPOOL, UTXOS
     message = ''
-    default_sender_address = current_app.config.get('DEFAULT_ADDRESS', '')
     if request.method == 'POST':
-    
-        from_addy = request.form.get("fromAddress")
-        if not from_addy:
-            from_addy = default_sender_address
-            print(f"Wallet: No 'fromAddress' provided, using default: {from_addy}")
-
-        to_addy = request.form.get("toAddress")
-
-        amount = request.form.get("Amount", type=int)
-        
-        sendCoin = sendTDC(from_addy, to_addy, amount,UTXOS)
-        TxObj = sendCoin.prepTransaction()
-
-        if not from_addy or not to_addy or amount is None:
-            message = 'Please fill out all the fields.'
-
-        script_pubkey = sendCoin.script_public_key(from_addy)
-        verified = True
-
-        if not TxObj:
-            message = 'Insufficient balance'
-
-        if isinstance(TxObj, Tx):
-            for index, tx in enumerate(TxObj.tx_ins):
-                if not TxObj.verify_input(index, script_pubkey):
-                    verified = False
-            
+        reload_utxos_from_chain()
+        if request.is_json:
+            data = request.get_json()
+            print(f"[DEBUG][WALLET/FLASK] Parsed JSON data: {data}")
+            from_addy = data.get("fromAddress")
+            to_addy = data.get("toAddress")
+            amount = data.get("Amount", None)
+            if amount is not None:
+                try:
+                    amount = int(amount)
+                except Exception:
+                    amount = None
+            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
+            TxObj = sendCoin.prepTransaction()
+            if not from_addy or not to_addy or amount is None:
+                return jsonify({"error": "Missing required fields."}), 400
+            if not TxObj:
+                return jsonify({"error": "Insufficient balance"}), 400
+            script_pubkey = sendCoin.script_public_key(from_addy)
+            verified = all(TxObj.verify_input(i, script_pubkey) for i in range(len(TxObj.tx_ins)))
             if verified:
                 MEMPOOL[TxObj.TxId] = TxObj
-                print(f"Transaction added to mem pool {TxObj.TxId}")
+                logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
                 broadcastTx(TxObj)
-                message = 'Transaction added to mem pool'
+                return jsonify({"success": True, "txid": TxObj.TxId}), 200
+            else:
+                return jsonify({"error": "Transaction verification failed."}), 400
+        else:
+            from_addy = request.form.get("fromAddress")
+            to_addy = request.form.get("toAddress")
+            amount = request.form.get("Amount", type=float)
+            # print(f"[DEBUG][WALLET] Extracted: from={from_addy}, to={to_addy}, amount={amount}")
+            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
+            TxObj = sendCoin.prepTransaction()
+            # print(f"[DEBUG][WALLET] sendTDC/prepTransaction result: TxObj={TxObj}")
+            if not from_addy or not to_addy or amount is None:
+                # print(f"[DEBUG][WALLET] Missing field(s): from={from_addy}, to={to_addy}, amount={amount}")
+                message = 'Please fill out all the fields.'
+                return render_template("wallet.html", message=message)
+            if not TxObj:
+                # print(f"[DEBUG][WALLET] Transaction creation failed (TxObj is None).")
+                message = 'Insufficient balance'
+            else:
+                script_pubkey = sendCoin.script_public_key(from_addy)
+                # print(f"[DEBUG][WALLET] script_pubkey for {from_addy}: {script_pubkey}")
+                verified = True
+                for index in range(len(TxObj.tx_ins)):
+                    if not TxObj.verify_input(index, script_pubkey):
+                        verified = False
+                        break
+                if verified:
+                    # print(f"[DEBUG][WALLET] Transaction verified. Adding to MEMPOOL.")
+                    # update_utxo_set(TxObj, UTXOS)
+                    MEMPOOL[TxObj.TxId] = TxObj
+                    logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
+                    # print(f"[DEBUG][WALLET] Added Tx {TxObj.TxId} to MEMPOOL. Keys now: {list(MEMPOOL.keys())}")
+                    message = f"Transaction added to mempool: {TxObj.TxId}"
 
-    # Always return the template
+                    broadcastTx(TxObj)
+                else:
+                    message = "Transaction verification failed."
+            return render_template("wallet.html", message=message)
+    # print(f"[DEBUG][WALLET] MEMPOOL keys after POST: {list(MEMPOOL.keys())}")
+    # print(f"[DEBUG][WALLET] UTXOS keys after POST: {list(UTXOS.keys())}")
+    # print(f"[DEBUG][WALLET] TxObj dict: {TxObj.to_dict() if hasattr(TxObj, 'to_dict') else str(TxObj)}")
     return render_template("wallet.html", message=message)
+
+# @app.route('/wallet', methods=['GET', 'POST'])
+# def wallet():
+#     message = ''
+#     default_sender_address = current_app.config.get('DEFAULT_ADDRESS', '')
+#     if request.method == 'POST':
+    
+#         from_addy = request.form.get("fromAddress")
+#         if not from_addy:
+#             from_addy = default_sender_address
+#             print(f"Wallet: No 'fromAddress' provided, using default: {from_addy}")
+
+#         to_addy = request.form.get("toAddress")
+
+#         amount = request.form.get("Amount", type=int)
+        
+#         sendCoin = sendTDC(from_addy, to_addy, amount,UTXOS)
+#         TxObj = sendCoin.prepTransaction()
+
+#         if not from_addy or not to_addy or amount is None:
+#             message = 'Please fill out all the fields.'
+
+#         script_pubkey = sendCoin.script_public_key(from_addy)
+#         verified = True
+
+#         if not TxObj:
+#             message = 'Insufficient balance'
+
+#         if isinstance(TxObj, Tx):
+#             for index, tx in enumerate(TxObj.tx_ins):
+#                 if not TxObj.verify_input(index, script_pubkey):
+#                     verified = False
+            
+#             if verified:
+#                 MEMPOOL[TxObj.TxId] = TxObj
+#                 print(f"Transaction added to mem pool {TxObj.TxId}")
+#                 broadcastTx(TxObj)
+#                 message = 'Transaction added to mem pool'
+
+#     # Always return the template
+#     return render_template("wallet.html", message=message)
 
 def broadcastTx(TxObj):
     global NODE_ID # Access global
@@ -281,16 +368,28 @@ def broadcastTx(TxObj):
         for port in portList:
             # Don't broadcast to self
             if localHostPort != port:
-                sync = syncManager('127.0.0.1',port,MemoryPool=MEMPOOL, node_id=NODE_ID)
+                # Assuming peers are on localhost, adjust if necessary
+                target_host = '127.0.0.1' 
+                target_port = port
+
+                sync = syncManager(target_host, target_port, MemoryPool=MEMPOOL, node_id=NODE_ID) 
                 try:
-                    sync.connectToHost(localHostPort - 1000, port)
-                    sync.publishTx(TxObj)
+                    sync.publishTx(TxObj,target_host, target_port)
 
                 except Exception as err:
-                    print(f"Error while downloading or uploading the Blockchain \n{err}")
+                    print(f"Error broadcasting Tx to {target_host}:{target_port}: {err}") 
                 
     except Exception as err:
-        print(f"Error while downloading the Blockchain \n{err}")
+       print(f"Error during broadcast setup: {err}")
+
+
+def reload_utxos_from_chain():
+    global UTXOS
+    from Blockchain.Backend.core.blockchain import Blockchain
+    blockchain = Blockchain(UTXOS, MEMPOOL, None, None, localHostPort, "127.0.0.1")
+    blockchain.buildUTXOS()
+    UTXOS = blockchain.get_utxos()
+    print("[Frontend] UTXO set reloaded from blockchain.")
 
 
 def main(utxos, mem_pool,port, localPort, node_id, default_addr):

@@ -102,6 +102,16 @@ class Tx:
     def txid(self):
         """Always compute the TxID from the serialized bytes."""
         return self.id()
+    
+    @property
+    def TxId(self):
+        return self.txid
+    
+    @TxId.setter
+    def TxId(self, value):
+        # no‐op: we keep computing txid from the bytes
+        pass
+    
 
     def id(self):
         

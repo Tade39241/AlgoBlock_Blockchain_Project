@@ -280,4 +280,17 @@ class sendTDC:
              print("Transaction preparation failed: Insufficient balance.")
              return False
 
-        
+def update_utxo_set(TxObj, utxos):
+    """
+    For each input in TxObj, remove the corresponding output from the global UTXO set.
+    Then, add the new outputs to the UTXO set.
+    """
+    # Remove spent outputs.
+    for txin in TxObj.tx_ins:
+        key = (txin.prev_tx.hex(), txin.prev_index)
+        utxos.pop(key, None)
+
+    # 2) Add the new outputs under the canonical .txid
+    txid = TxObj.txid
+    for idx, tx_out in enumerate(TxObj.tx_outs):
+        utxos[(txid, idx)] = tx_out

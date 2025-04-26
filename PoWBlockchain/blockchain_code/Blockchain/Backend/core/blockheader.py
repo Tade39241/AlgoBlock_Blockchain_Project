@@ -67,24 +67,7 @@ class BlockHeader:
         else:
             raise TypeError(f"blockHash must be bytes, hex string, or None, got {type(blockHash)}")
 
-    # def __init__(self, version, prevBlockHash, merkleRoot, timestamp, bits, nonce= None):
-    #     self.version= version
-    #     self.prevBlockHash = prevBlockHash
-    #     self.merkleRoot = merkleRoot
-    #     self.timestamp = timestamp
-    #     self.bits = bits
-    #     self.nonce = nonce
-    #     self.blockHash = ''
 
-    # @classmethod
-    # def parse(cls, s):
-    #     version = little_endian_to_int(s.read(4))
-    #     prevBlockHash = s.read(32)[::-1]
-    #     merkleRoot = s.read(32)[::-1]
-    #     timestamp = little_endian_to_int(s.read(4))
-    #     bits = s.read(4)
-    #     nonce = s.read(4)
-    #     return cls(version,prevBlockHash, merkleRoot, timestamp, bits, nonce)
 
     @classmethod
     def parse(cls, s):
@@ -98,42 +81,6 @@ class BlockHeader:
         return cls(version, prevBlockHash, merkleRoot, timestamp, bits, nonce)
 
 
-    # def serialise(self):
-    #     result = int_to_little_endian(self.version, 4)
-    #     result += self.prevBlockHash[::-1]
-    #     result += self.merkleRoot[::-1]
-    #     result += int_to_little_endian(self.timestamp, 4)
-    #     result += self.bits
-    #     result += self.nonce
-    #     return result
-
-    # def serialise(self):
-    #     result = int_to_little_endian(self.version, 4)
-
-    #     # --- Double check types before concatenation ---
-    #     if not isinstance(self.prevBlockHash, bytes) or len(self.prevBlockHash) != 32:
-    #          raise TypeError(f"prevBlockHash must be 32 bytes for serialisation, got {type(self.prevBlockHash)}")
-    #     if not isinstance(self.merkleRoot, bytes) or len(self.merkleRoot) != 32:
-    #          raise TypeError(f"merkleRoot must be 32 bytes for serialisation, got {type(self.merkleRoot)}")
-
-    #     # Concatenate BYTES (reversed for network format)
-    #     result += self.prevBlockHash[::-1]
-    #     result += self.merkleRoot[::-1]
-
-    #     result += int_to_little_endian(self.timestamp, 4)
-
-    #     # Ensure bits is bytes
-    #     bits_bytes = self.bits
-    #     if isinstance(bits_bytes, str): # If bits was stored as hex string
-    #          bits_bytes = bytes.fromhex(bits_bytes)
-    #     elif isinstance(bits_bytes, int): # If bits was stored as int
-    #          bits_bytes = int_to_little_endian(bits_bytes, 4) # Assuming 4 bytes
-    #     elif not isinstance(bits_bytes, bytes):
-    #          raise TypeError(f"bits must be bytes, hex string, or int for serialisation, got {type(bits_bytes)}")
-    #     result += bits_bytes # Add bits (now guaranteed bytes)
-
-    #     result += int_to_little_endian(self.nonce, 4)
-    #     return result
 
     def serialise(self):
         """Serializes the block header into bytes for network transmission or hashing."""
@@ -164,7 +111,7 @@ class BlockHeader:
         nonce_to_serialise = self.nonce
         if isinstance(nonce_to_serialise, bytes):
             # If nonce is already bytes, ensure it's 4 bytes and use directly
-            logger.warning(f"Nonce is unexpectedly bytes during serialise. Using directly. Value: {nonce_to_serialise.hex()}") # Add warning
+            # logger.warning(f"Nonce is unexpectedly bytes during serialise. Using directly. Value: {nonce_to_serialise.hex()}") # Add warning
             if len(nonce_to_serialise) < 4:
                 nonce_bytes = nonce_to_serialise.ljust(4, b'\x00') # Pad if too short
             elif len(nonce_to_serialise) > 4:
@@ -314,27 +261,6 @@ class BlockHeader:
     def generateBlockHash(self):
         block_data = self.serialise()
         return hash256(block_data).hex()
-    
-    # def generateBlockHash(self):
-    #     sha = hash256(self.serialise())
-    #     proof = little_endian_to_int(sha)
-    #     return int_to_little_endian(proof, 32).hex()[::-1]
-    
-    # def to_dict(self):
-    #     dt = self.__dict__
-    #     return dt
-    
-    # def to_dict(self):
-    #     # Convert bytes to hex strings for JSON compatibility
-    #     return {
-    #         'version': self.version,
-    #         'prevBlockHash': self.prevBlockHash.hex(),
-    #         'merkleRoot': self.merkleRoot.hex(),
-    #         'timestamp': self.timestamp,
-    #         'bits': self.bits.hex(),
-    #         'nonce': little_endian_to_int(self.nonce), # Store nonce as int
-    #         'blockHash': self.blockHash.hex() if self.blockHash else None # Store hash as hex
-    #     }
 
     def to_dict(self):
         """
