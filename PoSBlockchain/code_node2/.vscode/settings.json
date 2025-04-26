@@ -1,0 +1,13 @@
+{
+    "python.pythonPath": "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/.venv/bin/python",
+    
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./Blockchain",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true
+}

@@ -1,0 +1,36 @@
+2025-04-09 15:46:38,441 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/node_0/node.db
+2025-04-10 15:30:20,978 INFO:Ensured table exists in /Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node/account.db
+2025-04-15 19:46:07,685 INFO: * Running on http://127.0.0.1:5900/ (Press CTRL+C to quit)
+2025-04-15 19:46:20,046 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "[35m[1mGET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD HTTP/1.1[0m" 500 -
+2025-04-15 19:46:20,073 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-15 19:46:20,073 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-15 19:46:20,081 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-15 19:46:20,109 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2025-04-15 19:46:20,118 INFO:127.0.0.1 - - [15/Apr/2025 19:46:20] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-15 19:46:22,577 INFO:127.0.0.1 - - [15/Apr/2025 19:46:22] "GET / HTTP/1.1" 200 -
+2025-04-15 19:46:22,600 INFO:127.0.0.1 - - [15/Apr/2025 19:46:22] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:22,601 INFO:127.0.0.1 - - [15/Apr/2025 19:46:22] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:23,745 INFO:127.0.0.1 - - [15/Apr/2025 19:46:23] "GET / HTTP/1.1" 200 -
+2025-04-15 19:46:23,757 INFO:127.0.0.1 - - [15/Apr/2025 19:46:23] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:23,758 INFO:127.0.0.1 - - [15/Apr/2025 19:46:23] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:24,887 INFO:Ensured table exists in data/blockchain.db
+2025-04-15 19:46:24,916 INFO:127.0.0.1 - - [15/Apr/2025 19:46:24] "GET /block HTTP/1.1" 200 -
+2025-04-15 19:46:24,937 INFO:127.0.0.1 - - [15/Apr/2025 19:46:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:24,939 INFO:127.0.0.1 - - [15/Apr/2025 19:46:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:26,485 INFO:127.0.0.1 - - [15/Apr/2025 19:46:26] "GET /transactions HTTP/1.1" 200 -
+2025-04-15 19:46:26,499 INFO:127.0.0.1 - - [15/Apr/2025 19:46:26] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:26,503 INFO:127.0.0.1 - - [15/Apr/2025 19:46:26] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:27,730 INFO:Ensured table exists in data/blockchain.db
+2025-04-15 19:46:27,736 INFO:127.0.0.1 - - [15/Apr/2025 19:46:27] "GET /mempool HTTP/1.1" 200 -
+2025-04-15 19:46:27,761 INFO:127.0.0.1 - - [15/Apr/2025 19:46:27] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:27,762 INFO:127.0.0.1 - - [15/Apr/2025 19:46:27] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:28,503 INFO:127.0.0.1 - - [15/Apr/2025 19:46:28] "GET /wallet HTTP/1.1" 200 -
+2025-04-15 19:46:28,520 INFO:127.0.0.1 - - [15/Apr/2025 19:46:28] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:28,521 INFO:127.0.0.1 - - [15/Apr/2025 19:46:28] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:29,227 INFO:127.0.0.1 - - [15/Apr/2025 19:46:29] "GET /stake HTTP/1.1" 200 -
+2025-04-15 19:46:29,251 INFO:127.0.0.1 - - [15/Apr/2025 19:46:29] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:29,253 INFO:127.0.0.1 - - [15/Apr/2025 19:46:29] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:30,466 INFO:127.0.0.1 - - [15/Apr/2025 19:46:30] "GET / HTTP/1.1" 200 -
+2025-04-15 19:46:30,481 INFO:127.0.0.1 - - [15/Apr/2025 19:46:30] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2025-04-15 19:46:30,484 INFO:127.0.0.1 - - [15/Apr/2025 19:46:30] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-15 19:46:57,468 INFO: * Running on http://127.0.0.1:5900/ (Press CTRL+C to quit)

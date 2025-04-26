@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}UTXOs{% endblock %}
+{% block content %}
+<div class="wallet-container">
+  <h1>Unspent Transactions (UTXOs)</h1>
+
+  {% if allTransactions %}
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Transaction ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for TxInfo in allTransactions %}
+          <tr>
+            <td class="TxId">
+              <a href="{{ url_for('txDetails', txid=TxInfo[0]) }}">
+                {{ TxInfo[0] }}
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p>No unspent transactions to display.</p>
+  {% endif %}
+</div>
+{% endblock %}

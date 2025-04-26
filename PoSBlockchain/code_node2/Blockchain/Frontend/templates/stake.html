@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Stake & Rewards{% endblock %}
+{% block content %}
+<div class="wallet-container">
+  <h1>Stake & Rewards Dashboard</h1>
+
+  <!-- Account Metrics -->
+  {% if account %}
+  <div class="account-metrics">
+    <h2>Account Metrics for {{ account.public_addr }}</h2>
+    <p><strong>Total Staked:</strong> {{ "%.8f"|format(account.staked / 100000000) }} TDC</p> <!-- Format to 8 decimal places -->
+    <!-- Display the calculated spendable balance from UTXOs -->
+    <p><strong>Spendable Balance (from UTXOs):</strong> {{ "%.8f"|format(spendable_balance / 100000000) }} TDC</p> <!-- Format to 8 decimal places -->
+  </div>
+  {% else %}
+  <div class="account-metrics">
+    <p>Enter your wallet address in any form below to see your account metrics.</p>
+    <!-- Optionally display message if address was invalid -->
+    {% if message and not account and request.args.get("fromAddress") %}
+       <p style="color: red;">{{ message }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  <!-- Combined Operations Section -->
+  <div class="stake-actions">
+    <h2>Operations</h2>
+
+    <!-- Stake Funds Form -->
+    <div class="form-section">
+      <h3>Stake Funds</h3>
+      <form method="POST">
+        <input type="hidden" name="action" value="stake">
+        <label for="fromAddress_stake">Wallet Address:</label>
+        <!-- Prefill address if account data is available -->
+        <input type="text" name="fromAddress" id="fromAddress_stake" value="{{ account.public_addr if account else request.form.get('fromAddress', '') }}" required>
+        <br>
+        <label for="amount">Amount to Stake (in TadeCoin):</label>
+        <!-- Use step="any" for decimal input -->
+        <input type="number" name="amount" id="amount" step="any" min="0.00000001" required>
+        <br>
+        <label for="lock_duration">Lock Duration (seconds):</label>
+        <input type="number" name="lock_duration" id="lock_duration" min="1" required>
+        <br>
+        <input type="submit" value="Stake">
+      </form>
+    </div>
+    
+    <!-- Unstake Funds Form -->
+    <div class="form-section">
+      <h3>Unstake Funds</h3>
+      <form method="POST">
+        <input type="hidden" name="action" value="unstake">
+        <label for="fromAddress_unstake">Wallet Address:</label>
+        <!-- Prefill address if account data is available -->
+        <input type="text" name="fromAddress" id="fromAddress_unstake" value="{{ account.public_addr if account else request.form.get('fromAddress', '') }}" required>
+        <br>
+        <label for="amount_unstake">Amount to Unstake (in TadeCoin):</label>
+        <!-- Use step="any" for decimal input -->
+        <input type="number" name="amount_unstake" id="amount_unstake" step="any" min="0.00000001" required>
+        <br>
+        <input type="submit" value="Unstake">
+      </form>
+    </div>
+  </div>
+
+  <!-- Display a message, if any -->
+  {% if message %}
+  <div class="message">
+    <!-- Use safe filter if message might contain HTML, otherwise just display -->
+    <p>{{ message }}</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

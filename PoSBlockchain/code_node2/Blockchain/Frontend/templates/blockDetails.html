@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %} Block Details {% endblock %}
+{% block content %}
+<h1 class="block-number">Block #{{ block[0]['Height'] }}</h1>
+
+<div class="block-container">
+    <div class="block-header">
+        <h2>Block Hash</h2>
+        <p class="block-hash">{{ block[0]['BlockHeader']['blockHash'] }}</p>
+    </div>
+
+    <div class="block-info">
+        {% if block[0]['Height'] == 0 %}
+        <div class="block-item">
+            <span class="label">Previous Block Hash:</span>
+            <span>GENESIS BLOCK (No Previous Block)</span>
+        </div>
+        {% else %}
+        <div class="block-item">
+            <span class="label">Previous Block Hash:</span>
+            <a href="{{ url_for('showBlock', BlockHeader=block[0]['BlockHeader']['prevBlockHash']) }}">
+                {{ block[0]['BlockHeader']['prevBlockHash'] }}
+            </a>
+        </div>
+        {% endif %}
+        <div class="block-item"><span class="label">Total Transactions:</span> {{ block[0]['TxCount'] }}</div>
+        <div class="block-item"><span class="label">Block Size:</span> {{ block[0]['Blocksize'] }} bytes</div>
+        <div class="block-item"><span class="label">Merkle Root:</span> {{ block[0]['BlockHeader']['merkleRoot'] }}</div>
+        <div class="block-item"><span class="label">Target (Bits):</span> {{ block[0]['BlockHeader']['bits'] }}</div>
+        <div class="block-item"><span class="label">Nonce:</span> {{ block[0]['BlockHeader']['nonce'] }}</div>
+        <div class="block-item"><span class="label">Timestamp:</span> {{ block[0]['BlockHeader']['timestamp'] }}</div>
+    </div>
+
+    <h2 class="transactions-header">Transactions</h2>
+    {% for blk in block[0]['Txs'] %}
+    <div class="transaction">
+        <div class="transaction-header">
+            <h3>Transaction ID:</h3>
+            <a class="tx-id" href="{{ url_for('txDetails', txid=blk['TxId']) }}">{{ blk['TxId'] }}</a>
+        </div>
+        <div class="transaction-details">
+            <div class="transaction-inputs">
+                <h4>Inputs</h4>
+                {% for tx_in in blk['tx_ins'] %}
+                {% if tx_in['prev_tx'] == '0000000000000000000000000000000000000000000000000000000000000000' %}
+                <p>#0 COINBASE</p>
+                {% else %}
+                <p>#{{ loop.index }}: 
+                    <a href="{{ url_for('txDetails', txid=tx_in['prev_tx']) }}">{{ tx_in['prev_tx'] }}</a>
+                </p>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="transaction-outputs">
+                <h4>Outputs</h4>
+                {% for tx_out in blk['tx_outs'] %}
+                <p>#{{ loop.index }}:
+                    {% set h160hash = bytes.fromhex(tx_out['script_publickey']['cmds'][2]) %}
+                    {% set new_addr = main_prefix + h160hash %}
+                    {% set checksum = sha256(sha256(new_addr).digest()).digest()[:4] %}
+                    {% set new_addr = new_addr + checksum %}
+                    {% set pubAddress = encode_base58(new_addr) %}
+                    {% set amount = tx_out['amount'] / 100000000 %}
+                    <a href="{{ url_for('address', publicAddress=pubAddress) }}">
+                        {{ pubAddress }}
+                    </a> - {{ amount }} TDC
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

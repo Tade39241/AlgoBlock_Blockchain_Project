@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+<div class="wallet-container">
+  <header>
+    <h1>CS351 Project: Tade's Blockchain</h1>
+    <p>Welcome to Tade's Blockchain Explorer. Discover the latest blocks, review transactions, manage your wallet, and participate in staking—all on one platform.</p>
+  </header>
+
+  <section class="intro">
+    <h2>About Tade's Blockchain</h2>
+    <p>
+      Tade's Blockchain is a decentralized network designed for secure transactions and innovative blockchain exploration.
+      Whether you're a developer, a student, or simply curious about blockchain technology, this explorer provides real-time insights into blocks, transactions, and wallet activities.
+    </p>
+  </section>
+
+  <section class="quick-links">
+    <h2>Quick Links</h2>
+    <ul>
+      <li><a href="{{ url_for('block') }}">View Blocks</a></li>
+      <li><a href="{{ url_for('transactions') }}">View Transactions</a></li>
+      <li><a href="{{ url_for('wallet') }}">Your Wallet</a></li>
+      <li><a href="{{ url_for('stake_page') }}">Stake & Rewards</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; {{ current_year|default("2025") }} Tade's Blockchain. All rights reserved.</p>
+  </footer>
+</div>
+{% endblock %}
