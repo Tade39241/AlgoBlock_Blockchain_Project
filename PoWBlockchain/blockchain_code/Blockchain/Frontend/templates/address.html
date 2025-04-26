@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Account{% endblock %}
+{% block content %}
+
+<div class="address">
+    <div class="addtag">
+        <h1>Address</h1>
+        <h3>{{ publicAddress }}</h3>
+    </div>
+    <img id="QR" src="{{ qrcode(publicAddress, box_size=4) }}">
+</div>
+
+<div class="grid-container3">
+    <div class="TxHeader">
+        <div class="TxItem">TOTAL UTXO COUNT</div>
+        <div class="TxItem">TOTAL UNSPENT</div>
+    </div>
+    <div class="TxDetails">
+        <div class="TxItemDetail">{{ Txs|length }}</div>
+        <div class="TxItemDetail">{{ amount/100000000 }}</div>
+    </div>
+</div>
+
+<h1 class="TransactionHeader">UTXOs</h1>
+{% for utxo in Txs %}
+<div class="TransactionDiv">
+    <div class="TxStyle">
+        <p>
+            <strong>Transaction ID:</strong>
+            <a href="{{ url_for('txDetails', txid=utxo['txid']) }}">
+                {{ utxo['txid'] }}
+            </a>
+        </p>
+        <p><strong>Output Index:</strong> {{ utxo['index'] }}</p>
+        <p>
+            <strong>Amount:</strong>
+            {{ utxo['amount'] / 100000000 }} TDC
+        </p>
+        {% if utxo['locktime'] %}
+        <p>
+            <strong>Locktime:</strong> {{ utxo['locktime'] }}
+        </p>
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="TransactionDiv">
+    <p>No UTXOs to display.</p>
+</div>
+{% endfor %}
+
+{% endblock %}
