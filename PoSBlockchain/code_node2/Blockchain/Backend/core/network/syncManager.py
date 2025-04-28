@@ -135,8 +135,9 @@ class syncManager:
                 print(f"New Block Received : {blockObj.Height}")
 
                 self.processReceivedBlocks()
-                time.sleep(2) # Allow time for processing
-                self.blockchain.buildUTXOS()
+                # time.sleep(2) # Allow time for processing
+                self.blockchain.update_utxo_set(blockObj)
+                print(f"[syncManager] UTXO set updated with block {blockObj.Height}")
 
             if envelope.command == requestBlock.command:
                 start_block, end_block = requestBlock.parse(envelope.stream())
@@ -634,7 +635,7 @@ class syncManager:
                 del self.newBlockAvailable[bh]
         
         if hasattr(self.blockchain, 'buildUTXOS'):
-            self.blockchain.buildUTXOS()
+            self.blockchain.update_utxo_set()
             print("[DEBUG] UTXO set rebuilt.")
         self.clean_mempool_against_chain(mem_pool=self.MemoryPool)
         print("[DEBUG] Mempool cleaned against chain.")

@@ -1,0 +1,4 @@
+nodes, volume, replicate, avg_block_time, std_block_time, throughput_tx_s, peak_mempool, final_mempool, total_cpu_seconds, peak_memory_percent
+    3, medium,         1,         117.75,          74.94,            0.05,           16,            25,             97.95, 76.4%
+    3, medium,         1,          60.11,           2.69,            0.06,           25,             7,            371.06, 88.1%
+   10, high  ,         1,          59.78,          17.50,            0.07,         1100,          6708,           4586.00, 93.1%

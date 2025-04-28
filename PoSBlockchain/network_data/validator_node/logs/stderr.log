@@ -1,0 +1,34 @@
+2025-04-28 04:18:22,264 INFO: [PID 298328] Blockchain object __init__ called.
+2025-04-28 04:18:22,299 INFO: [PID 298328] Ensured table exists in data/account.db
+2025-04-28 04:18:22,300 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,300 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,312 INFO: [PID 298328] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,312 INFO: [PID 298328] Blockchain __init__: Test BlockchainDB connection successful.
+2025-04-28 04:18:22,312 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,313 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,315 INFO: [PID 298328] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,356 INFO: [PID 298328] Ensured table exists in data/node.db
+2025-04-28 04:18:22,361 INFO: [PID 298328] Ensured table exists in data/account.db
+2025-04-28 04:18:22,365 INFO: [PID 298328] Ensured table exists in data/account.db
+2025-04-28 04:18:22,367 INFO: [PID 298328] Ensured table exists in data/account.db
+2025-04-28 04:18:22,750 INFO: [PID 298328] Ensured table exists in data/node.db
+2025-04-28 04:18:22,756 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,756 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,762 INFO: [PID 298328] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,777 INFO: [PID 298328] Block written successfully.
+2025-04-28 04:18:22,982 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,983 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,987 INFO: [PID 298328] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,989 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,989 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,992 INFO: [PID 298328] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,995 INFO: [PID 298328] [PID 298328] BlockchainDB attempting to connect to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-28 04:18:22,995 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db')
+2025-04-28 04:18:22,996 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: '/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db'
+2025-04-28 04:18:22,996 INFO: [PID 298328] [PID 298328] BlockchainDB connected successfully to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-28 04:18:23,000 INFO: [PID 298328] Ensured table exists in /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-28 04:19:23,055 INFO: [PID 298328] [PID 298328] BlockchainDB attempting to connect to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-28 04:19:23,055 INFO: [PID 298328] [PID 298328] BlockchainDB.connect attempting: sqlite3.connect('/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db')
+2025-04-28 04:19:23,056 INFO: [PID 298328] [PID 298328] BlockchainDB.connect successful for: '/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db'
+2025-04-28 04:19:23,056 INFO: [PID 298328] [PID 298328] BlockchainDB connected successfully to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-04-28 04:19:23,059 INFO: [PID 298328] Ensured table exists in /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db

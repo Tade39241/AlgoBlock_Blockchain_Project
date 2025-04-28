@@ -294,6 +294,13 @@ def blockheader_to_dict_for_db(blockheader):
 
 class Blockchain:
     def __init__(self, utxos, mem_pool,newBlockAvailable,secondaryChain,localHostPort, host):
+        # --- CONFIGURE LOGGING HERE ---
+        log_format = '%(asctime)s %(levelname)s: [PID %(process)d] %(message)s'
+        # Ensure logging is configured in this process
+        # Use force=True to override any existing config if necessary
+        logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr, force=True)
+        logging.info("Blockchain object __init__ called.")
+        # --- END LOGGING CONFIG ---
         self.utxos = utxos
         self.mem_pool = mem_pool
         self.account_db = AccountDB()
@@ -301,6 +308,16 @@ class Blockchain:
         self.secondaryChain = secondaryChain
         self.localHostPort = localHostPort
         self.host = host
+         # Add a check for DB access right away if possible (optional, but can help)
+        try:
+            # Assuming BlockchainDB uses the patched init with logging
+            test_db = BlockchainDB()
+            logging.info("Blockchain __init__: Test BlockchainDB connection successful.")
+            # You might want to close the connection if connect() keeps it open
+            if test_db.conn:
+                 test_db.conn.close()
+        except Exception as e:
+            logging.error(f"Blockchain __init__: FAILED to connect to BlockchainDB: {e}", exc_info=True)
 
     def write_on_disk(self,block):
         blockchainDB = BlockchainDB()
@@ -310,7 +327,7 @@ class Blockchain:
         all_blocks = blockchainDB.read_all_blocks()
         print("[DEBUG] Current chain in DB:")
         for blk in all_blocks:
-            print(f"  Height={blk['Height']} Hash={blk['BlockHeader']['blockHash']}")
+            print(f"  Height={blk[0]['Height']} Hash={blk[0]['BlockHeader']['blockHash']}")
 
     def fetch_last_block(self):
         blockchainDB = BlockchainDB()
@@ -354,9 +371,11 @@ class Blockchain:
     
         # 1. Build initial UTXOs for each account, sorted by address
         from reset_accounts import ACCOUNTS
+        num_active = len(NodeDB().read_nodes())
+        accounts = dict(list(ACCOUNTS.items())[:num_active])
         tx_outs = []
-        for addr in sorted(ACCOUNTS.keys()):
-            acc_data = ACCOUNTS[addr]
+        for addr in sorted(accounts.keys()):
+            acc_data = accounts[addr]
             script = StakingScript(addr, lock_time=0)
             tx_outs.append(TxOut(amount=acc_data['staked'], script_publickey=script))
             h160 = decode_base58(addr)
@@ -378,7 +397,7 @@ class Blockchain:
         merkleRoot_hex = merkle_root_bytes.hex()
     
         # 5. Use a fixed validator account and fixed timestamp
-        validator_addr = sorted(ACCOUNTS.keys())[0]
+        validator_addr = sorted(accounts.keys())[0]
         validator_account = account.get_account(validator_addr)
         if validator_account is None:
             raise Exception("No validator account found for genesis block.")
@@ -444,7 +463,7 @@ class Blockchain:
     
         new_block = Block(BlockHeight, self.Blocksize, blockheader.__dict__, len(self.TxJson), self.TxJson)
         self.write_on_disk([new_block.__dict__])
-        time.sleep(5)
+        time.sleep(0.2)
         self.buildUTXOS()
         print("[Node Setup] Genesis Block created and written to disk.")
         self.clean_mempool_against_chain(self.mem_pool)
@@ -1013,16 +1032,19 @@ class Blockchain:
         - If no blockchain exists, wait for validator selection or genesis block from network
         - Building the UTXO set from the stored blockchain (if any)
         """
-        last_block = self.fetch_last_block()
-        if last_block is None:
-            print("[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...")
-            # Do NOT call self.GenesisBlock() here!
-            # Just start syncManager to listen for blocks and valselect messages
-            # (syncManager will call GenesisBlock if this node is selected)
-        else:
-            print(f"[Node Setup] Last block height is: {last_block[0]['Height']}")
-            self.buildUTXOS()
-            print("[Node Setup] UTXO set constructed.")
+        logging.info("Entering setup_node()") # Log entry to setup_node
+        try:
+            last_block = self.fetch_last_block()
+            if last_block is None:
+                print("[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...")
+                logging.info("[Node Setup] No existing blockchain found. Waiting...")
+            else:
+                print(f"[Node Setup] Last block height is: {last_block[0]['Height']}")
+                self.buildUTXOS()
+                print("[Node Setup] UTXO set constructed.")
+        except Exception as e:
+            print(f"[Node Setup] Error during setup: {e}")
+            logging.error(f"Error during setup_node: {e}")
 
    
     # def setup_node(self):

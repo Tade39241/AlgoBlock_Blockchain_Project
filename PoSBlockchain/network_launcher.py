@@ -1,3 +1,4 @@
+import logging
 import os
 import random
 import re
@@ -23,6 +24,17 @@ sys.path.append(PROJECT_ROOT)
 
 # Import validator node selector
 sys.path.append(os.path.join(PROJECT_ROOT, 'validatorNode'))
+
+# --- Add this basic configuration near the top ---
+# Configure logging for this module/process
+log_format = '%(message)s'
+# Log INFO level messages and above to standard error
+logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr)
+# You could also configure a FileHandler here if you want logs in a separate file per process
+# --- End configuration ---
+
+# Get a logger for this module
+logger = logging.getLogger('network_launcher')
 
 class NetworkLauncher:
     def __init__(self, num_nodes=3, base_port=9000, web_base_port=5900, data_dir="network_data",
@@ -257,7 +269,7 @@ class NetworkLauncher:
         cursor = conn.cursor()
         cursor.execute("DROP TABLE IF EXISTS account")
         cursor.execute("CREATE TABLE IF NOT EXISTS account (public_addr TEXT PRIMARY KEY, value TEXT NOT NULL)")
-        for addr, account_data in ACCOUNTS.items():
+        for addr, account_data in list(ACCOUNTS.items())[:self.num_nodes]:
             cursor.execute("INSERT OR REPLACE INTO account VALUES (?, ?)", (addr, json.dumps(account_data)))
         conn.commit()
         conn.close()
@@ -286,6 +298,8 @@ class NetworkLauncher:
         import os
         script_path = os.path.join(validator_dir, "run_validator.py")
         PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+        abs_valid_dir = os.path.abspath(validator_dir)
+        abs_data_dir = os.path.join(abs_valid_dir, "data")
     
         script_content = f"""
 
@@ -299,6 +313,7 @@ import signal
 import json
 import sqlite3
 import threading
+import logging
 
 sys.path.append("{PROJECT_ROOT}")
 sys.path.append("{validator_dir}")
@@ -307,10 +322,20 @@ sys.path.insert(0, "{PROJECT_ROOT}/code_node2")
 from Blockchain.Backend.core.network.connection import Node
 from Blockchain.Backend.core.network.network import NetworkEnvelope
 
+NUM_NODES = {self.num_nodes}
+
 # Custom database paths
-data_dir = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node", "data")
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir, exist_ok=True)
+data_dir = os.path.join(r"{validator_dir}", "data")
+os.makedirs(data_dir, exist_ok=True)
+
+nested = os.path.join(data_dir, "data")
+if not os.path.exists(nested):
+    try:
+        os.symlink(data_dir, nested)
+        print(f"[Validator] symlinked {{nested}} → {{data_dir}}")
+    except FileExistsError:
+        pass
+        
 blockchain_db_path = os.path.join(data_dir, "blockchain.db")
 node_db_path = os.path.join(data_dir, "node.db")
 account_db_path = os.path.join(data_dir, "account.db")
@@ -333,12 +358,19 @@ def patched_nodedb_init(self, db_path=None):
 NodeDB.__init__ = patched_nodedb_init
 
 def patched_blockchaindb_init(self, db_path=None):
-    self.filename = node_db_path if not db_path else db_path
+    self.filename = blockchain_db_path if not db_path else db_path
     self.filepath = blockchain_db_path if not db_path else db_path
     self.table_name = "blocks"
     self.conn = None
+    logging.info(f"[PID {{os.getpid()}}] BlockchainDB attempting to connect to: {{self.filepath}}")
+    try:
+        self.connect()
+        logging.info(f"[PID {{os.getpid()}}] BlockchainDB connected successfully to: {{self.filepath}}")
+    except Exception as e:
+        logging.error(f"[PID {{os.getpid()}}] BlockchainDB FAILED to connect to: {{self.filepath}} - Error: {{e}}")
+        raise # Re-raise the exception
     print(f"[DEBUG] BlockchainDB will use path: {{self.filepath}}")
-    self.connect()
+    # self.connect()
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS blocks
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -419,6 +451,12 @@ def create_validator_account():
 
 create_validator_account()
 
+print("[Validator][DEBUG] account.db contains:")
+conn = sqlite3.connect(account_db_path)
+for public_addr, value in conn.execute("SELECT public_addr, value FROM account"):
+    print("   ", public_addr)
+conn.close()
+
 from code_node2.Blockchain.Backend.core.database.db import BlockchainDB
 from code_node2.Blockchain.Backend.util.util import decode_base58, encode_base58, hash256
 from code_node2.Blockchain.Backend.core.tx import Tx, TxOut
@@ -480,11 +518,12 @@ class ValidatorSelector:
     def __init__(self, host, port, peer_list):
         self.host = host
         self.port = port
-        self.peer_list = peer_list
+        self.peer_list = peer_list[:NUM_NODES]
 
     def select_validator(self, utxo_set):
         import random
         staked = get_staked_balances_from_utxos(utxo_set)
+
         validators = [(addr, amt) for addr, amt in staked.items() if amt > 0 and addr != VALIDATOR_ADDRESS]
         print(f"Available validators (excluding {{VALIDATOR_ADDRESS}}): {{[addr for addr, _ in validators]}}")
         if not validators:
@@ -554,6 +593,9 @@ if __name__ == '__main__':
 
     blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
     if blockchain.fetch_last_block() is None:
+        from reset_accounts import ACCOUNTS
+        ACCOUNTS = dict(list(ACCOUNTS.items())[:NUM_NODES])
+        print(ACCOUNTS)
         print("[Validator] No blocks found, creating genesis block...")
         blockchain.GenesisBlock()
         print("[Validator] Genesis block created and broadcast.")
@@ -598,16 +640,30 @@ if __name__ == '__main__':
 
     def create_node_script(self, node_info):
         node_dir = node_info["dir"]
+        abs_node_dir = os.path.abspath(node_dir)
         node_id = node_info["id"]
         data_dir = os.path.join(node_dir, "data")
+        abs_data_dir = os.path.join(abs_node_dir, "data")
         script_path = os.path.join(node_dir, "start_node.py")
         
         script_content = rf"""
 import sys
 import os
 import logging
+import time
+import signal
+import configparser
+import sqlite3
+import json
+import stat
+from multiprocessing import Process, Manager
+from multiprocessing.managers import BaseManager
+from reset_accounts import ACCOUNTS
 
-# Setup logging to the shared transaction log
+log_format = '%(asctime)s %(levelname)s: %(message)s'
+# Log INFO level messages and above specifically to stderr (which gets redirected)
+logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr)
+# Keep the file handler if you still want transaction.log
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 log_file_path = os.path.join(project_root, "network_data", "transaction.log")
 os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
@@ -616,30 +672,42 @@ file_handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
 file_handler.setFormatter(formatter)
 logging.getLogger().addHandler(file_handler)
-logging.basicConfig(level=logging.INFO)
 
-import time
-import signal
-import configparser
-import sqlite3
-import json
-from multiprocessing import Process, Manager
-from multiprocessing.managers import BaseManager
+# Add a test log message right after setup
+logging.info(f"[PID {{os.getpid()}}] start_node.py script started. Logging configured.")
+
+
 
 ZERO_HASH = "0" * 64
 
 
 # Add paths
 sys.path.append("{PROJECT_ROOT}")
-sys.path.append("{node_dir}")
+sys.path.append("{abs_node_dir}")
 
 # Store node ID as a variable inside this script
 NODE_ID = {node_id}
+NUM_NODES = {self.num_nodes}
 
-# Custom database paths - make them absolute paths
-blockchain_db_path = os.path.join("{data_dir}", "blockchain.db")
-node_db_path = os.path.join("{data_dir}", "node.db")
-account_db_path = os.path.join("{data_dir}", "account.db")
+# --- DEFINE ABSOLUTE PATHS FIRST ---
+# Use the absolute data_dir passed from the launcher
+abs_data_dir = "{abs_data_dir}"
+# Ensure the directory exists (using the absolute path)
+if not os.path.exists(abs_data_dir):
+    os.makedirs(abs_data_dir)
+
+nested = os.path.join(abs_data_dir, "data")
+if not os.path.exists(nested):
+    try:
+        os.symlink(abs_data_dir, nested)
+        logging.info(f"[PID {{os.getpid()}}] symlinked {{nested}} → {{abs_data_dir}}")
+    except FileExistsError:
+        pass
+
+# Define absolute paths for databases
+blockchain_db_path = os.path.join(abs_data_dir, "blockchain.db")
+node_db_path = os.path.join(abs_data_dir, "node.db")
+account_db_path = os.path.join(abs_data_dir, "account.db")
 
 # Create data directory if needed
 data_dir = os.path.join("{node_dir}", "data")
@@ -662,7 +730,20 @@ def patched_nodedb_init(self, db_path=None):
     self.filename = node_db_path if not db_path else db_path
     self.filepath = self.filename
     self.conn = None
-    self.connect()
+    try:
+        self.connect()
+        # --- ADD WAL and BUSY TIMEOUT ---
+        if self.conn:
+            try:
+                self.conn.execute("PRAGMA journal_mode=WAL;")
+                self.conn.execute("PRAGMA busy_timeout = 5000;") # Wait 5 seconds if locked
+                logging.info(f"[PID {{os.getpid()}}] NodeDB set WAL mode and busy_timeout for {{self.filepath}}")
+            except Exception as e_pragma:
+                logging.warning(f"[PID {{os.getpid()}}] NodeDB FAILED to set WAL/busy_timeout for {{self.filepath}}: {{e_pragma}}")
+        # --- END ADD ---
+    except Exception as e_connect:
+        logging.error(f"[PID {{os.getpid()}}] NodeDB FAILED to connect to: {{self.filepath}} - Error: {{e_connect}}")
+        raise
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS nodes
     (port INTEGER PRIMARY KEY)
@@ -675,7 +756,24 @@ def patched_blockchaindb_init(self, db_path=None):
     self.filepath = blockchain_db_path if not db_path else db_path
     self.table_name = "blocks"  # <-- FIXED
     self.conn = None
-    self.connect()
+    # self.connect()
+    logging.info(f"[PID {{os.getpid()}}] BlockchainDB attempting to connect to: {{self.filepath}}")
+    try:
+        self.connect()
+        logging.info(f"[PID {{os.getpid()}}] BlockchainDB connected successfully to: {{self.filepath}}")
+        # --- ADD WAL and BUSY TIMEOUT ---
+        if self.conn:
+            try:
+                self.conn.execute("PRAGMA journal_mode=WAL;")
+                self.conn.execute("PRAGMA busy_timeout = 5000;") # Wait 5 seconds if locked
+                logging.info(f"[PID {{os.getpid()}}] BlockchainDB set WAL mode and busy_timeout for {{self.filepath}}")
+            except Exception as e_pragma:
+                logging.warning(f"[PID {{os.getpid()}}] BlockchainDB FAILED to set WAL/busy_timeout for {{self.filepath}}: {{e_pragma}}")
+        # --- END ADD ---
+    except Exception as e_connect:
+        logging.error(f"[PID {{os.getpid()}}] BlockchainDB FAILED to connect to: {{self.filepath}} - Error: {{e_connect}}")
+        raise
+    print(f"[DEBUG] BlockchainDB will use path: {{self.filepath}}")
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS blocks
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -690,7 +788,20 @@ def patched_accountdb_init(self, db_path=None):
     self.filename = effective_path
     self.filepath = self.filename
     self.conn = None
-    self.connect()
+    try:
+        self.connect()
+        # --- ADD WAL and BUSY TIMEOUT ---
+        if self.conn:
+            try:
+                self.conn.execute("PRAGMA journal_mode=WAL;")
+                self.conn.execute("PRAGMA busy_timeout = 5000;") # Wait 5 seconds if locked
+                logging.info(f"[PID {{os.getpid()}}] AccountDB set WAL mode and busy_timeout for {{self.filepath}}")
+            except Exception as e_pragma:
+                logging.warning(f"[PID {{os.getpid()}}] AccountDB FAILED to set WAL/busy_timeout for {{self.filepath}}: {{e_pragma}}")
+        # --- END ADD ---
+    except Exception as e_connect:
+        logging.error(f"[PID {{os.getpid()}}] AccountDB FAILED to connect to: {{self.filepath}} - Error: {{e_connect}}")
+        raise
     self.table_name = "account"
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS account
@@ -701,48 +812,54 @@ def patched_accountdb_init(self, db_path=None):
 
 # Test database connections
 print(f"Testing database connections...")
+db_files_to_chmod = []
 try:
     conn = sqlite3.connect(node_db_path)
     print(f"  - Connected to node database: {{node_db_path}}")
     conn.close()
+    db_files_to_chmod.append(node_db_path)
     
     conn = sqlite3.connect(blockchain_db_path)
     print(f"  - Connected to blockchain database: {{blockchain_db_path}}")
     conn.close()
+    db_files_to_chmod.append(blockchain_db_path)
     
     conn = sqlite3.connect(account_db_path)
     print(f"  - Connected to account database: {{account_db_path}}")
     conn.close()
+    db_files_to_chmod.append(account_db_path)
 except Exception as e:
     print(f"Error testing database connections: {{e}}")
     sys.exit(1)
+
+# Set permissions for database files
+print(f"Setting permissions for database files...")
+for db_file in db_files_to_chmod:
+    try:
+        # Set permissions: Owner rw, Group rw, Others ---
+        os.chmod(db_file, stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IWGRP)
+        print(f"  - Set permissions for {{db_file}} to 660")
+    except OSError as e:
+        print(f"Warning: Could not set permissions for {{db_file}}: {{e}}")
+
+
 
 # Now import components after patching
 from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
 from code_node2.Blockchain.Backend.core.network.syncManager import syncManager
 from code_node2.Blockchain.client.account import account
 from code_node2.Blockchain.Frontend.run import main as web_main
+from reset_accounts import ACCOUNTS
+import sqlite3, json
 
 # Create default account if it doesn't exist
 def create_default_account():
-    import json 
-    addresses = [
-        {{
-            'public_addr': '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig',
-            'privateKey': '96535626569238604192129746772702330856431841702880282095447645155889990991526',
-            'public_key': '0248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4'
-        }},
-        {{
-            'public_addr': '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD',
-            'privateKey': '101116694282830344663754055609096743199644277746685645606199809457638491163865',
-            'public_key': '0387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d'
-        }},
-        {{
-            'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz',
-            'privateKey': '46707185248865296345366463593339102785859545093537333336358754291775493830931',
-            'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1'
-        }}
-    ]
+    from reset_accounts import ACCOUNTS
+    import json
+    import sqlite3
+
+
+    addresses = list(ACCOUNTS.values())
     
     # Determine address based on NODE_ID
     node_id = NODE_ID
@@ -766,11 +883,17 @@ def create_default_account():
         from reset_accounts import ACCOUNTS
         import sqlite3
         import json
+
         conn = sqlite3.connect(account_db_path)
         cursor = conn.cursor()
         cursor.execute('CREATE TABLE IF NOT EXISTS account (public_addr TEXT PRIMARY KEY, value TEXT NOT NULL)')
-        for addr, acc_data in ACCOUNTS.items():
-            cursor.execute('INSERT OR REPLACE INTO account VALUES (?, ?)', (addr, json.dumps(acc_data)))
+
+        for addr, acc_data in list(ACCOUNTS.items())[:NUM_NODES]:
+            cursor.execute(
+                'INSERT OR REPLACE INTO account VALUES (?, ?)',
+                (addr, json.dumps(acc_data))
+            )
+        
         # Also ensure the node's own account is present (in case you want to override any field)
         cursor.execute('INSERT OR REPLACE INTO account VALUES (?, ?)', (selected_address['public_addr'], json.dumps(account_data)))
         conn.commit()
@@ -1120,7 +1243,7 @@ if __name__ == '__main__':
             time.sleep(1)
 
         if "{self.sim_volume}" != "none" and "{self.sim_volume}":
-            print(f"[Sim] Starting transaction simulation: volume={{"{self.sim_volume}"}}, interval={{"{self.sim_interval}"}}, tx_types={{{self.sim_tx_types}}}")
+            print(f"[Sim] Starting transaction simulation: volume='{self.sim_volume}', interval={self.sim_interval}, tx_types='{self.sim_tx_types}'")
             simulate_random_transactions(
                 volume="{self.sim_volume}",
                 interval={self.sim_interval},

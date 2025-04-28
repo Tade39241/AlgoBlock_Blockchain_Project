@@ -240,7 +240,7 @@ class BlockHeader:
     def sign_block(self, private_key_int):
         """Sign the block with validator's private key."""
         priv = PrivateKey(private_key_int)
-        block_data = self.serialise()
+        block_data = self.serialise_without_signature()
         self.signature = priv.sign(block_data)
         self.blockHash = hash256(block_data + self.signature).hex()
 

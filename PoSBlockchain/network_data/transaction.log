@@ -1,93 +1,33 @@
-2025-04-26 16:16:48,673 INFO:  * Running on http://127.0.0.1:5902/ (Press CTRL+C to quit)
-2025-04-26 16:16:48,689 INFO: 127.0.0.1 - - [26/Apr/2025 16:16:48] "GET / HTTP/1.1" 200 -
-2025-04-26 16:16:49,146 INFO: 127.0.0.1 - - [26/Apr/2025 16:16:49] "GET / HTTP/1.1" 200 -
-2025-04-26 16:16:56,857 INFO: 127.0.0.1 - - [26/Apr/2025 16:16:56] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:16:56,878 INFO: 127.0.0.1 - - [26/Apr/2025 16:16:56] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:16:56,879 INFO: 127.0.0.1 - - [26/Apr/2025 16:16:56] "GET /static/css/styles.css HTTP/1.1" 200 -
-2025-04-26 16:17:24,246 INFO: 127.0.0.1 - - [26/Apr/2025 16:17:24] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:17:24,257 INFO: 127.0.0.1 - - [26/Apr/2025 16:17:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:17:24,260 INFO: 127.0.0.1 - - [26/Apr/2025 16:17:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:03,219 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:03] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:18:03,236 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:03,237 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:03] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:05,085 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:05] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:05,099 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:05,103 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:05] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:09,209 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:09] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:09,219 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:09] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:09,220 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:09] "[36mGET /static/css/styles.css HTTP/1.12025-04-26 12025-04-26 16:18:19,231 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:19] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:19,243 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:19] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:19,244 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:19] "[36mGET /static/images/search.png HTTP/1.12025-04-26 12025-04-26 16:18:29,258 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:29] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:29,269 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:29] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:29,269 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:29] "[36mGET /static/css/styles.css HTTP/1.12025-04-26 12025-04-26 16:18:39,284 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:39] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:39,295 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:39] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:39,295 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:39] "[36mGET /static/images/search.png HTTP/1.12025-04-26 12025-04-26 16:18:49,312 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:49] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:49,323 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:49] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:49,324 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:49] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:50,393 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:50,406 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:50,406 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:50,908 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:18:50,917 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:50,918 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:50] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:51,411 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:51] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:51,424 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:51] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:51,427 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:51] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:52,481 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:52] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:18:52,494 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:52] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:52,500 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:52] "[36mGET /static/images/search.png HTTP/1.1[0m" 32025-04-26 16:18:54,896 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:54] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:54,907 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:54] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:54,909 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:54] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 2025-04-26 16:19:13,630 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:13] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:19:13,641 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:13] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:13,644 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:13] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-5-04-26 16:18:57,644 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:57] "GET / HTTP/1.1" 200 -
-2025-04-26 16:18:57,657 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:57,660 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:57] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:11,365 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:11] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:19:11,378 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:11,384 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:11] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:12,517 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:12] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:19:12,532 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:12,532 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:12] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:22,630 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:22] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:22,634 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:22] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:24,329 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:24] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:18:24,341 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:24] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:24,344 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:24] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:25,329 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:25] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:25,351 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:25] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:25,352 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:25] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:28,298 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:28] "[32mGET /search?search=14yikjhubj1sepvqsvzpRv4H6LhMN43XGD HTTP/1.1[0m" 302 -
-2025-04-26 16:18:28,343 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:28] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD HTTP/1.1" 200 -
-2025-04-26 16:18:28,354 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:28] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:28,355 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:28] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
-2025-04-26 16:18:32,545 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:32] "GET /address/14yikjhubj1sepvqsvzpRv4H6LhMN43XGD HTTP/1.1" 200 -
-2025-04-26 16:18:32,558 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:32] "[33mGET /address/static/images/search.png HTTP/1.1[0m" 404 -
-2025-04-26 16:18:32,559 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:32] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:42,948 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:42] "GET /mempool HTTP/1.1" 200 -
-2025-04-26 16:18:42,968 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:42] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:42,970 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:42] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:43,664 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:43] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:43,677 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:43] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:18:43,684 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:43] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:53,692 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:53] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:18:53,702 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:53] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:18:53,703 INFO: 127.0.0.1 - - [26/Apr/2025 16:18:53] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:00,946 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:00] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:19:00,958 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:00] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:00,961 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:00] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:02,126 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:02] "GET /transactions HTTP/1.1" 200 -
-2025-04-26 16:19:02,139 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:02] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:02,139 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:02] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:05,243 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:05] "GET / HTTP/1.1" 200 -
-2025-04-26 16:19:05,260 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:05,260 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:05] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:06,477 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:06] "GET / HTTP/1.1" 200 -
-2025-04-26 16:19:06,490 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:06,493 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:06] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:07,547 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:07] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:19:07,568 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:07] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:07,570 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:07] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
-2025-04-26 16:19:08,929 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:08] "GET /block HTTP/1.1" 200 -
-2025-04-26 16:19:08,942 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:08] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
-2025-04-26 16:19:08,944 INFO: 127.0.0.1 - - [26/Apr/2025 16:19:08] "[36mGET /static/images/search.png HTTP/1.1[0m" 304 -
+2025-04-28 04:18:20,459 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5901
+2025-04-28 04:18:20,459 INFO: [33mPress CTRL+C to quit[0m
+2025-04-28 04:18:20,706 INFO: 127.0.0.1 - - [28/Apr/2025 04:18:20] "GET / HTTP/1.1" 200 -
+2025-04-28 04:18:21,886 INFO: 127.0.0.1 - - [28/Apr/2025 04:18:21] "GET / HTTP/1.1" 200 -
+2025-04-28 04:18:22,765 INFO: [PID 298302] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,762 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,773 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,773 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,774 INFO: [PID 298302] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,781 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:23,041 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,090 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,102 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,130 INFO: Block written successfully.
+2025-04-28 04:18:25,118 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:25,469 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:25,470 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-2025-04-28 04:19:23,068 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:23,075 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:23,077 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:25,147 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:25,520 INFO: [PID 298302] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:25,521 INFO: [PID 298302] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:25,523 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:25,523 INFO: [PID 298302] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:25,524 INFO: [PID 298302] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:25,525 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:25,710 INFO: Block written successfully.
+attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:25,524 INFO: [PID 298302] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:25,525 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:25,710 INFO: Block written successfully.

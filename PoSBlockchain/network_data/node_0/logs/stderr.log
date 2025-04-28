@@ -1,50 +1,54 @@
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/syncManager.py", line 216, in handleConnection
-    self.blockchain.addBlock(blockHeight, prevBlockHash, selected_validator)
-  File "<string>", line 2, in addBlock
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/managers.py", line 836, in _callmethod
-    raise convert_to_error(kind, result)
-TypeError: list indices must be integers or slices, not str
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/syncManager.py", line 216, in handleConnection
-    self.blockchain.addBlock(blockHeight, prevBlockHash, selected_validator)
-  File "<string>", line 2, in addBlock
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/managers.py", line 836, in _callmethod
-    raise convert_to_error(kind, result)
-TypeError: list indices must be integers or slices, not str
-Process Process-4:
-Traceback (most recent call last):
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
-    self.run()
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/process.py", line 108, in run
-    self._target(*self._args, **self._kwargs)
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/syncManager.py", line 48, in spinUpServer
-    self.conn, self.addr = self.server.acceptConnection()
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/network/connection.py", line 31, in acceptConnection
-    self.conn, self.addr = self.server.accept()
-                           ^^^^^^^^^^^^^^^^^^^^
-  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py", line 295, in accept
-    fd, addr = self._accept()
-               ^^^^^^^^^^^^^^
-KeyboardInterrupt
-Exception ignored in: <function BaseDB.__del__ at 0x105f26020>
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/database/db.py", line 129, in __del__
-    self.conn.close()
-sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6121009152 and this is thread id 8132452608.
-Exception ignored in: <function BaseDB.__del__ at 0x105f26020>
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/database/db.py", line 129, in __del__
-    self.conn.close()
-sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6121009152 and this is thread id 8132452608.
-Exception ignored in: <function BaseDB.__del__ at 0x105ba6020>
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/database/db.py", line 129, in __del__
-    self.conn.close()
-sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6161674240 and this is thread id 8132452608.
-Exception ignored in: <function BaseDB.__del__ at 0x105ba6020>
-Traceback (most recent call last):
-  File "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2/Blockchain/Backend/core/database/db.py", line 129, in __del__
-    self.conn.close()
-sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6144847872 and this is thread id 8132452608.
+2025-04-28 04:18:17,918 INFO: [PID 298194] start_node.py script started. Logging configured.
+2025-04-28 04:18:17,919 INFO: [PID 298194] symlinked /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/data → /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data
+2025-04-28 04:18:18,332 INFO: [PID 298220] Blockchain object __init__ called.
+2025-04-28 04:18:18,353 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5900
+2025-04-28 04:18:18,353 INFO: [33mPress CTRL+C to quit[0m
+2025-04-28 04:18:18,427 INFO: [PID 298220] Ensured table exists in data/account.db
+2025-04-28 04:18:18,427 INFO: [PID 298220] [PID 298220] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:18,432 INFO: [PID 298220] [PID 298220] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:18,458 INFO: [PID 298220] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:18,458 INFO: [PID 298220] Blockchain __init__: Test BlockchainDB connection successful.
+2025-04-28 04:18:18,465 INFO: [PID 298220] Entering setup_node()
+2025-04-28 04:18:18,465 INFO: [PID 298220] [PID 298220] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:18,473 INFO: [PID 298220] [PID 298220] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:18,484 INFO: [PID 298220] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:18,491 INFO: [PID 298220] [Node Setup] No existing blockchain found. Waiting...
+2025-04-28 04:18:18,613 INFO: 127.0.0.1 - - [28/Apr/2025 04:18:18] "GET / HTTP/1.1" 200 -
+2025-04-28 04:18:21,881 INFO: 127.0.0.1 - - [28/Apr/2025 04:18:21] "GET / HTTP/1.1" 200 -
+2025-04-28 04:18:22,759 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,762 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,773 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:22,773 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:22,774 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:22,781 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:23,041 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,090 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,102 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:23,130 INFO: Block written successfully.
+2025-04-28 04:18:25,118 INFO: Ensured table exists in data/account.db
+2025-04-28 04:18:25,469 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:25,470 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:25,474 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:25,479 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:18:25,481 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:18:25,483 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:18:25,704 INFO: Block written successfully.
+2025-04-28 04:19:23,069 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:23,075 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:23,078 INFO: Ensured table exists in data/account.db
+2025-04-28 04:19:23,080 INFO: [PID 298239] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:23,082 INFO: [PID 298239] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:23,084 INFO: Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:25,141 INFO: [PID 298220] Ensured table exists in data/node.db
+2025-04-28 04:19:25,516 INFO: [PID 298220] Ensured table exists in data/node.db
+2025-04-28 04:19:25,520 INFO: [PID 298220] [PID 298220] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:25,526 INFO: [PID 298220] [PID 298220] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:25,528 INFO: [PID 298220] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:25,538 INFO: [PID 298220] Block written successfully.
+2025-04-28 04:19:30,545 INFO: [PID 298220] [PID 298220] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:30,545 INFO: [PID 298220] [PID 298220] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:30,550 INFO: [PID 298220] Ensured table exists in data/data/blockchain.db
+2025-04-28 04:19:30,553 INFO: [PID 298220] [PID 298220] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
+2025-04-28 04:19:30,553 INFO: [PID 298220] [PID 298220] BlockchainDB.connect successful for: 'data/data/blockchain.db'
+2025-04-28 04:19:30,557 INFO: [PID 298220] Ensured table exists in data/data/blockchain.db

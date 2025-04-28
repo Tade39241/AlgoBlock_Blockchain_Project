@@ -149,8 +149,15 @@ class BlockchainDB(BaseDB):
 
     def connect(self):
         if self.conn is None:
-            self.conn = sqlite3.connect(self.filepath)
-            self.cursor = self.conn.cursor()
+            try:
+                logging.info(f"[PID {os.getpid()}] BlockchainDB.connect attempting: sqlite3.connect('{self.filepath}')")
+                self.conn = sqlite3.connect(self.filepath)
+                logging.info(f"[PID {os.getpid()}] BlockchainDB.connect successful for: '{self.filepath}'")
+                self.cursor = self.conn.cursor()
+            except sqlite3.Error as e:
+                logging.error(f"[PID {os.getpid()}] BlockchainDB.connect error: {e}")
+                raise
+
 
     def write(self, block):
         """
@@ -180,6 +187,35 @@ class BlockchainDB(BaseDB):
             return json.loads(row[0])
         else:
             return None
+    
+    def get_height(self):
+        """Returns the height of the last block in the chain (number of blocks - 1)."""
+        conn = None # Use a local connection variable for safety in this method
+        try:
+            # Use the existing connect method logic, but manage connection locally
+            if self.conn is None:
+                 self.connect() # Ensure connection exists if not already connected
+
+            # Use the class's cursor if available
+            if self.cursor is None:
+                 logger.error("Database cursor not available in get_height.")
+                 return -2 # Indicate an internal error
+
+            # Assuming your blocks table is named 'blocks'
+            self.cursor.execute("SELECT COUNT(*) FROM blocks")
+            result = self.cursor.fetchone()
+            count = result[0] if result else 0
+            # Height is typically 0-indexed (genesis block is height 0)
+            height = count - 1
+            logger.debug(f"Calculated height: {height} (Count: {count})")
+            return height
+        except sqlite3.Error as e:
+            logger.error(f"Error getting blockchain height: {e}")
+            # Return -1 to indicate a DB query error
+            return -1
+        # Note: We don't close the connection here as it's managed by the class instance
+    # --- END OF ADDED METHOD ---
+
 
     def read_all_blocks(self):
         """Read all blocks from the blocks table"""

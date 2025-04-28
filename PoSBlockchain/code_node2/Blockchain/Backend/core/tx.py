@@ -196,49 +196,110 @@ class Tx:
             cmdsout = []
         return cls(1, TxInList, TxOutList, 0)
 
+    # def to_dict(self):
+    #     """
+    #     Convert the transaction object to a dictionary.
+    #     This conversion includes converting bytes fields (such as prev_tx and script commands)
+    #     to hex strings for storage.
+    #     """
+
+    #     for tx_index, tx_in in enumerate(self.tx_ins):
+    #         if self.is_coinbase():
+    #             tx_in.script_sig.cmds[0] = little_endian_to_int(tx_in.script_sig.cmds[0])
+    #         tx_in.prev_tx = tx_in.prev_tx.hex()
+
+    #         for index, cmd in enumerate(tx_in.script_sig.cmds):
+    #             if isinstance(cmd, bytes):
+    #                 tx_in.script_sig.cmds[index] = cmd.hex()
+    #         tx_in.script_sig = tx_in.script_sig.__dict__
+    #         self.tx_ins[tx_index] = tx_in.__dict__
+
+    #     """
+    #     convert Transaction output to dict
+    #     # If there are numbers don't do anything
+    #     # If value is in Bytes, convert it to hex
+    #     # Loop through all the TxOut Objects and convert them into dict
+    #     """
+    #     from Blockchain.Backend.core.script import StakingScript
+
+    #     for index, tx_out in enumerate(self.tx_outs):
+    #         cmds = tx_out.script_publickey.cmds
+    #         if len(cmds) >= 3:
+    #             # Make sure to convert any bytes in the script to hex.
+    #             tx_out.script_publickey.cmds[2] = tx_out.script_publickey.cmds[2].hex()
+    #             tx_out.script_publickey = tx_out.script_publickey.__dict__
+    #             self.tx_outs[index] = tx_out.__dict__
+    #         elif len(cmds) == 2:
+    #             new_cmds = []
+    #             for cmd in cmds:
+    #                 if isinstance(cmd, bytes):
+    #                     new_cmds.append(cmd.hex())
+    #                 else:
+    #                     new_cmds.append(cmd)
+    #             tx_out.script_publickey.cmds = new_cmds
+
+    #     return self.__dict__
+
     def to_dict(self):
         """
-        Convert the transaction object to a dictionary.
-        This conversion includes converting bytes fields (such as prev_tx and script commands)
-        to hex strings for storage.
+        Convert the transaction object to a dictionary without modifying the original object.
+        Converts bytes fields to hex strings.
         """
+        # Create a dictionary representation
+        tx_dict = {
+            'version': self.version,
+            'tx_ins': [],
+            'tx_outs': [],
+            'locktime': self.locktime,
+            # Include TxId if it's an attribute and you want it in the dict
+            'TxId': getattr(self, 'TxId', self.id()) # Compute if not present
+        }
 
-        for tx_index, tx_in in enumerate(self.tx_ins):
-            if self.is_coinbase():
-                tx_in.script_sig.cmds[0] = little_endian_to_int(tx_in.script_sig.cmds[0])
-            tx_in.prev_tx = tx_in.prev_tx.hex()
+        # Process TxIns into a new list of dicts
+        for tx_in in self.tx_ins:
+            tx_in_dict = {
+                'prev_tx': tx_in.prev_tx.hex(),
+                'prev_index': tx_in.prev_index,
+                'script_sig': {}, # Prepare script_sig dict
+                'sequence': tx_in.sequence
+            }
+            script_cmds = []
+            # Handle coinbase script command conversion
+            if self.is_coinbase() and tx_in.script_sig.cmds:
+                 try:
+                      # Assuming the first command is the height bytes
+                      script_cmds.append(little_endian_to_int(tx_in.script_sig.cmds[0]))
+                      # Append remaining cmds as hex if they exist (unlikely for coinbase)
+                      for cmd in tx_in.script_sig.cmds[1:]:
+                           script_cmds.append(cmd.hex() if isinstance(cmd, bytes) else cmd)
+                 except Exception as e:
+                      # Log error or handle case where coinbase script is not as expected
+                      print(f"WARN: Error processing coinbase script_sig in to_dict: {e}")
+                      # Fallback: try converting all as hex/int
+                      script_cmds = [cmd.hex() if isinstance(cmd, bytes) else cmd for cmd in tx_in.script_sig.cmds]
 
-            for index, cmd in enumerate(tx_in.script_sig.cmds):
-                if isinstance(cmd, bytes):
-                    tx_in.script_sig.cmds[index] = cmd.hex()
-            tx_in.script_sig = tx_in.script_sig.__dict__
-            self.tx_ins[tx_index] = tx_in.__dict__
+            else: # Regular transaction script_sig
+                script_cmds = [cmd.hex() if isinstance(cmd, bytes) else cmd for cmd in tx_in.script_sig.cmds]
 
-        """
-        convert Transaction output to dict
-        # If there are numbers don't do anything
-        # If value is in Bytes, convert it to hex
-        # Loop through all the TxOut Objects and convert them into dict
-        """
-        from Blockchain.Backend.core.script import StakingScript
+            tx_in_dict['script_sig']['cmds'] = script_cmds
+            tx_dict['tx_ins'].append(tx_in_dict)
 
-        for index, tx_out in enumerate(self.tx_outs):
-            cmds = tx_out.script_publickey.cmds
-            if len(cmds) >= 3:
-                # Make sure to convert any bytes in the script to hex.
-                tx_out.script_publickey.cmds[2] = tx_out.script_publickey.cmds[2].hex()
-                tx_out.script_publickey = tx_out.script_publickey.__dict__
-                self.tx_outs[index] = tx_out.__dict__
-            elif len(cmds) == 2:
-                new_cmds = []
-                for cmd in cmds:
-                    if isinstance(cmd, bytes):
-                        new_cmds.append(cmd.hex())
-                    else:
-                        new_cmds.append(cmd)
-                tx_out.script_publickey.cmds = new_cmds
 
-        return self.__dict__
+        # Process TxOuts into a new list of dicts
+        for tx_out in self.tx_outs:
+            tx_out_dict = {
+                'amount': tx_out.amount,
+                'script_publickey': {} # Prepare script_publickey dict
+            }
+            # Convert script commands to hex if they are bytes
+            script_cmds = [cmd.hex() if isinstance(cmd, bytes) else cmd for cmd in tx_out.script_publickey.cmds]
+            tx_out_dict['script_publickey']['cmds'] = script_cmds
+            tx_dict['tx_outs'].append(tx_out_dict)
+
+        return tx_dict
+
+
+
 
     def sig_hash(self, input_index, script_pubkey):
         """

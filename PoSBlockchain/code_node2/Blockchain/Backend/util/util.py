@@ -1,6 +1,4 @@
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code_node2')
-
 import hashlib
 from Crypto.Hash import RIPEMD160
 from hashlib import sha256

@@ -102,9 +102,52 @@ class Block:
         return result
         
     
+    # def to_dict(self):
+    #     dt = self.__dict__
+    #     if hasattr(self.BlockHeader, "__dict__"):
+    #         self.BlockHeader = self.BlockHeader.__dict__
+    #         # Do NOT call .to_dict() on BlockHeader or Txs
+    #     return dt
+
     def to_dict(self):
-        dt = self.__dict__
-        if hasattr(self.BlockHeader, "__dict__"):
-            self.BlockHeader = self.BlockHeader.__dict__
-            # Do NOT call .to_dict() on BlockHeader or Txs
+        # Create a shallow copy to avoid modifying the original __dict__
+        dt = self.__dict__.copy()
+
+        # Convert BlockHeader object to dict *in the copy*
+        if isinstance(self.BlockHeader, BlockHeader):
+             # Assuming BlockHeader has a suitable to_dict or __dict__
+             try:
+                  # Prefer a dedicated method if it exists
+                  dt['BlockHeader'] = self.BlockHeader.to_dict()
+             except AttributeError:
+                  # Fallback to __dict__ if necessary
+                  dt['BlockHeader'] = self.BlockHeader.__dict__
+        elif isinstance(self.BlockHeader, dict):
+             # If it's already a dict, keep it as is in the copy
+             dt['BlockHeader'] = self.BlockHeader
+        # else: handle other unexpected types if necessary
+
+        # Convert Tx objects to dicts *in the copy*
+        tx_list_of_dicts = []
+        if isinstance(self.Txs, list):
+            for tx in self.Txs:
+                if isinstance(tx, Tx):
+                     try:
+                          # Prefer a dedicated method if it exists
+                          tx_list_of_dicts.append(tx.to_dict())
+                     except AttributeError:
+                          # Fallback to __dict__ if necessary
+                          tx_list_of_dicts.append(tx.__dict__)
+                elif isinstance(tx, dict):
+                     tx_list_of_dicts.append(tx) # Already a dict
+                # else: handle other unexpected types
+        dt['Txs'] = tx_list_of_dicts
+
+        # Convert Signature object if it exists
+        if hasattr(self, 'Signature') and isinstance(self.Signature, Signature):
+             # Assuming Signature needs hex representation
+             dt['Signature'] = self.Signature.hex()
+        elif isinstance(self.Signature, str):
+             dt['Signature'] = self.Signature # Already a string/hex
+
         return dt

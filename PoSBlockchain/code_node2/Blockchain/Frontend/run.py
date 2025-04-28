@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.INFO)  # At the top of your file (if not alrea
 
 # Import jsonify for API responses and psutil for system stats
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
-import psutil # Make sure psutil is installed: pip install psutil
+import psutil 
 
 from Blockchain.client.sendTDC import sendTDC
 from Blockchain.Backend.core.tx import Tx, TxIn, TxOut, ZERO_HASH
@@ -53,10 +53,6 @@ def get_blockchain_db():
     # This assumes the patched __init__ in start_node.py sets the correct path
     # If not, you might need to pass the path explicitly or read from config
     try:
-        # Use the AccountDB path logic as a reference if needed
-        # config = configparser.ConfigParser()
-        # config.read('config.ini') # Assuming config.ini is in the CWD
-        # db_path = os.path.join(os.getcwd(), "blockchain.db") # Adjust if needed
         return BlockchainDB()
     except Exception as e:
         print(f"Error getting BlockchainDB instance: {e}")
@@ -81,13 +77,35 @@ def get_stats():
         total_transactions = 0
         last_block_time = 0
         blocks = blockchain_db.read_all_blocks() # Read blocks once
+
         if blocks:
-            last_block_time = blocks[-1][0].get('BlockHeader', {}).get('timestamp', 0)
-            for block_data, _ in blocks: # Iterate through block data only
-                 # Ensure 'Txs' exists and is a list
-                 txs_list = block_data.get('Txs', [])
-                 if isinstance(txs_list, list):
-                      total_transactions += len(txs_list)
+            # Ensure the last block is treated as a dictionary too
+            last_block_list_item = blocks[-1]
+            if isinstance(last_block_list_item, list) and len(last_block_list_item) > 0 and isinstance(last_block_list_item[0], dict):
+                last_block_dict = last_block_list_item[0]
+                last_block_time = last_block_dict.get('BlockHeader', {}).get('timestamp', 0)
+            else:
+                # Handle case where last block isn't a dict, maybe log an error
+                last_block_time = 0
+                print(f"Warning: Last block read from DB is not a dictionary: {last_block_dict}")
+
+            # --- CHANGE THIS LOOP ---
+            # Iterate directly over the block dictionaries
+            for block_list_item in blocks:
+                # Check if the item is a list and has at least one element
+                if isinstance(block_list_item, list) and len(block_list_item) > 0:
+                    block_data = block_list_item[0] # Get the dictionary from the inner list
+                    # Ensure block_data is actually a dictionary
+                    if isinstance(block_data, dict):
+                        # Ensure 'Txs' exists and is a list
+                        txs_list = block_data.get('Txs', [])
+                        if isinstance(txs_list, list):
+                            total_transactions += len(txs_list)
+                    else:
+                         print(f"Warning [/stats]: Inner item is not a dictionary: {block_data}")
+                else:
+                    # Log an error if an item in blocks isn't a list or is empty
+                    print(f"Warning [/stats]: Encountered unexpected item format in blocks list: {block_list_item}")
 
 
         # System Resource Usage
@@ -123,8 +141,17 @@ def get_performance():
 
     try:
         blocks = blockchain_db.read_all_blocks()
-        num_blocks_to_consider = 100 # Calculate metrics over the last N blocks
-        recent_blocks = blocks[-num_blocks_to_consider:]
+        num_blocks_to_consider = 100
+        recent_blocks_raw = blocks[-num_blocks_to_consider:]
+
+        # --- Extract dictionaries from the list of lists ---
+        recent_blocks = []
+        for item in recent_blocks_raw:
+            if isinstance(item, list) and len(item) > 0 and isinstance(item[0], dict):
+                recent_blocks.append(item[0])
+            else:
+                print(f"Warning [/performance]: Skipping block with unexpected format: {item}")
+        # --- End extraction ---
 
         if len(recent_blocks) < 2:
             return jsonify({
@@ -135,33 +162,39 @@ def get_performance():
             })
 
         total_time_diff = 0
-        total_transactions = 0
-        block_count = 0
+        total_transactions = 0 # Count transactions within the considered blocks
+        block_count = 0 # Count valid intervals
 
         for i in range(1, len(recent_blocks)):
             try:
-                prev_block_data = recent_blocks[i-1][0]
-                current_block_data = recent_blocks[i][0]
+                # Access dictionaries directly now
+                prev_block_data = recent_blocks[i-1]
+                current_block_data = recent_blocks[i]
+
+                # Dictionaries are already validated during extraction, but check again just in case
+                if not isinstance(prev_block_data, dict) or not isinstance(current_block_data, dict):
+                     print(f"Warning [/performance]: Internal error - data is not dict at index {i}")
+                     continue
 
                 prev_timestamp = prev_block_data.get('BlockHeader', {}).get('timestamp')
                 current_timestamp = current_block_data.get('BlockHeader', {}).get('timestamp')
 
                 if prev_timestamp is not None and current_timestamp is not None and current_timestamp > prev_timestamp:
                     total_time_diff += (current_timestamp - prev_timestamp)
-                    block_count += 1 # Only count blocks where time diff is valid
+                    block_count += 1
 
-                # Count transactions in the current block
                 txs_list = current_block_data.get('Txs', [])
                 if isinstance(txs_list, list):
                      total_transactions += len(txs_list)
 
             except (KeyError, TypeError, IndexError) as e:
-                 print(f"Warning: Skipping block pair due to data issue: {e}")
-                 continue # Skip this block pair if data is missing/malformed
+                 print(f"Warning [/performance]: Skipping block pair due to data issue: {e}")
+                 continue
 
 
         average_block_time = total_time_diff / block_count if block_count > 0 else None
-        average_transactions_per_block = total_transactions / len(recent_blocks) if recent_blocks else None # Avg over all considered blocks
+        # Calculate average tx per block based on the blocks actually processed in the loop
+        average_transactions_per_block = total_transactions / len(recent_blocks) if recent_blocks else None # Or maybe divide by block_count? Depends on desired metric.
         estimated_tps = (total_transactions / total_time_diff) if total_time_diff > 0 else None
 
         performance = {

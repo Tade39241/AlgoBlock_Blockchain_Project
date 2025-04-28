@@ -10,18 +10,29 @@ import signal
 import json
 import sqlite3
 import threading
+import logging
 
-sys.path.append("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain")
-sys.path.append("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node")
-sys.path.insert(0, "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2")
+sys.path.append("/dcs/project/algoblock/MainCode/PoSBlockchain")
+sys.path.append("/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node")
+sys.path.insert(0, "/dcs/project/algoblock/MainCode/PoSBlockchain/code_node2")
 
 from Blockchain.Backend.core.network.connection import Node
 from Blockchain.Backend.core.network.network import NetworkEnvelope
 
+NUM_NODES = 2
+
 # Custom database paths
-data_dir = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/network_data/validator_node", "data")
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir, exist_ok=True)
+data_dir = os.path.join(r"/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node", "data")
+os.makedirs(data_dir, exist_ok=True)
+
+nested = os.path.join(data_dir, "data")
+if not os.path.exists(nested):
+    try:
+        os.symlink(data_dir, nested)
+        print(f"[Validator] symlinked {nested} → {data_dir}")
+    except FileExistsError:
+        pass
+        
 blockchain_db_path = os.path.join(data_dir, "blockchain.db")
 node_db_path = os.path.join(data_dir, "node.db")
 account_db_path = os.path.join(data_dir, "account.db")
@@ -44,12 +55,19 @@ def patched_nodedb_init(self, db_path=None):
 NodeDB.__init__ = patched_nodedb_init
 
 def patched_blockchaindb_init(self, db_path=None):
-    self.filename = node_db_path if not db_path else db_path
+    self.filename = blockchain_db_path if not db_path else db_path
     self.filepath = blockchain_db_path if not db_path else db_path
     self.table_name = "blocks"
     self.conn = None
+    logging.info(f"[PID {os.getpid()}] BlockchainDB attempting to connect to: {self.filepath}")
+    try:
+        self.connect()
+        logging.info(f"[PID {os.getpid()}] BlockchainDB connected successfully to: {self.filepath}")
+    except Exception as e:
+        logging.error(f"[PID {os.getpid()}] BlockchainDB FAILED to connect to: {self.filepath} - Error: {e}")
+        raise # Re-raise the exception
     print(f"[DEBUG] BlockchainDB will use path: {self.filepath}")
-    self.connect()
+    # self.connect()
     self.table_schema = '''
     CREATE TABLE IF NOT EXISTS blocks
     (id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -130,6 +148,12 @@ def create_validator_account():
 
 create_validator_account()
 
+print("[Validator][DEBUG] account.db contains:")
+conn = sqlite3.connect(account_db_path)
+for public_addr, value in conn.execute("SELECT public_addr, value FROM account"):
+    print("   ", public_addr)
+conn.close()
+
 from code_node2.Blockchain.Backend.core.database.db import BlockchainDB
 from code_node2.Blockchain.Backend.util.util import decode_base58, encode_base58, hash256
 from code_node2.Blockchain.Backend.core.tx import Tx, TxOut
@@ -191,11 +215,12 @@ class ValidatorSelector:
     def __init__(self, host, port, peer_list):
         self.host = host
         self.port = port
-        self.peer_list = peer_list
+        self.peer_list = peer_list[:NUM_NODES]
 
     def select_validator(self, utxo_set):
         import random
         staked = get_staked_balances_from_utxos(utxo_set)
+
         validators = [(addr, amt) for addr, amt in staked.items() if amt > 0 and addr != VALIDATOR_ADDRESS]
         print(f"Available validators (excluding {VALIDATOR_ADDRESS}): {[addr for addr, _ in validators]}")
         if not validators:
@@ -253,8 +278,8 @@ def signal_handler(sig, frame):
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
     host = "127.0.0.1"
-    port = 9003
-    peer_list = [('127.0.0.1', 9000), ('127.0.0.1', 9001), ('127.0.0.1', 9002)]
+    port = 9002
+    peer_list = [('127.0.0.1', 9000), ('127.0.0.1', 9001)]
     print(f"Starting validator node on port {port} with custom DB paths")
 
     from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
@@ -265,6 +290,9 @@ if __name__ == '__main__':
 
     blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
     if blockchain.fetch_last_block() is None:
+        from reset_accounts import ACCOUNTS
+        ACCOUNTS = dict(list(ACCOUNTS.items())[:NUM_NODES])
+        print(ACCOUNTS)
         print("[Validator] No blocks found, creating genesis block...")
         blockchain.GenesisBlock()
         print("[Validator] Genesis block created and broadcast.")
