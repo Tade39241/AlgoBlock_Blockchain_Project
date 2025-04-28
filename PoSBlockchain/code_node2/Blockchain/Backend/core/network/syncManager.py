@@ -7,11 +7,14 @@ from Blockchain.Backend.core.blockheader import BlockHeader
 from Blockchain.Backend.core.network.network import requestBlock, NetworkEnvelope, FinishedSending, portList
 from Blockchain.Backend.core.tx import Tx, TxIn, TxOut
 from Blockchain.Backend.core.block import Block
-from Blockchain.Backend.util.util import little_endian_to_int, int_to_little_endian
+from Blockchain.Backend.util.util import little_endian_to_int, int_to_little_endian, merkle_root
 from Blockchain.client.account import account
 from Blockchain.Backend.core.EllepticCurve.EllepticCurve import Signature
 from threading import Thread
 import traceback
+import logging
+
+logger = logging.getLogger(__name__)
 
 import json
 
@@ -28,7 +31,7 @@ class syncManager:
             blockchain: The blockchain instance (optional for transaction broadcasting)
             localHostPort: The local port (optional for transaction broadcasting)
     """
-    def __init__(self, host, port, MemoryPool ,blockchain=None, localHostPort=None, newBlockAvailable=None,secondaryChain=None, my_public_addr=None):
+    def __init__(self, host, port, MemoryPool ,blockchain=None, localHostPort=None, newBlockAvailable=None,secondaryChain=None, my_public_addr=None,shared_lock=None):
         self.host = host
         self.port = port
         self.blockchain = blockchain
@@ -37,6 +40,7 @@ class syncManager:
         self.MemoryPool = MemoryPool if MemoryPool is not None else {}
         self.localHostPort = localHostPort
         self.my_public_addr = my_public_addr  # Store the node's public address here
+        self.state_lock = shared_lock
 
     def spinUpServer(self):
         self.server = Node(self.host, self.port)
@@ -84,60 +88,173 @@ class syncManager:
                 print(f"[DEBUG] MemoryPool now has: {list(self.MemoryPool.keys())}")
 
             elif envelope.command == b'block':
-                print(f"[Receiver] Received envelope with command: {envelope.command} and payload length: {len(envelope.payload)} bytes")
-                # print("THIS IS WORKING")
-                blockObj = Block.parse(envelope.stream())
-                
-                # Check if the header's signature is already a Signature instance; if not, convert it.
-                
-                sig_field = blockObj.BlockHeader.signature
-                # print(f"Signature field type: {type(sig_field)}")
-                if sig_field and not isinstance(sig_field, Signature):
+                    db_instance = BlockchainDB()
+                    # --- PROCESS BLOCK IMMEDIATELY ---
+                    block_obj = None # Define block_obj outside try for logging
                     try:
-                        blockObj.BlockHeader.signature = Signature.parse(sig_field)
-                        print(f"Successfully parsed signature: {blockObj.BlockHeader.signature}")
+                        block_obj = Block.parse(envelope.stream())
+                        logger.info(f"[Handler] Received Block: Height={block_obj.Height}")
+
+                        # --- START VALIDATION ---
+                        header_obj = block_obj.BlockHeader
+
+                        try:
+                            header_obj.prevBlockHash = to_bytes_field(header_obj.prevBlockHash)
+                            header_obj.merkleRoot = to_bytes_field(header_obj.merkleRoot)
+                            header_obj.validator_pubkey = to_bytes_field(header_obj.validator_pubkey)
+                            # Parse signature if needed BEFORE hashing
+                            sig_field = header_obj.signature
+                            if sig_field and not isinstance(sig_field, Signature):
+                                    try: header_obj.signature = Signature.parse(sig_field)
+                                    except Exception as e: raise ValueError(f"Invalid signature parse: {e}")
+                            elif not sig_field: raise ValueError("Missing signature")
+
+                            # Now calculate and store the hash
+                            block_hash_hex = header_obj.generateBlockHash() # Calls serialise_with_signature
+                            header_obj.blockHash = block_hash_hex # Store the calculated hex hash on the object
+                            logger.info(f"[Handler] Calculated hash for received block {block_obj.Height}: {block_hash_hex[:8]}...")
+                        except Exception as e_hash:
+                                logger.error(f"Failed to calculate hash for block {block_obj.Height}: {e_hash}", exc_info=True)
+                                raise ValueError("Block hash calculation failed")
+                        
+                        # 2. Signature Parsing/Check (Already done during hash calc, but keep check)
+                        if not isinstance(header_obj.signature, Signature):
+                             # This case should ideally not be hit if hashing worked
+                             raise ValueError("Signature object missing after hash calculation")
+
+                        # 2. Check against Local Chain Tip (Needs Lock for Read Safety)
+                        with self.state_lock: # Acquire lock to read DB/tip safely
+                            last_block_dict = db_instance.lastBlock() # Use self.db
+                            current_height = -1
+                            tip_hash = ZERO_HASH
+                            if last_block_dict:
+                                 last_block_dict = last_block_dict[0] if isinstance(last_block_dict, list) else last_block_dict
+                                 current_height = last_block_dict.get('Height', -1)
+                                 tip_hash = last_block_dict.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
+                        # --- Release Lock ---
+
+                        prev_hash_bytes = to_bytes_field(header_obj.prevBlockHash)
+                        prev_hash_hex = prev_hash_bytes.hex()
+
+                        if block_obj.Height != current_height + 1:
+                             raise ValueError(f"Invalid height. Local tip {current_height}, got {block_obj.Height}")
+                        if prev_hash_hex != tip_hash:
+                             # Log both for comparison
+                             logger.warning(f"Invalid prevBlockHash for received block {block_obj.Height}.")
+                             logger.warning(f"  Expected tip: {tip_hash}")
+                             logger.warning(f"  Received prev: {prev_hash_hex}")
+                             raise ValueError(f"Invalid prevBlockHash.")
+
+                        # 3. Internal Validation (Signature vs PubKey)
+                        header_obj.validator_pubkey = to_bytes_field(header_obj.validator_pubkey)
+                        if not header_obj.validate_block(): # Assumes this checks sig
+                            raise ValueError("Block signature/content validation failed")
+
+                        # 4. (Optional but Recommended) Merkle Root Validation
+                        try:
+                            tx_ids_bytes = [bytes.fromhex(tx.id()) for tx in block_obj.Txs]
+                            calculated_merkle_root_bytes = merkle_root(tx_ids_bytes)[::-1]
+                            header_merkle_root_bytes = to_bytes_field(header_obj.merkleRoot)
+                            if calculated_merkle_root_bytes != header_merkle_root_bytes:
+                                 raise ValueError(f"Merkle root mismatch. Calc: {calculated_merkle_root_bytes.hex()}, Header: {header_merkle_root_bytes.hex()}")
+                        except Exception as e_mr:
+                             raise ValueError(f"Merkle root calculation/validation failed: {e_mr}")
+                        # --- END VALIDATION ---
+
+
+                        # --- Block is Valid - Apply to State and DB ---
+                        logger.info(f"Block {block_obj.Height} is valid. Applying...")
+
+                        # --- Acquire Lock for Write/State Update ---
+                        with self.state_lock:
+                            # Convert Block OBJECT to DICT for DB
+                            try:
+                                block_dict_for_db = block_obj.to_dict()
+                                # Ensure nested Tx/Header are dicts
+                                if block_dict_for_db.get('Txs') and isinstance(block_dict_for_db['Txs'][0], Tx):
+                                     block_dict_for_db['Txs'] = [tx.to_dict() for tx in block_dict_for_db['Txs']]
+                                if isinstance(block_dict_for_db.get('BlockHeader'), BlockHeader):
+                                     block_dict_for_db['BlockHeader'] = block_dict_for_db['BlockHeader'].to_dict()
+                            except Exception as e_conv:
+                                logger.error(f"Failed to convert valid block {block_obj.Height} to dict: {e_conv}", exc_info=True)
+                                raise # Re-raise error, cannot proceed
+
+                            # Write DICT to DB
+                            try:
+                                self.blockchain.write_on_disk([block_dict_for_db]) # Call blockchain's method
+                            except Exception as e_write:
+                                logger.error(f"CRITICAL: Failed DB write for valid block {block_obj.Height}: {e_write}. State may become inconsistent.", exc_info=True)
+                                raise # Re-raise error, do not update state if DB failed
+
+                            # Update State using the OBJECT
+                            self.blockchain.update_utxo_set(block_obj)
+                            self.blockchain.clean_mempool(block_obj)
+
+                        # --- Release Lock ---
+                        logger.info(f"Block {block_obj.Height} successfully added and state updated.")
+
+                    except ValueError as ve: # Catch specific validation errors
+                        height = block_obj.Height if block_obj else 'N/A'
+                        logger.warning(f"[Handler] Discarding invalid block Height={height}: {ve}")
                     except Exception as e:
-                        print(f"Error parsing signature in handleConnection: {e}")
-                        # Don't proceed with invalid signature
-                        raise ValueError("Failed to parse signature")
+                        height = block_obj.Height if block_obj else 'N/A'
+                        logger.error(f"[Handler] Error processing received block Height={height}: {e}", exc_info=True)
+
+            # elif envelope.command == b'block':
+            #     print(f"[Receiver] Received envelope with command: {envelope.command} and payload length: {len(envelope.payload)} bytes")
+            #     # print("THIS IS WORKING")
+            #     blockObj = Block.parse(envelope.stream())
                 
-                # No need to create a new BlockHeader object - we've already fixed the signature in the original
-                # First check and convert each field properly
-                prev_block_hash = blockObj.BlockHeader.prevBlockHash.hex() if isinstance(blockObj.BlockHeader.prevBlockHash, bytes) else blockObj.BlockHeader.prevBlockHash
-                merkle_root = blockObj.BlockHeader.merkleRoot.hex() if isinstance(blockObj.BlockHeader.merkleRoot, bytes) else blockObj.BlockHeader.merkleRoot
-                validator_pubkey = blockObj.BlockHeader.validator_pubkey.hex() if isinstance(blockObj.BlockHeader.validator_pubkey, bytes) else blockObj.BlockHeader.validator_pubkey
+            #     # Check if the header's signature is already a Signature instance; if not, convert it.
+                
+            #     sig_field = blockObj.BlockHeader.signature
+            #     # print(f"Signature field type: {type(sig_field)}")
+            #     if sig_field and not isinstance(sig_field, Signature):
+            #         try:
+            #             blockObj.BlockHeader.signature = Signature.parse(sig_field)
+            #             print(f"Successfully parsed signature: {blockObj.BlockHeader.signature}")
+            #         except Exception as e:
+            #             print(f"Error parsing signature in handleConnection: {e}")
+            #             # Don't proceed with invalid signature
+            #             raise ValueError("Failed to parse signature")
+                
+            #     # No need to create a new BlockHeader object - we've already fixed the signature in the original
+            #     # First check and convert each field properly
+            #     prev_block_hash = blockObj.BlockHeader.prevBlockHash.hex() if isinstance(blockObj.BlockHeader.prevBlockHash, bytes) else blockObj.BlockHeader.prevBlockHash
+            #     merkle_root = blockObj.BlockHeader.merkleRoot.hex() if isinstance(blockObj.BlockHeader.merkleRoot, bytes) else blockObj.BlockHeader.merkleRoot
+            #     validator_pubkey = blockObj.BlockHeader.validator_pubkey.hex() if isinstance(blockObj.BlockHeader.validator_pubkey, bytes) else blockObj.BlockHeader.validator_pubkey
                 
 
-                # Create the test_dict with properly converted values
-                reconstructed_dict = BlockHeader(
-                    blockObj.BlockHeader.version,
-                    to_bytes_field(prev_block_hash),
-                    to_bytes_field(merkle_root),
-                    blockObj.BlockHeader.timestamp,
-                    to_bytes_field(validator_pubkey),
-                    blockObj.BlockHeader.signature  # Already a Signature object!
-                )
-                print(f"[HANDLECONN_DEBUG] Reconstructed BlockHeader: {reconstructed_dict}")
-                # print(test_dict.__dict__)
-                print(f"[HANDLECONN_DEBUG]Signature: {reconstructed_dict.signature} {type(reconstructed_dict.signature)}")
-                print(f"[HANDLECONN_DEBUG]Serialized header: {reconstructed_dict.serialise_with_signature().hex()}")   
+            #     # Create the test_dict with properly converted values
+            #     reconstructed_dict = BlockHeader(
+            #         blockObj.BlockHeader.version,
+            #         to_bytes_field(prev_block_hash),
+            #         to_bytes_field(merkle_root),
+            #         blockObj.BlockHeader.timestamp,
+            #         to_bytes_field(validator_pubkey),
+            #         blockObj.BlockHeader.signature  # Already a Signature object!
+            #     )
+            #     print(f"[HANDLECONN_DEBUG] Reconstructed BlockHeader: {reconstructed_dict}")
+            #     # print(test_dict.__dict__)
+            #     print(f"[HANDLECONN_DEBUG]Signature: {reconstructed_dict.signature} {type(reconstructed_dict.signature)}")
+            #     print(f"[HANDLECONN_DEBUG]Serialized header: {reconstructed_dict.serialise_with_signature().hex()}")   
 
-                # Generate a block hash from the existing header
-                reconstructed_dict.blockHash = reconstructed_dict.generateBlockHash()
-                # print(f"Reconstructed block hash: {reconstructed_dict.blockHash}")
-                block_hash = reconstructed_dict.blockHash
-                # Safety check before assignment
-                if self.newBlockAvailable is None:
-                    print("Warning: newBlockAvailable was None, reinitializing...")
-                    self.newBlockAvailable = {}
+            #     # Generate a block hash from the existing header
+            #     reconstructed_dict.blockHash = reconstructed_dict.generateBlockHash()
+            #     # print(f"Reconstructed block hash: {reconstructed_dict.blockHash}")
+            #     block_hash = reconstructed_dict.blockHash
+            #     # Safety check before assignment
+            #     if self.newBlockAvailable is None:
+            #         print("Warning: newBlockAvailable was None, reinitializing...")
+            #         self.newBlockAvailable = {}
                     
-                self.newBlockAvailable[block_hash] = blockObj
-                print(f"New Block Received : {blockObj.Height}")
+            #     self.newBlockAvailable[block_hash] = blockObj
+            #     print(f"New Block Received : {blockObj.Height}")
 
-                self.processReceivedBlocks()
-                # time.sleep(2) # Allow time for processing
-                self.blockchain.update_utxo_set(blockObj)
-                print(f"[syncManager] UTXO set updated with block {blockObj.Height}")
+            #     self.processReceivedBlocks()
+            #     # time.sleep(2) # Allow time for processing
+            #     self.blockchain.update_utxo_set(blockObj)
+            #     print(f"[syncManager] UTXO set updated with block {blockObj.Height}")
 
             if envelope.command == requestBlock.command:
                 start_block, end_block = requestBlock.parse(envelope.stream())
@@ -188,42 +305,44 @@ class syncManager:
                         blockchainDB = BlockchainDB()
                         lastBlock = blockchainDB.lastBlock()
                         
-                        if lastBlock:
-                            blockHeight = lastBlock[0]['Height'] + 1
-                            prevBlockHash = lastBlock[0]['BlockHeader']['blockHash']
-                            # NEW: Check if there are any pending blocks at this height in the network
-                            # This is a simple 2-second delay to allow any existing blocks to arrive
-                            print(f"[syncManager] I'm selected as validator. Waiting briefly for any competing blocks...")
-                            time.sleep(2)  # Brief wait to allow competing blocks to arrive
-        
-                            # Check if another block has arrived during our wait
-                            freshLastBlock = blockchainDB.lastBlock()
-                            if freshLastBlock and freshLastBlock[0]['Height'] >= blockHeight:
-                                print(f"[syncManager] Another validator has already created block {blockHeight}. Skipping creation.")
-                                return
-                                
-                            print(f"[syncManager] I AM THE SELECTED VALIDATOR! Creating block at height {blockHeight}")
+                        if lastBlock is None:
+                            print(f"[syncManager] Selected as validator, but no local blockchain found. Waiting for Genesis from validator node.")
+                            # Do nothing, let the main validator handle Genesis
                         else:
-                            print("[syncManager] I am the selected validator, creating genesis block.")
-                            self.blockchain.GenesisBlock()
-                            print("[syncManager] Genesis block created and broadcast.")
-                            return
-                            
-                        
-                        try:
-                            print(f"[syncManager] Creating block at height {blockHeight}")
-                            # Use our existing blockchain reference
-                            print(f"[syncManager/DEBUG] MEMPOOL CONTENTS: {self.MemoryPool}")
-                            self.blockchain.addBlock(blockHeight, prevBlockHash, selected_validator)
-                            print(f"[syncManager] Block {blockHeight} created successfully")
+                            # <<< --- EXISTING LOGIC MOVED INSIDE ELSE --- >>>
+                            # Chain exists, proceed to create the NEXT block
+                            lastBlockDict = lastBlock[0] if isinstance(lastBlock, list) else lastBlock # Handle list wrapper
+                            blockHeight = lastBlockDict.get('Height', -1) + 1
+                            prevBlockHash = lastBlockDict.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
 
-                        except Exception as e:
-                            print(f"[syncManager] Error creating block: {e}")
-                            traceback.print_exc()
-                            
-                            # Fallback: Create block directly if blockchain.addBlock fails
-                            # self.createBlockDirectly(blockHeight, prevBlockHash, selected_validator)
-                            print("[syncManager] Add block failed")
+                            # Optional: Wait briefly
+                            print(f"[syncManager] I'm selected as validator. Waiting briefly...")
+                            # time.sleep(2)
+
+                            # Double-check tip
+                            blockchainDB = BlockchainDB() # Create another local instance
+                            freshLastBlock = blockchainDB.lastBlock()
+                            if blockchainDB.conn: blockchainDB.conn.close() # Close connection
+                            freshHeight = -1
+                            if freshLastBlock:
+                                 freshLastBlockDict = freshLastBlock[0] if isinstance(freshLastBlock, list) else freshLastBlock
+                                 freshHeight = freshLastBlockDict.get('Height', -1)
+
+                            if freshHeight >= blockHeight:
+                                print(f"[syncManager] Chain advanced during wait. Skipping block {blockHeight}.")
+                                return # Use return to exit handleConnection for this block
+
+                            # Create the block
+                            print(f"[syncManager] Creating block at height {blockHeight}")
+                            try:
+                                print(f"[syncManager/DEBUG] MEMPOOL CONTENTS: {self.MemoryPool}")
+                                self.blockchain.addBlock(blockHeight, prevBlockHash, selected_validator)
+                                print(f"[syncManager] Block {blockHeight} creation initiated.")
+                            except Exception as e:
+                                print(f"[syncManager] Error creating block: {e}")
+                                traceback.print_exc()
+                                print("[syncManager] Add block failed")
+
                     else:
                         print(f"[syncManager] Not the selected validator: {validator_address}")
 
@@ -634,7 +753,7 @@ class syncManager:
             if bh in self.newBlockAvailable:
                 del self.newBlockAvailable[bh]
         
-        if hasattr(self.blockchain, 'buildUTXOS'):
+        if hasattr(self.blockchain, 'update_utxo_set'):
             self.blockchain.update_utxo_set()
             print("[DEBUG] UTXO set rebuilt.")
         self.clean_mempool_against_chain(mem_pool=self.MemoryPool)
@@ -660,21 +779,36 @@ class syncManager:
 
         return blocksToSend
     
-    def connectToHost(self, localport, port, bindPort = None):
-        self.connect = Node(self.host, port)
-        if bindPort:
-            self.socket = self.connect.connect(localport, bindPort)
-            print(f"Trying to connect from {localport} to: {port}...")
+    def connectToHost(self, localport_arg, target_port_arg, bindPort_flag): 
+        """
+        Connects to a target host and port.
+        MINIMAL CHANGE: Adapts arguments to match the internal logic of the existing Node.connect method.
+        - localport_arg: The local port number to bind IF bindPort_flag is True.
+        - target_port_arg: The port number of the peer to connect to.
+        - bindPort_flag: Boolean or similar, indicates if binding is required. If True/non-None, Node.connect's second arg will be non-None.
+        """
+        # Create Node instance for the TARGET port
+        self.connect = Node(self.host, target_port_arg) # Node instance represents the connection TARGET
+
+        if bindPort_flag:
+             # Node.connect needs the LOCAL BIND PORT as its FIRST argument ('port')
+             # and something non-None as its SECOND argument ('bindPort') to trigger binding.
+            print(f"Binding requested. Calling Node.connect({localport_arg}, {bindPort_flag}) to bind locally and connect to {target_port_arg}...")
+            self.socket = self.connect.connect(localport_arg, bindPort_flag) # Pass LOCAL port first, flag second
+            print(f"Connected from local port {localport_arg} to target {target_port_arg}")
         else:
-            self.socket = self.connect.connect(localport)
-            print(f"Trying to connect from {localport}: to: {port}...")
+            # No binding requested. Call Node.connect with only one arg.
+            # The value passed doesn't matter much for the connect() call itself inside Node.connect,
+            # as it uses self.port (target_port_arg) for the actual connection.
+            # Pass the local port arg anyway, consistent with the bind case.
+            print(f"No binding. Calling Node.connect({localport_arg}) to connect to {target_port_arg}...")
+            self.socket = self.connect.connect(localport_arg) # Pass only one arg (bindPort=None)
+            print(f"Connected from OS-assigned local port to target {target_port_arg}")
 
+        # Set up the stream for reading/writing
         self.stream = self.socket.makefile('rb', None)
-        return self.socket
-
-
-    # def publishTx(self,Tx):
-    #     self.connect.send(Tx)
+        self.connect.stream = self.stream
+        return self.socket, self.connect
 
     def publishTx(self, tx_obj):
         try:
@@ -717,72 +851,276 @@ class syncManager:
             import traceback
             traceback.print_exc()
             return False
+        
 
-    def startDownload(self, localport, port, bindPort):
-        print("Starting download...")
-        lastBlock = BlockchainDB().lastBlock()
+    def startDownload(self, localport_to_bind, target_port, bind_needed_flag):
+        """
+        Initiates block download from a peer, validates blocks, updates local DB and state.
+        """
+        logger.info(f"[Downloader] Starting download from {localport_to_bind} :{target_port}...")
 
-        if not lastBlock:
-            lastBlockHeader = "a73b050e2d0d1f030f7b29def74e0471a9a65f868e4ac21d3ba6267c2eb74909" # Genesis block hash
-        else:
-            lastBlockHeader = lastBlock[0]['BlockHeader']['blockHash']
+        # --- Determine Start Hash ---
+        startBlockBytes = bytes.fromhex(ZERO_HASH) # Default to Genesis
+        local_db_for_tip = None
+        acquired_lock = False
+        acquired_block_lock = False
+        try:
+            local_db_for_tip = BlockchainDB()
+            # --- Explicitly acquire lock ---
+            self.state_lock.acquire()
+            acquired_lock = True
+            lastBlockDict = local_db_for_tip.lastBlock()
+            # --- Explicitly release lock ---
+            self.state_lock.release()
+            acquired_lock = False
+            if lastBlockDict:
+                # Handle potential list wrapping from DB read
+                lastBlockDict = lastBlockDict[0] if isinstance(lastBlockDict, list) else lastBlockDict
+                lastBlockHashHex = lastBlockDict.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
+                # Validate hex string before conversion
+                if lastBlockHashHex and len(lastBlockHashHex) == 64:
+                     try:
+                         startBlockBytes = bytes.fromhex(lastBlockHashHex)
+                         logger.info(f"[Downloader] Requesting blocks after local tip: {lastBlockHashHex[:8]}...")
+                     except ValueError:
+                         logger.error(f"Invalid hex for last block hash: {lastBlockHashHex}. Requesting from Genesis.")
+                         startBlockBytes = bytes.fromhex(ZERO_HASH)
+                else:
+                     logger.warning(f"Could not read valid last block hash. Requesting from Genesis.")
+                     startBlockBytes = bytes.fromhex(ZERO_HASH)
+            else:
+                logger.info("[Downloader] No local blocks found. Requesting from Genesis.")
+        except Exception as e:
+            logger.error(f"Error getting last block for download start: {e}", exc_info=True)
+            startBlockBytes = bytes.fromhex(ZERO_HASH) # Fallback
+        finally:
+            # Explicitly close the connection used only for the tip check
+            if acquired_lock: self.state_lock.release()
+            # Close DB connection used for tip check
+            if local_db_for_tip and local_db_for_tip.conn:
+                try: local_db_for_tip.conn.close()
+                except Exception as e_close: logger.warning(f"Error closing DB conn after tip check: {e_close}")
+        # --- End Start Hash Determination ---
 
-        startBlock = bytes.fromhex(lastBlockHeader)
+        getBlocksRequest = requestBlock(startBlock=startBlockBytes)
+        sock, connector = None, None
+        try:
+            # Connect (use localHostPort for binding if provided)
+            logger.debug(f"Calling connector.connect(bindPort={self.localHostPort})") # Log before call
+            sock, connector = self.connectToHost(localport_to_bind, target_port, bind_needed_flag)
+            if not sock or not connector: return # Connection failed
 
-        getHeaders = requestBlock(startBlock=startBlock)
-        self.connectToHost(localport, port, bindPort)
-        print(f"localport value: {localport}, type: {type(localport)}")
-        self.connect.send(getHeaders)
+            connector.send(getBlocksRequest) # Use Node's send method
+            logger.info(f"[Downloader] Sent requestBlock to {localport_to_bind}:{target_port}")
 
-        while True:
-            envelope = NetworkEnvelope.parse(self.stream)
-            print("DEBUG: Envelope command =", envelope.command)
-            print("DEBUG: Envelope length =", len(envelope.payload))
+            # Loop to receive blocks/messages using Node's read method
+            while True:
+                envelope = connector.read()
+                if envelope is None: # Connection closed or error during read
+                    logger.warning(f"[Downloader] Connection to {localport_to_bind}:{target_port} closed or read error.")
+                    break
 
-            if envelope.command == b'Finished':
-                blockObj = FinishedSending.parse(envelope.stream())
-                print(f'All blocks receieved')
-                self.socket.close()
-                break
+                logger.debug(f"[Downloader {target_port}] Received command: {envelope.command}")
 
-            if envelope.command == b'portlist':
-                s = envelope.stream()
-                raw_data = s.read()
-                print("DEBUG: envelope stream bytes =", raw_data.hex())
-                s.seek(0)
+                if envelope.command == FinishedSending.command:
+                    logger.info(f"[Downloader {target_port}] Received FinishedSending. Download complete.")
+                    break # Finished download loop
 
-                ports = portList.parse(s)
-                nodeDb = NodeDB()
-                portlists = nodeDb.read_nodes()
-                for port in ports:
-                    if port not in portlists:
-                        nodeDb.write(port)
+                elif envelope.command == portList.command:
+                    try:
+                        ports = portList.parse(envelope.stream())
+                        logger.info(f"[Downloader {target_port}] Received portlist: {ports}")
+                        if self.node_db: # Ensure node_db is available
+                            current_nodes = self.node_db.read_nodes() or []
+                            added_count = 0
+                            for p in ports:
+                                if p != self.localHostPort and p not in current_nodes:
+                                    self.node_db.write(p)
+                                    added_count += 1
+                            if added_count > 0:
+                                logger.info(f"[Downloader {target_port}] Added {added_count} new peer(s).")
+                    except Exception as e: logger.error(f"Error processing portlist: {e}", exc_info=True)
 
-            if envelope.command == b'block':
-                blockObj = Block.parse(envelope.stream())
-                print("DEBUG: envelope payload length =", len(envelope.payload))
-                print("DEBUG: envelope payload hex =", envelope.payload.hex())
-                BlockHeaderObj = BlockHeader(blockObj.BlockHeader.version,
-                          blockObj.BlockHeader.prevBlockHash,
-                          blockObj.BlockHeader.merkleRoot,
-                          blockObj.BlockHeader.timestamp,
-                          blockObj.BlockHeader.validator_pubkey,
-                          blockObj.BlockHeader.signature)
+                elif envelope.command == Block.command:
+                    # --- PROCESS BLOCK DIRECTLY ---
+                    block_obj = None
+                    db_instance_check = None # Define here for finally block
+                    try:
+                        block_obj = Block.parse(envelope.stream())
+                        block_height = block_obj.Height # Get height early
+                        logger.info(f"[Downloader {target_port}] Received Block: Height={block_height}")
+
+                        # --- Acquire Lock for validation against tip and potential update ---
+                        self.state_lock.acquire()
+                        acquired_block_lock = True
+                        # --- START VALIDATION (under lock) ---
+                        header_obj = block_obj.BlockHeader
+
+                        # 1. Calculate and Store Block Hash
+                        try:
+                            # Ensure header fields are bytes
+                            header_obj.prevBlockHash = to_bytes_field(header_obj.prevBlockHash)
+                            header_obj.merkleRoot = to_bytes_field(header_obj.merkleRoot)
+                            header_obj.validator_pubkey = to_bytes_field(header_obj.validator_pubkey)
+                            # Parse signature if needed
+                            sig_field = header_obj.signature
+                            if sig_field and not isinstance(sig_field, Signature):
+                                try: header_obj.signature = Signature.parse(sig_field)
+                                except Exception as e: raise ValueError(f"Invalid sig parse: {e}")
+                            elif not sig_field: raise ValueError("Missing signature")
+                            # Calculate and store
+                            block_hash_hex = header_obj.generateBlockHash()
+                            header_obj.blockHash = block_hash_hex
+                            logger.debug(f"[Downloader] Calculated hash {block_hash_hex[:8]} for block {block_height}")
+                        except Exception as e_hash: raise ValueError(f"Block hash calc failed: {e_hash}")
+
+                        # 1.5 Check if block already exists (using calculated hash)
+                        db_instance_check = BlockchainDB() # Local instance for this check
+                        try:
+                                if db_instance_check.read_block_by_hash(block_hash_hex):
+                                    logger.info(f"[Downloader] Block {block_height} ({block_hash_hex[:8]}) already exists. Skipping.")
+                                    continue # Skip to next message in loop
+                        finally:
+                                if db_instance_check.conn: db_instance_check.conn.close()
+
+                        # 2. Check against Local Chain Tip
+                        db_instance_check = BlockchainDB() # New instance for fresh tip read
+                        try:
+                                last_block_dict = db_instance_check.lastBlock()
+                        finally:
+                                if db_instance_check.conn: db_instance_check.conn.close()
+                        current_height = -1; tip_hash = ZERO_HASH
+                        if last_block_dict:
+                            last_block_dict = last_block_dict[0] if isinstance(last_block_dict, list) else last_block_dict
+                            current_height = last_block_dict.get('Height', -1)
+                            tip_hash = last_block_dict.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
+
+                        prev_hash_bytes = to_bytes_field(header_obj.prevBlockHash)
+                        prev_hash_hex = prev_hash_bytes.hex()
+                        if block_height != current_height + 1: raise ValueError(f"Invalid height. Tip {current_height}, got {block_height}")
+                        if prev_hash_hex != tip_hash: raise ValueError(f"Invalid prevHash. Tip {tip_hash[:8]}, got {prev_hash_hex[:8]}")
+
+                        # 3. Internal Validation
+                        if not header_obj.validate_block(): raise ValueError("Internal validation failed (sig/content)")
+
+                        # 4. Merkle Root Check
+                        try:
+                            tx_ids_bytes = [bytes.fromhex(tx.id()) for tx in block_obj.Txs]
+                            calculated_merkle_root = merkle_root(tx_ids_bytes)[::-1]
+                            header_merkle_root = to_bytes_field(header_obj.merkleRoot)
+                            if calculated_merkle_root != header_merkle_root: raise ValueError("Merkle root mismatch")
+                        except Exception as e_mr: raise ValueError(f"Merkle validation failed: {e_mr}")
+                        # --- END VALIDATION ---
+
+                        # --- Block is Valid - Apply State and DB (still under lock) ---
+                        logger.info(f"[Downloader] Block {block_height} is valid. Applying...")
+                        block_dict_for_db = block_obj.to_dict()
+                        # (Ensure nested conversion)
+                        if block_dict_for_db.get('Txs') and isinstance(block_dict_for_db['Txs'][0], Tx): block_dict_for_db['Txs'] = [tx.to_dict() for tx in block_dict_for_db['Txs']]
+                        if isinstance(block_dict_for_db.get('BlockHeader'), BlockHeader): block_dict_for_db['BlockHeader'] = block_dict_for_db['BlockHeader'].to_dict()
+
+                        # Write DICT via Blockchain method (creates its own connection)
+                        self.blockchain.write_on_disk([block_dict_for_db])
+
+                        # Update State using OBJECT
+                        self.blockchain.update_utxo_set(block_obj)
+                        self.blockchain.clean_mempool(block_obj)
+
+                    
+                        logger.info(f"[Downloader] Block {block_height} successfully added.")
+
+                    except ValueError as ve:
+                        height = block_obj.Height if block_obj else 'N/A'
+                        logger.warning(f"[Downloader {target_port}] Discarding invalid block Height={height}: {ve}")
+                    except Exception as e:
+                        height = block_obj.Height if block_obj else 'N/A'
+                        logger.error(f"[Downloader {target_port}] Error processing downloaded block Height={height}: {e}", exc_info=True)
+                    finally:
+                        # --- Release lock for this block ---
+                        if acquired_block_lock:
+                            self.state_lock.release()
+                            acquired_block_lock = False
+                        # Close DB connection if opened
+                        if db_instance_check and db_instance_check.conn:
+                             try: db_instance_check.conn.close()
+                             except: pass
+                     # --- END PROCESS BLOCK DIRECTLY ---
+
+                else:
+                    logger.warning(f"[Downloader {target_port}] Ignoring unknown command: {envelope.command}")
+
+        except ConnectionRefusedError: logger.warning(f"Connection refused by {localport_to_bind}:{target_port}.")
+        except Exception as e: logger.error(f"Error during download from {localport_to_bind}:{target_port}: {e}", exc_info=True)
+        finally:
+            # Ensure lock is released if exception happened before finally block in loop
+            if acquired_block_lock: self.state_lock.release()
+            logger.info(f"[Downloader] Connection to {localport_to_bind}:{target_port} closed.")
+
+    # def startDownload(self, localport, port, bindPort):
+    #     print("Starting download...")
+    #     lastBlock = BlockchainDB().lastBlock()
+
+    #     if not lastBlock:
+    #         lastBlockHeader = "a73b050e2d0d1f030f7b29def74e0471a9a65f868e4ac21d3ba6267c2eb74909" # Genesis block hash
+    #     else:
+    #         lastBlockHeader = lastBlock[0]['BlockHeader']['blockHash']
+
+    #     startBlock = bytes.fromhex(lastBlockHeader)
+
+    #     getHeaders = requestBlock(startBlock=startBlock)
+    #     self.connectToHost(localport, port, bindPort)
+    #     print(f"localport value: {localport}, type: {type(localport)}")
+    #     self.connect.send(getHeaders)
+
+    #     while True:
+    #         envelope = NetworkEnvelope.parse(self.stream)
+    #         print("DEBUG: Envelope command =", envelope.command)
+    #         print("DEBUG: Envelope length =", len(envelope.payload))
+
+    #         if envelope.command == b'Finished':
+    #             blockObj = FinishedSending.parse(envelope.stream())
+    #             print(f'All blocks receieved')
+    #             self.socket.close()
+    #             break
+
+    #         if envelope.command == b'portlist':
+    #             s = envelope.stream()
+    #             raw_data = s.read()
+    #             print("DEBUG: envelope stream bytes =", raw_data.hex())
+    #             s.seek(0)
+
+    #             ports = portList.parse(s)
+    #             nodeDb = NodeDB()
+    #             portlists = nodeDb.read_nodes()
+    #             for port in ports:
+    #                 if port not in portlists:
+    #                     nodeDb.write(port)
+
+    #         if envelope.command == b'block':
+    #             blockObj = Block.parse(envelope.stream())
+    #             print("DEBUG: envelope payload length =", len(envelope.payload))
+    #             print("DEBUG: envelope payload hex =", envelope.payload.hex())
+    #             BlockHeaderObj = BlockHeader(blockObj.BlockHeader.version,
+    #                       blockObj.BlockHeader.prevBlockHash,
+    #                       blockObj.BlockHeader.merkleRoot,
+    #                       blockObj.BlockHeader.timestamp,
+    #                       blockObj.BlockHeader.validator_pubkey,
+    #                       blockObj.BlockHeader.signature)
               
-                if BlockHeaderObj.validate_block():
-                    for idx,tx in enumerate(blockObj.Txs):
-                        tx.TxId = tx.id()
-                        blockObj.Txs[idx] = tx.to_dict()
+    #             if BlockHeaderObj.validate_block():
+    #                 for idx,tx in enumerate(blockObj.Txs):
+    #                     tx.TxId = tx.id()
+    #                     blockObj.Txs[idx] = tx.to_dict()
                       
-                    BlockHeaderObj.blockHash = BlockHeaderObj.generateBlockHash()
-                    BlockHeaderObj.prevBlockHash = BlockHeaderObj.prevBlockHash.hex()
-                    BlockHeaderObj.merkleRoot = BlockHeaderObj.merkleRoot.hex()
+    #                 BlockHeaderObj.blockHash = BlockHeaderObj.generateBlockHash()
+    #                 BlockHeaderObj.prevBlockHash = BlockHeaderObj.prevBlockHash.hex()
+    #                 BlockHeaderObj.merkleRoot = BlockHeaderObj.merkleRoot.hex()
 
-                    blockObj.BlockHeader = BlockHeaderObj
+    #                 blockObj.BlockHeader = BlockHeaderObj
 
-                    BlockchainDB().write([blockObj.to_dict()])
+    #                 BlockchainDB().write([blockObj.to_dict()])
 
-                    print(f"Block Received - {blockObj.Height}")
+    #                 print(f"Block Received - {blockObj.Height}")
     # Add a wrapper method to handle blockchain operations safely
 
     # def clean_mempool_against_chain(self, mem_pool, blockchain):

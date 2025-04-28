@@ -353,13 +353,13 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                 acct = account.get_account(my_address)
 
                 # # --- Add Debugging ---
-                # print(f"[Sim Debug 298192/{threading.get_ident()}] Creating AccountDB instance...")
+                # print(f"[Sim Debug 310894/{threading.get_ident()}] Creating AccountDB instance...")
                 # db_instance = AccountDB()
-                # print(f"[Sim Debug 298192/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                # print(f"[Sim Debug 310894/{threading.get_ident()}] Instance type: {type(db_instance)}")
                 # if hasattr(db_instance, 'table_name'):
-                #     print(f"[Sim Debug 298192/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                #     print(f"[Sim Debug 310894/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
                 # else:
-                #     print(f"[Sim Debug 298192/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                #     print(f"[Sim Debug 310894/{threading.get_ident()}] Instance LACKS table_name attribute!")
                 # # --- End Debugging ---
 
                 if acct is None:
@@ -463,7 +463,7 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                 
 
             except AttributeError as ae:
-                 print(f"[Sim ATTRIBUTE ERROR 298192/{threading.get_ident()}] {ae}")
+                 print(f"[Sim ATTRIBUTE ERROR 310894/{threading.get_ident()}] {ae}")
                  # Print attributes of the instance that caused the error if possible
                  try:
                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
@@ -501,6 +501,9 @@ BlockchainManager.register('dict') # Register dict to create shared dictionaries
 
 
 if __name__ == '__main__':
+    from threading import Lock # Or multiprocessing.Lock if needed cross-process
+
+    # Create the lock *before* the manager starts or objects are created
     signal.signal(signal.SIGINT, signal_handler)
     
     # Read config
@@ -523,6 +526,7 @@ if __name__ == '__main__':
         utxos = std_manager.dict()
         newBlockAvailable = std_manager.dict()
         secondaryChain = std_manager.dict()
+        shared_state_lock = std_manager.Lock()
         
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
@@ -541,7 +545,8 @@ if __name__ == '__main__':
                 newBlockAvailable,    # Third param: newBlockAvailable (CORRECT ORDER)
                 secondaryChain,       # Fourth param: secondaryChain (CORRECT ORDER)
                 localHostPort, 
-                localHost
+                localHost,
+                shared_state_lock
             )
 
             blockchain.ZERO_HASH = ZERO_HASH  # Explicitly add ZERO_HASH attribute
@@ -571,13 +576,26 @@ if __name__ == '__main__':
             localHostPort,              # localHostPort (again)
             newBlockAvailable,          # newBlockAvailable
             secondaryChain,             # secondaryChain
-            my_public_addr=default_account.public_addr  # my_public_addr
+            my_public_addr=default_account.public_addr,  # my_public_addr
+            shared_lock=shared_state_lock
         )
         
         # Start server process
         startServer = Process(target=sync.spinUpServer)
         startServer.start()
         print(f"Server started on port {localHostPort}")
+        time.sleep(2)  # Give it a moment to start
+
+        logging.info(f"[Startup] Node {NODE_ID} initiating sync with peers...")
+        try:
+            # Call startSync via the proxy, without arguments to trigger download
+            blockchain.startSync()
+            logging.info(f"[Startup] Node {NODE_ID} initial sync process finished.")
+            # Note: startSync itself might block or run in background threads depending on implementation
+        except Exception as e_sync:
+            logging.error(f"[Startup] Node {NODE_ID} initial sync failed: {e_sync}", exc_info=True)
+
+
 
         # WAIT FOR FLASK TO BE READY
         import requests

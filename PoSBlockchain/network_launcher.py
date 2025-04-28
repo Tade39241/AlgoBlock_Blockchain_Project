@@ -591,11 +591,13 @@ if __name__ == '__main__':
     newBlockAvailable = {{}}
     secondaryChain = {{}}
 
-    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
+    validator_lock = threading.Lock()
+
+    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host,validator_lock)
     if blockchain.fetch_last_block() is None:
         from reset_accounts import ACCOUNTS
         ACCOUNTS = dict(list(ACCOUNTS.items())[:NUM_NODES])
-        print(ACCOUNTS)
+        print("[VALIDATOR]", ACCOUNTS)
         print("[Validator] No blocks found, creating genesis block...")
         blockchain.GenesisBlock()
         print("[Validator] Genesis block created and broadcast.")
@@ -1149,6 +1151,9 @@ BlockchainManager.register('dict') # Register dict to create shared dictionaries
 
 
 if __name__ == '__main__':
+    from threading import Lock # Or multiprocessing.Lock if needed cross-process
+
+    # Create the lock *before* the manager starts or objects are created
     signal.signal(signal.SIGINT, signal_handler)
     
     # Read config
@@ -1171,6 +1176,7 @@ if __name__ == '__main__':
         utxos = std_manager.dict()
         newBlockAvailable = std_manager.dict()
         secondaryChain = std_manager.dict()
+        shared_state_lock = std_manager.Lock()
         
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
@@ -1189,7 +1195,8 @@ if __name__ == '__main__':
                 newBlockAvailable,    # Third param: newBlockAvailable (CORRECT ORDER)
                 secondaryChain,       # Fourth param: secondaryChain (CORRECT ORDER)
                 localHostPort, 
-                localHost
+                localHost,
+                shared_state_lock
             )
 
             blockchain.ZERO_HASH = ZERO_HASH  # Explicitly add ZERO_HASH attribute
@@ -1219,13 +1226,26 @@ if __name__ == '__main__':
             localHostPort,              # localHostPort (again)
             newBlockAvailable,          # newBlockAvailable
             secondaryChain,             # secondaryChain
-            my_public_addr=default_account.public_addr  # my_public_addr
+            my_public_addr=default_account.public_addr,  # my_public_addr
+            shared_lock=shared_state_lock
         )
         
         # Start server process
         startServer = Process(target=sync.spinUpServer)
         startServer.start()
         print(f"Server started on port {{localHostPort}}")
+        time.sleep(2)  # Give it a moment to start
+
+        logging.info(f"[Startup] Node {{NODE_ID}} initiating sync with peers...")
+        try:
+            # Call startSync via the proxy, without arguments to trigger download
+            blockchain.startSync()
+            logging.info(f"[Startup] Node {{NODE_ID}} initial sync process finished.")
+            # Note: startSync itself might block or run in background threads depending on implementation
+        except Exception as e_sync:
+            logging.error(f"[Startup] Node {{NODE_ID}} initial sync failed: {{e_sync}}", exc_info=True)
+
+
 
         # WAIT FOR FLASK TO BE READY
         import requests

@@ -288,11 +288,13 @@ if __name__ == '__main__':
     newBlockAvailable = {}
     secondaryChain = {}
 
-    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host)
+    validator_lock = threading.Lock()
+
+    blockchain = Blockchain(utxos, mem_pool, newBlockAvailable, secondaryChain, port, host,validator_lock)
     if blockchain.fetch_last_block() is None:
         from reset_accounts import ACCOUNTS
         ACCOUNTS = dict(list(ACCOUNTS.items())[:NUM_NODES])
-        print(ACCOUNTS)
+        print("[VALIDATOR]", ACCOUNTS)
         print("[Validator] No blocks found, creating genesis block...")
         blockchain.GenesisBlock()
         print("[Validator] Genesis block created and broadcast.")

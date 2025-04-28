@@ -3,12 +3,26 @@ from Crypto.Hash import RIPEMD160
 from hashlib import sha256
 from math import log
 from EllepticCurve.EllepticCurve import BASE58_ALPHABET
+import logging # Add logging
+
+logger = logging.getLogger(__name__)
+
+# def hash256(s):
+#     """
+#     Two rounds of SHA256
+#     """
+#     return hashlib.sha256(hashlib.sha256(s).digest()).digest()
 
 def hash256(s):
     """
     Two rounds of SHA256
     """
-    return hashlib.sha256(hashlib.sha256(s).digest()).digest()
+    # --- ADD DEBUG LOG ---
+    logger.debug(f"hash256 input bytes (len={len(s)}): {s.hex()}")
+    # --- END DEBUG LOG ---
+    h1 = hashlib.sha256(s).digest()
+    h2 = hashlib.sha256(h1).digest()
+    return h2
 
 def hash160(s):
     

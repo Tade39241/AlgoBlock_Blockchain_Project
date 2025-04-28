@@ -21,19 +21,19 @@ class Script:
     def serialise(self):
         #initialise what we return
         result = b''
-        print(f"[DEBUG Script.serialise] Start. Cmds: {self.cmds}")
+        # print(f"[DEBUG Script.serialise] Start. Cmds: {self.cmds}")
         # iterate through each command
         for i, cmd in enumerate(self.cmds):
             #if cmd is an int then its an opcode
             if type(cmd) == int:
-                print(f"[DEBUG Script.serialise] Processing cmd {i}: Opcode {cmd}")
+                # print(f"[DEBUG Script.serialise] Processing cmd {i}: Opcode {cmd}")
                 #turn cmd into single byte integer
                 result += int_to_little_endian(cmd, 1)
             else:
                 # otherwise it is an element
                 # get the length in bytes
                 length = len(cmd)
-                print(f"[DEBUG Script.serialise] Processing cmd {i}: Data (len={length}) {cmd.hex()[:20]}...")
+                # print(f"[DEBUG Script.serialise] Processing cmd {i}: Data (len={length}) {cmd.hex()[:20]}...")
                 #for large lengths, use a pushdata opdcode
                 if length < 75:
                     result += int_to_little_endian(length,1)
@@ -46,18 +46,18 @@ class Script:
                     result += int_to_little_endian(77,1)
                     result += int_to_little_endian(length, 2)
                 else:
-                    print(f"[DEBUG Script.serialise] ERROR: CMD {i} is too long (len={length})")
+                    # print(f"[DEBUG Script.serialise] ERROR: CMD {i} is too long (len={length})")
                     raise ValueError("CMD is too long")
                 result+=cmd
-            print(f"[DEBUG Script.serialise] After cmd {i}. Current result len: {len(result)}")
+            # print(f"[DEBUG Script.serialise] After cmd {i}. Current result len: {len(result)}")
         # get total length
         total = len(result)
         # --- DEBUG LINE ---
-        print(f"[DEBUG Script.serialise] Finished commands payload (len={total}). Prepending varint length...")
+        # print(f"[DEBUG Script.serialise] Finished commands payload (len={total}). Prepending varint length...")
         # Prepend the total length as a varint
         final_result = encode(total) + result
         # --- DEBUG LINE ---
-        print(f"[DEBUG Script.serialise] Done. Final script len (incl. varint): {len(final_result)}")
+        # print(f"[DEBUG Script.serialise] Done. Final script len (incl. varint): {len(final_result)}")
         # Uncomment for debugging:
         # print(f"DEBUG: Serialized Script: {final_result.hex()}")
         return final_result
