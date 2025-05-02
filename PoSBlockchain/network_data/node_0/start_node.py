@@ -343,13 +343,13 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
             try:
 
                 # # --- Add Debugging ---
-                # print(f"[Sim Debug 766099/{threading.get_ident()}] Creating AccountDB instance...")
+                # print(f"[Sim Debug 647637/{threading.get_ident()}] Creating AccountDB instance...")
                 # db_instance = AccountDB()
-                # print(f"[Sim Debug 766099/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                # print(f"[Sim Debug 647637/{threading.get_ident()}] Instance type: {type(db_instance)}")
                 # if hasattr(db_instance, 'table_name'):
-                #     print(f"[Sim Debug 766099/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                #     print(f"[Sim Debug 647637/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
                 # else:
-                #     print(f"[Sim Debug 766099/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                #     print(f"[Sim Debug 647637/{threading.get_ident()}] Instance LACKS table_name attribute!")
                 # # --- End Debugging ---
 
                 # if acct is None:
@@ -443,7 +443,7 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                 
 
             except AttributeError as ae:
-                 print(f"[Sim ATTRIBUTE ERROR 766099/{threading.get_ident()}] {ae}")
+                 print(f"[Sim ATTRIBUTE ERROR 647637/{threading.get_ident()}] {ae}")
                  # Print attributes of the instance that caused the error if possible
                  try:
                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
@@ -631,10 +631,10 @@ if __name__ == '__main__':
                 print(f"Error fetching blockchain height: {e}")
             time.sleep(5)
 
-        if "none" != "none" and "none":
-            print(f"[Sim] Starting transaction simulation: volume='none', interval=30, tx_types='all'")
+        if "high" != "none" and "high":
+            print(f"[Sim] Starting transaction simulation: volume='high', interval=30, tx_types='all'")
             simulate_random_transactions(
-                volume="none",
+                volume="high",
                 interval=30,
                 tx_types="all",
                 num_nodes=3

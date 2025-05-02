@@ -1,3 +1,4 @@
+[Validator] symlinked /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/data → /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data
 Testing validator database connections...
   - Connected to validator node database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/node.db
   - Connected to validator blockchain database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
@@ -10,13 +11,35 @@ Validator account verified with data: {"public_addr": "1CJL7mvokNjrs...
     1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
     1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh
 Starting validator node on port 9003 with custom DB paths
-[Validator] Blockchain already initialized.
+[VALIDATOR] {'1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig': {'privateKey': 96535626569238604192129746772702330856431841702880282095447645155889990991526, 'public_addr': '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig', 'public_key': '0248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4', 'staked': 10000000000, 'unspent': 10000000000, 'locked_until': 0, 'staking_history': '[]'}, '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD': {'privateKey': 101116694282830344663754055609096743199644277746685645606199809457638491163865, 'public_addr': '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', 'public_key': '0387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d', 'staked': 10000000000, 'unspent': 10000000000, 'locked_until': 0, 'staking_history': '[]'}, '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz': {'privateKey': 46707185248865296345366463593339102785859545093537333336358754291775493830931, 'public_addr': '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz', 'public_key': '035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1', 'staked': 10000000000, 'unspent': 10000000000, 'locked_until': 0, 'staking_history': '[]'}}
+[Validator] No blocks found, creating genesis block...
+[MerkleRoot] Starting calculation with 1 leaf hashes.
+[MerkleRoot] Final root calculated: cd82d517789d8be135d176ee9af9b490b9614470a4ec45c595943b2fcf872f0b
+Database path used: data/account.db
+Block signature GENESIS BLOCK: 3045022100aaefd7e9e13a4c47edcd7135184e2f60a956e3325f2ae57f45ed224a0b10cf5402200d3df3c0388fa82b8f0a0ee0a3b0e49b714af1cf98b7c1b677e8061502076fcd of type <class 'str'>
+Block signature: 3045022100aaefd7e9e13a4c47edcd7135184e2f60a956e3325f2ae57f45ed224a0b10cf5402200d3df3c0388fa82b8f0a0ee0a3b0e49b714af1cf98b7c1b677e8061502076fcd of type <class 'str'>
+Genesis block object initially: {'Height': 0, 'Blocksize': 235, 'BlockHeader': <Blockchain.Backend.core.blockheader.BlockHeader object at 0x7f26557b5f10>, 'TxCount': 1, 'Txs': [<Blockchain.Backend.core.tx.Tx object at 0x7f26639ffee0>], 'Signature': None}
+[DEBUG] Block written to DB: Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d
+[DEBUG] Current chain in DB:
+  Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d
+[DEBUG] Genesis block written to DB: Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x7f26557d0040> to 9000
+Connected to host 127.0.0.1:9000
+Published block 0 to 127.0.0.1:9000
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x7f26557d0040> to 9001
+Connected to host 127.0.0.1:9001
+Published block 0 to 127.0.0.1:9001
+[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x7f26557d0040> to 9002
+Connected to host 127.0.0.1:9002
+Published block 0 to 127.0.0.1:9002
+[DEBUG] Genesis block broadcasted: Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d
+[Validator] Genesis block created and broadcast.
 [DEBUG] BlockchainDB will use path: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
 Connecting to peer 127.0.0.1:9000 to broadcast selection...
-[ValidatorSelector] Error sending selection to ('127.0.0.1', 9000): 'NoneType' object has no attribute 'sendall'
+[ValidatorSelector] Successfully sent validator selection to ('127.0.0.1', 9000)
 Connecting to peer 127.0.0.1:9001 to broadcast selection...
-[ValidatorSelector] Error sending selection to ('127.0.0.1', 9001): 'NoneType' object has no attribute 'sendall'
+[ValidatorSelector] Successfully sent validator selection to ('127.0.0.1', 9001)
 Connecting to peer 127.0.0.1:9002 to broadcast selection...
-[ValidatorSelector] Error sending selection to ('127.0.0.1', 9002): 'NoneType' object has no attribute 'sendall'
+[ValidatorSelector] Successfully sent validator selection to ('127.0.0.1', 9002)
 
 Shutting down validator node gracefully...

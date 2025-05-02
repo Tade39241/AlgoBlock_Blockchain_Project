@@ -1,0 +1,84 @@
+Testing database connections...
+  - Connected to node database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/node.db
+  - Connected to blockchain database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/blockchain.db
+  - Connected to account database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/account.db
+Setting permissions for database files...
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/node.db to 660
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/blockchain.db to 660
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/account.db to 660
+Starting node 2 on port 9002 with custom DB paths
+Account details: {"privateKey": 46707185248865296345366463593339102785859545093537333336358754291775493830931, "public_addr": "1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz", "public_key": "035b605b121b0382b340dd55bb960bd73c19bb5b484d61837b41beb29b1e8341b1", "staked": 10000000000, "unspent": 10000000000, "locked_until": 0, "staking_history": "[]"}
+All accounts written to DB at: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2/data/account.db
+Account details: public_addr=1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz, balance=None
+Setting blockchain public address to: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Blockchain initialized successfully through BlockchainManager
+[DEBUG] PID 647835 binding to ('127.0.0.1', 9002)
+Node Server Listening on ('127.0.0.1', 9002)
+SERVER STARTED
+LISTENING at 127.0.0.1:9002
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Server Handler from ('127.0.0.1', 54632)] Processing requestBlock command...
+[Server Handler from ('127.0.0.1', 54632)] Parsed requestBlock start: 0000000000...
+[Server Handler from ('127.0.0.1', 54632)] Calling sendBlockToRequestor...
+[Server Handler from ('127.0.0.1', 54632)] sendBlockToRequestor completed.
+[Server Handler from ('127.0.0.1', 54632)] Thread exiting.
+[syncManager] Received port check magic, closing connection.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[DEBUG/BLOCK PARSE] Starting block parse...
+  [DEBUG/BLOCK PARSE] Parsed Height: 0
+  [DEBUG/BLOCK PARSE] Parsed BlockSize: 421
+  [DEBUG/BLOCK PARSE] Parsed BlockHeader. Hash: 
+  [DEBUG/BLOCK PARSE] Parsed Tx Count (VarInt): 1
+  [DEBUG/BLOCK PARSE] Attempting to parse 1 transactions...
+    [DEBUG/BLOCK PARSE] Parsing Tx 1/1...
+      [DEBUG/BLOCK PARSE] Parsed Tx 1 ID: cd82d517789d8be135d176ee9af9b490b9614470a4ec45c595943b2fcf872f0b
+  [DEBUG/BLOCK PARSE] Successfully parsed 1 transactions.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+[DEBUG] My public address: 1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
+Database path used: data/account.db
+[syncManager] Not the selected validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+[Server Handler from ('127.0.0.1', 54664)] Closing connection after processing command 'valselect'.
+[Server Handler from ('127.0.0.1', 54664)] Thread exiting.
+[ValidateBlockDEBUG] signature: Signature(aaefd7e9e13a4c47edcd7135184e2f60a956e3325f2ae57f45ed224a0b10cf54,d3df3c0388fa82b8f0a0ee0a3b0e49b714af1cf98b7c1b677e8061502076fcd)
+[MerkleRoot] Starting calculation with 1 leaf hashes.
+[MerkleRoot] Final root calculated: cd82d517789d8be135d176ee9af9b490b9614470a4ec45c595943b2fcf872f0b
+Server started on port 9002
+Waiting for web UI at http://localhost:5902…
+Web UI up, starting simulation
+Current blockchain height: -1
+Current blockchain height: 0
+Current blockchain height: 0
+\nShutting down node 2 gracefully...
+[Server Handler from ('127.0.0.1', 54650)] Processed block command.
+[Server Handler from ('127.0.0.1', 54650)] Unknown command received: b'block'
+[Server Handler from ('127.0.0.1', 54650)] Closing connection after processing command 'block'.
+[Server Handler from ('127.0.0.1', 54650)] Thread exiting.
+\nShutting down node 2 gracefully...
+Frontend starting on port 5902, node network port is 9002
+\nShutting down node 2 gracefully...
+[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...
+DEBUG: startSync: self.localHostPort = 9002 (type: <class 'int'>)
+DEBUG: startSync: portList from read_nodes = [9000, 9001, 9002] (types: [<class 'int'>, <class 'int'>, <class 'int'>])
+DEBUG: startSync loop: Checking port 9000 (type: <class 'int'>) against 9002
+DEBUG: startSync loop: *** PROCEEDING with peer port 9000 ***
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: length from varint = 3
+DEBUG: chunk #0 = 28230000
+DEBUG: chunk #1 = 29230000
+DEBUG: chunk #2 = 2a230000
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: startSync loop: Checking port 9001 (type: <class 'int'>) against 9002
+DEBUG: startSync loop: *** PROCEEDING with peer port 9001 ***
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: length from varint = 3
+DEBUG: chunk #0 = 28230000
+DEBUG: chunk #1 = 29230000
+DEBUG: chunk #2 = 2a230000
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: startSync loop: Checking port 9002 (type: <class 'int'>) against 9002
+DEBUG: startSync loop: *** SKIPPING self port 9002 ***
+[DEBUG] Block written to DB: Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d
+[DEBUG] Current chain in DB:
+  Height=0 Hash=efd9820e8cbac7c218aeff612a4ccb01eadf0ac9788505040134fa2ab897eb6d

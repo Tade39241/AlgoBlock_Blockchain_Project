@@ -1,0 +1,67 @@
+Testing database connections...
+  - Connected to node database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/node.db
+  - Connected to blockchain database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/blockchain.db
+  - Connected to account database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/account.db
+Setting permissions for database files...
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/node.db to 660
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/blockchain.db to 660
+  - Set permissions for /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/account.db to 660
+Starting node 0 on port 9000 with custom DB paths
+Account details: {"privateKey": 96535626569238604192129746772702330856431841702880282095447645155889990991526, "public_addr": "1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig", "public_key": "0248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4", "staked": 10000000000, "unspent": 10000000000, "locked_until": 0, "staking_history": "[]"}
+All accounts written to DB at: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_0/data/account.db
+Account details: public_addr=1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig, balance=None
+Setting blockchain public address to: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+Blockchain initialized successfully through BlockchainManager
+Server started on port 9000
+Waiting for web UI at http://localhost:5900…
+Web UI up, starting simulation
+Current blockchain height: -1
+Current blockchain height: -1
+Current blockchain height: -1
+Current blockchain height: -1
+\nShutting down node 0 gracefully...
+[DEBUG] PID 647692 binding to ('127.0.0.1', 9000)
+Node Server Listening on ('127.0.0.1', 9000)
+SERVER STARTED
+LISTENING at 127.0.0.1:9000
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Server Handler from ('127.0.0.1', 38736)] Processing requestBlock command...
+[Server Handler from ('127.0.0.1', 38736)] Parsed requestBlock start: 0000000000...
+[Server Handler from ('127.0.0.1', 38736)] Calling sendBlockToRequestor...
+[Server Handler from ('127.0.0.1', 38736)] sendBlockToRequestor completed.
+[Server Handler from ('127.0.0.1', 38736)] Thread exiting.
+[syncManager] Received port check magic, closing connection.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[Server Handler from ('127.0.0.1', 38752)] Processing requestBlock command...
+[Server Handler from ('127.0.0.1', 38752)] Parsed requestBlock start: 0000000000...
+[Server Handler from ('127.0.0.1', 38752)] Calling sendBlockToRequestor...
+[Server Handler from ('127.0.0.1', 38752)] sendBlockToRequestor completed.
+[Server Handler from ('127.0.0.1', 38752)] Thread exiting.
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+[syncManager] Received validator selection message.
+[DEBUG] Selected validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+[DEBUG] My public address: 1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
+[DEBUG] NetworkEnvelope.parse: got magic bytes 
+Database path used: data/account.db
+[syncManager] Not the selected validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+[Server Handler from ('127.0.0.1', 38760)] Closing connection after processing command 'valselect'.
+[Server Handler from ('127.0.0.1', 38760)] Thread exiting.
+[Server Handler from ('127.0.0.1', 38766)] Thread exiting.
+\nShutting down node 0 gracefully...
+Frontend starting on port 5900, node network port is 9000
+\nShutting down node 0 gracefully...
+[Node Setup] No existing blockchain found. Waiting for validator selection or genesis block from network...
+DEBUG: startSync: self.localHostPort = 9000 (type: <class 'int'>)
+DEBUG: startSync: portList from read_nodes = [9000, 9001, 9002] (types: [<class 'int'>, <class 'int'>, <class 'int'>])
+DEBUG: startSync loop: Checking port 9000 (type: <class 'int'>) against 9000
+DEBUG: startSync loop: *** SKIPPING self port 9000 ***
+DEBUG: startSync loop: Checking port 9001 (type: <class 'int'>) against 9000
+DEBUG: startSync loop: *** PROCEEDING with peer port 9001 ***
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: length from varint = 3
+DEBUG: chunk #0 = 28230000
+DEBUG: chunk #1 = 29230000
+DEBUG: chunk #2 = 2a230000
+[DEBUG] NetworkEnvelope.parse: got magic bytes f9beb4d9
+DEBUG: startSync loop: Checking port 9002 (type: <class 'int'>) against 9000
+DEBUG: startSync loop: *** PROCEEDING with peer port 9002 ***

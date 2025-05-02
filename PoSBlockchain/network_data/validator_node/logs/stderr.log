@@ -1,14 +1,28 @@
-2025-05-02 06:02:16,991 INFO: [PID 766158] start_node.py script started. Logging configured.
-2025-05-02 06:02:17,245 INFO: [PID 766158] Blockchain object __init__ called.
-2025-05-02 06:02:17,274 INFO: [PID 766158] Blockchain initialized for port 9003. Lock object received: <class '_thread.lock'>
-2025-05-02 06:02:17,280 INFO: [PID 766158] [PID 766158] BlockchainDB attempting to connect to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
-2025-05-02 06:02:17,280 INFO: [PID 766158] [PID 766158] BlockchainDB connected successfully to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
-2025-05-02 06:02:17,286 INFO: [PID 766158] Available validators (excluding 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh): ['14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig', '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz']
-2025-05-02 06:02:17,286 INFO: [PID 766158] Selected validator 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD based on weighted random (stake: 10000000000)
-2025-05-02 06:02:17,286 INFO: [PID 766158] [ValidatorSelector] Selected Validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD with stake 10000000000
-2025-05-02 06:02:17,286 INFO: [PID 766158] Node connect: Connecting to ('127.0.0.1', 9000)...
-2025-05-02 06:02:17,286 ERROR: [PID 766158] Node connect: Failed to connect to ('127.0.0.1', 9000): [Errno 111] Connection refused
-2025-05-02 06:02:17,286 INFO: [PID 766158] Node connect: Connecting to ('127.0.0.1', 9001)...
-2025-05-02 06:02:17,286 ERROR: [PID 766158] Node connect: Failed to connect to ('127.0.0.1', 9001): [Errno 111] Connection refused
-2025-05-02 06:02:17,286 INFO: [PID 766158] Node connect: Connecting to ('127.0.0.1', 9002)...
-2025-05-02 06:02:17,286 ERROR: [PID 766158] Node connect: Failed to connect to ('127.0.0.1', 9002): [Errno 111] Connection refused
+2025-05-02 11:18:24,358 INFO: [PID 647889] start_node.py script started. Logging configured.
+2025-05-02 11:18:24,453 INFO: [PID 647889] Blockchain object __init__ called.
+2025-05-02 11:18:24,490 INFO: [PID 647889] Blockchain initialized for port 9003. Lock object received: <class '_thread.lock'>
+2025-05-02 11:18:24,965 INFO: [PID 647889] Block written successfully.
+2025-05-02 11:18:24,967 INFO: [PID 647889] [UTXO Update] Updating for block 0
+2025-05-02 11:18:24,967 INFO: [PID 647889] [UTXO Update] Block 0 complete. Added: 6, Removed: 0. New size: 6
+2025-05-02 11:18:24,967 INFO: [PID 647889] [Mempool Clean] Cleaning for block 0
+2025-05-02 11:18:24,967 INFO: [PID 647889] [Node Setup] Genesis Block created and state updated.
+2025-05-02 11:18:24,996 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9000)...
+2025-05-02 11:18:24,997 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9000)
+2025-05-02 11:18:24,997 INFO: [PID 647889] [connectToHost] Successfully connected to 9000.
+2025-05-02 11:18:24,997 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9001)...
+2025-05-02 11:18:24,997 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9001)
+2025-05-02 11:18:24,997 INFO: [PID 647889] [connectToHost] Successfully connected to 9001.
+2025-05-02 11:18:24,998 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9002)...
+2025-05-02 11:18:24,998 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9002)
+2025-05-02 11:18:24,998 INFO: [PID 647889] [connectToHost] Successfully connected to 9002.
+2025-05-02 11:18:25,001 INFO: [PID 647889] [PID 647889] BlockchainDB attempting to connect to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-05-02 11:18:25,001 INFO: [PID 647889] [PID 647889] BlockchainDB connected successfully to: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
+2025-05-02 11:18:25,005 INFO: [PID 647889] Available validators (excluding 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh): ['14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig', '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz']
+2025-05-02 11:18:25,005 INFO: [PID 647889] Selected validator 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD based on weighted random (stake: 10000000000)
+2025-05-02 11:18:25,005 INFO: [PID 647889] [ValidatorSelector] Selected Validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD with stake 10000000000
+2025-05-02 11:18:25,005 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9000)...
+2025-05-02 11:18:25,005 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9000)
+2025-05-02 11:18:25,005 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9001)...
+2025-05-02 11:18:25,005 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9001)
+2025-05-02 11:18:25,006 INFO: [PID 647889] Node connect: Connecting to ('127.0.0.1', 9002)...
+2025-05-02 11:18:25,006 INFO: [PID 647889] Node connect: Connected successfully to ('127.0.0.1', 9002)
