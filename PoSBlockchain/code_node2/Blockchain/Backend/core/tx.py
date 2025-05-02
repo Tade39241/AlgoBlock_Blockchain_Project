@@ -9,6 +9,13 @@ REWARD = 50
 # In a configuration file or a constants section:
 STAKING_ADDRESS = "1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh"  # example hard‐coded staking address
 SIG_HASH_ALL = 1
+import logging
+
+from Blockchain.Backend.util.logging_config import get_logger # Adjust path if needed
+
+# Get a logger specific to this module/class
+logger = logging.getLogger(__name__)
+
 
 ###############################################################################
 # COINBASE TRANSACTION
@@ -68,24 +75,54 @@ class Tx:
         return self.id()
 
 
-    def id(self):
+    # def id(self):
         
+    #     """
+    #     Return the human-readable TxID.
+    #     The TxID is the double-SHA256 of the serialized transaction bytes,
+    #     then reversed so that the most-significant byte is first.
+    #     """
+    #     return self.hash().hex()
+
+    def hash(self):
         """
-        Return the human-readable TxID.
+        Returns the double-SHA256 hash of the serialization.
+        Result is returned as bytes in internal (natural) byte order.
+        """
+        tx_bytes = self.serialise()
+        # --- Add Logging ---
+        # Log the bytes that will be hashed
+        # print(f"[Tx HASH Calc] Serialized bytes for hash: {tx_bytes.hex()}")
+        # -----------------
+        return hash256(tx_bytes)[::-1] # Double-SHA256 and reverse
+    
+    def id(self):
+        """
+        Return the human-readable TxID (hex string).
         The TxID is the double-SHA256 of the serialized transaction bytes,
         then reversed so that the most-significant byte is first.
         """
-        return self.hash().hex()
+        # Optional: Add logging here too if hash() doesn't exist
+        # tx_bytes = self.serialise()
+        #print(f"[Tx ID Calc] Serialized bytes for ID: {tx_bytes.hex()}")
+        # tx_hash_bytes = hash256(tx_bytes)[::-1]
+
+        # Assumes hash() exists and already logged serialized bytes
+        tx_hash_bytes = self.hash()
+        # print(f"[Tx ID Calc] Hash bytes received from self.hash(): {tx_hash_bytes.hex()}")
+        # Convert the hash bytes to hex string
+        return tx_hash_bytes.hex()
     
-    def hash(self):
+    # def hash(self):
 
-        """
-        Compute the binary hash (double-SHA256) of the serialized transaction.
-        Note: We reverse the final digest for display purposes.
-        """
-        # Compute the double-SHA256 digest on the serialized byte representation.
+    #     """
+    #     Compute the binary hash (double-SHA256) of the serialized transaction.
+    #     Note: We reverse the final digest for display purposes.
+    #     """
+    #     # Compute the double-SHA256 digest on the serialized byte representation.
 
-        return hash256(self.serialise())[::-1]
+    #     logger.debug(f"[Tx HASH Calc] Serialized bytes for hash: {tx_bytes.hex()}")
+    #     return hash256(self.serialise())[::-1]
 
     @classmethod
     def parse(cls, s):
@@ -338,17 +375,85 @@ class Tx:
         z = self.sig_hash(input_index, script_pubkey)
         combined = tx_in.script_sig + script_pubkey
         return combined.evaluate(z)
-
-    def sign_input(self, input_index,priv_key,script_pubkey):
+    
+    def sign_input(self, input_index, private_key, script_pubkey):
         """
         Sign the input at input_index using the provided private key.
         The signature is appended with SIG_HASH_ALL as a single byte.
+        Returns True on success, False on failure.
         """
-        sig_hash_value = self.sig_hash(input_index, script_pubkey)
-        der = priv_key.sign(sig_hash_value).der()
-        sig = der + SIG_HASH_ALL.to_bytes(1,'big')
-        sec = priv_key.point.sec()
-        self.tx_ins[input_index].script_sig = Script([sig,sec])
+        tx_in = self.tx_ins[input_index]
+        if not isinstance(script_pubkey, Script):
+            logger.error(f"[sign_input] Invalid script_pubkey provided (type: {type(script_pubkey)}) for input {input_index}")
+            return False
+
+        logger.debug(f"[sign_input] Signing input {input_index} for tx {self.id()}")
+        logger.debug(f"[sign_input] Using ScriptPubKey: {script_pubkey.cmds}")
+
+        # 1. Generate the signature hash (z)
+        try:
+            z = self.sig_hash(input_index, script_pubkey)
+            logger.debug(f"[sign_input] Generated sig_hash (z): 0x{z:x}")
+        except Exception as e:
+            logger.error(f"[sign_input] Error generating sig_hash for input {input_index}: {e}", exc_info=True)
+            # import traceback # Optional: uncomment for full stack trace in log
+            # traceback.print_exc()
+            return False
+
+        # 2. Sign the hash
+        try:
+            signature = private_key.sign(z) # Get Signature object first
+            der = signature.der()
+            logger.debug(f"[sign_input] Signed hash, DER signature length: {len(der)}")
+        except Exception as e:
+            logger.error(f"[sign_input] Error signing hash z for input {input_index}: {e}", exc_info=True)
+            # import traceback
+            # traceback.print_exc()
+            return False
+
+        # 3. Append SIGHASH type
+        try:
+            sig = der + SIG_HASH_ALL.to_bytes(1, 'big')
+        except NameError:
+            logger.error("[sign_input] SIG_HASH_ALL constant is not defined!")
+            return False
+        except Exception as e:
+            logger.error(f"[sign_input] Error appending SIGHASH type: {e}", exc_info=True)
+            return False
+
+
+        # 4. Get the sec public key
+        try:
+            sec = private_key.point.sec()
+            logger.debug(f"[sign_input] SEC public key length: {len(sec)}")
+        except Exception as e:
+            logger.error(f"[sign_input] Error getting SEC public key: {e}", exc_info=True)
+            # import traceback
+            # traceback.print_exc()
+            return False
+
+        # 5. Create and set the script_sig
+        try:
+            sig_script = Script([sig, sec])
+            logger.debug(f"[sign_input] Created ScriptSig: {sig_script.cmds}")
+            self.tx_ins[input_index].script_sig = sig_script
+        except Exception as e:
+            logger.error(f"[sign_input] Error creating/setting ScriptSig: {e}", exc_info=True)
+            return False
+
+        logger.info(f"[sign_input] Successfully signed input {input_index}")
+        return True # <<< --- ADD THIS LINE --- >>>
+
+    # def sign_input(self, input_index,priv_key,script_pubkey):
+    #     """
+    #     Sign the input at input_index using the provided private key.
+    #     The signature is appended with SIG_HASH_ALL as a single byte.
+    #     """
+    #     sig_hash_value = self.sig_hash(input_index, script_pubkey)
+    #     der = priv_key.sign(sig_hash_value).der()
+    #     sig = der + SIG_HASH_ALL.to_bytes(1,'big')
+    #     sec = priv_key.point.sec()
+    #     self.tx_ins[input_index].script_sig = Script([sig,sec])
     
     def is_coinbase_transaction(tx):
         # Assuming ZERO_HASH is defined (e.g., '00...00')

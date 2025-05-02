@@ -1,5 +1,4 @@
 import sys
-sys.path.append('/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoSBlockchain/code_node2')
 from Blockchain.Backend.core.EllepticCurve.EllepticCurve import Sha256Point, PrivateKey, PublicKey
 from Blockchain.Backend.core.database.db import AccountDB
 from Blockchain.Backend.util.util import hash160, hash256, decode_base58
@@ -7,6 +6,14 @@ from Blockchain.Backend.core.tx import Tx, TxOut, TxIn
 from Blockchain.Backend.core.script import Script, StakingScript
 import time, secrets, hashlib, json
 import traceback
+import logging
+
+
+from Blockchain.Backend.util.logging_config import get_logger # Adjust path if needed
+
+# Get a logger specific to this module/class
+logger = get_logger("Account")
+
 
 
 class account:
@@ -93,7 +100,7 @@ class account:
             
             # First save locally
             AccountDB().update_account(self.public_addr, data_to_store)
-            print(f"Account {self.public_addr} saved to local DB.")
+            # print(f"Account {self.public_addr} saved to local DB.")
             
             # Then broadcast to other nodes
             self.broadcast_account_update(data_to_store)
@@ -126,9 +133,9 @@ class account:
                 
             # Get list of other nodes
             node_db = NodeDB()
-            print(f"NodeDB path: {node_db.filepath}")
+            # print(f"NodeDB path: {node_db.filepath}")
             port_list = node_db.read_nodes() if hasattr(node_db, 'read_nodes') else node_db.read()
-            print(port_list)
+            # print(port_list)
             
             broadcast_count = 0
             for port in port_list:
@@ -145,7 +152,7 @@ class account:
                     except Exception as e:
                         print(f"Failed to broadcast account update to port {port}: {e}")
             
-            print(f"Account update broadcast to {broadcast_count} nodes")
+            # print(f"Account update broadcast to {broadcast_count} nodes")
             return broadcast_count > 0
         except Exception as e:
             print(f"Error in broadcast_account_update: {e}")
@@ -177,24 +184,34 @@ class account:
         spendable = 0
         staked = 0
         h160_user = decode_base58(self.public_addr)
+
+        if not isinstance(utxo_set, dict):
+            # Handle cases where utxo_set might be a Manager proxy dict
+            if hasattr(utxo_set, '_getvalue'):
+                 utxo_set = utxo_set._getvalue() # Try to get the underlying dict
+            else:
+                logger.error(f"Cannot calculate balance: UTXO set is not a dictionary or proxy (type: {type(utxo_set)})")
+                return 0, 0
+
         for (txid, index), tx_out in utxo_set.items():
             cmds = tx_out.script_publickey.cmds
             if len(cmds) >= 3:
-                print(f"[DEBUG][MATCH] cmds[2]={cmds[2].hex()} h160_user={h160_user.hex()}")
+                pass
+                # print(f"[DEBUG][MATCH] cmds[2]={cmds[2].hex()} h160_user={h160_user.hex()}")
             else:
                 print(f"[DEBUG][MATCH] cmds too short: {cmds}")
-            print(f"[DEBUG][get_balance] {txid}:{index} cmds={cmds} h160_user={h160_user.hex()}")
+            # print(f"[DEBUG][get_balance] {txid}:{index} cmds={cmds} h160_user={h160_user.hex()}")
             # Standard spendable output (P2PKH)
             if len(cmds) >= 3 and cmds[2] == h160_user and cmds[0] == 0x76:
-                print(f"[DEBUG][get_balance] MATCH P2PKH for {txid}:{index}")
+                # print(f"[DEBUG][get_balance] MATCH P2PKH for {txid}:{index}")
                 spendable += tx_out.amount
             # Staked output (StakingScript)
             elif len(cmds) == 3 and cmds[0] == b'\x00' and cmds[1] == h160_user:
-                print(f"[DEBUG][get_balance] MATCH StakingScript for {txid}:{index}")
+                # print(f"[DEBUG][get_balance] MATCH StakingScript for {txid}:{index}")
                 staked += tx_out.amount
             else:
                 print(f"[DEBUG][get_balance] NO MATCH for {txid}:{index}")
-        print(f"[DEBUG][get_balance] FINAL spendable={spendable} staked={staked}")
+        # print(f"[DEBUG][get_balance] FINAL spendable={spendable} staked={staked}")
         return spendable, staked
     
     # def create_claim_rewards_transaction(self, claim_amount):
@@ -297,9 +314,9 @@ class account:
             new_acct.staking_history = []
         
         # Debug the final account object values
-        print(f"Account object created: address={new_acct.public_addr}, " 
-            f"staked={new_acct.staked} satoshis ({new_acct.staked/100000000} coins), "
-            f"unspent={new_acct.unspent} satoshis ({new_acct.unspent/100000000} coins), ")
+        # print(f"Account object created: address={new_acct.public_addr}, " 
+        #     f"staked={new_acct.staked} satoshis ({new_acct.staked/100000000} coins), "
+        #     f"unspent={new_acct.unspent} satoshis ({new_acct.unspent/100000000} coins), ")
         
         return new_acct
     
@@ -320,84 +337,58 @@ class account:
 
 
     def prepareStakeTxIns(self, utxos, fromAddress, amount):
-        
+        """Selects sufficient UTXOs (P2PKH only) for staking the given amount."""
         TxIns = []
         total = 0
-        sender_script = self.script_public_key(fromAddress)
-        fromPubKeyHash = sender_script.cmds[2]
-        h160_user = decode_base58(self.public_addr)
+        try: # Protect against errors getting script/hash
+             script_pubkey = Script().p2pkh_script(decode_base58(fromAddress))
+             fromPubKeyHash = script_pubkey.cmds[2]
+        except Exception as e:
+             print(f"[prepareStakeTxIns] Error getting script/hash for {fromAddress}: {e}")
+             return [], 0 # Return empty if cannot determine sender hash
 
-        print(f"[DEBUG][StakeTxIns] fromAddress={fromAddress} fromPubKeyHash={fromPubKeyHash.hex()}")
+        # print(f"[prepareStakeTxIns] fromAddress={fromAddress} fromPubKeyHash={fromPubKeyHash.hex()}")
+        # print(f"[prepareStakeTxIns] Required amount for stake source: {amount}")
+        # print(f"[prepareStakeTxIns] Checking {len(utxos)} UTXOs provided.")
 
+        for (txid, index), tx_out in utxos.items():
+            # --- Add Detailed Logging ---
+            # print(f"--- Checking UTXO ({txid}, {index}) ---")
+            if not (hasattr(tx_out, 'amount') and hasattr(tx_out, 'script_publickey') and hasattr(tx_out.script_publickey, 'cmds')):
+                #  print(f"  Invalid structure. Skipping.")
+                 continue
 
-        for (txid, idx), tx_out in utxos.items():
             cmds = tx_out.script_publickey.cmds
-            print(f"[DEBUG][MATCH] cmds[2]={cmds[2].hex()} h160_user={h160_user.hex()}")
-            print(f"[DEBUG][StakeTxIns] cmds[0]={cmds[0]} type={type(cmds[0])}")
-            # Only select standard P2PKH outputs (cmds[0] == 0x76)
-            if len(cmds) >= 3 and cmds[2] == fromPubKeyHash and (cmds[0] == 0x76 or cmds[0] == b'\x76'):
-                print(f"[DEBUG][StakeTxIns] UTXO {txid}:{idx} cmds={cmds} cmds[2]={cmds[2].hex() if len(cmds)>=3 else 'NA'} fromPubKeyHash={fromPubKeyHash.hex()} cmds[0]={cmds[0]} type(cmds[0])={type(cmds[0])}")
-                print(f"[DEBUG][StakeTxIns] Using UTXO {txid}:{idx} cmds={cmds} amount={tx_out.amount}")
-                TxIns.append(TxIn(
-                    prev_tx=bytes.fromhex(txid),
-                    prev_index=idx,
-                    script_sig=Script(),
-                    sequence=0xFFFFFFFF
-                ))
-                total += tx_out.amount
-                if total >= amount:
-                    break
-            else:
-                print(f"[DEBUG][StakeTxIns] NOT SELECTED {txid}:{idx}")
-            print(f"[DEBUG][StakeTxIns] cmds={cmds} fromPubKeyHash={fromPubKeyHash.hex()} cmds[0]={cmds[0]} cmds[2]==fromPubKeyHash? {cmds[2]==fromPubKeyHash} cmds[0]==0x76? {cmds[0]==0x76}")
-        print(f"[DEBUG][StakeTxIns] TOTAL selected amount={total}")
+            utxo_amount = getattr(tx_out, 'amount', 0)
+            if not isinstance(utxo_amount, int):
+                #  print(f"  Non-integer amount ({type(utxo_amount)}). Skipping.")
+                 continue
+
+            # print(f"  Amount: {utxo_amount}, Script Cmds: {cmds}")
+            # Check if it's a P2PKH output matching the sender
+            is_p2pkh_match = (len(cmds) == 5 and cmds[0] == 0x76 and cmds[1] == 0xa9 and isinstance(cmds[2], bytes) and cmds[2] == fromPubKeyHash)
+            # print(f"  Is P2PKH match for sender?: {is_p2pkh_match}")
+
+            if is_p2pkh_match:
+                if total < amount:
+                    total += utxo_amount
+                    TxIns.append(TxIn(
+                        prev_tx=bytes.fromhex(txid),
+                        prev_index=index,
+                        script_sig=Script(), # Empty script_sig
+                        sequence=0xFFFFFFFF
+                    ))
+                    # print(f"  --> SELECTED P2PKH UTXO as input. Current Total: {total}")
+                else:
+                    # print(f"  Sufficient total found ({total} >= {amount}). Breaking loop.")
+                    break # Stop when enough is gathered
+            # else: print("  Not a matching P2PKH. Skipping.")
+            # --- End Detailed Logging ---
+
+        # print(f"[prepareStakeTxIns] Finished loop. Total selected amount={total}. Number of inputs={len(TxIns)}")
         return TxIns, total
-
-    # def prepareStakeTxIns(self, utxos, fromAddress, amount):
-    #     """
-    #     Iterate over the global UTXO set (without flattening) to select inputs that belong to the sender.
-    #     Returns (TxIns, total) where total is the sum of the selected outputs.
-    #     """
-    #     TxIns = []
-    #     total = 0
-    #     sender_script = self.script_public_key(fromAddress)
-    #     # Assume the public key hash is at cmds[2] in the script.
-    #     fromPubKeyHash = sender_script.cmds[2]
-
-    #     for (txid, idx), tx_out in utxos.items():
-    #         if tx_out.script_publickey.cmds[2] == fromPubKeyHash:
-    #             print(f"[DEBUG][StakeTxIns] Checking UTXO {txid}:{idx} cmds={tx_out.script_publickey.cmds} amount={tx_out.amount}")
-    #             TxIns.append(TxIn(
-    #                 prev_tx=bytes.fromhex(txid),
-    #                 prev_index=idx,
-    #                 script_sig=Script(),
-    #                 sequence=0xFFFFFFFF
-    #             ))
-    #             total += tx_out.amount
-    #             if total >= amount:
-    #                 break
-    #     return TxIns, total
     
-    # def prepareStakeTxOut(self, stake_amount, change=0, fromAddress=None):
-    #     """
-    #     Build the outputs for the stake transaction.
-    #     The primary output sends exactly 'stake_amount' to the common staking address.
-    #     If change > 0, a second output returns the excess funds to the user's wallet address.
-    #     """
-    #     outputs = []
-    #     # Primary stake output to the common staking address.
-    #     user_h160 = decode_base58(self.public_addr)
-    #     staking_script = Script().p2pkh_script(user_h160)
-    #     outputs.append(TxOut(stake_amount, staking_script))
-        
-    #     # If there is change, add an output to return it to the user's wallet.
-    #     if change > 0:
-    #         if not fromAddress:
-    #             raise ValueError("fromAddress must be provided for creating change output.")
-    #         user_script = self.script_public_key(fromAddress)
-    #         outputs.append(TxOut(change, user_script))
-        
-    #     return outputs
+
 
     def prepareStakeTxOut(self, stake_amount, change=0, fromAddress=None, lock_time=None):
         """
@@ -410,14 +401,14 @@ class account:
             raise ValueError("lock_time must be provided for staking output.")
         # Use StakingScript for the staked output
         staking_script = StakingScript(self.public_addr, lock_time)
-        print(f"[DEBUG][StakeTxOut] StakingScript cmds={staking_script.cmds} amount={stake_amount}")
+        # print(f"[DEBUG][StakeTxOut] StakingScript cmds={staking_script.cmds} amount={stake_amount}")
         outputs.append(TxOut(stake_amount, staking_script))
         # If there is change, add an output to return it to the user's wallet.
         if change > 0:
             if not fromAddress:
                 raise ValueError("fromAddress must be provided for creating change output.")
             user_script = self.script_public_key(fromAddress)
-            print(f"[DEBUG][StakeTxOut] ChangeScript cmds={user_script.cmds} amount={change}")
+            # print(f"[DEBUG][StakeTxOut] ChangeScript cmds={user_script.cmds} amount={change}")
             outputs.append(TxOut(change, user_script))
         return outputs
 
@@ -429,26 +420,210 @@ class account:
         for i, txin in enumerate(TxObj.tx_ins):
             TxObj.sign_input(i, PrivateKey(self.privateKey), self.script_public_key(self.public_addr))
 
-    def prepareStakeTransaction(self, amount, lock_duration, utxos, fromAddress):
-        """
-        Assemble, sign, and return a new stake transaction if there is sufficient balance;
-        otherwise, return False.
+    # def prepareStakeTransaction(self, amount, lock_duration, utxos, fromAddress):
+    #     """
+    #     Assemble, sign, and return a new stake transaction if there is sufficient balance;
+    #     otherwise, return False.
 
-        This method now uses prepareStakeTxOut to create the primary stake output
-        and, if necessary, a change output.
-        """
-        # Select UTXOs from the global UTXO set that belong to the sender.
-        TxIns, total = self.prepareStakeTxIns(utxos, fromAddress, amount)
-        if total < amount:
-            return False  # Insufficient funds.
+    #     This method now uses prepareStakeTxOut to create the primary stake output
+    #     and, if necessary, a change output.
+    #     """
+    #     # Select UTXOs from the global UTXO set that belong to the sender.
+    #     TxIns, total = self.prepareStakeTxIns(utxos, fromAddress, amount)
+    #     if total < amount:
+    #         return False  # Insufficient funds.
         
-        change = total - amount
-        lock_time = int(time.time()) + lock_duration
-        TxOuts = self.prepareStakeTxOut(amount, change, fromAddress,lock_time)
-        TxObj = Tx(1, TxIns, TxOuts, lock_time)
-        self.signStakeTransaction(TxObj)
-        TxObj.TxId = TxObj.id()
-        return TxObj
+    #     change = total - amount
+    #     lock_time = int(time.time()) + lock_duration
+    #     TxOuts = self.prepareStakeTxOut(amount, change, fromAddress,lock_time)
+    #     TxObj = Tx(1, TxIns, TxOuts, lock_time)
+    #     self.signStakeTransaction(TxObj)
+    #     TxObj.TxId = TxObj.id()
+    #     return TxObj
+
+    def create_stake_transaction(self, amount_satoshis, lock_duration_days, utxos_snapshot, fromAddress):
+        """Builds and signs a stake transaction."""
+        print(f"Creating stake transaction for {fromAddress}: Amount={amount_satoshis}, Duration={lock_duration_days} days")
+        if amount_satoshis <= 0: raise ValueError("Stake amount must be positive.")
+        if lock_duration_days <= 0: raise ValueError("Lock duration must be positive.")
+
+        if not isinstance(utxos_snapshot, dict):
+            # Handle cases where utxo_set might be a Manager proxy dict
+            if hasattr(utxos_snapshot, '_getvalue'):
+                 utxos_snapshot = utxos_snapshot._getvalue() # Try to get the underlying dict
+            else:
+                logger.error(f"Cannot calculate balance: UTXO set is not a dictionary or proxy (type: {type(utxo_set)})")
+                return 0, 0
+
+        # --- Use prepareStakeTxIns to find SPENDABLE inputs ---
+        TxIns, total_in = self.prepareStakeTxIns(utxos_snapshot, fromAddress, amount_satoshis)
+        # print(f"[create_stake_transaction] Inputs found: {len(TxIns)}, Total Input Value: {total_in}")
+
+        # Check if enough spendable funds were found
+        if total_in < amount_satoshis:
+            # print(f"Insufficient SPENDABLE funds for stake: Required={amount_satoshis}, Found={total_in}")
+            return None # Return None for insufficient balance
+
+        # --- Prepare Outputs ---
+        change_amount = total_in - amount_satoshis # Calculate change
+        lock_time_seconds = lock_duration_days * 24 * 60 * 60 # Convert days to seconds
+        absolute_lock_time = int(time.time()) + lock_time_seconds # Calculate absolute timestamp
+
+        TxOuts = []
+        # 1. Staking Output (using StakingScript)
+        try:
+            staking_script = StakingScript(fromAddress, absolute_lock_time) # Assuming StakingScript helper exists
+            TxOuts.append(TxOut(amount=amount_satoshis, script_publickey=staking_script))
+            # print(f"Prepared Staking Output: Amount={amount_satoshis}, LockUntil={absolute_lock_time}")
+        except Exception as e:
+             print(f"Failed to create staking script/output: {e}")
+             return None
+
+        # 2. Change Output (if any, back to standard P2PKH)
+        if change_amount > 0:
+            try:
+                change_script = Script().p2pkh_script(decode_base58(fromAddress))
+                TxOuts.append(TxOut(amount=int(change_amount), script_publickey=change_script)) # Ensure int
+                # print(f"Prepared Change Output: Amount={int(change_amount)}")
+            except Exception as e:
+                #  print(f"Failed to create change script/output: {e}")
+                 return None
+        elif change_amount < 0 :
+            #  print(f"Negative change amount {change_amount} calculated during staking tx creation.")
+             return None # Should be caught by insufficient funds check, but safety first
+
+        # Create and Sign Transaction
+        try:
+            TxObj = Tx(version=1, tx_ins=TxIns, tx_outs=TxOuts, locktime=0) # Use standard locktime for tx itself
+            if not self.sign_transaction(TxObj): # Assuming sign_transaction signs all inputs
+                #  print("Failed to sign stake transaction.")
+                 return None
+            TxObj.TxId = TxObj.id() # Assign ID after signing
+            # print(f"Stake transaction created and signed: {TxObj.TxId}")
+            # Update off-chain account fields (consider if this is the right place)
+            # self.staked += amount_satoshis # This might be better handled by get_balance from UTXOs
+            # self.unspent -= amount_satoshis
+            # self.save_to_db() # Saving here might be premature before confirmation
+            return TxObj
+        except Exception as e:
+            print(f"Error creating/signing final stake transaction: {e}")
+            return None
+
+    def create_unstake_transaction(self, unstake_amount_satoshis, utxos_snapshot):
+        """Builds and signs an unstake transaction."""
+        print(f"Creating unstake transaction for {self.public_addr}: Amount={unstake_amount_satoshis}")
+        if unstake_amount_satoshis <= 0: raise ValueError("Unstake amount must be positive.")
+
+        TxIns = []
+        total_staked_found = 0
+        staked_utxos_to_spend = [] # Keep track of UTXOs selected
+        current_time = int(time.time())
+        h160_user = decode_base58(self.public_addr)
+
+        # print(f"[create_unstake] Checking {len(utxos_snapshot)} UTXOs provided.")
+        # --- Find available STAKED and UNLOCKED UTXOs ---
+        for (txid, index), tx_out in utxos_snapshot.items():
+            if not (hasattr(tx_out, 'amount') and hasattr(tx_out, 'script_publickey') and hasattr(tx_out.script_publickey, 'cmds')): continue
+            cmds = tx_out.script_publickey.cmds
+            utxo_amount = getattr(tx_out, 'amount', 0)
+            if not isinstance(utxo_amount, int): continue
+
+            # Check if it's a Staking output for this user
+            is_staked_match = (len(cmds) == 3 and cmds[0] == b'\x00' and isinstance(cmds[1], bytes) and cmds[1] == h160_user and isinstance(cmds[2], bytes))
+
+            if is_staked_match:
+                 stake_lock_time = int.from_bytes(cmds[2], 'big')
+                 is_locked = current_time < stake_lock_time
+                #  print(f"  Checking Staked UTXO ({txid},{index}): Amount={utxo_amount}, LockTime={stake_lock_time}, Locked={is_locked}")
+                 # Select if it belongs to user AND is UNLOCKED
+                 if not is_locked:
+                    #   print(f"  -> Unlocked Staked UTXO found.")
+                      if total_staked_found < unstake_amount_satoshis:
+                           total_staked_found += utxo_amount
+                           staked_utxos_to_spend.append(((txid, index), tx_out)) # Store key and value
+                           print(f"  --> SELECTED unlocked staked UTXO as input. Current Total Found: {total_staked_found}")
+                      else:pass
+                           # Optimization: Stop if enough found? Or gather all unlocked?
+                           # Let's gather all available unlocked stake first for simplicity of change calc
+                        #    print("  Sufficient amount found, but continuing to gather all unlocked stake...")
+                           # Keep iterating to find all unlockable stake if needed later for change
+                 else:pass
+                    #   print("  -> Staked UTXO is still locked.")
+            # else: print(f"  UTXO ({txid}, {index}) is not a matching stake script.")
+
+
+        print(f"[create_unstake] Total available unlocked stake found: {total_staked_found}")
+        # --- Check if FOUND unlocked stake is sufficient ---
+        if total_staked_found < unstake_amount_satoshis:
+            logger.error(f"Cannot unstake {unstake_amount_satoshis}: Only {total_staked_found} available unlocked staked funds found.")
+            # Raise the specific error your simulator received
+            raise ValueError("Unstake amount exceeds available unlocked staked funds.")
+            # return None # Or return None
+
+        # --- Create Inputs from selected UTXOs ---
+        # We might need more inputs than strictly necessary if individual UTXOs are small
+        # Select enough UTXOs from staked_utxos_to_spend to cover unstake_amount_satoshis
+        # For simplicity now, assume we use all selected ones if their total >= required amount
+        # (A more complex selection algorithm could minimize inputs)
+        actual_input_total = 0
+        for (txid, index), tx_out in staked_utxos_to_spend:
+             TxIns.append(TxIn(prev_tx=bytes.fromhex(txid), prev_index=index, script_sig=Script()))
+             actual_input_total += tx_out.amount
+             # Stop adding inputs once we've covered the amount (could optimize further)
+             if actual_input_total >= unstake_amount_satoshis:
+                  break
+
+        print(f"[create_unstake] Using {len(TxIns)} inputs with total value {actual_input_total}")
+        if actual_input_total < unstake_amount_satoshis:
+             # Should not happen if previous check passed, but safety check
+             logger.error("Internal Error: Selected input total less than required unstake amount.")
+             return None
+
+        # --- Prepare Outputs ---
+        TxOuts = []
+        # 1. Output back to user's standard P2PKH address
+        try:
+             p2pkh_script = Script().p2pkh_script(h160_user)
+             TxOuts.append(TxOut(amount=unstake_amount_satoshis, script_publickey=p2pkh_script))
+            #  print(f"Prepared Unstake Output (P2PKH): Amount={unstake_amount_satoshis}")
+        except Exception as e:
+             logger.error(f"Failed to create P2PKH script/output for unstake: {e}")
+             return None
+
+        # 2. Change Output (if any, back to *staked* address with original locktime?) - Tricky!
+        #    OR Change back to standard P2PKH? Let's do P2PKH for simplicity.
+        change_amount = actual_input_total - unstake_amount_satoshis
+        if change_amount > 0:
+             try:
+                  # Change goes back to standard spendable address
+                  change_script = Script().p2pkh_script(h160_user)
+                  TxOuts.append(TxOut(amount=int(change_amount), script_publickey=change_script))
+                #   print(f"Prepared Change Output (P2PKH): Amount={int(change_amount)}")
+             except Exception as e:
+                  logger.error(f"Failed to create change script/output for unstake: {e}")
+                  return None
+        elif change_amount < 0:
+             logger.error(f"Negative change amount {change_amount} calculated during unstake tx creation.")
+             return None
+
+        # Create and Sign Transaction
+        try:
+            TxObj = Tx(version=1, tx_ins=TxIns, tx_outs=TxOuts, locktime=0)
+            # Signing unstake inputs requires the original StakingScript as the script_pubkey
+            # We need to reconstruct it or pass it correctly. Let's assume sign_transaction handles this.
+            if not self.sign_transaction(TxObj): # You might need a specific sign_stake_input method
+                 logger.error("Failed to sign unstake transaction.")
+                 return None
+            TxObj.TxId = TxObj.id()
+            print(f"Unstake transaction created and signed: {TxObj.TxId}")
+            # Update off-chain state if needed (careful here)
+            # self.staked -= unstake_amount_satoshis
+            # self.unspent += unstake_amount_satoshis # Or maybe just the change? Depends on how balance is tracked
+            # self.save_to_db()
+            return TxObj
+        except Exception as e:
+             logger.error(f"Error creating/signing final unstake transaction: {e}")
+             return None
     
     # def create_stake_transaction(self, amount, lock_duration, utxos, fromAddress):
     #     """
@@ -484,9 +659,9 @@ class account:
         Build, sign, and return a new stake transaction, and update off-chain fields.
         """
         TxIns, total = self.prepareStakeTxIns(utxos, fromAddress, amount)
-        print(f"[DEBUG][create_stake_transaction] TxIns={TxIns} total={total} required={amount}")
+        # print(f"[DEBUG][create_stake_transaction] TxIns={TxIns} total={total} required={amount}")
         if total < amount:
-            print(f"[DEBUG][create_stake_transaction] Insufficient funds: total={total} required={amount}")
+            # print(f"[DEBUG][create_stake_transaction] Insufficient funds: total={total} required={amount}")
             return None  # Insufficient balance
 
         change = total - amount
@@ -578,31 +753,31 @@ class account:
         selected_ins = []
         total = 0
         now = int(time.time())
-        print(f"[DEBUG][UnstakeTxIns] unstake_amount={unstake_amount} h160_user={h160_user.hex()} now={now}")
+        # print(f"[DEBUG][UnstakeTxIns] unstake_amount={unstake_amount} h160_user={h160_user.hex()} now={now}")
         for (txid, idx), tx_out in utxo_set.items():
             if tx_out is None:
                 print(f"[DEBUG][UnstakeTxIns] Skipping None tx_out for {txid}:{idx}")
                 continue
             cmds = tx_out.script_publickey.cmds
-            print(f"[DEBUG][UnstakeTxIns] {txid}:{idx} cmds={cmds}")
+            # print(f"[DEBUG][UnstakeTxIns] {txid}:{idx} cmds={cmds}")
             # StakingScript: cmds[0] == b'\x00', cmds[1] == user_h160, cmds[2] == locktime
             if len(cmds) == 3 and cmds[0] == b'\x00' and cmds[1] == h160_user:
                 lock_time = int.from_bytes(cmds[2], 'big')
-                print(f"[DEBUG][UnstakeTxIns] MATCH staking UTXO lock_time={lock_time} now={now}")
+                # print(f"[DEBUG][UnstakeTxIns] MATCH staking UTXO lock_time={lock_time} now={now}")
                 if now >= lock_time:
-                    print(f"[DEBUG][UnstakeTxIns] UTXO {txid}:{idx} is unlocked, amount={tx_out.amount}")
+                    # print(f"[DEBUG][UnstakeTxIns] UTXO {txid}:{idx} is unlocked, amount={tx_out.amount}")
                     selected_ins.append((txid, idx, tx_out))
                     total += tx_out.amount
                     if total >= unstake_amount:
-                        print(f"[DEBUG][UnstakeTxIns] Selected enough UTXOs, total={total}")
+                        # print(f"[DEBUG][UnstakeTxIns] Selected enough UTXOs, total={total}")
                         break
-                else:
-                    print(f"[DEBUG][UnstakeTxIns] UTXO {txid}:{idx} is still locked (lock_time={lock_time})")
-            else:
-                print(f"[DEBUG][UnstakeTxIns] NOT SELECTED {txid}:{idx} cmds={cmds}")
-        print(f"[DEBUG][UnstakeTxIns] TOTAL selected amount={total} (needed={unstake_amount})")
+                else:pass
+                    # print(f"[DEBUG][UnstakeTxIns] UTXO {txid}:{idx} is still locked (lock_time={lock_time})")
+            else:pass
+                # print(f"[DEBUG][UnstakeTxIns] NOT SELECTED {txid}:{idx} cmds={cmds}")
+        # print(f"[DEBUG][UnstakeTxIns] TOTAL selected amount={total} (needed={unstake_amount})")
         if total < unstake_amount:
-            print(f"[DEBUG][UnstakeTxIns] Not enough unlocked staked funds to unstake.")
+            # print(f"[DEBUG][UnstakeTxIns] Not enough unlocked staked funds to unstake.")
             raise ValueError("Not enough unlocked staked funds to unstake.")
         return [
             TxIn(

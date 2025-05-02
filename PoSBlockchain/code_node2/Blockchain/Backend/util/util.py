@@ -19,7 +19,7 @@ def hash256(s):
     Two rounds of SHA256
     """
     # --- ADD DEBUG LOG ---
-    print(f"hash256 input bytes (len={len(s)}): {s.hex()}")
+    # print(f"hash256 input bytes (len={len(s)}): {s.hex()}")
     # --- END DEBUG LOG ---
     h1 = hashlib.sha256(s).digest()
     h2 = hashlib.sha256(h1).digest()
@@ -119,26 +119,81 @@ def encode_ports_varint(i):
     else:
         raise ValueError(f'Integer {i} is too large')
 
-def merkle_parent_level(hashes):
-    """takes a list of binary hashes and returns a list that's half of the length"""
+# def merkle_parent_level(hashes):
+#     """takes a list of binary hashes and returns a list that's half of the length"""
 
+#     if len(hashes) % 2 == 1:
+#         hashes.append(hashes[-1])
+
+#     parent_level = []
+
+#     for i in range(0, len(hashes), 2):
+#         parent = hash256(hashes[i] + hashes[i + 1])
+#         parent_level.append(parent)
+#     return parent_level
+
+# def merkle_root(hashes):
+#     """Takes a list of binary hashes and return the merkle root"""
+#     current_level = hashes
+
+#     while len(current_level) > 1:
+#         current_level = merkle_parent_level(current_level)
+
+#     return current_level[0]
+
+def merkle_parent_level(hashes):
+    """
+    Takes a list of binary hashes and returns the next level up the Merkle tree.
+    Does NOT modify the input list.
+    """
+    # Handle empty list case
+    if not hashes:
+        return []
+    # If odd number of hashes, duplicate the last one FOR THIS LEVEL'S CALCULATION
+    current_hashes = hashes
     if len(hashes) % 2 == 1:
-        hashes.append(hashes[-1])
+        # Create a new list with the duplicated element, don't modify original
+        current_hashes = hashes + [hashes[-1]]
+        print(f"[MerkleParent] Odd level, padded with last hash. New len: {len(current_hashes)}",flush=True)
 
     parent_level = []
+    # Iterate through pairs
+    for i in range(0, len(current_hashes), 2):
+        try:
+            # Concatenate the pair
+            concat_pair = current_hashes[i] + current_hashes[i+1]
+            # Hash the concatenated pair
+            parent = hash256(concat_pair)
+            parent_level.append(parent)
+        except IndexError:
+            # This shouldn't happen with the padding logic, but added as safeguard
+            print(f"[MerkleParent] IndexError during pairing at index {i}. List len: {len(current_hashes)}",flush=True)
+            raise # Re-raise critical error
+        except Exception as e:
+            print(f"[MerkleParent] Error hashing pair at index {i}: {e}",flush=True)
+            raise # Re-raise critical error
 
-    for i in range(0, len(hashes), 2):
-        parent = hash256(hashes[i] + hashes[i + 1])
-        parent_level.append(parent)
+    print(f"[MerkleParent] Calculated parent level with {len(parent_level)} hashes.",flush=True)
     return parent_level
 
 def merkle_root(hashes):
-    """Takes a list of binary hashes and return the merkle root"""
-    current_level = hashes
+    """
+    Takes a list of binary hashes and returns the Merkle root (binary).
+    """
+    if not hashes:
+        print("[MerkleRoot] Called with empty hash list. Returning None or default hash?",flush=True)
+        return None # Or perhaps a default hash like hash256(b'')?
 
+    current_level = list(hashes) # Start with a copy of the original list
+
+    print(f"[MerkleRoot] Starting calculation with {len(current_level)} leaf hashes.",flush=True)
+    level_num = 0
     while len(current_level) > 1:
-        current_level = merkle_parent_level(current_level)
+        level_num += 1
+        print(f"[MerkleRoot] Calculating level {level_num} from {len(current_level)} hashes...",flush=True)
+        current_level = merkle_parent_level(current_level) # This now receives and returns new lists
 
+    print(f"[MerkleRoot] Final root calculated: {current_level[0].hex()}",flush=True)
     return current_level[0]
 
 def target_to_bits(target):

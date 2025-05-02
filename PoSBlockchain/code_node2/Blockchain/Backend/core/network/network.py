@@ -1,5 +1,9 @@
 from io import BytesIO
+import json
 from Blockchain.Backend.util.util import int_to_little_endian, little_endian_to_int, hash256, encode, read_varint, encode_ports_varint
+import logging
+
+logger = logging.getLogger(__name__)
 
 NETWORK_MAGIC = b'\xf9\xbe\xb4\xd9'
 FINISHED_SENDING = b'\x0a\x11\x09\x07'
@@ -125,3 +129,54 @@ class AccountUpdateMessage:
             'data': self.data
         }
         return json.dumps(message).encode()
+    
+class GetPeerTip:
+    command = b'getpeertip'
+
+    def __init__(self):
+        pass # No payload needed
+
+    def serialise(self):
+        # Create an envelope with the command and empty payload
+        return NetworkEnvelope(self.command, b'').serialise()
+
+    @classmethod
+    def parse(cls, stream):
+        # No payload to parse, just return an instance
+        return cls()
+
+class PeerTip:
+    command = b'peertip'
+
+    def __init__(self, height, tip_hash):
+        self.height = int(height)
+        self.tip_hash = str(tip_hash) # Ensure it's a string
+
+    def serialise(self):
+        # Payload is a JSON dictionary
+        payload_dict = {
+            "height": self.height,
+            "tip_hash": self.tip_hash
+        }
+        payload_bytes = json.dumps(payload_dict).encode('utf-8')
+        return NetworkEnvelope(self.command, payload_bytes).serialise()
+
+    @classmethod
+    def parse(cls, stream):
+        # Read the payload length (assuming NetworkEnvelope handles this or similar)
+        # Here, we assume 'stream' contains *only* the JSON payload bytes
+        payload_bytes = stream.read()
+        try:
+            payload_dict = json.loads(payload_bytes.decode('utf-8'))
+            height = payload_dict.get('height')
+            tip_hash = payload_dict.get('tip_hash')
+            if height is None or tip_hash is None:
+                raise ValueError("Missing 'height' or 'tip_hash' in PeerTip payload")
+            # Perform basic validation if needed (e.g., is height int? is hash hex?)
+            if not isinstance(height, int): raise ValueError("Height must be an integer")
+            if not isinstance(tip_hash, str) or len(tip_hash) != 64: raise ValueError("Invalid tip_hash format")
+
+            return cls(height, tip_hash)
+        except (json.JSONDecodeError, UnicodeDecodeError, ValueError) as e:
+            logger.error(f"Failed to parse PeerTip payload: {e}. Payload: {payload_bytes[:100]}...")
+            raise ValueError(f"Invalid PeerTip payload: {e}") from e

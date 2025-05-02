@@ -18,7 +18,7 @@ def hash256(s):
     Two rounds of SHA256
     """
     # --- ADD DEBUG LOG ---
-    logger.debug(f"hash256 input bytes (len={len(s)}): {s.hex()}")
+    # logger.debug(f"hash256 input bytes (len={len(s)}): {s.hex()}")
     # --- END DEBUG LOG ---
     h1 = hashlib.sha256(s).digest()
     h2 = hashlib.sha256(h1).digest()

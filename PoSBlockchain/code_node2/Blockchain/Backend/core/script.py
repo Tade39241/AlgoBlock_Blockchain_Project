@@ -8,6 +8,16 @@ from Blockchain.Backend.core.EllepticCurve.op import OP_CODE_FUNCTION, op_checks
 import hashlib
 
 
+from Blockchain.Backend.util.logging_config import get_logger # Adjust path if needed
+
+# Get a logger specific to this module/class
+import logging
+
+logger = logging.getLogger(__name__)
+from io import BytesIO
+
+
+
 class Script:
     def __init__(self, cmds=None):
         if cmds is None:
@@ -62,34 +72,99 @@ class Script:
         # print(f"DEBUG: Serialized Script: {final_result.hex()}")
         return final_result
     
+    # @classmethod
+    # def parse(cls, s):
+    #     length = read_varint(s)
+    #     cmds = []
+    #     count = 0
+    #     while count < length:
+    #         current = s.read(1)
+    #         count +=1
+    #         current_byte = current[0]
+
+    #         if current_byte >=1 and current_byte <= 75:
+    #             n = current_byte
+    #             cmds.append(s.read(n))
+    #             count += n
+    #         elif current_byte == 76:
+    #             data_length = little_endian_to_int(s.read(1))
+    #             cmds.append(s.read(data_length))
+    #             count += data_length + 1
+    #         elif current_byte == 77:
+    #             data_length = little_endian_to_int(s.read(2))
+    #             cmds.append(s.read(data_length))
+    #             count += data_length + 2
+    #         else:
+    #             op_code = current_byte
+    #             cmds.append(op_code)
+    #     if count != length:
+    #         raise SyntaxError('parsing script failed')
+    #     return cls(cmds)
+
     @classmethod
     def parse(cls, s):
-        length = read_varint(s)
-        cmds = []
-        count = 0
-        while count < length:
-            current = s.read(1)
-            count +=1
-            current_byte = current[0]
+        """
+        Parses a script from a stream 's'.
+        Reads the initial varint length, then reads the script payload,
+        then parses commands from the payload.
+        """
+        try:
+            # 1. Read the varint length prefix to get payload size
+            payload_len = read_varint(s)
+            logger.debug(f"  [Script Parse] Expected payload length: {payload_len}")
 
-            if current_byte >=1 and current_byte <= 75:
-                n = current_byte
-                cmds.append(s.read(n))
-                count += n
-            elif current_byte == 76:
-                data_length = little_endian_to_int(s.read(1))
-                cmds.append(s.read(data_length))
-                count += data_length + 1
-            elif current_byte == 77:
-                data_length = little_endian_to_int(s.read(2))
-                cmds.append(s.read(data_length))
-                count += data_length + 2
-            else:
-                op_code = current_byte
-                cmds.append(op_code)
-        if count != length:
-            raise SyntaxError('parsing script failed')
-        return cls(cmds)
+            # 2. Read the entire script payload
+            payload = s.read(payload_len)
+            if len(payload) != payload_len:
+                logger.error(f"  [Script Parse] Failed to read expected payload length. Got {len(payload)}, expected {payload_len}")
+                raise IOError(f"Could not read {payload_len} script bytes from stream")
+            logger.debug(f"  [Script Parse] Read payload bytes: {payload.hex()}")
+
+            # 3. Create a stream from the payload to parse commands
+            payload_stream = BytesIO(payload)
+            cmds = []
+            while payload_stream.tell() < payload_len: # Loop until payload stream is consumed
+                opcode_byte = little_endian_to_int(payload_stream.read(1))
+                logger.debug(f"    [Script Parse] Read opcode/push byte: {opcode_byte:#04x}") # Log as hex
+
+                if 1 <= opcode_byte <= 75: # OP_PUSHDATA (1-75 bytes)
+                    data_len = opcode_byte
+                    data = payload_stream.read(data_len)
+                    if len(data) != data_len:
+                        raise SyntaxError(f"PUSHDATA ({opcode_byte}): tried to read {data_len} bytes, got {len(data)}")
+                    cmds.append(data)
+                    logger.debug(f"      [Script Parse] Appended PUSHDATA ({data_len} bytes): {data.hex()[:40]}...")
+                elif opcode_byte == 76: # OP_PUSHDATA1
+                    data_len = little_endian_to_int(payload_stream.read(1))
+                    data = payload_stream.read(data_len)
+                    if len(data) != data_len:
+                        raise SyntaxError(f"PUSHDATA1: tried to read {data_len} bytes, got {len(data)}")
+                    cmds.append(data)
+                    logger.debug(f"      [Script Parse] Appended PUSHDATA1 ({data_len} bytes): {data.hex()[:40]}...")
+                elif opcode_byte == 77: # OP_PUSHDATA2
+                    data_len = little_endian_to_int(payload_stream.read(2))
+                    data = payload_stream.read(data_len)
+                    if len(data) != data_len:
+                        raise SyntaxError(f"PUSHDATA2: tried to read {data_len} bytes, got {len(data)}")
+                    cmds.append(data)
+                    logger.debug(f"      [Script Parse] Appended PUSHDATA2 ({data_len} bytes): {data.hex()[:40]}...")
+                # elif opcode_byte == 78: # OP_PUSHDATA4 - Not handled in your serialise, maybe add later if needed
+                #    pass
+                else: # Standard opcode
+                    cmds.append(opcode_byte)
+                    logger.debug(f"      [Script Parse] Appended Opcode: {opcode_byte}")
+
+            # Final check: Ensure we consumed the exact payload length
+            if payload_stream.tell() != payload_len:
+                 logger.error(f"  [Script Parse] Script length mismatch after parsing. Expected {payload_len}, consumed {payload_stream.tell()}")
+                 raise SyntaxError("Script length mismatch after parsing commands")
+
+            logger.debug(f"  [Script Parse] Successfully parsed {len(cmds)} commands.")
+            return cls(cmds)
+
+        except Exception as e:
+            logger.error(f"[Script Parse] Error during script parsing: {e}", exc_info=True)
+            raise # Re-raise to indicate failure
     
         
     def evaluate(self,z):

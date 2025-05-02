@@ -278,6 +278,7 @@ def miner_entry(utxos, mem_pool, newBlockAvailable, secondaryChain,localHostPort
             print(f"[miner_entry {node_id}] Performing initial sync…", flush=True)
             try:
                 bc.startSync()
+                time.sleep(2)  # Give it a moment to sync
                 print(f"[miner_entry {node_id}] Sync complete, starting miner", flush=True)
             except Exception as e:
                 print(f"[miner_entry {node_id}] Sync failed: {{e}}", flush=True)
@@ -571,14 +572,13 @@ if __name__ == '__main__':
         utxos = std_manager.dict()
         newBlockAvailable = std_manager.dict()
         secondaryChain = std_manager.dict()
+        shared_state_lock = std_manager.Lock()
         
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
         blockchain_manager.start()
 
         os.environ["BLOCKCHAIN_DB_PATH"] = blockchain_db_path  # blockchain_db_path is your node-specific path
-        webapp = Process(target=web_main, args=(utxos, mem_pool, webport, localHostPort,NODE_ID, default_account.public_addr))
-        webapp.start()
         
         # Initialize blockchain through the custom manager with CORRECT parameter order
         try:
@@ -596,6 +596,21 @@ if __name__ == '__main__':
             )
 
             blockchain.ZERO_HASH = ZERO_HASH  # Explicitly add ZERO_HASH attribute
+
+            webapp = Process(
+            target=web_main, # Target the main function in run.py
+            args=(
+                utxos,               # 1. Corresponds to utxos
+                mem_pool,            # 2. Corresponds to mem_pool
+                webport,             # 3. Corresponds to port (Web UI Port)
+                localHostPort,       # 4. Corresponds to localPort (Node's Network Port)
+                blockchain,           # 6. Corresponds to a *new* blockchain_proxy parameter (add this to frontend/run.py main signature)
+                shared_state_lock,   # 5. Corresponds to shared_state_lock
+                node_id,            # 7. Corresponds to node_id
+            ),
+            daemon=True
+            )
+            webapp.start()
 
             # Set properties directly
             # blockchain.host = localHost
@@ -674,7 +689,7 @@ if __name__ == '__main__':
         print(f"Mining process started on node {{NODE_ID}}")
 
         if "{self.sim_volume}" != "none" and "{self.sim_volume}":
-                print(f"[Sim] Starting transaction simulation: volume={{"{self.sim_volume}"}}, interval={{"{self.sim_interval}"}}")
+                print(f"[Sim] Starting transaction simulation: volume='{self.sim_volume}', interval={self.sim_interval}'")
                 simulate_random_transactions(
                     volume="{self.sim_volume}",
                     interval={self.sim_interval},

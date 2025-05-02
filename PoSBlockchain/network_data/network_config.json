@@ -1,5 +1,5 @@
 {
-  "num_nodes": 2,
+  "num_nodes": 3,
   "base_port": 9000,
   "web_base_port": 5900,
   "host": "127.0.0.1",
@@ -17,7 +17,14 @@
       "port": 9001,
       "web_port": 5901,
       "host": "127.0.0.1"
+    },
+    {
+      "id": 2,
+      "dir": "/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node_2",
+      "port": 9002,
+      "web_port": 5902,
+      "host": "127.0.0.1"
     }
   ],
-  "validator_port": 9002
+  "validator_port": 9003
 }

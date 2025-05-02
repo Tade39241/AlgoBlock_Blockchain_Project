@@ -23,14 +23,13 @@ logging.basicConfig(level=logging.INFO)  # At the top of your file (if not alrea
 # Import jsonify for API responses and psutil for system stats
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import psutil 
-
+from waitress import serve
 from Blockchain.client.sendTDC import sendTDC
 from Blockchain.Backend.core.tx import Tx, TxIn, TxOut, ZERO_HASH
 from Blockchain.Backend.core.database.db import BlockchainDB, NodeDB, AccountDB
 from Blockchain.Backend.util.util import encode_base58,decode_base58
 from Blockchain.Backend.core.network.syncManager import syncManager
 from Blockchain.client.account import account
-from Blockchain.client.sendTDC import update_utxo_set
 from Blockchain.Backend.util.util import decode_base58
 from Blockchain.Backend.core.script import Script
 from hashlib import sha256
@@ -345,7 +344,9 @@ def showBlock(BlockHeader):
 
 @app.route('/address/<publicAddress>')
 def address(publicAddress):
-    reload_utxos_from_chain()
+    if not reload_utxos_from_chain():
+        # Handle error - maybe render an error template or return JSON error
+        return "<h1>Error reloading wallet data. Please try again later.</h1>", 500
 
     # Validate publicAddress…
     if not (len(publicAddress) < 35 and publicAddress[0] == "1"):
@@ -459,29 +460,42 @@ def wallet():
     global MEMPOOL, UTXOS
     message = ''
     if request.method == 'POST':
-        reload_utxos_from_chain()
+        if not reload_utxos_from_chain():
+            # Handle error - maybe render an error template or return JSON error
+            return "<h1>Error reloading wallet data. Please try again later.</h1>", 500
+        
+        amount_satoshis = None # Initialize amount in satoshis
+
         if request.is_json:
             data = request.get_json()
             print(f"[DEBUG][WALLET/FLASK] Parsed JSON data: {data}")
             from_addy = data.get("fromAddress")
             to_addy = data.get("toAddress")
-            amount = data.get("Amount", None)
-            if amount is not None:
+            amount_tdc = data.get("Amount", None)
+            if amount_tdc is not None:
                 try:
-                    amount = int(amount)
-                except Exception:
-                    amount = None
-            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
+                    amount_satoshis = int(float(amount_tdc) * 100000000)
+                    if amount_satoshis <= 0: # Ensure positive amount
+                         amount_satoshis = None
+                         message = "Amount must be positive."
+                except (ValueError, TypeError):
+                    amount_satoshis = None
+                    message = "Invalid amount format."
+            
+            if not from_addy or not to_addy or amount_satoshis is None:
+                error_message = message if message else "Missing required fields or invalid amount."
+                return jsonify({"error": error_message}), 400
+            
+            sendCoin = sendTDC(from_addy, to_addy, amount_satoshis, UTXOS,MEMPOOL)
             TxObj = sendCoin.prepTransaction()
-            if not from_addy or not to_addy or amount is None:
-                return jsonify({"error": "Missing required fields."}), 400
+
             if not TxObj:
                 return jsonify({"error": "Insufficient balance"}), 400
             script_pubkey = sendCoin.script_public_key(from_addy)
             verified = all(TxObj.verify_input(i, script_pubkey) for i in range(len(TxObj.tx_ins)))
             if verified:
                 MEMPOOL[TxObj.TxId] = TxObj
-                logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
+                logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount_satoshis} satoshis added to mempool.")
                 broadcastTx(TxObj)
                 return jsonify({"success": True, "txid": TxObj.TxId}), 200
             else:
@@ -489,15 +503,28 @@ def wallet():
         else:
             from_addy = request.form.get("fromAddress")
             to_addy = request.form.get("toAddress")
-            amount = request.form.get("Amount", type=float)
-            # print(f"[DEBUG][WALLET] Extracted: from={from_addy}, to={to_addy}, amount={amount}")
-            sendCoin = sendTDC(from_addy, to_addy, amount, UTXOS)
-            TxObj = sendCoin.prepTransaction()
-            # print(f"[DEBUG][WALLET] sendTDC/prepTransaction result: TxObj={TxObj}")
-            if not from_addy or not to_addy or amount is None:
-                # print(f"[DEBUG][WALLET] Missing field(s): from={from_addy}, to={to_addy}, amount={amount}")
-                message = 'Please fill out all the fields.'
+            amount_tdc = request.form.get("Amount", type=float)
+
+            if amount_tdc is not None:
+                try:
+                    # Convert TDC to satoshis
+                    amount_satoshis = int(amount_tdc * 100000000)
+                    if amount_satoshis <= 0: # Ensure positive amount
+                         amount_satoshis = None
+                         message = "Amount must be positive."
+                except (ValueError, TypeError):
+                     amount_satoshis = None
+                     message = "Invalid amount format."
+
+            if not from_addy or not to_addy or amount_satoshis is None:
+                # Use existing message if set, otherwise provide default
+                message = message if message else 'Please fill out all the fields with valid values.'
                 return render_template("wallet.html", message=message)
+
+            # print(f"[DEBUG][WALLET] Extracted: from={from_addy}, to={to_addy}, amount={amount}")
+            sendCoin = sendTDC(from_addy, to_addy, amount_satoshis, UTXOS,MEMPOOL)
+            TxObj = sendCoin.prepTransaction()
+
             if not TxObj:
                 # print(f"[DEBUG][WALLET] Transaction creation failed (TxObj is None).")
                 message = 'Insufficient balance'
@@ -513,7 +540,7 @@ def wallet():
                     # print(f"[DEBUG][WALLET] Transaction verified. Adding to MEMPOOL.")
                     # update_utxo_set(TxObj, UTXOS)
                     MEMPOOL[TxObj.TxId] = TxObj
-                    logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount} satoshis added to mempool.")
+                    logging.info(f"SUCCESS: Transaction {TxObj.TxId} from {from_addy} to {to_addy} for {amount_satoshis} satoshis added to mempool.")
                     # print(f"[DEBUG][WALLET] Added Tx {TxObj.TxId} to MEMPOOL. Keys now: {list(MEMPOOL.keys())}")
                     message = f"Transaction added to mempool: {TxObj.TxId}"
 
@@ -535,7 +562,10 @@ def stake_page():
     spendable_balance = 0 # Initialize spendable balance from UTXOs
 
     if request.method == 'POST':
-        reload_utxos_from_chain()
+       
+        if not reload_utxos_from_chain():
+            # Handle error - maybe render an error template or return JSON error
+            return "<h1>Error reloading wallet data. Please try again later.</h1>", 500
         if request.is_json:
             data = request.get_json()
             action = data.get("action")
@@ -740,7 +770,10 @@ def broadcastTx(TxObj):
 
                     if localHostPort != port:
                         # Use 127.0.0.1 as host, assuming local network
-                        sync = syncManager('127.0.0.1', port, MEMPOOL)
+                        sync = syncManager('127.0.0.1',  # Target Host
+                                  port,         # Target Port
+                                  MEMPOOL,      # Shared Mempool (proxy)
+                                  localHostPort=localHostPort)
                         try:
                             # sync.connectToHost(localHostPort - 1, port) # connectToHost might not be needed/correct here
                             sync.publishTx(TxObj)
@@ -754,24 +787,85 @@ def broadcastTx(TxObj):
         traceback.print_exc()
         print(f"Error during broadcastTx setup: {err}")
 
+
 def reload_utxos_from_chain():
-    global UTXOS
-    from Blockchain.Backend.core.pos_blockchain import Blockchain
-    blockchain = Blockchain(UTXOS, MEMPOOL, None, None, localHostPort, "127.0.0.1")
-    blockchain.buildUTXOS()
-    UTXOS = blockchain.get_utxos()
-    print("[Frontend] UTXO set reloaded from blockchain.")
+    global UTXOS, BLOCKCHAIN_PROXY, SHARED_LOCK # Need access to the global proxies and lock
+    if BLOCKCHAIN_PROXY is None:
+        print("[Frontend] Error: Blockchain proxy not available for reloading UTXOs.")
+        return False # Indicate failure
+    if SHARED_LOCK is None:
+         print("[Frontend] Error: Shared lock not available for reloading UTXOs.")
+         return False
+
+    try:
+        # --- DO NOT CALL buildUTXOS() here ---
+        # --- Just GET the current set from the Blockchain process ---
+        print("[Frontend] Getting latest UTXO set from Blockchain process...")
+        # This call goes to the Blockchain process via the manager
+        utxos_from_proxy = BLOCKCHAIN_PROXY.get_utxos()
+        print(f"[Frontend] Received UTXO set proxy/data type: {type(utxos_from_proxy)}")
+
+        # Update the frontend's shared UTXO dictionary proxy
+        if hasattr(UTXOS, 'clear') and hasattr(UTXOS, 'update') and isinstance(utxos_from_proxy, dict):
+             print("[Frontend] Acquiring lock to update shared UTXO dict...")
+             with SHARED_LOCK: # Protect write access to the shared dict
+                 UTXOS.clear()
+                 UTXOS.update(utxos_from_proxy) # Update the shared dict
+             print(f"[Frontend] Shared UTXO dict updated (Size: {len(UTXOS)}). Lock released.")
+             return True
+        else:
+             # Handle cases where UTXOS isn't a manager dict or proxy didn't return a dict
+             print(f"[Frontend] Warning: Cannot update global UTXOS. Type: {type(UTXOS)}, Received type: {type(utxos_from_proxy)}")
+             # Fallback: Maybe assign locally if not shared? Depends on how UTXOS is used.
+             # UTXOS = utxos_from_proxy # Assign if UTXOS is just a local global
+             return False
+
+    except AttributeError as ae:
+        print(f"[Frontend] Error reloading UTXOs via proxy (AttributeError): {ae}. Is 'get_utxos' exposed?")
+        import traceback
+        traceback.print_exc()
+        return False
+    except Exception as e:
+        print(f"[Frontend] Error reloading UTXOs via proxy: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
+
+# def reload_utxos_from_chain():
+#     global UTXOS, BLOCKCHAIN_PROXY
+#     updated_utxos = BLOCKCHAIN_PROXY.get_utxos()
+#     BLOCKCHAIN_PROXY.buildUTXOS()
+#     try:
+#         if hasattr(UTXOS, 'clear') and hasattr(UTXOS, 'update'):
+#             with SHARED_LOCK: # Protect access if necessary
+#                 UTXOS.clear()
+#                 UTXOS.update(updated_utxos) # Update the shared dict
+#             print(f"[Frontend] Shared UTXO dict updated (Size: {len(UTXOS)}).")
+#         else:
+#                 # If UTXOS is just a global variable in the frontend process:
+#                 UTXOS = updated_utxos
+#                 print(f"[Frontend] Local UTXO variable updated (Size: {len(UTXOS)}).")
+#     except Exception as e:
+#         print(f"[Frontend] Error reloading UTXOs via proxy: {e}")
+#         import traceback
+#         traceback.print_exc()
+#     # UTXOS = BLOCKCHAIN_PROXY.get_utxos()
+#     print("[Frontend] UTXO set reloaded from blockchain.")
 
 
-def main(utxos, mem_pool,port, localPort):
-    global UTXOS, MEMPOOL, localHostPort
+def main(utxos, mem_pool,port, localPort, blockchain_proxy, shared_state_lock):
+    global UTXOS, MEMPOOL, localHostPort,SHARED_LOCK,BLOCKCHAIN_PROXY
     UTXOS = utxos
     MEMPOOL = mem_pool
+    SHARED_LOCK = shared_state_lock        # Assign the shared lock
+    BLOCKCHAIN_PROXY = blockchain_proxy # Assign the blockchain proxy
+
     localHostPort = localPort
+
     print(f"Frontend starting on port {port}, node network port is {localHostPort}") # Add print statement
     # Use waitress for production, or app.run for debug
-    # serve(app, host='127.0.0.1', port=port) # Use Waitress
-    app.run(host='127.0.0.1', port=port,debug=True,use_reloader=False)
+    serve(app, host='127.0.0.1', port=port,threads=8) # Use Waitress
+    # app.run(host='127.0.0.1', port=port,debug=True,use_reloader=False)
 
 if __name__ == '__main__':
      # Example for standalone testing (won't have shared memory)

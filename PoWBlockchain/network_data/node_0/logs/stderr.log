@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/dcs/project/algoblock/MainCode/PoWBlockchain/network_data/node_0/start_node.py", line 395, in <module>
+    node_id,            # 7. Corresponds to node_id
+    ^^^^^^^
+NameError: name 'node_id' is not defined

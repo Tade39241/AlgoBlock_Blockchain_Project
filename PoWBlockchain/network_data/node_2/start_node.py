@@ -33,23 +33,23 @@ except RuntimeError:
 ZERO_HASH = "0" * 64
 
 # Add paths
-sys.path.append("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain")
-sys.path.append("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2")
+sys.path.append("/dcs/project/algoblock/MainCode/PoWBlockchain")
+sys.path.append("/dcs/project/algoblock/MainCode/PoWBlockchain/network_data/node_2")
 
 # Store node ID as a variable inside this script
 NODE_ID = 2
 
 # Add both code/ and blockchain_code/ directories to the path
-sys.path.insert(0, os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain", 'blockchain_code'))
+sys.path.insert(0, os.path.join("/dcs/project/algoblock/MainCode/PoWBlockchain", 'blockchain_code'))
 
-data_dir = os.path.join("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/network_data/node_2", "data")
+data_dir = os.path.join("/dcs/project/algoblock/MainCode/PoWBlockchain/network_data/node_2", "data")
 os.makedirs(data_dir, exist_ok=True)
 blockchain_db_path = os.path.join(data_dir, "blockchain.db")
 node_db_path       = os.path.join(data_dir, "node.db")
 account_db_path    = os.path.join(data_dir, "account.db")
 
 # Import and patch database classes BEFORE importing the Blockchain class
-sys.path.insert(0, "/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain/blockchain_code")
+sys.path.insert(0, "/dcs/project/algoblock/MainCode/PoWBlockchain/blockchain_code")
 from blockchain_code.Blockchain.Backend.core.database.db import NodeDB, BlockchainDB, AccountDB
 
 # Import blockchain components
@@ -64,6 +64,7 @@ def miner_entry(utxos, mem_pool, newBlockAvailable, secondaryChain,localHostPort
             print(f"[miner_entry 2] Performing initial sync…", flush=True)
             try:
                 bc.startSync()
+                time.sleep(2)  # Give it a moment to sync
                 print(f"[miner_entry 2] Sync complete, starting miner", flush=True)
             except Exception as e:
                 print(f"[miner_entry 2] Sync failed: {e}", flush=True)
@@ -130,7 +131,7 @@ def create_default_account():
     # --- Insert ALL accounts into account.db ---
     try:
         import sys
-        sys.path.append("/Users/tadeatobatele/Documents/UniStuff/CS351 Project/code/PoWBlockchain")
+        sys.path.append("/dcs/project/algoblock/MainCode/PoWBlockchain")
         from reset_accounts import ACCOUNTS
         import sqlite3
         import json
@@ -231,13 +232,13 @@ def simulate_random_transactions(volume, interval=30,num_nodes=3):
                 acct = account.get_account(my_address)
 
                 # --- Add Debugging ---
-                print(f"[Sim Debug 8445/{threading.get_ident()}] Creating AccountDB instance...")
+                print(f"[Sim Debug 646145/{threading.get_ident()}] Creating AccountDB instance...")
                 db_instance = AccountDB()
-                print(f"[Sim Debug 8445/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                print(f"[Sim Debug 646145/{threading.get_ident()}] Instance type: {type(db_instance)}")
                 if hasattr(db_instance, 'table_name'):
-                    print(f"[Sim Debug 8445/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                    print(f"[Sim Debug 646145/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
                 else:
-                    print(f"[Sim Debug 8445/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                    print(f"[Sim Debug 646145/{threading.get_ident()}] Instance LACKS table_name attribute!")
                 # --- End Debugging ---
 
                 if acct is None:
@@ -299,7 +300,7 @@ def simulate_random_transactions(volume, interval=30,num_nodes=3):
                 
 
             except AttributeError as ae:
-                 print(f"[Sim ATTRIBUTE ERROR 8445/{threading.get_ident()}] {ae}")
+                 print(f"[Sim ATTRIBUTE ERROR 646145/{threading.get_ident()}] {ae}")
                  # Print attributes of the instance that caused the error if possible
                  try:
                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
@@ -357,14 +358,13 @@ if __name__ == '__main__':
         utxos = std_manager.dict()
         newBlockAvailable = std_manager.dict()
         secondaryChain = std_manager.dict()
+        shared_state_lock = std_manager.Lock()
         
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
         blockchain_manager.start()
 
         os.environ["BLOCKCHAIN_DB_PATH"] = blockchain_db_path  # blockchain_db_path is your node-specific path
-        webapp = Process(target=web_main, args=(utxos, mem_pool, webport, localHostPort,NODE_ID, default_account.public_addr))
-        webapp.start()
         
         # Initialize blockchain through the custom manager with CORRECT parameter order
         try:
@@ -382,6 +382,21 @@ if __name__ == '__main__':
             )
 
             blockchain.ZERO_HASH = ZERO_HASH  # Explicitly add ZERO_HASH attribute
+
+            webapp = Process(
+            target=web_main, # Target the main function in run.py
+            args=(
+                utxos,               # 1. Corresponds to utxos
+                mem_pool,            # 2. Corresponds to mem_pool
+                webport,             # 3. Corresponds to port (Web UI Port)
+                localHostPort,       # 4. Corresponds to localPort (Node's Network Port)
+                blockchain,           # 6. Corresponds to a *new* blockchain_proxy parameter (add this to frontend/run.py main signature)
+                shared_state_lock,   # 5. Corresponds to shared_state_lock
+                node_id,            # 7. Corresponds to node_id
+            ),
+            daemon=True
+            )
+            webapp.start()
 
             # Set properties directly
             # blockchain.host = localHost
@@ -459,10 +474,10 @@ if __name__ == '__main__':
         mining_process.start()
         print(f"Mining process started on node {NODE_ID}")
 
-        if "none" != "none" and "none":
-                print(f"[Sim] Starting transaction simulation: volume={"none"}, interval={"30"}")
+        if "high" != "none" and "high":
+                print(f"[Sim] Starting transaction simulation: volume='high', interval=30'")
                 simulate_random_transactions(
-                    volume="none",
+                    volume="high",
                     interval=30,
                     num_nodes=3
                 )

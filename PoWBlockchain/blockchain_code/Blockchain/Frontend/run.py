@@ -2,7 +2,9 @@ import logging
 import os
 import sys
 from flask import Flask, current_app, jsonify, render_template, request, redirect, url_for, session
+import psutil
 from Blockchain.client.sendTDC import sendTDC
+from waitress import serve
 from Blockchain.Backend.core.Tx import Tx
 from Blockchain.Backend.core.database.db import BlockchainDB, NodeDB
 from Blockchain.Backend.util.util import encode_base58,decode_base58
@@ -32,6 +34,188 @@ UTXOS = None
 MEMPOOL = None
 localHostPort = None
 NODE_ID = None # Add global for Node ID
+
+# --- Helper function to get blockchain DB instance ---
+def get_blockchain_db():
+    # This assumes the patched __init__ in start_node.py sets the correct path
+    # If not, you might need to pass the path explicitly or read from config
+    try:
+        return BlockchainDB()
+    except Exception as e:
+        print(f"Error getting BlockchainDB instance: {e}")
+        return None
+    
+
+# --- /stats Endpoint ---
+@app.route('/stats')
+def get_stats():
+    # Initialize with default values
+    height = -1 # Indicate not found initially
+    mempool_size = len(MEMPOOL)
+    total_transactions = 0
+    last_block_time = 0
+    last_block_dict = None # Keep this for holding the last valid block dictionary
+
+    blockchain_db = get_blockchain_db()
+    if not blockchain_db:
+        return jsonify({"error": "Could not connect to blockchain database"}), 500
+
+    try:
+        blocks = blockchain_db.read_all_blocks() # Assumed returns List[Dict]
+        logger.info(f"DEBUG: Read {len(blocks)} blocks from DB.")
+
+        if blocks:
+            # Get the last item, which should be the last block's dictionary
+            last_block_item = blocks[-1]
+
+            # --- ADJUSTED CHECK: Check if the last item IS a dictionary ---
+            if isinstance(last_block_item, dict):
+                last_block_dict = last_block_item # Assign the dictionary directly
+                height = last_block_dict.get('Height', -1) # Get height from the last block
+                last_block_time = last_block_dict.get('BlockHeader', {}).get('timestamp', 0)
+            else:
+                # Handle case where the last item isn't a dictionary
+                height = blockchain_db.get_height() # Fallback to DB height if last block format is wrong
+                last_block_time = 0
+                print(f"Warning: Last block read from DB is not a dictionary: {last_block_item}")
+            # --- END ADJUSTED CHECK ---
+
+            # --- ADJUSTED LOOP: Iterate over the list of dictionaries ---
+            for block_data in blocks: # Iterate directly over block dictionaries
+                # Ensure block_data is actually a dictionary
+                if isinstance(block_data, dict):
+                    # Ensure 'Txs' exists and is a list
+                    txs_list = block_data.get('Txs', [])
+                    if isinstance(txs_list, list):
+                        total_transactions += len(txs_list)
+                    else:
+                         # This case should be less likely if blocks are consistently dicts
+                         print(f"Warning [/stats]: 'Txs' field is not a list in block: {block_data.get('Height', 'N/A')}")
+                else:
+                    # Log an error if an item in blocks isn't a dictionary
+                    print(f"Warning [/stats]: Encountered non-dictionary item in blocks list: {block_data}")
+            # --- END ADJUSTED LOOP ---
+
+        else:
+            # If blocks list is empty, height is 0 (or -1 depending on convention for empty chain)
+             height = 0 # Or maybe -1 if genesis block isn't counted as height 0
+
+
+        # System Resource Usage (remains the same)
+        cpu_percent = psutil.cpu_percent(interval=0.1)
+        memory_info = psutil.virtual_memory()
+        memory_percent = memory_info.percent
+        disk_info = psutil.disk_usage('/')
+        disk_percent = disk_info.percent
+
+        stats = {
+            "blockchain_height": height,
+            "mempool_size": mempool_size,
+            "total_transactions": total_transactions,
+            "last_block_timestamp": last_block_time,
+            "cpu_percent": cpu_percent,
+            "memory_percent": memory_percent,
+            "disk_percent": disk_percent,
+            "node_port": localHostPort
+        }
+        return jsonify(stats)
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        # Use the height calculated before potential error, or fallback
+        stats = {
+            "blockchain_height": height if height != -1 else 'Error', # Show error if height couldn't be determined
+            "mempool_size": mempool_size,
+            "total_transactions": 'Error',
+            "last_block_timestamp": 'Error',
+            "cpu_percent": 'Error',
+            "memory_percent": 'Error',
+            "disk_percent": 'Error',
+            "node_port": localHostPort
+        }
+        print(f"ERROR in /stats: {str(e)}") # Log the error
+        return jsonify({"error": f"An error occurred getting stats: {str(e)}", "partial_stats": stats}), 500
+
+
+# --- /performance Endpoint ---
+# Also needs adjustment if it assumes list[list[dict]]
+@app.route('/performance')
+def get_performance():
+    blockchain_db = get_blockchain_db()
+    if not blockchain_db:
+        return jsonify({"error": "Could not connect to blockchain database"}), 500
+
+    try:
+        blocks = blockchain_db.read_all_blocks() # Assumed returns List[Dict]
+        num_blocks_to_consider = 100
+        recent_blocks_raw = blocks[-num_blocks_to_consider:]
+
+        # --- ADJUSTED: Filter for dictionaries directly ---
+        recent_blocks = [item for item in recent_blocks_raw if isinstance(item, dict)]
+        if len(recent_blocks) != len(recent_blocks_raw):
+             print(f"Warning [/performance]: Filtered out non-dictionary items from recent blocks.")
+        # --- END ADJUSTED ---
+
+
+        if len(recent_blocks) < 2:
+            return jsonify({
+                "average_block_time": None,
+                "average_transactions_per_block": None,
+                "estimated_tps": None,
+                "message": "Not enough valid blocks to calculate performance metrics."
+            })
+
+        total_time_diff = 0
+        total_transactions = 0 # Count transactions within the considered blocks
+        block_count = 0 # Count valid intervals
+
+        # --- Loop adjusted: recent_blocks is now list[dict] ---
+        for i in range(1, len(recent_blocks)):
+            try:
+                # Access dictionaries directly now
+                prev_block_data = recent_blocks[i-1]
+                current_block_data = recent_blocks[i]
+
+                # Dictionaries are already filtered, but check header/timestamp existence
+                prev_timestamp = prev_block_data.get('BlockHeader', {}).get('timestamp')
+                current_timestamp = current_block_data.get('BlockHeader', {}).get('timestamp')
+
+                if prev_timestamp is not None and current_timestamp is not None and current_timestamp > prev_timestamp:
+                    total_time_diff += (current_timestamp - prev_timestamp)
+                    block_count += 1
+
+                # Get transactions from the current block
+                txs_list = current_block_data.get('Txs', [])
+                if isinstance(txs_list, list):
+                     total_transactions += len(txs_list)
+                else:
+                    print(f"Warning [/performance]: 'Txs' field not a list in block {current_block_data.get('Height', 'N/A')}")
+
+
+            except Exception as e: # Catch broader exceptions during processing
+                 print(f"Warning [/performance]: Skipping block pair due to data issue or error: {e} in block {current_block_data.get('Height', 'N/A') if 'current_block_data' in locals() else 'unknown'}")
+                 continue
+        # --- End adjusted loop ---
+
+        average_block_time = total_time_diff / block_count if block_count > 0 else None
+        average_transactions_per_block = total_transactions / len(recent_blocks) if recent_blocks else None
+        estimated_tps = (total_transactions / total_time_diff) if total_time_diff > 0 else None
+
+        performance = {
+            "average_block_time": average_block_time,
+            "average_transactions_per_block": average_transactions_per_block,
+            "estimated_tps": estimated_tps,
+            "blocks_considered": len(recent_blocks), # Use the length of the filtered list
+            "valid_block_intervals": block_count
+        }
+        return jsonify(performance)
+
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": f"An error occurred calculating performance: {str(e)}"}), 500
+
 
 @app.route('/')
 def index():
@@ -384,22 +568,70 @@ def broadcastTx(TxObj):
 
 
 def reload_utxos_from_chain():
-    global UTXOS
-    from Blockchain.Backend.core.blockchain import Blockchain
-    blockchain = Blockchain(UTXOS, MEMPOOL, None, None, localHostPort, "127.0.0.1")
-    blockchain.buildUTXOS()
-    UTXOS = blockchain.get_utxos()
-    print("[Frontend] UTXO set reloaded from blockchain.")
+    global UTXOS, BLOCKCHAIN_PROXY, SHARED_LOCK # Need access to the global proxies and lock
+    if BLOCKCHAIN_PROXY is None:
+        print("[Frontend] Error: Blockchain proxy not available for reloading UTXOs.")
+        return False # Indicate failure
+    if SHARED_LOCK is None:
+         print("[Frontend] Error: Shared lock not available for reloading UTXOs.")
+         return False
+
+    try:
+        # --- DO NOT CALL buildUTXOS() here ---
+        # --- Just GET the current set from the Blockchain process ---
+        print("[Frontend] Getting latest UTXO set from Blockchain process...")
+        # This call goes to the Blockchain process via the manager
+        utxos_from_proxy = BLOCKCHAIN_PROXY.get_utxos()
+        print(f"[Frontend] Received UTXO set proxy/data type: {type(utxos_from_proxy)}")
+
+        # Update the frontend's shared UTXO dictionary proxy
+        if hasattr(UTXOS, 'clear') and hasattr(UTXOS, 'update') and isinstance(utxos_from_proxy, dict):
+             print("[Frontend] Acquiring lock to update shared UTXO dict...")
+             with SHARED_LOCK: # Protect write access to the shared dict
+                 UTXOS.clear()
+                 UTXOS.update(utxos_from_proxy) # Update the shared dict
+             print(f"[Frontend] Shared UTXO dict updated (Size: {len(UTXOS)}). Lock released.")
+             return True
+        else:
+             # Handle cases where UTXOS isn't a manager dict or proxy didn't return a dict
+             print(f"[Frontend] Warning: Cannot update global UTXOS. Type: {type(UTXOS)}, Received type: {type(utxos_from_proxy)}")
+             # Fallback: Maybe assign locally if not shared? Depends on how UTXOS is used.
+             # UTXOS = utxos_from_proxy # Assign if UTXOS is just a local global
+             return False
+
+    except AttributeError as ae:
+        print(f"[Frontend] Error reloading UTXOs via proxy (AttributeError): {ae}. Is 'get_utxos' exposed?")
+        import traceback
+        traceback.print_exc()
+        return False
+    except Exception as e:
+        print(f"[Frontend] Error reloading UTXOs via proxy: {e}")
+        import traceback
+        traceback.print_exc()
+        return False
 
 
-def main(utxos, mem_pool,port, localPort, node_id, default_addr):
-    global UTXOS, MEMPOOL, localHostPort, NODE_ID # Declare globals
+# def reload_utxos_from_chain():
+#     global UTXOS
+#     from Blockchain.Backend.core.blockchain import Blockchain
+#     blockchain = Blockchain(UTXOS, MEMPOOL, None, None, localHostPort, "127.0.0.1")
+#     blockchain.buildUTXOS()
+#     UTXOS = blockchain.get_utxos()
+#     print("[Frontend] UTXO set reloaded from blockchain.")
+
+
+def main(utxos, mem_pool,port, localPort, blockchain_proxy, shared_state_lock,node_id, default_addr):
+    global UTXOS, MEMPOOL, localHostPort,SHARED_LOCK,BLOCKCHAIN_PROXY
     UTXOS = utxos
     MEMPOOL = mem_pool
+    SHARED_LOCK = shared_state_lock        # Assign the shared lock
+    BLOCKCHAIN_PROXY = blockchain_proxy # Assign the blockchain proxy
+
     localHostPort = localPort
     NODE_ID = node_id # Store node_id
     # Store the default address in Flask app config
     app.config['DEFAULT_ADDRESS'] = default_addr
 
     print(f"[Flask App Node {NODE_ID}] Starting on port {port}...")
-    app.run(host='127.0.0.1',port=port, debug=True, use_reloader=False)
+    # app.run(host='127.0.0.1',port=port, debug=True, use_reloader=False)
+    serve(app, host='127.0.0.1', port=port,threads=8) 

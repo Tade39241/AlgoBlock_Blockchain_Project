@@ -328,6 +328,73 @@ class Blockchain:
         db_instance = BlockchainDB()
         return db_instance.lastBlock()
     
+    def get_tip_hash(self):
+        """
+        Retrieves the block hash of the latest block in the local database.
+
+        Returns:
+            str: The hex string of the latest block's hash,
+                 or ZERO_HASH if the blockchain is empty,
+                 or None if an error occurs.
+        """
+        db = None # Use local instance for safety
+        try:
+            # Create a DB instance specific to this method call
+            db = BlockchainDB() # Assumes patched __init__ sets correct path
+            last_block_data = db.lastBlock() # Fetch the last block data
+
+            if last_block_data:
+                # Ensure consistent handling if lastBlock returns list or dict
+                last_block_dict = last_block_data[0] if isinstance(last_block_data, list) else last_block_data
+
+                # Navigate the dictionary structure safely using .get()
+                tip_hash = last_block_dict.get('BlockHeader', {}).get('blockHash')
+
+                if tip_hash and isinstance(tip_hash, str) and len(tip_hash) == 64:
+                    # Found a valid-looking hash
+                    # logger.debug(f"get_tip_hash: Found hash {tip_hash[:8]}...") # Optional debug
+                    return tip_hash
+                else:
+                    # Found block data but hash is missing or invalid format
+                    logger.error(f"get_tip_hash: Invalid or missing blockHash in last block data: {last_block_dict}")
+                    return None # Indicate error reading hash
+            else:
+                # No blocks found in the database
+                logger.info("get_tip_hash: No blocks found, returning ZERO_HASH.")
+                return ZERO_HASH # Return the defined ZERO_HASH constant
+
+        except Exception as e:
+            logger.error(f"Error getting tip hash via Blockchain class: {e}", exc_info=True)
+            return None # Indicate error
+        finally:
+            # Ensure connection is closed
+            if db and db.conn:
+                try:
+                    db.conn.close()
+                except Exception as e_close:
+                     logger.warning(f"Ignoring error closing DB connection in get_tip_hash: {e_close}")
+
+    def get_height(self):
+        """Returns the current height of the blockchain by querying the database."""
+        db_instance = None
+        try:
+            # Create a local instance to query the height
+            db_instance = BlockchainDB()
+            height = db_instance.get_height() # Call the method from db.py
+            return height
+        except Exception as e:
+            logger.error(f"Error getting height via Blockchain class: {e}", exc_info=True)
+            return -3 # Return a distinct error code for issues in this layer
+        finally:
+            # Ensure the connection created by the local db_instance is closed
+            # (Assuming BlockchainDB's connect/methods handle this, otherwise add explicit close)
+             if db_instance and db_instance.conn:
+                  try:
+                      db_instance.conn.close()
+                      logger.debug("Closed DB connection in Blockchain.get_height")
+                  except Exception as e_close:
+                       logger.warning(f"Error closing DB connection in Blockchain.get_height: {e_close}")
+    
     def update_utxo_set(self, block):
         """
         Incrementally updates the UTXO set based on the transactions
@@ -388,36 +455,6 @@ class Blockchain:
 
         if removed_count > 0:
              logger.info(f"[Mempool Clean] Removed {removed_count} txs. New mempool size: {len(self.mem_pool)}")
-    
-    # def GenesisBlock(self):
-    #     BlockHeight = 0
-    #     prevBlockHash = ZERO_HASH
-    #     self.addBlock(BlockHeight, prevBlockHash)
-    #     self.buildUTXOS()
-
-    # def GenesisBlock(self):
-    #     BlockHeight = 0
-    #     prevBlockHash = ZERO_HASH
-
-    #     # Build initial UTXOs for each account
-    #     from reset_accounts import ACCOUNTS
-    #     tx_outs = []
-    #     for addr, acc_data in ACCOUNTS.items():
-    #         # Give as staked (StakingScript)
-    #         script = StakingScript(addr, lock_time=0)  # lock_time=0 means immediately available for PoS
-    #         tx_outs.append(TxOut(amount=acc_data['staked'], script_publickey=script))
-
-    #     # Create a single genesis transaction with all outputs
-    #     genesis_tx = Tx(version=1, tx_ins=[], tx_outs=tx_outs, locktime=0)
-    #     genesis_tx.TxId = genesis_tx.id()
-
-    #     # Create the genesis block with this transaction
-    #     coinbaseTx = genesis_tx
-    #     self.TxIds = [bytes.fromhex(coinbaseTx.id())]
-    #     self.add_trans_in_block = [coinbaseTx]
-    #     self.remove_spent_transactions = []
-
-
 
     
     def GenesisBlock(self):
@@ -532,19 +569,6 @@ class Blockchain:
         logger.info("[Node Setup] Genesis Block created and state updated.")
         self.BroadcastBlock(genesis_block_obj)
         print(f"[DEBUG] Genesis block broadcasted: Height={BlockHeight} Hash={blockheader.blockHash}")
-        # blockheader.to_hex()
-        # self.remove_spent_Transactions()
-        # self.remove_trans_from_mempool()
-        # self.store_uxtos_in_cache()
-        # self.convert_to_json()
-        # print(f"Block {BlockHeight} created successfully by Validator {validator_addr} with Signature {block_signature} with BlockHash {blockheader.blockHash}")
-    
-        # new_block = Block(BlockHeight, self.Blocksize, blockheader.__dict__, len(self.TxJson), self.TxJson)
-        # self.write_on_disk([new_block.__dict__])
-        time.sleep(0.2)
-        # self.buildUTXOS()
-        # print("[Node Setup] Genesis Block created and written to disk.")
-        # self.clean_mempool_against_chain(self.mem_pool)
 
     def get_all_blocks(self):
         """
@@ -558,34 +582,58 @@ class Blockchain:
     
     def startSync(self, block=None):
         from Blockchain.Backend.core.network.syncManager import syncManager
+        node_id = self.localHostPort - 9000 if self.localHostPort and self.localHostPort >= 9000 else 'Unknown'
+        logger.info(f"[Startup] Node {node_id} initiating sync with peers...")
 
-        """ start the sync node """
         try:
             node = NodeDB()
             portList = node.read_nodes()
-            
+            print(f"DEBUG: startSync: self.localHostPort = {self.localHostPort} (type: {type(self.localHostPort)})")
+            print(f"DEBUG: startSync: portList from read_nodes = {portList} (types: {[type(p) for p in portList]})")
+
             for port in portList:
-                if self.localHostPort != port:
-                    sync = syncManager(
-                        host=self.host, 
-                        port=port, 
-                        blockchain=self, 
-                        localHostPort=self.localHostPort, 
-                        newBlockAvailable=self.newBlockAvailable, 
-                        MemoryPool=self.mem_pool,
-                        shared_lock=self.state_lock
-                    )
-                    try:
-                        if block:
-                            print(f"[Sender] Sending Block: {block.__dict__} to {port}")
-                            sync.publishBlock(self.localHostPort - 1000, port, block)
-                        else:
-                            sync.startDownload(self.localHostPort - 1000, port,True)                    
-                    except Exception as err:
-                        print(f"Error while downloading or uploading the Blockchain \n{err}")
-                    
+                print(f"DEBUG: startSync loop: Checking port {port} (type: {type(port)}) against {self.localHostPort}")
+                # --- Primary Check: Skip Self ---
+                if port == self.localHostPort:
+                    print(f"DEBUG: startSync loop: *** SKIPPING self port {port} ***")
+                    logger.debug(f"[Startup] Skipping sync with self (port {port}).")
+                    continue
+
+                # --- Code past here ONLY runs for other peers ---
+                print(f"DEBUG: startSync loop: *** PROCEEDING with peer port {port} ***")
+
+                # --- REMOVE REDUNDANT IF ---
+                # if self.localHostPort != port:  <-- DELETE THIS LINE
+
+                # --- Keep the indented code ---
+                sync = syncManager(
+                    host=self.host,
+                    port=port,
+                    blockchain=self,
+                    localHostPort=self.localHostPort,
+                    newBlockAvailable=self.newBlockAvailable,
+                    MemoryPool=self.mem_pool,
+                    shared_lock=self.state_lock
+                )
+                try:
+                    local_bind_port = 8000 + node_id # Use node-specific bind port
+                    if block:
+                        logger.info(f"[Sender] Sending Block height {getattr(block, 'Height', 'N/A')} to {port}")
+                        sync.publishBlock(self.localHostPort, port, block) # publishBlock doesn't need bind port arg here
+                    else:
+                        logger.info(f"[Startup] Starting download from peer {port} (binding local {local_bind_port})...")
+                        sync.startDownload(local_bind_port, port, False) # Pass correct args
+                except ConnectionRefusedError:
+                    logger.warning(f"[Startup] Connection refused by peer {port}.")
+                except Exception as err:
+                    logger.error(f"Error during sync with peer {port}: {err}", exc_info=True)
+                # --- END REMOVE REDUNDANT IF --- # <-- DELETE THIS LINE (or the block it closes)
+
         except Exception as err:
-            print(f"Error while downloading the Blockchain \n{err}")
+            logger.error(f"Error during startSync setup: {err}", exc_info=True)
+        finally:
+            logger.info(f"[Startup] Node {node_id} initial sync process finished.")
+
 
     
     # def store_uxtos_in_cache(self):
@@ -596,23 +644,20 @@ class Blockchain:
         for tx in self.add_trans_in_block:
             for idx, tx_out in enumerate(tx.tx_outs):
                 self.utxos[(tx.TxId, idx)] = tx_out
-    
+
     def get_utxos(self):
-        """Return the current UTXOs."""
-        return dict(self.utxos)
-
-    # def remove_spent_Transactions(self):
-    #     for txId_index in self.remove_spent_transactions:
-    #         if txId_index[0].hex() in self.utxos:
-
-    #             if len(self.utxos[txId_index[0].hex()].tx_outs) < 2:
-    #                 print(f" Spent Transaction removed {txId_index[0].hex()} ")
-    #                 del self.utxos[txId_index[0].hex()]
-    #             else:
-    #                 prev_trans = self.utxos[txId_index[0].hex()]
-    #                 self.utxos[txId_index[0].hex()] = prev_trans.tx_outs.pop(
-    #                     txId_index[1]
-    #                 )
+            """
+            Return a copy of the current UTXO set.
+            Acquires the shared lock to ensure a consistent snapshot.
+            """
+            # --- Acquire Lock ---
+            with self.state_lock:
+                # --- Create and return a regular dictionary copy ---
+                utxo_copy = dict(self.utxos)
+                # Optional: Add logging to confirm size
+                logger.debug(f"get_utxos: Returning UTXO copy with {len(utxo_copy)} items.")
+            # --- Release Lock ---
+            return utxo_copy
 
     def remove_spent_Transactions(self):
         for txId_index in self.remove_spent_transactions:
@@ -621,20 +666,17 @@ class Blockchain:
                 print(f"Spent Transaction removed {key}")
             del self.utxos[key]
 
-    def read_trans_from_mempool(self):
+    def read_trans_from_mempool(self,mempool_copy,utxo_snapshot):
         """Reads valid transactions from mempool for block creation."""
         logger.info("Reading transactions from mempool...")
         selected_txs = []
-        selected_tx_ids_bytes = []
         block_data_size = 0
-        max_block_size = 1_000_000
+        max_block_size = 4_000_000
         inputs_spent_in_block = set() # Track inputs spent IN THIS BLOCK
 
         # --- Acquire Lock (Caller Responsibility) ---
         # with self.state_lock: # Assuming lock is held by addBlock
 
-        mempool_copy = dict(self.mem_pool)
-        utxo_snapshot = dict(self.utxos) # Take snapshot under lock
         logger.debug(f"Mempool size: {len(mempool_copy)}, UTXO snapshot size: {len(utxo_snapshot)}")
 
         for tx_id, tx_obj_or_dict in mempool_copy.items():
@@ -653,172 +695,170 @@ class Blockchain:
             if block_data_size + tx_size > max_block_size: continue
 
             # --- Use the new validation method ---
-            is_valid, tx_inputs_used = self.isValidTxForBlock(tx_obj, utxo_snapshot, inputs_spent_in_block)
+            is_valid, tx_inputs_used = self.doubleSpendingAttempt(tx_obj, utxo_snapshot, inputs_spent_in_block)
             # --- End Use new method ---
 
             if is_valid:
                 selected_txs.append(tx_obj)
-                selected_tx_ids_bytes.append(bytes.fromhex(tx_id))
                 inputs_spent_in_block.update(tx_inputs_used) # Add used inputs to the set
                 block_data_size += tx_size
                 logger.debug(f"Selected Tx: {tx_id[:8]}, Block data size: {block_data_size}")
 
         # --- Lock released by caller ---
         logger.info(f"Selected {len(selected_txs)} transactions. Data size: {block_data_size}")
-        return selected_txs, selected_tx_ids_bytes, block_data_size
-
-
-            
-    
-    # def read_trans_from_mempool(self):
-    #     """Read transactions from mem pool"""
-    #     self.Blocksize = 80
-    #     self.TxIds = []
-    #     self.add_trans_in_block = []
-    #     self.remove_spent_transactions = []
-    #     self.prevTxs = []
-    #     deleteTxs = []
-
-    #     tempMemPool = dict(self.mem_pool)
-
-    #     for tx_key, tx in tempMemPool.items():
-    #         # print(f"Checking tx {tx_key} for inclusion in block...")
-    #         if not hasattr(tx, 'tx_ins'):
-    #             try:
-    #                 tx = Tx.to_obj(tx)
-    #             except Exception as e:
-    #                 # print(f"Skipping invalid transaction from mem_pool: {e}")
-    #                 deleteTxs.append(tx_key)
-    #                 continue
-
-    #         # print(f"  Inputs: {[ (txin.prev_tx.hex(), txin.prev_index) for txin in tx.tx_ins ]}")
-    #         # print(f"  UTXO set keys: {list(self.utxos.keys())[:5]} ...")  # Print first 5 for brevity
-
-    #         if not self.doubleSpendingAttempt(tx):
-    #             print(f"  -> Adding tx {tx_key} to block")
-    #             tx.TxId = tx_key
-    #             self.TxIds.append(bytes.fromhex(tx_key))
-    #             self.add_trans_in_block.append(tx)
-    #             self.Blocksize += len(tx.serialise())
-    #             for spent in tx.tx_ins:
-    #                 self.remove_spent_transactions.append([spent.prev_tx, spent.prev_index])
-    #         else:
-    #             print(f"  -> Skipping tx {tx_key} due to double spending attempt or missing UTXO.")
-    #             deleteTxs.append(tx_key)
-                    
-    #             for txId in deleteTxs:
-    #                 if txId in self.mem_pool:
-    #                     del self.mem_pool[txId]
-    #     print(f"Transactions added to block: {self.TxIds}")
-    #     print(f"Transactions removed from mempool: {deleteTxs}")
+        return selected_txs, block_data_size
 
     def buildUTXOS(self):
-        print("DEBUG: Starting new UTXO set construction (with missing reference logging).")
-        allTxs = {}
-        spent_outpoints = set()
-        blocks = BlockchainDB().read()
-        missing_references = []
-    
-        # Gather all transactions
-        for block in blocks:
-            for tx in block[0]['Txs']:
-                allTxs[tx['TxId']] = tx
-                print(f"DEBUG: Added transaction {tx['TxId']} to allTxs.")
-    
-        # Gather all spent outpoints, log missing references
-        for block in blocks:
-            for tx in block[0]['Txs']:
-                for txin in tx['tx_ins']:
-                    prev_txid = txin['prev_tx']
-                    prev_index = txin['prev_index']
-                    # Skip coinbase
-                    if prev_txid == "0000000000000000000000000000000000000000000000000000000000000000":
-                        continue
-                    if prev_txid not in allTxs:
-                        print(f"ERROR: Referenced transaction {prev_txid} is missing. Skipping input processing for transaction {tx['TxId']}.")
-                        missing_references.append((tx['TxId'], prev_txid))
-                        continue
-                    spent_outpoints.add((prev_txid, prev_index))
-                    print(f"DEBUG: Marked spent outpoint ({prev_txid}, {prev_index})")
-    
-        # Build UTXO set: only outputs not spent
-        self.utxos = {}
-        for txid, tx in allTxs.items():
-            try:
-                tx_obj = Tx.to_obj(tx)
-                for idx, tx_out in enumerate(tx_obj.tx_outs):
-                    if (txid, idx) not in spent_outpoints:
-                        self.utxos[(txid, idx)] = tx_out
-                        print(f"DEBUG: UTXO added: ({txid}, {idx}) amount={tx_out.amount}")
+        """
+        Rebuilds the UTXO set by scanning the entire blockchain stored in the database.
+        This version assumes the DB read method returns a list of lists, e.g., [[block_dict_0], [block_dict_1], ...].
+        It correctly updates the shared self.utxos dictionary proxy.
+        """
+        logger.info("Rebuilding UTXO set from blockchain data...")
+        allTxs = {}             # { txid_hex: tx_dict }
+        spent_outpoints = set() # { (txid_hex, output_index_int) }
+        blocks_data = []        # Holds data read from DB
+        db = None               # DB connection object
+        new_utxos_temp = {}     # { (txid_hex, output_index_int): TxOut_object }
+        missing_references = [] # Track missing parent transactions
+
+        try:
+            # --- Step 1: Read all blocks from Database ---
+            db = BlockchainDB() # Assumes this gets the correct DB path for the node
+            # Use the DB method that returns list of lists: [[block_dict]]
+            # If you have both read() and read_all_blocks(), choose the one returning [[dict]]
+            blocks_data = db.read_all_blocks()
+            # If read_all_blocks() returns [[dict]], use that instead:
+            # blocks_data = db.read_all_blocks()
+
+            if not blocks_data:
+                 logger.warning("buildUTXOS: No blocks found in database. Clearing UTXO set.")
+                 if hasattr(self, 'utxos') and self.utxos is not None and hasattr(self.utxos, 'clear'):
+                     try:
+                         self.utxos.clear()
+                     except Exception as e_clear:
+                         logger.error(f"buildUTXOS: Failed to clear shared UTXO dict: {e_clear}")
+                 return # Nothing more to do
+
+            logger.debug(f"buildUTXOS: Read {len(blocks_data)} block items from DB.")
+
+            # --- Step 2: Gather all transactions ---
+            logger.debug("buildUTXOS: Phase 1 - Gathering all transactions...")
+            for block_item in blocks_data:
+                # Validate block_item structure: must be a non-empty list containing a dict
+                if not isinstance(block_item, list) or not block_item:
+                    logger.warning(f"buildUTXOS: Skipping block item with unexpected format: {type(block_item)}")
+                    continue
+                block_data = block_item[0] # Extract the dictionary
+                if not isinstance(block_data, dict):
+                    logger.warning(f"buildUTXOS: Inner block data is not a dictionary: {type(block_data)}")
+                    continue
+
+                # Process transactions within the block dictionary
+                for tx_data in block_data.get('Txs', []):
+                    if isinstance(tx_data, dict) and 'TxId' in tx_data:
+                        txid = tx_data['TxId']
+                        allTxs[txid] = tx_data # Store the transaction dictionary
                     else:
-                        print(f"DEBUG: Output ({txid}, {idx}) is spent, skipping.")
-            except Exception as e:
-                print(f"ERROR: Failed to process tx {txid}: {e}")
-    
-        # Log missing transactions
-        if missing_references:
-            print("WARNING: The following transactions reference missing inputs:")
-            for missing_tx, missing_ref in missing_references:
-                print(f"  Transaction {missing_tx} references missing transaction {missing_ref}.")
-    
-        # print("DEBUG: UTXO set construction complete. Final UTXO set:")
-        # for k, v in self.utxos.items():
-        #     print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
-    
-    # def buildUTXOS(self):
-    #     allTxs = {}
-    #     blocks = BlockchainDB().read()
-    #     missing_references = []
+                         logger.warning(f"buildUTXOS: Skipping tx with unexpected format or missing TxId: {type(tx_data)}")
+            logger.debug(f"buildUTXOS: Gathered {len(allTxs)} total transactions.")
 
-    #     # Populate allTxs
-    #     for block in blocks:
-    #         for tx in block[0]['Txs']:
-    #             allTxs[tx['TxId']] = tx
-    #             # print(f"DEBUG: Added transaction {tx['TxId']} to allTxs.")
 
-    #     print("DEBUG: Starting UTXO set construction.")
-    #     for block in blocks:
-    #         for tx in block[0]['Txs']:
-    #             # print(f"DEBUG: Processing transaction {tx['TxId']}")
-    #             for txin in tx['tx_ins']:
-    #                 prev_txid = txin['prev_tx']
+            # --- Step 3: Identify all spent outputs ---
+            logger.debug("buildUTXOS: Phase 2 - Identifying spent outputs...")
+            for block_item in blocks_data:
+                 # Same validation as above
+                 if not isinstance(block_item, list) or not block_item: continue
+                 block_data = block_item[0]
+                 if not isinstance(block_data, dict): continue
 
-    #                 # Skip coinbase transactions
-    #                 if prev_txid == "0000000000000000000000000000000000000000000000000000000000000000":
-    #                     # print("DEBUG: Skipping coinbase transaction input.")
-    #                     continue
+                 # Process transactions to find inputs
+                 for tx_data in block_data.get('Txs', []):
+                     if not isinstance(tx_data, dict): continue
+                     tx_id_current = tx_data.get('TxId', 'N/A') # For logging context
 
-    #                 # Check for referenced transaction
-    #                 if prev_txid not in allTxs:
-    #                     print(f"ERROR: Referenced transaction {prev_txid} is missing. Skipping input processing for transaction {tx['TxId']}.")
-    #                     missing_references.append((tx['TxId'], prev_txid))
-    #                     continue
-                    
-    #                 prev_tx = allTxs[prev_txid]
-    #                 if len(prev_tx['tx_outs']) > txin['prev_index']:
-    #                     # print(f"DEBUG: Spending output at index {txin['prev_index']} of transaction {prev_txid}.")
-    #                     prev_tx['tx_outs'].pop(txin['prev_index'])
-    #                     if not prev_tx['tx_outs']:
-    #                         # print(f"DEBUG: All outputs spent for transaction {prev_txid}. Removing from allTxs.")
-    #                         del allTxs[prev_txid]
-    #                 else:
-    #                     print(f"ERROR: Invalid prev_index {txin['prev_index']} for transaction {prev_txid}.")
+                     for txin_data in tx_data.get('tx_ins', []):
+                          if not isinstance(txin_data, dict):
+                              logger.warning(f"buildUTXOS: Tx {tx_id_current} has invalid tx_in format: {type(txin_data)}")
+                              continue
 
-    #     # Finalise UTXO set
-    #     for txid, tx in allTxs.items():
-    #         for idx, tx_out in enumerate(Tx.to_obj(tx).tx_outs):
-    #             self.utxos[(txid, idx)] = tx_out
-    #         # print(f"DEBUG: Added transaction {txid} to UTXO set.")
+                          prev_txid = txin_data.get('prev_tx')
+                          prev_index = txin_data.get('prev_index')
 
-    #     # Log missing transactions
-    #     if missing_references:
-    #         print("WARNING: The following transactions reference missing inputs:")
-    #         for missing_tx, missing_ref in missing_references:
-    #             print(f"  Transaction {missing_tx} references missing transaction {missing_ref}.")
+                          # Skip coinbase input (prev_txid is all zeros)
+                          if prev_txid == ZERO_HASH or prev_txid == "0000000000000000000000000000000000000000000000000000000000000000":
+                              continue
 
-    #     print("DEBUG: UTXO set construction complete.")
+                          # Check if essential data is present
+                          if prev_txid and prev_index is not None:
+                              # Check if the transaction referenced by the input actually exists
+                              if prev_txid not in allTxs:
+                                   logger.error(f"ERROR: Referenced transaction {prev_txid} (needed by tx {tx_id_current}) is missing!")
+                                   missing_references.append((tx_id_current, prev_txid))
+                                   # Do not mark as spent if the parent transaction is missing
+                              else:
+                                   # Mark this output as spent
+                                   spent_outpoints.add((prev_txid, prev_index))
+                                   # logger.debug(f"DEBUG: Marked spent outpoint ({prev_txid}, {prev_index}) by tx {tx_id_current}")
+                          else:
+                               logger.warning(f"buildUTXOS: Tx {tx_id_current} has tx_in with missing prev_tx or prev_index: {txin_data}")
 
-    
+            logger.debug(f"buildUTXOS: Identified {len(spent_outpoints)} spent outpoints.")
+            if missing_references:
+                 logger.warning("buildUTXOS: Found references to missing transactions.")
+                 # Log details if needed for debugging deeper issues
+                 # for missing_tx, missing_ref in missing_references:
+                 #     logger.warning(f"  Tx {missing_tx} references missing Tx {missing_ref}.")
+
+
+            # --- Step 4: Build the new UTXO set (in a temporary dictionary) ---
+            logger.debug("buildUTXOS: Phase 3 - Building new UTXO set from unspent outputs...")
+            count_added = 0
+            for txid, tx_data in allTxs.items():
+                try:
+                    # Convert transaction dictionary back to Tx object to access TxOut objects easily
+                    # Ensure Tx.to_obj can handle the dictionary format stored in the DB
+                    tx_obj = Tx.to_obj(tx_data)
+                    for idx, tx_out in enumerate(tx_obj.tx_outs):
+                        # Check if this specific output (txid, idx) was marked as spent
+                        if (txid, idx) not in spent_outpoints:
+                            # If not spent, add the TxOut OBJECT to the temporary dictionary
+                            new_utxos_temp[(txid, idx)] = tx_out
+                            count_added += 1
+                        # else:
+                            # logger.debug(f"DEBUG: Output ({txid}, {idx}) is spent, skipping.")
+                except Exception as e:
+                    # Log error converting/processing specific transaction but continue with others
+                    logger.error(f"ERROR: Failed to process tx {txid} for UTXO build: {e}", exc_info=True)
+
+            logger.debug(f"buildUTXOS: Added {count_added} UTXOs to temporary set.")
+
+
+            # --- Step 5: Update the shared UTXO dictionary proxy ---
+            # This is the crucial part for multi-processing
+            if hasattr(self, 'utxos') and self.utxos is not None:
+                # Check if it's a proxy supporting clear/update (basic check)
+                with self.state_lock:
+                        # --- Start of locked section ---
+                    logger.info(f"buildUTXOS: Acquiring lock and updating shared UTXO proxy (size before: {len(self.utxos)})...")
+                    if hasattr(self.utxos, 'clear') and hasattr(self.utxos, 'update'):
+                        logger.info(f"buildUTXOS: Clearing and updating shared UTXO dictionary proxy (size before clear: {len(self.utxos)})...")
+                        self.utxos.clear()          # Clear the existing shared dictionary
+                        self.utxos.update(new_utxos_temp) # Update with items from the temporary dict
+                        logger.info(f"buildUTXOS: Shared UTXO dictionary proxy updated. New size: {len(self.utxos)}")
+                    else:
+                        # This case should ideally not happen if initialized correctly with a Manager.dict()
+                        logger.error("buildUTXOS CRITICAL ERROR: self.utxos object does not support clear/update (it's not the expected dict proxy?). Cannot update shared state.")
+                        # If this happens, state will be inconsistent between processes.
+            else:
+                logger.error("buildUTXOS CRITICAL ERROR: self.utxos attribute not found or is None. Cannot update shared state.")
+
+        except Exception as e_main:
+             # Catch any unexpected errors during the whole process
+             logger.error(f"Major error during buildUTXOS execution: {e_main}", exc_info=True)
+
+        logger.info("buildUTXOS method finished.")
+ 
     def doubleSpendingAttempt(self, tx_obj, utxo_snapshot, inputs_in_this_block):
         """
         Checks if a transaction is valid for inclusion in the current block.
@@ -876,15 +916,13 @@ class Blockchain:
         for tx in self.add_trans_in_block:
             self.TxJson.append(tx.to_dict())
 
-    def calculate_fee(self, tx_objs_in_block):
+    def calculate_fee(self, tx_objs_in_block, utxo_snapshot):
         """Calculates total fee for a list of transactions.
            MUST be called with self.state_lock held.
         """
         total_input = 0
         total_output = 0
-
-        # Lock SHOULD BE HELD by the caller (addBlock)
-        utxo_snapshot = dict(self.utxos) # Use snapshot
+        # --- Acquire Lock (Caller Responsibility) ---
         for tx in tx_objs_in_block:
             for tx_out in tx.tx_outs:
                 total_output += tx_out.amount
@@ -902,62 +940,6 @@ class Blockchain:
         if fee < 0: fee = 0
         logger.info(f"Calculated block fee: {fee}")
         return fee
-
-    # def calculate_fee(self):
-    #     self.input_amount = 0
-    #     self.output_amount = 0
-
-    #     for TxId_index in self.remove_spent_transactions:
-    #         key = (TxId_index[0].hex(), TxId_index[1])
-    #         if key in self.utxos:
-    #             self.input_amount += self.utxos[key].amount
-        
-    #     for tx in self.add_trans_in_block:
-    #         for tx_out in tx.tx_outs:
-    #             self.output_amount += tx_out.amount
-        
-    #     self.fee = self.input_amount - self.output_amount
-    
-
-    # def select_validator(self):
-    #     """Select a validator based on their stake using weighted random selection."""
-    #     # Directly connect to the account DB file used by this AccountDB instance
-
-    #     VALIDATOR_ADDRESS = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
-
-    #     try:
-    #         connection = sqlite3.connect(self.account_db.filepath)
-    #         cursor = connection.cursor()
-    #         cursor.execute("SELECT data FROM account")
-    #         rows = cursor.fetchall()
-    #         connection.close()
-    #     except Exception as e:
-    #         raise Exception(f"Error reading account DB: {e}")
-
-    #     validators = []
-    #     for row in rows:
-    #         try:
-    #             # Expect row[0] to be a JSON string
-    #             account_data = json.loads(row[0]) if isinstance(row[0], str) else row[0]
-    #             if (account_data.get('staked', 0) > 0 
-    #                 and account_data.get('public_addr') != VALIDATOR_ADDRESS):
-    #                 validators.append(account_data)
-    #         except Exception as e:
-    #             print(f"Error parsing account data: {e}")
-    #             continue
-
-    #     if not validators:
-    #         raise Exception("No validators available. Ensure at least one account has a stake.")
-
-    #     total_stake = sum(acc['staked'] for acc in validators)
-    #     rand = random.uniform(0, total_stake)
-    #     cumulative = 0
-    #     for acc in validators:
-    #         cumulative += acc['staked']
-    #         if rand <= cumulative:
-    #             return acc
-    #     return validators[-1]
-
     
     
     def sign_block(self, block_data, private_key_int):
@@ -1050,179 +1032,32 @@ class Blockchain:
         # print(f"Bytes Signature: {blockheader.signature}")
         return pub_key.verify(signature_obj, z)
     
-    def clean_mempool_against_chain(self, mem_pool, blockchain=None):
-        if blockchain is None:
-            blockchain = self
-        """
-        Remove transactions from mem_pool that are already confirmed in the blockchain.
-        Should be called after processing new blocks and before block creation.
-        """
-        confirmed_txids = set()
-        try:
-            for block in blockchain.get_all_blocks():
-                for tx in getattr(block, 'Txs', []):
-                    txid = None
-                    # Try to extract TxId from object or dict
-                    if hasattr(tx, "TxId") and tx.TxId:
-                        txid = str(tx.TxId)
-                    elif hasattr(tx, "id"):
-                        try:
-                            txid = str(tx.id())
-                        except Exception:
-                            pass
-                    elif isinstance(tx, dict) and "TxId" in tx:
-                        txid = str(tx["TxId"])
-                    if txid:
-                        confirmed_txids.add(txid)
-                    else:
-                        print(f"[Mempool Cleanup] Warning: Could not extract TxId from tx: {tx}")
-        except Exception as e:
-            print(f"[Mempool Cleanup] Error while collecting confirmed txids: {e}")
-
-        removed = []
-        for txid in list(mem_pool.keys()):
-            if str(txid) in confirmed_txids:
-                del mem_pool[txid]
-                removed.append(txid)
-        if removed:
-            print(f"[Mempool Cleanup] Removed confirmed transactions from mempool: {removed}")
-        else:
-            print("[Mempool Cleanup] No confirmed transactions found in mempool.")
     
-    # def addBlock(self, BlockHeight, prevBlockHash,selected_validator=None):
-    #     """Create and add a new block to the blockchain using PoS."""
-    #     validator_addr = selected_validator  # Always a string
-    #     print(f"Selected Validator: {validator_addr} PRINTED FROM ADD BLOCK")
-
-    #     # Force reinitialization of the AccountDB connection in this thread.
-    #     self.account_db.conn = None 
-        
-    #     # 1. Read transactions from memory pool
-    #     self.read_trans_from_mempool()
-    #     self.calculate_fee()
-    #     timestamp = int(time.time())
-
-    #     # 2. Use the provided validator data if available; otherwise, select one.
-    #     # if selected_validator is None:
-    #     #     validator = self.select_validator()
-    #     # else:
-
-    #     # Retrieve the validator's account so we can use their public address.
-    #     validator_account = get_validator_account(validator_addr)
-    #     if validator_account is None:
-    #         raise Exception(f"Validator account {validator_addr} not found.")
-
-    #     # 3. Create Coinbase Transaction
-    #     coinbaseInstance = Coinbase_tx(BlockHeight, validator_addr)
-    #     coinbaseTx = coinbaseInstance.coinbase_transaction()
-    #     self.Blocksize += len(coinbaseTx.serialise())
-
-    #     # 4. Adjust Coinbase Transaction with staking reward
-    #     coinbaseTx.tx_outs[0].amount += self.fee  # Assuming fee is added to coinbase
-
-    #      # 4a. Credit only the selected validator's account.
-    #     total_reward = coinbaseTx.tx_outs[0].amount
-    #     # Re-fetch the account to get the latest pending_rewards:
-    #     validator_account = get_validator_account(validator_addr)
-    #     # validator_account.pending_rewards += total_reward
-    #     print(f"Validator {validator_addr} credited with {total_reward} TDC.")
-    #     # print("New pending rewards:", validator_account.pending_rewards)
-    #     validator_account.save_to_db()
-
-    #     # 5. Insert the coinbase Tx at index 0
-    #     self.TxIds.insert(0, bytes.fromhex(coinbaseTx.id()))
-    #     self.add_trans_in_block.insert(0, coinbaseTx)
-
-    #     # 6. Compute Merkle Root, already bytes (reversed), then .hex() -> is a hex string
-    #     # So we get merkleRoot in hex form:
-    #     merkle_root_bytes = merkle_root(self.TxIds)[::-1]  # merkle_root returns bytes, reversed => still bytes
-    #     merkleRoot_hex = merkle_root_bytes.hex()           # Now is hex string
-
-    #     # 7. Create the BlockHeader
-    #     #    - prevBlockHash might be a hex string, so convert to bytes
-    #     #    - merkleRoot_hex is a hex string, so convert to bytes
-    #     blockheader = BlockHeader(
-    #         VERSION,
-    #         bytes.fromhex(prevBlockHash),         # convert hex str to bytes
-    #         bytes.fromhex(merkleRoot_hex),        # convert hex str to bytes
-    #         timestamp,
-    #         validator_account.public_key,         # should already be bytes
-    #         signature=None
-    #     )
-        
-    #     # Instead of mining, have the validator sign the block
-
-    #     # (Re-assign validator_pubkey if needed after signing, to ensure it's not overwritten)
-    #     blockheader.validator_pubkey = validator_account.public_key
-
-    #     # 8. Serialize the blockheader to get block_data (bytes)
-    #     block_data = blockheader.serialise_without_signature()  # This must be bytes
-    #     # print(f"Serialized Block Header for Signing: {block_data}")
-
-    #     # 9. Sign the block_data
-    #     block_signature = self.sign_block(block_data, validator_account.privateKey)
-    #     blockheader.signature = bytes.fromhex(block_signature)
-    #     blockheader.signature = Signature.parse(blockheader.signature)  # <--- ADD THIS LINE
-    #     print(f"Block signature: {block_signature} of type {type(block_signature)}")
-
-    #     # 10. Verify the block signature before adding to the blockchain
-    #     public_key_hex = validator_account.public_key.hex()
-    #     if not self.verify_block_signature(blockheader.to_dict(), bytes.fromhex(public_key_hex)):
-    #         raise Exception("Invalid block signature. Block rejected.")
-        
-    #     # 11. Compute blockHash in hex
-    #     blockheader.blockHash = hash256(blockheader.serialise_with_signature()).hex()
-
-    #     # No need to mine; assume the block is valid if signed
-    #     new_block = Block(BlockHeight, self.Blocksize, blockheader, len(self.add_trans_in_block),self.add_trans_in_block)
-    #     # blockheader.to_bytes()
-
-    #     serialized_header = blockheader.serialise_with_signature()
-    #     # print(f"[Sender] Serialized BlockHeader: {serialized_header.hex()}")
-    #     # print(f"[Sender] Block Signature: {blockheader.signature.hex()}")
-    #     # computed_hash_sender = hash256(serialized_header).hex()
-    #     # print(f"[Sender] Computed BlockHash: {computed_hash_sender}")
-
-    #     new_block = Block.to_obj(new_block)
-    #     self.BroadcastBlock(new_block)
-    #     blockheader.to_hex()
-    #     self.remove_spent_Transactions()
-    #     # print(f"[DEBUG] MEMPOOL CONTENTS AT BLOCK CREATION: {list(self.mem_pool.keys())}")
-    #     self.remove_trans_from_mempool()
-    #     self.store_uxtos_in_cache()
-    #     self.convert_to_json()
-    #     print(f"Block {BlockHeight} created successfully by Validator {validator_addr} with Signature {block_signature} with BlockHash {blockheader.blockHash}")
-    #     new_block = Block(BlockHeight, self.Blocksize, blockheader.__dict__, len(self.TxJson), self.TxJson)
-    #     # Ensure all tx_outs are TxOut objects before serialization
-    #     self.write_on_disk([new_block.__dict__])
-    #     time.sleep(5)
-        
-
-    #     # print("[DEBUG] UTXO set rebuilt.")
-    #     # print("[DEBUG][UTXO SET AFTER BLOCK]")
-    #     for k, v in self.utxos.items():
-    #         print(f"  {k}: cmds={v.script_publickey.cmds} amount={v.amount}")
-    #     self.clean_mempool_against_chain(self.mem_pool)
-    #     print("[DEBUG] Mempool cleaned against chain.")
-
     def addBlock(self, BlockHeight, prevBlockHash, selected_validator=None):
         """Creates, validates, applies, and broadcasts a new PoS block."""
         logger.info(f"Attempting to add block {BlockHeight} (Prev: {prevBlockHash[:8]})")
         validator_addr = selected_validator
 
+        mempool_snapshot = {}
+        utxo_snapshot = {}
+
         # --- Acquire Lock for reading mempool/utxos and later state update ---
         with self.state_lock:
-            try:
-                # 1. Read transactions & Calculate fee (under lock)
-                selected_txs, selected_tx_ids_bytes, block_data_size = self.read_trans_from_mempool()
-                fee = self.calculate_fee(selected_txs)
-            except ValueError as e: # Catch UTXO not found during fee calculation
-                 logger.error(f"Cannot create block {BlockHeight}: {e}")
-                 return # Exit block creation (lock is released)
-            except Exception as e:
-                 logger.error(f"Error reading mempool or calculating fee for block {BlockHeight}: {e}", exc_info=True)
-                 return # Exit block creation (lock is released)
+            mempool_snapshot = dict(self.mem_pool)
+            utxo_snapshot = dict(self.utxos)
         # --- Release Lock Temporarily for slower ops ---
+
+        try:
+            # 1. Read transactions & Calculate fee (under lock)
+            selected_txs, block_data_size = self.read_trans_from_mempool(mempool_snapshot, utxo_snapshot)
+            fee = self.calculate_fee(selected_txs, utxo_snapshot)
+        except ValueError as e: # Catch UTXO not found during fee calculation
+                logger.error(f"Cannot create block {BlockHeight}: {e}")
+                return # Exit block creation (lock is released)
+        except Exception as e:
+                logger.error(f"Error reading mempool or calculating fee for block {BlockHeight}: {e}", exc_info=True)
+                return # Exit block creation (lock is released)
+ 
 
         timestamp = int(time.time())
 
@@ -1238,11 +1073,26 @@ class Blockchain:
         # Adjust coinbase amount
         coinbaseTx.tx_outs[0].amount += fee
         logger.info(f"Coinbase created for block {BlockHeight}. Fee added: {fee}")
+        coinbase_id_hex = coinbaseTx.id()
 
         # --- Combine Txs & Calculate Merkle Root ---
         final_tx_objs = [coinbaseTx] + selected_txs
-        final_tx_ids_bytes = [bytes.fromhex(coinbaseTx.id())] + selected_tx_ids_bytes
-        merkle_root_bytes = merkle_root(final_tx_ids_bytes)[::-1]
+
+        tx_ids_for_merkle_hex = []
+        tx_ids_for_merkle_bytes = []
+        try:
+            for tx in final_tx_objs:
+                tx_id_hex = tx.id()
+                tx_ids_for_merkle_hex.append(tx_id_hex)
+                tx_ids_for_merkle_bytes.append(bytes.fromhex(tx_id_hex))
+            logger.debug(f"[PID {os.getpid()}] [MerkleCalc Send] TxIDs for Block {BlockHeight}: {tx_ids_for_merkle_hex}")
+        except Exception as e_id:
+            logger.error(f"[PID {os.getpid()}] Error getting TxIDs for Merkle calculation: {e_id}", exc_info=True)
+            return None
+
+        # Calculate Merkle Root using the derived bytes list
+        merkle_root_bytes = merkle_root(tx_ids_for_merkle_bytes)[::-1]
+        print(f"[PID {os.getpid()}] Merkle Root for Block {BlockHeight}: {merkle_root_bytes.hex()}",flush=True)
 
         # --- Final Block Size ---
         # Approx header size + coinbase + selected txs data size
@@ -1271,11 +1121,6 @@ class Blockchain:
         blockheader.blockHash = blockheader.generateBlockHash() # Uses serialise_with_signature()
         logger.info(f"Block {BlockHeight} signed. Hash: {blockheader.blockHash[:8]}")
 
-        # --- (Self-Verification Removed - Optional) ---
-        # public_key_hex = validator_account.public_key.hex()
-        # if not self.verify_block_signature(blockheader.to_dict(), bytes.fromhex(public_key_hex)):
-        #     logger.error("CRITICAL: Failed to verify own block signature.")
-        #     return # Stop if self-verification fails
 
         # --- Create Final Block Object ---
         new_block_obj = Block(
@@ -1286,53 +1131,65 @@ class Blockchain:
             final_tx_objs     # List of Tx OBJECTS
         )
 
+         # 1. Double-check chain tip
+        db_instance = BlockchainDB() # Local instance for check
+        last_block = db_instance.lastBlock()
+        if db_instance.conn: db_instance.conn.close() # Close connection
+        current_height = -1; tip_hash = ZERO_HASH
+        if last_block:
+                last_block = last_block[0] if isinstance(last_block, list) else last_block
+                current_height = last_block.get('Height', -1)
+                tip_hash = last_block.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
+
+        if BlockHeight != current_height + 1 or prevBlockHash != tip_hash:
+            logger.warning(f"Chain tip changed before block {BlockHeight} could be added. Discarding.")
+            return # Discard block
+        
+        # 2. Write to DB
+        try:
+            block_dict_for_db = new_block_obj.to_dict() # Convert OBJECT to DICT for DB
+            # Ensure nested parts are dicts/serializable
+            if block_dict_for_db.get('Txs') and isinstance(block_dict_for_db['Txs'][0], Tx): block_dict_for_db['Txs'] = [tx.to_dict() for tx in block_dict_for_db['Txs']]
+            if isinstance(block_dict_for_db.get('BlockHeader'), BlockHeader): block_dict_for_db['BlockHeader'] = block_dict_for_db['BlockHeader'].to_dict()
+            self.write_on_disk([block_dict_for_db]) # Write DICT
+        except Exception as e:
+                logger.error(f"CRITICAL: Failed DB write for block {BlockHeight}: {e}. State inconsistent!", exc_info=True)
+                return # Stop
+
         # --- Acquire Lock for Final Check, DB Write, State Update ---
         with self.state_lock:
-            # 1. Double-check chain tip
-            db_instance = BlockchainDB() # Local instance for check
-            last_block = db_instance.lastBlock()
-            if db_instance.conn: db_instance.conn.close() # Close connection
-            current_height = -1; tip_hash = ZERO_HASH
-            if last_block:
-                 last_block = last_block[0] if isinstance(last_block, list) else last_block
-                 current_height = last_block.get('Height', -1)
-                 tip_hash = last_block.get('BlockHeader', {}).get('blockHash', ZERO_HASH)
 
             if BlockHeight != current_height + 1 or prevBlockHash != tip_hash:
-                logger.warning(f"Chain tip changed before block {BlockHeight} could be added. Discarding.")
-                return # Discard block
-
-            # 2. Write to DB
+                logger.warning(f"Chain tip changed before block {BlockHeight} state could be updated (Block was already written!). Potential orphan.")
+                # Decide recovery strategy - maybe mark block as orphan? For now, just return.
+                return # Discard state update, block is already in DB but won't be part of main chain state *yet*.
+        
             try:
-                block_dict_for_db = new_block_obj.to_dict() # Convert OBJECT to DICT for DB
-                # Ensure nested parts are dicts/serializable
-                if block_dict_for_db.get('Txs') and isinstance(block_dict_for_db['Txs'][0], Tx): block_dict_for_db['Txs'] = [tx.to_dict() for tx in block_dict_for_db['Txs']]
-                if isinstance(block_dict_for_db.get('BlockHeader'), BlockHeader): block_dict_for_db['BlockHeader'] = block_dict_for_db['BlockHeader'].to_dict()
-                self.write_on_disk([block_dict_for_db]) # Write DICT
-            except Exception as e:
-                 logger.error(f"CRITICAL: Failed DB write for block {BlockHeight}: {e}. State inconsistent!", exc_info=True)
-                 return # Stop
-
-            # 3. Update State (UTXO, Mempool) using the OBJECT
-            self.update_utxo_set(new_block_obj)
-            self.clean_mempool(new_block_obj)
-
-            logger.info(f"Block {BlockHeight} added locally and state updated.")
+                self.update_utxo_set(new_block_obj) # Update shared memory
+                self.clean_mempool(new_block_obj)   # Update shared memory
+                logger.info(f"Block {BlockHeight} state (UTXO/Mempool) updated.")
+            except Exception as e_state:
+                    # This is tricky - DB write succeeded, but state update failed. State is now INCONSISTENT!
+                    logger.critical(f"CRITICAL ERROR: DB write for block {BlockHeight} succeeded, but state update FAILED: {e_state}. STATE INCONSISTENT!", exc_info=True)
+                    # Need robust error handling / recovery / node shutdown here.
+                    # For now, just log and potentially exit.
+                    # raise e_state # Or sys.exit()
+                    return
+           
         # --- Release Lock ---
 
-        # --- Update Validator Account State (After block confirmed locally) ---
         try:
-             validator_account = get_validator_account(validator_addr) # Re-fetch if needed
-             # Apply reward logic here if not done elsewhere, e.g., update balance
-             validator_account.save_to_db()
-             logger.info(f"Updated validator account {validator_addr} state post-block.")
+            # Apply reward logic here if not done elsewhere, e.g., update balance
+            validator_account.save_to_db()
+            logger.info(f"Updated validator account {validator_addr} state post-block.")
         except Exception as e:
-             logger.warning(f"Failed to save validator account {validator_addr} state post-block: {e}")
-        # --- End Validator Update ---
+            logger.warning(f"Failed to save validator account {validator_addr} state post-block: {e}")
+
+        # --- Update Validator Account State (After block confirmed locally) ---
 
         # 4. Broadcast the Block OBJECT
         self.BroadcastBlock(new_block_obj)
-        logger.info(f"Block {BlockHeight} broadcasted.")
+        logger.info(f"Block {BlockHeight} with hash {new_block_obj.BlockHeader.blockHash} broadcasted.")
 
     def setup_node(self):
         """
@@ -1354,33 +1211,3 @@ class Blockchain:
         except Exception as e:
             print(f"[Node Setup] Error during setup: {e}")
             logging.error(f"Error during setup_node: {e}")
-
-   
-    # def setup_node(self):
-    #     """
-    #     Initialize the node by:
-    #     - Checking if the blockchain exists
-    #     - If no blockchain exists, setting a flag to indicate Genesis Block needs to be created later
-    #     - Building the UTXO set from the stored blockchain (if any)
-    #     - Starting the synchronization service to listen for incoming blocks and messages
-    #     """
-    #     # Check if there is an existing blockchain
-    #     last_block = self.fetch_last_block()
-    #     if last_block is None:
-    #         print("[Node Setup] No existing blockchain found.")
-    #         # Instead of creating Genesis Block now, set a flag
-    #         self.needs_genesis = True
-    #         print("[Node Setup] Genesis Block creation deferred until validator is selected.")
-    #     else:
-    #         print(f"[Node Setup] Last block height is: {last_block[0]['Height']}")
-    #         # Set this to False since we already have a blockchain
-    #         self.needs_genesis = False
-            
-    #         # Build the current UTXO set from the stored blockchain
-    #         self.buildUTXOS()
-    #         print("[Node Setup] UTXO set constructed.")
-        
-        # Start the sync process so the node can listen for incoming blocks and transactions
-        # self.startSync()
-        # print("[Node Setup] Sync service started. Node is now ready and waiting for validator selection.")
-            

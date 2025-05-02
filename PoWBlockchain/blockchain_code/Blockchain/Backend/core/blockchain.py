@@ -43,8 +43,8 @@ MAX_TARGET     = 0x0000ffff00000000000000000000000000000000000000000000000000000
 # Calculate new Target to keep our Block mine time under 5 minutes 
 # Reset Block Difficulty after every 10 Blocks
 """
-AVERAGE_BLOCK_MINE_TIME = 120
-RESET_DIFFICULTY_AFTER_BLOCKS = 10
+AVERAGE_BLOCK_MINE_TIME = 15
+RESET_DIFFICULTY_AFTER_BLOCKS = 5
 AVERAGE_MINE_TIME = AVERAGE_BLOCK_MINE_TIME * RESET_DIFFICULTY_AFTER_BLOCKS
 
 class Blockchain:
@@ -115,6 +115,28 @@ class Blockchain:
         except (TypeError, ValueError):
             logger.error("[get_last_block_hash] Error converting ZERO_HASH to bytes. Returning default.")
             return bytes.fromhex('0' * 64) # Default fallback
+
+    def get_height(self):
+        """Returns the current height of the blockchain by querying the database."""
+        db_instance = None
+        try:
+            # Create a local instance to query the height
+            db_instance = BlockchainDB()
+            height = db_instance.get_height() # Call the method from db.py
+            return height
+        except Exception as e:
+            logger.error(f"Error getting height via Blockchain class: {e}", exc_info=True)
+            return -3 # Return a distinct error code for issues in this layer
+        finally:
+            # Ensure the connection created by the local db_instance is closed
+            # (Assuming BlockchainDB's connect/methods handle this, otherwise add explicit close)
+             if db_instance and db_instance.conn:
+                  try:
+                      db_instance.conn.close()
+                      logger.debug("Closed DB connection in Blockchain.get_height")
+                  except Exception as e_close:
+                       logger.warning(f"Error closing DB connection in Blockchain.get_height: {e_close}")
+    
 
     # """ start the sync node """
     # def startSync(self, block=None):

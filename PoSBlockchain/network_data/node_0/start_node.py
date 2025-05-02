@@ -39,7 +39,7 @@ sys.path.append("/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/node
 
 # Store node ID as a variable inside this script
 NODE_ID = 0
-NUM_NODES = 2
+NUM_NODES = 3
 
 # --- DEFINE ABSOLUTE PATHS FIRST ---
 # Use the absolute data_dir passed from the launcher
@@ -69,8 +69,6 @@ if not os.path.exists(data_dir):
 # Import and patch database classes BEFORE importing the Blockchain class
 sys.path.insert(0, "/dcs/project/algoblock/MainCode/PoSBlockchain/code_node2")
 from code_node2.Blockchain.Backend.core.database.db import NodeDB, BlockchainDB, AccountDB
-from code_node2.Blockchain.client.sendTDC import update_utxo_set
-
 
 # Save original inits
 original_nodedb_init = NodeDB.__init__
@@ -287,10 +285,10 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
     
     # Adjust interval based on volume
     if volume == "high":
-        target_network_tps = 10    # e.g. 10 transactions/sec total
+        target_network_tps = 6    # e.g. 4 transactions/sec total
         actual_interval = max(
             1,
-            int(2 / target_network_tps)
+            int(3 / target_network_tps)
         )
     elif volume == "medium":
         actual_interval = interval
@@ -301,13 +299,13 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
         
     # Set transaction type weights based on tx_types parameter
     if tx_types == "transfers":
-        tx_weights = [1, 0, 0]  # Only transfers
+        tx_weights = [1, 0]  # Only transfers
     elif tx_types == "stake":
-        tx_weights = [0, 1, 1]  # Only staking operations
+        tx_weights = [0, 1]  # Only staking operations
     elif tx_types == "mixed":
-        tx_weights = [2, 1, 1]  # More balanced mix
+        tx_weights = [2, 1]  # More balanced mix
     else:  # "all" - default
-        tx_weights = [5, 2, 1]  # 5:2:1:1 ratio for transfer:stake:unstake
+        tx_weights = [5, 3]  # 5:2:1 ratio for transfer:stake:unstake
 
     sim_account_db_path = account_db_path
 
@@ -322,83 +320,77 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
         from code_node2.Blockchain.Backend.util.util import decode_base58
         from code_node2.Blockchain.Backend.core.tx import TxOut
 
-        def get_utxo_set():
-            blockchain_db = BlockchainDB()
-            blocks = blockchain_db.read_all_blocks()
-            utxos = {}
-            spent = set()
-            for block in blocks:
-                txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
-                for tx_dict in txs:
-                    txid = tx_dict['TxId']
-                    for txin in tx_dict['tx_ins']:
-                        spent.add((txin['prev_tx'], txin['prev_index']))
-                    for idx, tx_out in enumerate(tx_dict['tx_outs']):
-                        key = (txid, idx)
-                        if key not in spent:
-                            utxos[key] = TxOut.from_dict(tx_out)
-            for key in spent:
-                utxos.pop(key, None)
-            return utxos
+        # def get_utxo_set():
+        #     blockchain_db = BlockchainDB()
+        #     blocks = blockchain_db.read_all_blocks()
+        #     utxos = {}
+        #     spent = set()
+        #     for block in blocks:
+        #         txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
+        #         for tx_dict in txs:
+        #             txid = tx_dict['TxId']
+        #             for txin in tx_dict['tx_ins']:
+        #                 spent.add((txin['prev_tx'], txin['prev_index']))
+        #             for idx, tx_out in enumerate(tx_dict['tx_outs']):
+        #                 key = (txid, idx)
+        #                 if key not in spent:
+        #                     utxos[key] = TxOut.from_dict(tx_out)
+        #     for key in spent:
+        #         utxos.pop(key, None)
+        #     return utxos
 
         while True:
             try:
-                utxos = get_utxo_set()
-
-                # Merge in pending mempool transactions so simulator  sees change outputs immediately
-                for tx in mem_pool.values():
-                    update_utxo_set(tx, utxos)
-                # ← END ADD
-
-                acct = account.get_account(my_address)
 
                 # # --- Add Debugging ---
-                # print(f"[Sim Debug 310894/{threading.get_ident()}] Creating AccountDB instance...")
+                # print(f"[Sim Debug 766099/{threading.get_ident()}] Creating AccountDB instance...")
                 # db_instance = AccountDB()
-                # print(f"[Sim Debug 310894/{threading.get_ident()}] Instance type: {type(db_instance)}")
+                # print(f"[Sim Debug 766099/{threading.get_ident()}] Instance type: {type(db_instance)}")
                 # if hasattr(db_instance, 'table_name'):
-                #     print(f"[Sim Debug 310894/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
+                #     print(f"[Sim Debug 766099/{threading.get_ident()}] Instance HAS table_name: '{db_instance.table_name}'")
                 # else:
-                #     print(f"[Sim Debug 310894/{threading.get_ident()}] Instance LACKS table_name attribute!")
+                #     print(f"[Sim Debug 766099/{threading.get_ident()}] Instance LACKS table_name attribute!")
                 # # --- End Debugging ---
 
-                if acct is None:
-                    print(f"[Sim] Account {my_address} not found.")
-                    time.sleep(actual_interval)
-                    continue
+                # if acct is None:
+                #     print(f"[Sim] Account {my_address} not found.")
+                #     time.sleep(actual_interval)
+                #     continue
                 
-                print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
-                for (txid, idx), tx_out in utxos.items():
-                    print(f"  {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
+                # print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"  {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
 
-                spendable, staked = acct.get_balance(utxos)
-                print(f"[DEBUG][SIM] Account {acct.public_addr} spendable={spendable} staked={staked}")
-                for (txid, idx), tx_out in utxos.items():
-                    print(f"[DEBUG][SIM] UTXO {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
-                if spendable <= 0 and tx_types != "unstake":
-                    print(f"[Sim] My address {my_address} has no spendable funds.")
-                    time.sleep(actual_interval)
-                    continue
+                # spendable, staked = acct.get_balance(utxos)
+                # print(f"[DEBUG][SIM] Account {acct.public_addr} spendable={spendable} staked={staked}")
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"[DEBUG][SIM] UTXO {txid}:{idx} amount={tx_out.amount} cmds={tx_out.script_publickey.cmds}")
+                # if spendable <= 0 and tx_types != "unstake":
+                #     print(f"[Sim] My address {my_address} has no spendable funds.")
+                #     time.sleep(actual_interval)
+                #     continue
                     
-                if staked <= 0 and tx_types == "unstake":
-                    print(f"[Sim] My address {my_address} has no staked funds to unstake.")
-                    time.sleep(actual_interval)
-                    continue
+                # if staked <= 0 and tx_types == "unstake":
+                #     print(f"[Sim] My address {my_address} has no staked funds to unstake.")
+                #     time.sleep(actual_interval)
+                #     continue
                     
                 tx_type = random.choices(
-                    ["transfer", "stake", "unstake"], 
+                    ["transfer", "stake"], 
                     weights=tx_weights, 
                     k=1
                 )[0]
 
-                
-                max_amount = min(spendable, 35 * 100000000) if tx_type != "unstake" else min(staked, 35 * 100000000)
-                if max_amount < 1:
-                    print(f"[Sim] My address {my_address} has insufficient funds for {tx_type}.")
-                    time.sleep(actual_interval)
-                    continue
-                amount = int(random.uniform(1 * 100000000, max_amount))
 
+                
+                # max_amount = min(spendable, 35 * 100000000) if tx_type != "unstake" else min(staked, 35 * 100000000)
+                # if max_amount < 1:
+                #     print(f"[Sim] My address {my_address} has insufficient funds for {tx_type}.")
+                #     time.sleep(actual_interval)
+                #     continue
+                # amount = int(random.uniform(1 * 100000000, max_amount))
+                
+                amount_tdc = random.uniform(0.1, 35.0)
                 target_web_port = my_web_port
 
                 if tx_type == "transfer":
@@ -414,44 +406,32 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                     params = {
                         "fromAddress": my_address,
                         "toAddress": receiver['public_addr'],
-                        "Amount": amount / 100000000 # Convert to TDC for API
+                        "Amount": amount_tdc
                     }
                     endpoint = f"http://localhost:{target_web_port}/wallet"
-                    print(f"[Sim] Attempting to Send {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
-                    logging.info(f"[Sim] Attempting to Send  {amount/100000000} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
+                    print(f"[Sim] Attempting to Send {amount_tdc} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
+                    logging.info(f"[Sim] Attempting to Send  {amount_tdc} TDC from {my_address} to {receiver['public_addr']} via node on web port {target_web_port}")
 
                 elif tx_type == "stake":
                     params = {
                         "action": "stake",
                         "fromAddress": my_address,
-                        "amount": amount / 100000000,
+                        "amount": amount_tdc,
                         "lock_duration": random.randint(60*60, 60*60*24*30)
                     }
                     endpoint = f"http://localhost:{target_web_port}/stake"
-                    print(f"[Sim] Attempting to stake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-                    logging.info(f"[Sim] Attempting to stake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-
-        
+                    print(f"[Sim] Attempting to stake {amount_tdc} TDC from {my_address} via node on web port {target_web_port}")
+                    logging.info(f"[Sim] Attempting to stake {amount_tdc} TDC from {my_address} via node on web port {target_web_port}")
                 
-                # elif tx_type == "claim":
+                # elif tx_type == "unstake":
                 #     params = {
-                #         "action": "claim", 
-                #         "fromAddress": sender['public_addr'], 
-                #         "amount_claim": amount
+                #         "action": "unstake",
+                #         "fromAddress": my_address,
+                #         "amount_unstake": amount_tdc
                 #     }
-
                 #     endpoint = f"http://localhost:{target_web_port}/stake"
-                #     print(f"[Sim] Claiming {amount} TDC from {sender['public_addr']} via node on web port {target_web_port}")
-                
-                elif tx_type == "unstake":
-                    params = {
-                        "action": "unstake",
-                        "fromAddress": my_address,
-                        "amount_unstake": amount / 100000000
-                    }
-                    endpoint = f"http://localhost:{target_web_port}/stake"
-                    print(f"[Sim] Attempting to unstake {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
-                    logging.info(f"[Sim] Attempting to unstake  {amount/100000000} TDC from {my_address} via node on web port {target_web_port}")
+                #     print(f"[Sim] Attempting to unstake {amount_tdc} TDC from {my_address} via node on web port {target_web_port}")
+                #     logging.info(f"[Sim] Attempting to unstake  {amount_tdc} TDC from {my_address} via node on web port {target_web_port}")
                 
                 # Then send the request
                 try:
@@ -463,7 +443,7 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                 
 
             except AttributeError as ae:
-                 print(f"[Sim ATTRIBUTE ERROR 310894/{threading.get_ident()}] {ae}")
+                 print(f"[Sim ATTRIBUTE ERROR 766099/{threading.get_ident()}] {ae}")
                  # Print attributes of the instance that caused the error if possible
                  try:
                      print(f"[Sim Debug] Attributes of db_instance: {db_instance.__dict__}")
@@ -496,9 +476,22 @@ class BlockchainManager(BaseManager):
     pass
 
 # Must register BEFORE instantiating manager
-BlockchainManager.register('Blockchain', Blockchain)
 BlockchainManager.register('dict') # Register dict to create shared dictionaries
-
+BlockchainManager.register('Blockchain',
+                            Blockchain,exposed=(
+                                        'buildUTXOS',
+                                        'get_utxos',      # <<< --- ADD THIS LINE --- >>>
+                                        'startSync',
+                                        'setup_node',
+                                        'utxos',          # Note: Exposing 'utxos' directly gives the attribute, not a method call
+                                        'write_on_disk',
+                                        'update_utxo_set',
+                                        'clean_mempool',
+                                        'addBlock',
+                                        'get_height',
+                                        'get_tip_hash'
+                                        )
+                                    )
 
 if __name__ == '__main__':
     from threading import Lock # Or multiprocessing.Lock if needed cross-process
@@ -531,12 +524,7 @@ if __name__ == '__main__':
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
         blockchain_manager.start()
-        
-        # Start web interface
-        webapp = Process(target=web_main, args=(utxos, mem_pool, webport, localHostPort))
-        webapp.start()
-        
-        # Initialize blockchain through the custom manager with CORRECT parameter order
+
         try:
             # FIXED: Using the correct parameter order per definition
             blockchain = blockchain_manager.Blockchain(
@@ -566,6 +554,23 @@ if __name__ == '__main__':
             import traceback
             traceback.print_exc()
             blockchain = None
+        
+        # Start web interface
+        webapp_process = Process(
+        target=web_main, # Target the main function in run.py
+        args=(
+            utxos,               # 1. Corresponds to utxos
+            mem_pool,            # 2. Corresponds to mem_pool
+            webport,             # 3. Corresponds to port (Web UI Port)
+            localHostPort,       # 4. Corresponds to localPort (Node's Network Port)
+            blockchain,           # 6. Corresponds to a *new* blockchain_proxy parameter (add this to frontend/run.py main signature)
+            shared_state_lock   # 5. Corresponds to shared_state_lock
+            
+        ),
+        daemon=True
+    )
+        webapp_process.start()
+        
         
         # Create syncManager with the manager-created blockchain
         sync = syncManager(
@@ -612,13 +617,27 @@ if __name__ == '__main__':
                 pass
             time.sleep(1)
 
+        required_height = 10
+
+        # Wait for the blockchain to reach the required height
+        while True:
+            try:
+                current_height = blockchain.get_height()
+                print(f"Current blockchain height: {current_height}")
+                if current_height >= required_height:
+                    print(f"Blockchain has reached the required height of {required_height}")
+                    break
+            except Exception as e:
+                print(f"Error fetching blockchain height: {e}")
+            time.sleep(5)
+
         if "none" != "none" and "none":
             print(f"[Sim] Starting transaction simulation: volume='none', interval=30, tx_types='all'")
             simulate_random_transactions(
                 volume="none",
                 interval=30,
                 tx_types="all",
-                num_nodes=2
+                num_nodes=3
             )
         else:
             print("[Sim] Transaction simulation is disabled for this node.")
@@ -629,5 +648,5 @@ if __name__ == '__main__':
                 print(f"Node {NODE_ID} active on port {localHostPort}, web: {webport}")
                 
         except KeyboardInterrupt:
-            webapp.terminate()
+            webapp_process.terminate()
             startServer.terminate()

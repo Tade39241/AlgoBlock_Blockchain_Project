@@ -1,17 +1,1 @@
-2025-04-28 14:48:41,732 INFO: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5901
-2025-04-28 14:48:41,733 INFO: [33mPress CTRL+C to quit[0m
-2025-04-28 14:48:43,244 INFO: 127.0.0.1 - - [28/Apr/2025 14:48:43] "GET / HTTP/1.1" 200 -
-2025-04-28 14:48:43,772 INFO: [Startup] Node 1 initiating sync with peers...
-2025-04-28 14:48:44,237 INFO: [Startup] Node 1 initial sync process finished.
-2025-04-28 14:48:44,261 INFO: Ensured table exists in data/account.db
-2025-04-28 14:48:44,270 INFO: Ensured table exists in data/account.db
-2025-04-28 14:48:44,272 INFO: Ensured table exists in data/account.db
-2025-04-28 14:48:44,276 INFO: [PID 311015] BlockchainDB.connect attempting: sqlite3.connect('data/data/blockchain.db')
-2025-04-28 14:48:44,277 INFO: [PID 311015] BlockchainDB.connect successful for: 'data/data/blockchain.db'
-2025-04-28 14:48:44,281 INFO: Ensured table exists in data/data/blockchain.db
-2025-04-28 14:48:44,362 INFO: 127.0.0.1 - - [28/Apr/2025 14:48:44] "GET / HTTP/1.1" 200 -
-a/data/blockchain.db')
-2025-04-28 14:48:44,277 INFO: [PID 311015] BlockchainDB.connect successful for: 'data/data/blockchain.db'
-2025-04-28 14:48:44,281 INFO: Ensured table exists in data/data/blockchain.db
-2025-04-28 14:48:44,362 INFO: 127.0.0.1 - - [28/Apr/2025 14:48:44] "GET / HTTP/1.1" 200 -
+2025-05-02 06:02:16,991 INFO: [PID 766158] start_node.py script started. Logging configured.

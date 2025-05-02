@@ -315,6 +315,24 @@ import sqlite3
 import threading
 import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s', stream=sys.stderr)
+logger = logging.getLogger(__name__) # Use logger
+log_format = '%(asctime)s %(levelname)s: %(message)s'
+# Log INFO level messages and above specifically to stderr (which gets redirected)
+logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr)
+# Keep the file handler if you still want transaction.log
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+log_file_path = os.path.join(project_root, "network_data", "transaction.log")
+os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+file_handler = logging.FileHandler(log_file_path, mode='w')
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
+file_handler.setFormatter(formatter)
+logging.getLogger().addHandler(file_handler)
+
+# Add a test log message right after setup
+logging.info(f"[PID {{os.getpid()}}] start_node.py script started. Logging configured.")
+
 sys.path.append("{PROJECT_ROOT}")
 sys.path.append("{validator_dir}")
 sys.path.insert(0, "{PROJECT_ROOT}/code_node2")
@@ -525,9 +543,9 @@ class ValidatorSelector:
         staked = get_staked_balances_from_utxos(utxo_set)
 
         validators = [(addr, amt) for addr, amt in staked.items() if amt > 0 and addr != VALIDATOR_ADDRESS]
-        print(f"Available validators (excluding {{VALIDATOR_ADDRESS}}): {{[addr for addr, _ in validators]}}")
+        logger.info(f"Available validators (excluding {{VALIDATOR_ADDRESS}}): {{[addr for addr, _ in validators]}}")
         if not validators:
-            print("ERROR: No eligible validators found with stake!")
+            logger.warning("ERROR: No eligible validators found with stake!")
             return None
         total_stake = sum(amt for addr, amt in validators)
         selection = random.uniform(0, total_stake)
@@ -535,9 +553,9 @@ class ValidatorSelector:
         for addr, amt in validators:
             cumulative += amt
             if selection <= cumulative:
-                print(f"Selected validator {{addr}} based on weighted random (stake: {{amt}})")
+                logger.info(f"Selected validator {{addr}} based on weighted random (stake: {{amt}})")
                 return addr
-        print(f"Fallback selection: {{validators[-1][0]}}")
+        logger.warning(f"Fallback selection: {{validators[-1][0]}}")
         return validators[-1][0]
 
     def broadcast_selection(self, selected_validator):
@@ -564,15 +582,21 @@ class ValidatorSelector:
 
     def run(self):
         while True:
-            utxo_set = get_latest_utxo_set()
-            selected_validator = self.select_validator(utxo_set)
-            if selected_validator:
-                staked = get_staked_balances_from_utxos(utxo_set)
-                print(f"[ValidatorSelector] Selected Validator: {{selected_validator}} with stake {{staked[selected_validator]}}")
-                self.broadcast_selection(selected_validator)
-            else:
-                print("[ValidatorSelector] No eligible validator found.")
-            time.sleep(60)
+            try:
+                utxo_set = get_latest_utxo_set()
+                selected_validator = self.select_validator(utxo_set)
+                if selected_validator:
+                    staked = get_staked_balances_from_utxos(utxo_set)
+                    logger.info(f"[ValidatorSelector] Selected Validator: {{selected_validator}} with stake {{staked[selected_validator]}}")
+                    self.broadcast_selection(selected_validator)
+                else:
+                    logger.error("[ValidatorSelector] No eligible validator found.")
+                logger.debug(f"Validator sleeping for 15 seconds.")
+                time.sleep(20)
+            except Exception as e:
+                logger.error(f"!!!!!!!! Exception in ValidatorSelector run loop !!!!!!!!: {{e}}", exc_info=True)
+                # Sleep longer on error to avoid spamming logs
+                time.sleep(30)
 
 def signal_handler(sig, frame):
     print("\\nShutting down validator node gracefully...")
@@ -719,8 +743,6 @@ if not os.path.exists(data_dir):
 # Import and patch database classes BEFORE importing the Blockchain class
 sys.path.insert(0, "{PROJECT_ROOT}/code_node2")
 from code_node2.Blockchain.Backend.core.database.db import NodeDB, BlockchainDB, AccountDB
-from code_node2.Blockchain.client.sendTDC import update_utxo_set
-
 
 # Save original inits
 original_nodedb_init = NodeDB.__init__
@@ -937,7 +959,7 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
     
     # Adjust interval based on volume
     if volume == "high":
-        target_network_tps = 10    # e.g. 10 transactions/sec total
+        target_network_tps = 6    # e.g. 4 transactions/sec total
         actual_interval = max(
             1,
             int({self.num_nodes} / target_network_tps)
@@ -951,13 +973,13 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
         
     # Set transaction type weights based on tx_types parameter
     if tx_types == "transfers":
-        tx_weights = [1, 0, 0]  # Only transfers
+        tx_weights = [1, 0]  # Only transfers
     elif tx_types == "stake":
-        tx_weights = [0, 1, 1]  # Only staking operations
+        tx_weights = [0, 1]  # Only staking operations
     elif tx_types == "mixed":
-        tx_weights = [2, 1, 1]  # More balanced mix
+        tx_weights = [2, 1]  # More balanced mix
     else:  # "all" - default
-        tx_weights = [5, 2, 1]  # 5:2:1:1 ratio for transfer:stake:unstake
+        tx_weights = [5, 3]  # 5:2:1 ratio for transfer:stake:unstake
 
     sim_account_db_path = account_db_path
 
@@ -972,35 +994,27 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
         from code_node2.Blockchain.Backend.util.util import decode_base58
         from code_node2.Blockchain.Backend.core.tx import TxOut
 
-        def get_utxo_set():
-            blockchain_db = BlockchainDB()
-            blocks = blockchain_db.read_all_blocks()
-            utxos = {{}}
-            spent = set()
-            for block in blocks:
-                txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
-                for tx_dict in txs:
-                    txid = tx_dict['TxId']
-                    for txin in tx_dict['tx_ins']:
-                        spent.add((txin['prev_tx'], txin['prev_index']))
-                    for idx, tx_out in enumerate(tx_dict['tx_outs']):
-                        key = (txid, idx)
-                        if key not in spent:
-                            utxos[key] = TxOut.from_dict(tx_out)
-            for key in spent:
-                utxos.pop(key, None)
-            return utxos
+        # def get_utxo_set():
+        #     blockchain_db = BlockchainDB()
+        #     blocks = blockchain_db.read_all_blocks()
+        #     utxos = {{}}
+        #     spent = set()
+        #     for block in blocks:
+        #         txs = block[0]['Txs'] if isinstance(block, list) else block['Txs']
+        #         for tx_dict in txs:
+        #             txid = tx_dict['TxId']
+        #             for txin in tx_dict['tx_ins']:
+        #                 spent.add((txin['prev_tx'], txin['prev_index']))
+        #             for idx, tx_out in enumerate(tx_dict['tx_outs']):
+        #                 key = (txid, idx)
+        #                 if key not in spent:
+        #                     utxos[key] = TxOut.from_dict(tx_out)
+        #     for key in spent:
+        #         utxos.pop(key, None)
+        #     return utxos
 
         while True:
             try:
-                utxos = get_utxo_set()
-
-                # Merge in pending mempool transactions so simulator  sees change outputs immediately
-                for tx in mem_pool.values():
-                    update_utxo_set(tx, utxos)
-                # ← END ADD
-
-                acct = account.get_account(my_address)
 
                 # # --- Add Debugging ---
                 # print(f"[Sim Debug {os.getpid()}/{{threading.get_ident()}}] Creating AccountDB instance...")
@@ -1012,43 +1026,45 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                 #     print(f"[Sim Debug {os.getpid()}/{{threading.get_ident()}}] Instance LACKS table_name attribute!")
                 # # --- End Debugging ---
 
-                if acct is None:
-                    print(f"[Sim] Account {{my_address}} not found.")
-                    time.sleep(actual_interval)
-                    continue
+                # if acct is None:
+                #     print(f"[Sim] Account {{my_address}} not found.")
+                #     time.sleep(actual_interval)
+                #     continue
                 
-                print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
-                for (txid, idx), tx_out in utxos.items():
-                    print(f"  {{txid}}:{{idx}} amount={{tx_out.amount}} cmds={{tx_out.script_publickey.cmds}}")
+                # print("[DEBUG][SIM] UTXO set for account", acct.public_addr)
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"  {{txid}}:{{idx}} amount={{tx_out.amount}} cmds={{tx_out.script_publickey.cmds}}")
 
-                spendable, staked = acct.get_balance(utxos)
-                print(f"[DEBUG][SIM] Account {{acct.public_addr}} spendable={{spendable}} staked={{staked}}")
-                for (txid, idx), tx_out in utxos.items():
-                    print(f"[DEBUG][SIM] UTXO {{txid}}:{{idx}} amount={{tx_out.amount}} cmds={{tx_out.script_publickey.cmds}}")
-                if spendable <= 0 and tx_types != "unstake":
-                    print(f"[Sim] My address {{my_address}} has no spendable funds.")
-                    time.sleep(actual_interval)
-                    continue
+                # spendable, staked = acct.get_balance(utxos)
+                # print(f"[DEBUG][SIM] Account {{acct.public_addr}} spendable={{spendable}} staked={{staked}}")
+                # for (txid, idx), tx_out in utxos.items():
+                #     print(f"[DEBUG][SIM] UTXO {{txid}}:{{idx}} amount={{tx_out.amount}} cmds={{tx_out.script_publickey.cmds}}")
+                # if spendable <= 0 and tx_types != "unstake":
+                #     print(f"[Sim] My address {{my_address}} has no spendable funds.")
+                #     time.sleep(actual_interval)
+                #     continue
                     
-                if staked <= 0 and tx_types == "unstake":
-                    print(f"[Sim] My address {{my_address}} has no staked funds to unstake.")
-                    time.sleep(actual_interval)
-                    continue
+                # if staked <= 0 and tx_types == "unstake":
+                #     print(f"[Sim] My address {{my_address}} has no staked funds to unstake.")
+                #     time.sleep(actual_interval)
+                #     continue
                     
                 tx_type = random.choices(
-                    ["transfer", "stake", "unstake"], 
+                    ["transfer", "stake"], 
                     weights=tx_weights, 
                     k=1
                 )[0]
 
-                
-                max_amount = min(spendable, 35 * 100000000) if tx_type != "unstake" else min(staked, 35 * 100000000)
-                if max_amount < 1:
-                    print(f"[Sim] My address {{my_address}} has insufficient funds for {{tx_type}}.")
-                    time.sleep(actual_interval)
-                    continue
-                amount = int(random.uniform(1 * 100000000, max_amount))
 
+                
+                # max_amount = min(spendable, 35 * 100000000) if tx_type != "unstake" else min(staked, 35 * 100000000)
+                # if max_amount < 1:
+                #     print(f"[Sim] My address {{my_address}} has insufficient funds for {{tx_type}}.")
+                #     time.sleep(actual_interval)
+                #     continue
+                # amount = int(random.uniform(1 * 100000000, max_amount))
+                
+                amount_tdc = random.uniform(0.1, 35.0)
                 target_web_port = my_web_port
 
                 if tx_type == "transfer":
@@ -1064,44 +1080,32 @@ def simulate_random_transactions(volume, interval=30, tx_types="all",num_nodes=3
                     params = {{
                         "fromAddress": my_address,
                         "toAddress": receiver['public_addr'],
-                        "Amount": amount / 100000000 # Convert to TDC for API
+                        "Amount": amount_tdc
                     }}
                     endpoint = f"http://localhost:{{target_web_port}}/wallet"
-                    print(f"[Sim] Attempting to Send {{amount/100000000}} TDC from {{my_address}} to {{receiver['public_addr']}} via node on web port {{target_web_port}}")
-                    logging.info(f"[Sim] Attempting to Send  {{amount/100000000}} TDC from {{my_address}} to {{receiver['public_addr']}} via node on web port {{target_web_port}}")
+                    print(f"[Sim] Attempting to Send {{amount_tdc}} TDC from {{my_address}} to {{receiver['public_addr']}} via node on web port {{target_web_port}}")
+                    logging.info(f"[Sim] Attempting to Send  {{amount_tdc}} TDC from {{my_address}} to {{receiver['public_addr']}} via node on web port {{target_web_port}}")
 
                 elif tx_type == "stake":
                     params = {{
                         "action": "stake",
                         "fromAddress": my_address,
-                        "amount": amount / 100000000,
+                        "amount": amount_tdc,
                         "lock_duration": random.randint(60*60, 60*60*24*30)
                     }}
                     endpoint = f"http://localhost:{{target_web_port}}/stake"
-                    print(f"[Sim] Attempting to stake {{amount/100000000}} TDC from {{my_address}} via node on web port {{target_web_port}}")
-                    logging.info(f"[Sim] Attempting to stake {{amount/100000000}} TDC from {{my_address}} via node on web port {{target_web_port}}")
-
-        
+                    print(f"[Sim] Attempting to stake {{amount_tdc}} TDC from {{my_address}} via node on web port {{target_web_port}}")
+                    logging.info(f"[Sim] Attempting to stake {{amount_tdc}} TDC from {{my_address}} via node on web port {{target_web_port}}")
                 
-                # elif tx_type == "claim":
+                # elif tx_type == "unstake":
                 #     params = {{
-                #         "action": "claim", 
-                #         "fromAddress": sender['public_addr'], 
-                #         "amount_claim": amount
+                #         "action": "unstake",
+                #         "fromAddress": my_address,
+                #         "amount_unstake": amount_tdc
                 #     }}
-
                 #     endpoint = f"http://localhost:{{target_web_port}}/stake"
-                #     print(f"[Sim] Claiming {{amount}} TDC from {{sender['public_addr']}} via node on web port {{target_web_port}}")
-                
-                elif tx_type == "unstake":
-                    params = {{
-                        "action": "unstake",
-                        "fromAddress": my_address,
-                        "amount_unstake": amount / 100000000
-                    }}
-                    endpoint = f"http://localhost:{{target_web_port}}/stake"
-                    print(f"[Sim] Attempting to unstake {{amount/100000000}} TDC from {{my_address}} via node on web port {{target_web_port}}")
-                    logging.info(f"[Sim] Attempting to unstake  {{amount/100000000}} TDC from {{my_address}} via node on web port {{target_web_port}}")
+                #     print(f"[Sim] Attempting to unstake {{amount_tdc}} TDC from {{my_address}} via node on web port {{target_web_port}}")
+                #     logging.info(f"[Sim] Attempting to unstake  {{amount_tdc}} TDC from {{my_address}} via node on web port {{target_web_port}}")
                 
                 # Then send the request
                 try:
@@ -1146,9 +1150,22 @@ class BlockchainManager(BaseManager):
     pass
 
 # Must register BEFORE instantiating manager
-BlockchainManager.register('Blockchain', Blockchain)
 BlockchainManager.register('dict') # Register dict to create shared dictionaries
-
+BlockchainManager.register('Blockchain',
+                            Blockchain,exposed=(
+                                        'buildUTXOS',
+                                        'get_utxos',      # <<< --- ADD THIS LINE --- >>>
+                                        'startSync',
+                                        'setup_node',
+                                        'utxos',          # Note: Exposing 'utxos' directly gives the attribute, not a method call
+                                        'write_on_disk',
+                                        'update_utxo_set',
+                                        'clean_mempool',
+                                        'addBlock',
+                                        'get_height',
+                                        'get_tip_hash'
+                                        )
+                                    )
 
 if __name__ == '__main__':
     from threading import Lock # Or multiprocessing.Lock if needed cross-process
@@ -1181,12 +1198,7 @@ if __name__ == '__main__':
         # Start the custom manager for Blockchain
         blockchain_manager = BlockchainManager()
         blockchain_manager.start()
-        
-        # Start web interface
-        webapp = Process(target=web_main, args=(utxos, mem_pool, webport, localHostPort))
-        webapp.start()
-        
-        # Initialize blockchain through the custom manager with CORRECT parameter order
+
         try:
             # FIXED: Using the correct parameter order per definition
             blockchain = blockchain_manager.Blockchain(
@@ -1216,6 +1228,23 @@ if __name__ == '__main__':
             import traceback
             traceback.print_exc()
             blockchain = None
+        
+        # Start web interface
+        webapp_process = Process(
+        target=web_main, # Target the main function in run.py
+        args=(
+            utxos,               # 1. Corresponds to utxos
+            mem_pool,            # 2. Corresponds to mem_pool
+            webport,             # 3. Corresponds to port (Web UI Port)
+            localHostPort,       # 4. Corresponds to localPort (Node's Network Port)
+            blockchain,           # 6. Corresponds to a *new* blockchain_proxy parameter (add this to frontend/run.py main signature)
+            shared_state_lock   # 5. Corresponds to shared_state_lock
+            
+        ),
+        daemon=True
+    )
+        webapp_process.start()
+        
         
         # Create syncManager with the manager-created blockchain
         sync = syncManager(
@@ -1262,6 +1291,20 @@ if __name__ == '__main__':
                 pass
             time.sleep(1)
 
+        required_height = 10
+
+        # Wait for the blockchain to reach the required height
+        while True:
+            try:
+                current_height = blockchain.get_height()
+                print(f"Current blockchain height: {{current_height}}")
+                if current_height >= required_height:
+                    print(f"Blockchain has reached the required height of {{required_height}}")
+                    break
+            except Exception as e:
+                print(f"Error fetching blockchain height: {{e}}")
+            time.sleep(5)
+
         if "{self.sim_volume}" != "none" and "{self.sim_volume}":
             print(f"[Sim] Starting transaction simulation: volume='{self.sim_volume}', interval={self.sim_interval}, tx_types='{self.sim_tx_types}'")
             simulate_random_transactions(
@@ -1279,7 +1322,7 @@ if __name__ == '__main__':
                 print(f"Node {{NODE_ID}} active on port {{localHostPort}}, web: {{webport}}")
                 
         except KeyboardInterrupt:
-            webapp.terminate()
+            webapp_process.terminate()
             startServer.terminate()
 """
         with open(script_path, 'w') as f:
@@ -1436,256 +1479,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-# ----------------------------- Legacy Code -----------------------------
-
-#  def create_validator_script(self, validator_dir, validator_port, peer_list):
-#         script_path = os.path.join(validator_dir, "run_validator.py")
-        
-#         script_content = rf"""
-# import sys
-# import os
-# import time
-# import signal
-# import json
-
-# # Add paths
-# sys.path.append("{PROJECT_ROOT}")
-# sys.path.append("{validator_dir}")
-
-# data_dir = os.path.join("{validator_dir}", "data")
-# if not os.path.exists(data_dir):
-#     os.makedirs(data_dir)
-
-# # Custom database paths
-# blockchain_db_path = os.path.join(data_dir, "blockchain.db")
-# node_db_path = os.path.join(data_dir, "node.db")
-# account_db_path = os.path.join(data_dir, "account.db")
-
-# # --- Add this block ---
-# # Ensure validator directory exists before trying to access DBs
-# validator_base_dir = os.path.dirname(account_db_path)
-# if not os.path.exists(validator_base_dir):
-#     os.makedirs(validator_base_dir, exist_ok=True)
-#     print(f"Created validator directory: {{validator_base_dir}}")
-# # --- End added block ---
-
-# # Set up important paths
-# sys.path.insert(0, "{PROJECT_ROOT}/code_node2")
-
-# # Create a complete fixed validator module
-# with open('{validator_dir}/fixed_validator.py', 'w') as f:
-#     with open('{PROJECT_ROOT}/validatorNode/main.py', 'r') as src:
-#         validator_code = src.read()
-        
-#         # Fix all network-related imports
-#         replacements = [
-#             ('from network.connection import Node', 
-#              'from code_node2.Blockchain.Backend.core.network.connection import Node'),
-#             ('from network.network import NetworkEnvelope', 
-#              'from code_node2.Blockchain.Backend.core.network.network import NetworkEnvelope'),
-#             ('from database.db import', 
-#              'from code_node2.Blockchain.Backend.core.database.db import'),
-#             ('import network.', 
-#              'import code_node2.Blockchain.Backend.core.network.'),
-#             ('from network.', 
-#              'from code_node2.Blockchain.Backend.core.network.'),
-#             ('import database.', 
-#              'import code_node2.Blockchain.Backend.core.database.'),
-#             ('from database.', 
-#              'from code_node2.Blockchain.Backend.core.database.')
-#         ]
-        
-#         for old, new in replacements:
-#             validator_code = validator_code.replace(old, new)
-            
-#         f.write(validator_code)
-
-# # Patch database classes to use custom paths
-# from code_node2.Blockchain.Backend.core.database.db import NodeDB, BlockchainDB, AccountDB
-
-# # Save original inits
-# original_nodedb_init = NodeDB.__init__
-# original_blockchaindb_init = BlockchainDB.__init__
-# original_accountdb_init = AccountDB.__init__
-
-# # Patch NodeDB with absolute paths
-# def patched_nodedb_init(self, db_path=None):
-#     self.filepath = node_db_path if not db_path else db_path
-#     self.table_name = "nodes"  # Add table_name attribute
-#     self.conn = None
-#     self.connect()
-#     self.table_schema = '''
-#     CREATE TABLE IF NOT EXISTS nodes
-#     (port INTEGER PRIMARY KEY)
-#     '''
-#     self._create_table()
-# NodeDB.__init__ = patched_nodedb_init
-
-# def patched_blockchaindb_init(self, db_path=None):
-#     self.filepath = blockchain_db_path if not db_path else db_path
-#     self.table_name = "blocks"
-#     self.conn = None
-#     self.connect()
-#     self.table_schema = '''
-#     CREATE TABLE IF NOT EXISTS blocks
-#     (id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     data TEXT NOT NULL)
-#     '''
-#     self._create_table()
-# BlockchainDB.__init__ = patched_blockchaindb_init
-
-# # Patch AccountDB
-# def patched_accountdb_init(self, db_path=None):
-#     effective_path = db_path if db_path else account_db_path
-#     self.filename = effective_path
-#     self.table_name = 'account'
-#     self.filepath = self.filename
-#     self.conn = None
-#     self.connect()
-#     self.table_schema = '''
-#         CREATE TABLE IF NOT EXISTS account
-#         (public_addr TEXT PRIMARY KEY,
-#         value TEXT NOT NULL)
-#     '''
-#     self._create_table()
-
-# AccountDB.__init__ = patched_accountdb_init
-
-# # Test database connections
-# print(f"Testing validator database connections...")
-# try:
-#     import sqlite3
-#     conn = sqlite3.connect(node_db_path)
-#     print(f"  - Connected to validator node database: {{node_db_path}}")
-#     conn.close()
-    
-#     conn = sqlite3.connect(blockchain_db_path)
-#     print(f"  - Connected to validator blockchain database: {{blockchain_db_path}}")
-#     conn.close()
-    
-#     conn = sqlite3.connect(account_db_path)
-#     print(f"  - Connected to validator account database: {{account_db_path}}")
-#     conn.close()
-# except Exception as e:
-#     print(f"Error testing validator database connections: {{e}}")
-#     sys.exit(1)
-
-# # Import our fixed validator module
-# sys.path.insert(0, "{validator_dir}")
-# from fixed_validator import ValidatorSelector
-
-# # Create validator account with stake
-# def create_validator_account():
-#     default_addr = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
-    
-#     # Account data structure with stake 
-#     account_data = {{
-#         'public_addr': default_addr,
-#         'privateKey': '90285630861639623347665892885049342176040030896554662509747065762830918365196',
-#         'public_key': '0428492a0256e1d7114ec48663516a44213f201afa16f425abb512339cc7bfed3964fc3d26e22a61f6aa0e3dc6549526a76be4f7fbdb9f57e0ef526c3b4ccc1913'
-#     }}
-    
-#     # Write directly using SQL
-#     try:
-#         import sqlite3
-#         import json  # Make sure json is imported
-#         conn = sqlite3.connect(account_db_path)
-#         cursor = conn.cursor()
-#         cursor.execute('CREATE TABLE IF NOT EXISTS account (public_addr TEXT PRIMARY KEY, value TEXT NOT NULL)')
-#         account_json = json.dumps(account_data)
-#         cursor.execute('INSERT OR REPLACE INTO account VALUES (?, ?)', 
-#                     (default_addr, account_json))
-#         conn.commit()
-#         conn.close()
-#         print(f"Created validator account with stake: {{default_addr}}")
-        
-#         # Verify the account was written
-#         conn = sqlite3.connect(account_db_path)
-#         cursor = conn.cursor() 
-#         cursor.execute('SELECT value FROM account WHERE public_addr = ?', (default_addr,))
-#         result = cursor.fetchone()
-#         if result:
-#             print(f"Validator account verified with data: {{result[0][:30]}}...")
-#         else:
-#             print("WARNING: Validator account not found after writing!")
-#         conn.close()
-#     except Exception as e:
-#         print(f"Error creating validator account: {{e}}")
-
-# # Create the validator account before running validator
-# create_validator_account()
-
-# # Node addresses map - helps validator identify nodes by their addresses
-# node_addresses = {{
-#     '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig': 0,  # Node 0
-#     '1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz': 1,  # Node 1
-#     '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD': 2,  # Node 2
-#     '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh': 3,  # Reserve node
-# }}
-
-# # Enhanced validator selection function that rotates through addresses
-# def select_validator(available_accounts):
-#     import random
-    
-#     # Define the staking/validator address that should NEVER be selected
-#     VALIDATOR_ADDRESS = '1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh'
-    
-#     # Filter accounts with stake AND exclude the validator address
-#     staked_accounts = [acc for acc in available_accounts 
-#                      if acc.get('staked', 0) > 0 
-#                      and acc.get('public_addr') != VALIDATOR_ADDRESS]
-    
-#     print(f"Available validators (excluding {{VALIDATOR_ADDRESS}}): {{[acc.get('public_addr') for acc in staked_accounts]}}")
-    
-#     if not staked_accounts:
-#         print("ERROR: No eligible validators found with stake!")
-#         return None
-        
-#     # Select randomly based on stake weight
-#     total_stake = sum(acc['staked'] for acc in staked_accounts)
-#     selection = random.uniform(0, total_stake)
-    
-#     cumulative = 0
-#     for account in staked_accounts:
-#         cumulative += account['staked']
-#         if selection <= cumulative:
-#             print(f"Selected validator {{account['public_addr']}} based on weighted random (stake: {{account['staked']}})")
-#             return account
-            
-#     # Fallback to last account
-#     print(f"Fallback selection: {{staked_accounts[-1]['public_addr']}}")
-#     return staked_accounts[-1]
-
-# # Create a complete fixed validator module
-# with open('{validator_dir}/fixed_validator.py', 'w') as f:
-#     with open('{PROJECT_ROOT}/validatorNode/main.py', 'r') as src:
-#         validator_code = src.read()
-
-# def signal_handler(sig, frame):
-#     print("\\nShutting down validator node gracefully...")
-#     # Restore original init methods
-#     NodeDB.__init__ = original_nodedb_init
-#     BlockchainDB.__init__ = original_blockchaindb_init
-#     AccountDB.__init__ = original_accountdb_init
-#     sys.exit(0)
-
-# if __name__ == '__main__':
-#     signal.signal(signal.SIGINT, signal_handler)
-    
-#     host = "{self.host}"
-#     port = {validator_port}
-#     peer_list = {peer_list}
-    
-#     print(f"Starting validator node on port {{port}} with custom DB paths")
-    
-#     # Create and run validator
-#     validator = ValidatorSelector(host, port, peer_list)
-#     validator.run()
-# """
-
-        
-#         with open(script_path, 'w') as f:
-#             f.write(script_content)

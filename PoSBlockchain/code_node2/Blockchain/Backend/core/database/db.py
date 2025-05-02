@@ -76,7 +76,7 @@ class BaseDB:
         self.connect()
         self.cursor.execute(self.table_schema)
         self.conn.commit()
-        logger.info(f"Ensured table exists in {self.filepath}")
+        # logger.info(f"Ensured table exists in {self.filepath}")
 
     def read(self):
         self.connect()
@@ -107,7 +107,7 @@ class BaseDB:
                 ON CONFLICT(public_addr) DO UPDATE SET data=excluded.data
             ''', (public_addr, json.dumps(data)))
             self.conn.commit()
-            logger.info(f"Account {public_addr} written/updated successfully.")
+            # logger.info(f"Account {public_addr} written/updated successfully.")
         except Exception as e:
             logger.error(f"Error writing account {public_addr} to DB: {e}")
             raise
@@ -150,9 +150,9 @@ class BlockchainDB(BaseDB):
     def connect(self):
         if self.conn is None:
             try:
-                logging.info(f"[PID {os.getpid()}] BlockchainDB.connect attempting: sqlite3.connect('{self.filepath}')")
+                # logging.info(f"[PID {os.getpid()}] BlockchainDB.connect attempting: sqlite3.connect('{self.filepath}')")
                 self.conn = sqlite3.connect(self.filepath)
-                logging.info(f"[PID {os.getpid()}] BlockchainDB.connect successful for: '{self.filepath}'")
+                # logging.info(f"[PID {os.getpid()}] BlockchainDB.connect successful for: '{self.filepath}'")
                 self.cursor = self.conn.cursor()
             except sqlite3.Error as e:
                 logging.error(f"[PID {os.getpid()}] BlockchainDB.connect error: {e}")
@@ -207,7 +207,7 @@ class BlockchainDB(BaseDB):
             count = result[0] if result else 0
             # Height is typically 0-indexed (genesis block is height 0)
             height = count - 1
-            logger.debug(f"Calculated height: {height} (Count: {count})")
+            # logger.debug(f"Calculated height: {height} (Count: {count})")
             return height
         except sqlite3.Error as e:
             logger.error(f"Error getting blockchain height: {e}")
@@ -215,6 +215,76 @@ class BlockchainDB(BaseDB):
             return -1
         # Note: We don't close the connection here as it's managed by the class instance
     # --- END OF ADDED METHOD ---
+
+    def read_block_by_hash(self, block_hash_hex):
+        """
+        Reads a block from the database using its block hash.
+        Assumes block data is stored as JSON text in the 'data' column
+        and contains the path '$.BlockHeader.blockHash'.
+
+        Args:
+            block_hash_hex (str): The block hash (hex string) to search for.
+
+        Returns:
+            dict: The block data as a dictionary if found, otherwise None.
+                  Returns None also in case of database or JSON errors.
+        """
+        conn = None
+        cursor = None
+        # Define query using json_extract
+        # The path '$.BlockHeader.blockHash' navigates the JSON structure
+        query = f"SELECT data FROM {self.table_name} WHERE json_extract(data, '$.BlockHeader.blockHash') = ?"
+
+        try:
+            # Use a short-lived connection for this specific read for safety
+            # Connect using the filepath stored during __init__
+            conn = sqlite3.connect(self.filepath, timeout=10)
+            # Set pragmas for potentially better read performance/concurrency
+            conn.execute("PRAGMA journal_mode=WAL;")
+            conn.execute("PRAGMA busy_timeout=5000;")
+
+            cursor = conn.cursor()
+            logger.debug(f"Executing query: {query} with hash: {block_hash_hex}")
+            cursor.execute(query, (block_hash_hex,))
+            result = cursor.fetchone() # Fetch one row
+
+            if result:
+                block_data_json = result[0]
+                try:
+                    block_data_dict = json.loads(block_data_json)
+                    logger.debug(f"Found block with hash {block_hash_hex}")
+                    return block_data_dict # Return the parsed dictionary
+                except json.JSONDecodeError as json_err:
+                    logger.error(f"Failed to decode JSON for block hash {block_hash_hex} from DB: {json_err}")
+                    logger.error(f"Invalid JSON data was: {block_data_json[:200]}...") # Log snippet
+                    return None # Cannot parse data
+            else:
+                logger.debug(f"Block with hash {block_hash_hex} not found.")
+                return None # Block not found
+
+        except sqlite3.OperationalError as op_err:
+            # Specific check for "no such function: json_extract"
+            if "no such function: json_extract" in str(op_err):
+                 logger.error("SQLite JSON1 extension is not enabled or available. Cannot use read_block_by_hash.")
+                 # Consider falling back to a less efficient method here if needed
+            else:
+                 logger.error(f"SQLite OperationalError in read_block_by_hash (Hash: {block_hash_hex}): {op_err}", exc_info=True)
+            return None # Indicate error
+        except sqlite3.Error as sql_err:
+            logger.error(f"SQLite error in read_block_by_hash (Hash: {block_hash_hex}): {sql_err}", exc_info=True)
+            return None # Indicate error
+        except Exception as e:
+            # Catch any other unexpected errors
+             logger.error(f"Unexpected error in read_block_by_hash (Hash: {block_hash_hex}): {e}", exc_info=True)
+             return None
+        finally:
+            # Ensure connection is closed
+            if cursor:
+                try: cursor.close()
+                except Exception: pass
+            if conn:
+                try: conn.close()
+                except Exception: pass
 
 
     def read_all_blocks(self):
@@ -275,7 +345,7 @@ class AccountDB(BaseDB):
         if db_path:
             self.filepath = db_path # Ensure filepath is the absolute one provided
         
-        print(f"[DEBUG] AccountDB using path: {self.filepath}")
+        # print(f"[DEBUG] AccountDB using path: {self.filepath}")
 
 
     def read_account(self, address):

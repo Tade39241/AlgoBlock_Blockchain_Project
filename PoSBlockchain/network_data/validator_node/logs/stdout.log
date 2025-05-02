@@ -1,4 +1,3 @@
-[Validator] symlinked /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/data → /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data
 Testing validator database connections...
   - Connected to validator node database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/node.db
   - Connected to validator blockchain database: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
@@ -8,55 +7,16 @@ Validator account verified with data: {"public_addr": "1CJL7mvokNjrs...
 [Validator][DEBUG] account.db contains:
     1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig
     14yikjhubj1sepvqsvzpRv4H6LhMN43XGD
+    1Lu9SwPPo7DJYrMVrZnkDXVw5y4aEeF1kz
     1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh
-Starting validator node on port 9002 with custom DB paths
-[DEBUG] AccountDB using path: data/account.db
-[VALIDATOR] {'1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig': {'privateKey': 96535626569238604192129746772702330856431841702880282095447645155889990991526, 'public_addr': '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig', 'public_key': '0248c103d04cc26840fa000d9614301fa5aee9d79b3a972e61c0712367658530b4', 'staked': 10000000000, 'unspent': 10000000000, 'locked_until': 0, 'staking_history': '[]'}, '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD': {'privateKey': 101116694282830344663754055609096743199644277746685645606199809457638491163865, 'public_addr': '14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', 'public_key': '0387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d', 'staked': 10000000000, 'unspent': 10000000000, 'locked_until': 0, 'staking_history': '[]'}}
-[Validator] No blocks found, creating genesis block...
-hash256 input bytes (len=21): 002ba28698085529f90afe2a5cffc24d226878a823
-hash256 input bytes (len=21): 002ba28698085529f90afe2a5cffc24d226878a823
-hash256 input bytes (len=21): 0087ddb8e9146d2772a4d0f01d2d6d30307510b7d0
-hash256 input bytes (len=21): 0087ddb8e9146d2772a4d0f01d2d6d30307510b7d0
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-[DEBUG] AccountDB using path: data/account.db
-[DEBUG] AccountDB using path: data/account.db
-[DEBUG] AccountDB using path: data/account.db
-Database path used: data/account.db
-Account object created: address=14yikjhubj1sepvqsvzpRv4H6LhMN43XGD, staked=10000000000 satoshis (100.0 coins), unspent=10000000000 satoshis (100.0 coins), 
-Block signature GENESIS BLOCK: 3043021f5b09be67b9e4fac9c81f623db0f3b53683b474fb74bcf347f7af936812fbe7022005addfd81414067aeaa1703e954abade64a10644c9adf821398c9272aa0ed93d of type <class 'str'>
-Block signature: 3043021f5b09be67b9e4fac9c81f623db0f3b53683b474fb74bcf347f7af936812fbe7022005addfd81414067aeaa1703e954abade64a10644c9adf821398c9272aa0ed93d of type <class 'str'>
-hash256 input bytes (len=175): 0100000000000000000000000000000000000000000000000000000000000000000000000a4ddce987ea5e79754a09ba3c45cd17932f53dd508d3fc2daf47ad30d4bfa44000000000387c964aa67e33f0b93d3221b1bdfce382746cc7772e7497ca2677826f58d901d453043021f5b09be67b9e4fac9c81f623db0f3b53683b474fb74bcf347f7af936812fbe7022005addfd81414067aeaa1703e954abade64a10644c9adf821398c9272aa0ed93d
-Genesis block object initially: {'Height': 0, 'Blocksize': 160, 'BlockHeader': <Blockchain.Backend.core.blockheader.BlockHeader object at 0x7f1463199820>, 'TxCount': 1, 'Txs': [<Blockchain.Backend.core.tx.Tx object at 0x7f1463779130>], 'Signature': None}
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-[DEBUG] Block written to DB: Height=0 Hash=3f7c028d967403b2b939cb1049f2ef0f57d9070a2f9d200823e67d1244d84fad
-[DEBUG] Current chain in DB:
-  Height=0 Hash=3f7c028d967403b2b939cb1049f2ef0f57d9070a2f9d200823e67d1244d84fad
-[DEBUG] Genesis block written to DB: Height=0 Hash=3f7c028d967403b2b939cb1049f2ef0f57d9070a2f9d200823e67d1244d84fad
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x7f146313cd00> to 9000
-Error while downloading or uploading the Blockchain 
- connectToHost() missing 1 required positional argument: 'bindPort_flag'
-[Sender] Sending Block: <Blockchain.Backend.core.block.Block object at 0x7f146313cd00> to 9001
-Error while downloading or uploading the Blockchain 
- connectToHost() missing 1 required positional argument: 'bindPort_flag'
-[DEBUG] Genesis block broadcasted: Height=0 Hash=3f7c028d967403b2b939cb1049f2ef0f57d9070a2f9d200823e67d1244d84fad
-[Validator] Genesis block created and broadcast.
+Starting validator node on port 9003 with custom DB paths
+[Validator] Blockchain already initialized.
 [DEBUG] BlockchainDB will use path: /dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node/data/blockchain.db
-hash256 input bytes (len=160): 01000000000400e40b5402000000200100142ba28698085529f90afe2a5cffc24d226878a82308000000000000000000e40b54020000001976a9142ba28698085529f90afe2a5cffc24d226878a82388ac00e40b54020000002001001487ddb8e9146d2772a4d0f01d2d6d30307510b7d008000000000000000000e40b54020000001976a91487ddb8e9146d2772a4d0f01d2d6d30307510b7d088ac00000000
-hash256 input bytes (len=21): 002ba28698085529f90afe2a5cffc24d226878a823
-hash256 input bytes (len=21): 0087ddb8e9146d2772a4d0f01d2d6d30307510b7d0
-Available validators (excluding 1CJL7mvokNjrs2D48jM3EEHoRhQiWCbxCh): ['14yikjhubj1sepvqsvzpRv4H6LhMN43XGD', '1DPPqS7kQNQMcn28du4sYJe8YKLUH8Jrig']
-Selected validator 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD based on weighted random (stake: 10000000000)
-hash256 input bytes (len=21): 002ba28698085529f90afe2a5cffc24d226878a823
-hash256 input bytes (len=21): 0087ddb8e9146d2772a4d0f01d2d6d30307510b7d0
-[ValidatorSelector] Selected Validator: 14yikjhubj1sepvqsvzpRv4H6LhMN43XGD with stake 10000000000
 Connecting to peer 127.0.0.1:9000 to broadcast selection...
-hash256 input bytes (len=91): 7b2274797065223a202276616c696461746f725f73656c656374696f6e222c202273656c65637465645f76616c696461746f72223a2022313479696b6a6875626a31736570767173767a7052763448364c684d4e3433584744227d
-[ValidatorSelector] Successfully sent validator selection to ('127.0.0.1', 9000)
+[ValidatorSelector] Error sending selection to ('127.0.0.1', 9000): 'NoneType' object has no attribute 'sendall'
 Connecting to peer 127.0.0.1:9001 to broadcast selection...
-hash256 input bytes (len=91): 7b2274797065223a202276616c696461746f725f73656c656374696f6e222c202273656c65637465645f76616c696461746f72223a2022313479696b6a6875626a31736570767173767a7052763448364c684d4e3433584744227d
-[ValidatorSelector] Successfully sent validator selection to ('127.0.0.1', 9001)
+[ValidatorSelector] Error sending selection to ('127.0.0.1', 9001): 'NoneType' object has no attribute 'sendall'
+Connecting to peer 127.0.0.1:9002 to broadcast selection...
+[ValidatorSelector] Error sending selection to ('127.0.0.1', 9002): 'NoneType' object has no attribute 'sendall'
 
 Shutting down validator node gracefully...

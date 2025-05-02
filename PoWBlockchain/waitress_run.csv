@@ -1,0 +1,10 @@
+timestamp,node_index,api_url,height,mempool_size,total_transactions,last_block_timestamp,api_cpu_percent,api_memory_percent,api_disk_percent,node_port,avg_block_time_s,estimated_tps
+2025-05-02T10:44:50.395654,0,http://localhost:5900,,,,,,,,,,
+2025-05-02T10:44:50.395654,1,http://localhost:5901,,,,,,,,,,
+2025-05-02T10:44:50.395654,2,http://localhost:5902,,,,,,,,,,
+2025-05-02T10:44:55.406938,0,http://localhost:5900,,,,,,,,,,
+2025-05-02T10:44:55.406938,1,http://localhost:5901,,,,,,,,,,
+2025-05-02T10:44:55.406938,2,http://localhost:5902,,,,,,,,,,
+2025-05-02T10:45:00.422725,0,http://localhost:5900,,,,,,,,,,
+2025-05-02T10:45:00.422725,1,http://localhost:5901,,,,,,,,,,
+2025-05-02T10:45:00.422725,2,http://localhost:5902,,,,,,,,,,

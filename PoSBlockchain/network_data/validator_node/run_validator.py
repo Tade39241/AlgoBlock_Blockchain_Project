@@ -12,6 +12,24 @@ import sqlite3
 import threading
 import logging
 
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s: %(message)s', stream=sys.stderr)
+logger = logging.getLogger(__name__) # Use logger
+log_format = '%(asctime)s %(levelname)s: %(message)s'
+# Log INFO level messages and above specifically to stderr (which gets redirected)
+logging.basicConfig(level=logging.INFO, format=log_format, stream=sys.stderr)
+# Keep the file handler if you still want transaction.log
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+log_file_path = os.path.join(project_root, "network_data", "transaction.log")
+os.makedirs(os.path.dirname(log_file_path), exist_ok=True)
+file_handler = logging.FileHandler(log_file_path, mode='w')
+file_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
+file_handler.setFormatter(formatter)
+logging.getLogger().addHandler(file_handler)
+
+# Add a test log message right after setup
+logging.info(f"[PID {os.getpid()}] start_node.py script started. Logging configured.")
+
 sys.path.append("/dcs/project/algoblock/MainCode/PoSBlockchain")
 sys.path.append("/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node")
 sys.path.insert(0, "/dcs/project/algoblock/MainCode/PoSBlockchain/code_node2")
@@ -19,7 +37,7 @@ sys.path.insert(0, "/dcs/project/algoblock/MainCode/PoSBlockchain/code_node2")
 from Blockchain.Backend.core.network.connection import Node
 from Blockchain.Backend.core.network.network import NetworkEnvelope
 
-NUM_NODES = 2
+NUM_NODES = 3
 
 # Custom database paths
 data_dir = os.path.join(r"/dcs/project/algoblock/MainCode/PoSBlockchain/network_data/validator_node", "data")
@@ -222,9 +240,9 @@ class ValidatorSelector:
         staked = get_staked_balances_from_utxos(utxo_set)
 
         validators = [(addr, amt) for addr, amt in staked.items() if amt > 0 and addr != VALIDATOR_ADDRESS]
-        print(f"Available validators (excluding {VALIDATOR_ADDRESS}): {[addr for addr, _ in validators]}")
+        logger.info(f"Available validators (excluding {VALIDATOR_ADDRESS}): {[addr for addr, _ in validators]}")
         if not validators:
-            print("ERROR: No eligible validators found with stake!")
+            logger.warning("ERROR: No eligible validators found with stake!")
             return None
         total_stake = sum(amt for addr, amt in validators)
         selection = random.uniform(0, total_stake)
@@ -232,9 +250,9 @@ class ValidatorSelector:
         for addr, amt in validators:
             cumulative += amt
             if selection <= cumulative:
-                print(f"Selected validator {addr} based on weighted random (stake: {amt})")
+                logger.info(f"Selected validator {addr} based on weighted random (stake: {amt})")
                 return addr
-        print(f"Fallback selection: {validators[-1][0]}")
+        logger.warning(f"Fallback selection: {validators[-1][0]}")
         return validators[-1][0]
 
     def broadcast_selection(self, selected_validator):
@@ -261,15 +279,21 @@ class ValidatorSelector:
 
     def run(self):
         while True:
-            utxo_set = get_latest_utxo_set()
-            selected_validator = self.select_validator(utxo_set)
-            if selected_validator:
-                staked = get_staked_balances_from_utxos(utxo_set)
-                print(f"[ValidatorSelector] Selected Validator: {selected_validator} with stake {staked[selected_validator]}")
-                self.broadcast_selection(selected_validator)
-            else:
-                print("[ValidatorSelector] No eligible validator found.")
-            time.sleep(60)
+            try:
+                utxo_set = get_latest_utxo_set()
+                selected_validator = self.select_validator(utxo_set)
+                if selected_validator:
+                    staked = get_staked_balances_from_utxos(utxo_set)
+                    logger.info(f"[ValidatorSelector] Selected Validator: {selected_validator} with stake {staked[selected_validator]}")
+                    self.broadcast_selection(selected_validator)
+                else:
+                    logger.error("[ValidatorSelector] No eligible validator found.")
+                logger.debug(f"Validator sleeping for 15 seconds.")
+                time.sleep(20)
+            except Exception as e:
+                logger.error(f"!!!!!!!! Exception in ValidatorSelector run loop !!!!!!!!: {e}", exc_info=True)
+                # Sleep longer on error to avoid spamming logs
+                time.sleep(30)
 
 def signal_handler(sig, frame):
     print("\nShutting down validator node gracefully...")
@@ -278,8 +302,8 @@ def signal_handler(sig, frame):
 if __name__ == '__main__':
     signal.signal(signal.SIGINT, signal_handler)
     host = "127.0.0.1"
-    port = 9002
-    peer_list = [('127.0.0.1', 9000), ('127.0.0.1', 9001)]
+    port = 9003
+    peer_list = [('127.0.0.1', 9000), ('127.0.0.1', 9001), ('127.0.0.1', 9002)]
     print(f"Starting validator node on port {port} with custom DB paths")
 
     from code_node2.Blockchain.Backend.core.pos_blockchain import Blockchain
